@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../docs/**/*.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -9,7 +9,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
-    '@storybook/addon-a11y',
+    '@storybook/addon-a11y'
   ],
   framework: {
     name: '@storybook/vue3-vite',

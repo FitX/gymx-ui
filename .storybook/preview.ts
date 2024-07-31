@@ -1,5 +1,8 @@
 import type { Preview } from '@storybook/vue3';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import '@/assets/styles/normalize.css';
+import '@/assets/styles/sizes.css';
+import '@/assets/styles/borders.css';
 
 export const decorators = [
   withThemeByDataAttribute({
