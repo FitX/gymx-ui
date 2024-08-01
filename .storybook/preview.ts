@@ -1,23 +1,20 @@
-import type { Preview, VueRenderer } from '@storybook/vue3';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import { type Preview, type VueRenderer } from '@storybook/vue3';
+import { themes } from '@storybook/theming';
 import '@/assets/styles/normalize.css';
 import '@/assets/styles/sizes.css';
 import '@/assets/styles/borders.css';
 import '@/assets/styles/theme.css';
+import { themeDecorator } from './theme-decorator';
 
 export const decorators = [
-  withThemeByDataAttribute<VueRenderer>({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-    attributeName: 'data-theme',
-  }),
+  themeDecorator,
 ];
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      theme: themes.dark,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
