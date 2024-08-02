@@ -6,22 +6,30 @@ import '@/assets/styles/borders.css';
 import '@/assets/styles/theme.css';
 import { themeDecorator } from './theme-decorator';
 import { ThemedContainer } from './docs-theme-provider';
+import { computed, onMounted } from 'vue';
 
 
 export const decorators = [
   themeDecorator,
   (story, context) => {
-    console.log('story', story);
-    console.log('context', context);
-    console.log('root', document.documentElement);
-    console.log('viewmode', context.viewMode)
+    /* if (context.viewMode === 'story') {
+      console.log('context.globals.theme', context.globals.theme)
+      console.log('themes.dark', themes.dark)
+      context.hooks.renderListener((e) => {
+        console.log('context?????????????', e)
+      })
+
+      // console.log('story only', store.globals.globals.theme === 'dark' ? themes.dark : themes.light)
+    }*/
     return {
-      setup(props, ctx) {
+      setup(props) {
+
         return {
           story,
+          theme: computed(() => context.viewMode === 'story' ? context.globals.theme : undefined),
         }
       },
-      template: '<story />',
+      template: '<div :data-theme-story="theme"><story /></div>',
     };
   },
 ];
@@ -31,7 +39,8 @@ const preview: Preview = {
     docs: {
       // theme: ensure(themes.dark),
       theme: themes.dark,
-      container: ThemedContainer
+      container: ThemedContainer,
+      inline: false,
     },
     /* controls: {
       matchers: {
