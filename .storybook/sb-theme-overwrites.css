@@ -10,36 +10,6 @@ Storybook specific theming
   --storybook-background-color: #393939;
   --storybook-color: #fff;
 }
-/*
-[data-theme] {
-  border: 1rem solid red;
-  & [data-theme] {
-    border: 1rem solid deeppink;
-  }
-}
-[data-theme=dark] {
-  border: 1rem solid blue;
-  & [data-theme] {
-    border: 1rem solid cornflowerblue;
-  }
-}*/
-/**
-  Storybook Custom Overwrites
- */
-/* [data-theme],
-.sbdocs,
-.sbdocs.sbdocs,
-.sbdocs-title,
-.sb-unstyled,
-.sbdocs-wrapper {
-  background: var(--storybook-background-color);
-  color: var(--storybook-color);
-} */
-/* [data-theme]:has(:not([data-theme])) */
-/* [data-theme]:not(:has([data-theme])) {
-  background: red !important;
-} */
-
 
 /**
  For root, storys and docs. without auto generated docs.
@@ -48,5 +18,9 @@ Storybook specific theming
 .sbdocs.sbdocs-preview,
 .sbdocs.sbdocs-wrapper:not(:has(#stories)) {
   background: var(--storybook-background-color);
+  color: var(--storybook-color);
+}
+
+.sbdocs-wrapper:not(:has(#stories)) .custom-docs-content * {
   color: var(--storybook-color);
 }
