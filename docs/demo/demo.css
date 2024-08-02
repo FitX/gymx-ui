@@ -1,0 +1,100 @@
+.demo {
+  --demo-color-accent: #5468ff;
+  --demo-gap-block: var(--gymx-size-000);
+  --demo-gap-inline: var(--gymx-size-2);
+  --demo-item-ui-border-size: 1px;
+  --demo-ui-aspect-ratio: 1;
+}
+
+.demo--sizes,
+.demo--borders,
+.demo--radius,
+.demo--typo--families,
+.demo--typo--sizes,
+.demo--typo--weights,
+.demo--typo--lineheights,
+.demo--typo--letterspacings
+{
+  .demo__item {
+    display: grid;
+    gap: var(--demo-gap-block) var(--demo-gap-inline);
+    grid: 'content ui' auto / minmax(max-content, 10rem) 1fr;
+    align-content: start;
+    margin-bottom: var(--demo-gap-inline);
+  }
+  .demo__content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--demo-gap-block);
+  }
+
+  .demo__ui {
+    grid-area: ui;
+    border: var(--demo-item-ui-border-size) solid var(--demo-color-accent);
+    inline-size: var(--demo-size, 0px);
+    aspect-ratio: var(--demo-ui-aspect-ratio, 1);
+  }
+}
+
+.demo--borders,
+.demo--radius {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: var(--demo-gap-inline);
+  justify-content: space-between;
+
+  .demo__ui {
+    border: var(--demo-border-size, var(--gymx-border-size-1)) solid var(--demo-color-accent);
+    inline-size: calc(var(--demo-size, var(--gymx-size-6)));
+    aspect-ratio: var(--demo-ui-aspect-ratio, 1);
+    border-radius: var(--demo-radius);
+    justify-self: end;
+  }
+}
+
+.demo--radius {
+  --demo-ui-aspect-ratio: 16/9;
+  --demo-size: calc(var(--gymx-radius-6) + 1rem);
+  @container style(--demo-radius: calc(infinity * 1px)) {
+    .demo__ui {
+      --demo-ui-aspect-ratio: 1;
+    }
+  }
+}
+
+.demo--typo--families,
+.demo--typo--sizes,
+.demo--typo--weights,
+.demo--typo--lineheights,
+.demo--typo--letterspacings {
+  --demo-item-ui-border-size: 0;
+  --demo-size: 100%;
+  --demo-ui-aspect-ratio: auto;
+  margin-block-end: 4rem;
+
+  .demo__item {
+    grid:
+      'content' auto
+      'ui' auto / 1fr;
+  }
+}
+
+.demo--typo--families .demo__ui {
+  font-family: var(--demo-value);
+  font-size: var(--gymx-font-size-3);
+}
+.demo--typo--sizes .demo__ui {
+  font-size: var(--demo-value);
+}
+.demo--typo--weights .demo__ui {
+  font-weight: var(--demo-value);
+}
+.demo--typo--lineheights .demo__ui {
+  line-height: var(--demo-value);
+  max-inline-size: 50ch;
+}
+.demo--typo--letterspacings .demo__ui {
+  letter-spacing: var(--demo-value);
+}
+
