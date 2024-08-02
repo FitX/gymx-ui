@@ -18,13 +18,19 @@ Storybook specific theming
     border: 1rem solid cornflowerblue;
   }
 }
-[data-theme], .sbdocs {
+/**
+  Storybook Custom Overwrites
+ */
+[data-theme],
+.sbdocs,
+.sbdocs.sbdocs,
+.sbdocs-wrapper {
   background: var(--storybook-background-color);
   color: var(--storybook-color);
 }
 
 [data-theme=dark] {
-  --storybook-background-color: blue;
+  --storybook-background-color: deepskyblue;
   --storybook-color: white;
 }
 /* [data-theme]:has(:not([data-theme])) */

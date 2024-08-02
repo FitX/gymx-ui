@@ -16,11 +16,10 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
   return (
     <DocsContainer
       context={props.context}
-      // key={(props.context as any).store.globals.globals.theme === 'dark' ? themes.dark.base : themes.light.base}
-      theme={theme === 'dark' ? themes.dark : themes.light}
-    >
-      <div data-docs={'wtf'} data-theme={theme ?? 'wtf'}>{props.children}</div>
-    </DocsContainer>
+      children={props.children}
+      // theme={theme === 'dark' ? themes.dark : themes.light}
+      data-theme={theme}
+    />
   )
 }
 /* vielleicht auf dom ebene prüfen ob data-theme schon existiert */
