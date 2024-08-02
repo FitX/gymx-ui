@@ -1,12 +1,15 @@
 import { type Preview } from '@storybook/vue3';
 import { themes } from '@storybook/theming';
+import { themeDecorator } from './theme-decorator';
+import { ThemedContainer } from './docs-theme-provider';
+import { computed } from 'vue';
+
+import './sb-theme-overwrites.css';
+
 import '@/assets/styles/normalize.css';
 import '@/assets/styles/sizes.css';
 import '@/assets/styles/borders.css';
-import '@/assets/styles/theme.css';
-import { themeDecorator } from './theme-decorator';
-import { ThemedContainer } from './docs-theme-provider';
-import { computed, onMounted } from 'vue';
+
 
 
 export const decorators = [
