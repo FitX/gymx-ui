@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/blocks';
+import { getCSSCustomProps } from './demo/utils/css-props';
+import './demo/demo.css';
+
+export const borderSizes = getCSSCustomProps('--gymx-border-size');
+export const borderRadius = getCSSCustomProps('--gymx-radius');
+export const getValueByValue = (value, list) => {
+  const isCustomProperty = value.startsWith('var');
+  if (isCustomProperty) {
+    const resolveCustomProperty = list.find(([_identifier]) => (_identifier.trim() === value.trim().replace('var(', '').replace(')', '')))?.[1];
+    if (resolveCustomProperty) {
+      return `${value} (${resolveCustomProperty})`;
+    }
+  }
+  return value;
+};
+
+export const customPropertyByIdentifier = (identifier) => {
+  if (identifier.startsWith('--gymx-border-size')) return '--demo-border-size';
+  if (identifier.startsWith('--gymx-radius')) return '--demo-radius';
+  return identifier;
+};
+
+export const Demo = (sizes = [], modifier) => <section className={`demo demo--${modifier}`}>
+  {sizes
+    .map(([identifier, value], index) => <div key={index} className='demo__item' style={{ [customPropertyByIdentifier(identifier)]: value }}>
+      <span className='demo__content'>
+        <b className='demo__identifier'>{identifier}</b>
+        <span className='demo__value'>{ getValueByValue(value, sizes) }</span>
+      </span>
+      <span className='demo__ui'></span>
+      <h2></h2>
+    </div>)
+  }
+</section>;
+
+export const DemoBorderSizes = () => Demo(borderSizes.filter(([_identifier]) => !_identifier.endsWith('-px')), 'borders');
+export const DemoBorderRadius = () => Demo(borderRadius, 'radius');
+
+<Meta title="Tokens/Borders" />
+
+# Borders
+
+@TODO Optimize presentation
+
+## Sizes
+<DemoBorderSizes />
+
+## Radius
+<DemoBorderRadius />
+

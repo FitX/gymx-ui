@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/blocks';
+import { getCSSCustomProps } from './demo/utils/css-props';
+import './demo/demo.css';
+
+export const demoABC = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Ä Ö Ü ß';
+export const demoABCSmall = 'a b c d e f g h i j k l m n o p q r s t u v w x y z ä ö ü';
+export const demoNumbers = '0 1 2 3 4 5 6 7 8 9';
+export const demoSpecialCharacters = '! " § $ % & \' ( ) * + , - . / : ; < = > ? @ [ ] ^ _ ` { | } ~';
+export const allTypes = `${demoABC} ${demoABCSmall} ${demoNumbers} ${demoSpecialCharacters}`;
+export const demoText = 'This text serves as a sample to demonstrate the visual representation of CSS font settings';
+
+export const typoFamily = getCSSCustomProps('--gymx-font-family');
+export const typoSizes = getCSSCustomProps('--gymx-font-size');
+export const typoWeights = getCSSCustomProps('--gymx-font-weight');
+export const typoLineHeights = getCSSCustomProps('--gymx-font-lineheight');
+export const typoLetterSpacings = getCSSCustomProps('--gymx-font-letterspacing');
+
+export const DemoSizes = (sizes = [], modifier = '', content = 'Lorem Ipsum') => <section className={`demo demo--typo--${modifier}`}>
+  {sizes
+    .map(([identifier, value], index) => <div key={index} className='demo__item' style={{ '--demo-value': value }}>
+      <span className='demo__content'>
+        <b className='demo__identifier'>{identifier}</b>
+        <span className='demo__value'>{value}</span>
+      </span>
+      <span className='demo__ui'>{content}</span>
+    </div>)
+  }
+</section>;
+
+export const DemoFontFamily = () => DemoSizes(typoFamily, 'families', allTypes);
+export const DemoFontSizes = () => DemoSizes(typoSizes, 'sizes');
+export const DemoFontWeights = () => DemoSizes(typoWeights, 'weights');
+export const DemoFontLineHeights = () => DemoSizes(typoLineHeights, 'lineheights', demoText);
+export const DemoFontLetterSpacings= () => DemoSizes(typoLetterSpacings, 'letterspacings');
+
+<Meta title="Tokens/Typo" />
+
+# Typo
+
+Font properties like weight, sizes and letter spacing.
+
+@TODO Optimize presentation
+
+## Font Families
+<DemoFontFamily />
+
+## Font Sizes
+<DemoFontSizes />
+
+## Font Weights
+<DemoFontWeights />
+
+## Font Line Heights
+<DemoFontLineHeights />
+
+## Font Letter Spacings
+<DemoFontLetterSpacings />

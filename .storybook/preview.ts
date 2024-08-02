@@ -8,9 +8,8 @@ import './sb-theme-overwrites.css';
 
 import '@/assets/styles/normalize.css';
 import '@/assets/styles/sizes.css';
+import '@/assets/styles/typo.css';
 import '@/assets/styles/borders.css';
-
-
 
 export const decorators = [
   themeDecorator,

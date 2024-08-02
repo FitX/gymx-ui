@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/blocks';
+import { getCSSCustomProps } from './demo/utils/css-props';
+import './demo/demo.css';
+
+export const sizesFluid = getCSSCustomProps('--gymx-size-fluid');
+export const sizesFixed = getCSSCustomProps('--gymx-size')?.filter(
+  ([identifier]) => !identifier.startsWith('--gymx-size-fluid')
+);
+
+export const DemoSizes = (sizes = []) => <section className='demo demo--sizes'>
+  {sizes
+    .map(([identifier, value], index) => <div key={index} className='demo__item' style={{ '--demo-size': value }}>
+      <span className='demo__content'>
+        <b className='demo__identifier'>{identifier}</b>
+        <span className='demo__value'>{value}</span>
+      </span>
+      <span className='demo__ui'></span>
+    </div>)
+  }
+</section>;
+
+export const DemoSizesFluid = () => DemoSizes(sizesFluid);
+export const DemoSizesFixed = () => DemoSizes(sizesFixed);
+
+<Meta title="Tokens/Sizes" />
+
+# Sizes
+
+@TODO Optimize presentation
+
+## Fixed
+size-1: 1rem (root)
+<DemoSizesFixed />
+
+## Fluid
+<DemoSizesFluid />
+

@@ -1,0 +1,31 @@
+:where(html) {
+  --gymx-border-size-1-px: 1px;
+  --gymx-border-size-2-px: 2px;
+  --gymx-border-size-3-px: 4px;
+  --gymx-border-size-4-px: 8px;
+  --gymx-border-size-5-px: 16px;
+
+  --gymx-border-size-1: var(--gymx-border-size-1-px);
+  --gymx-border-size-2: var(--gymx-border-size-2-px);
+  --gymx-border-size-3: var(--gymx-border-size-3-px);
+  --gymx-border-size-4: var(--gymx-border-size-4-px);
+  --gymx-border-size-5: var(--gymx-border-size-5-px);
+
+  --gymx-radius-1: 0.25rem;
+  --gymx-radius-2: 0.5rem;
+  --gymx-radius-3: 1rem;
+  --gymx-radius-4: 2rem;
+  --gymx-radius-5: 4rem;
+  --gymx-radius-6: 8rem;
+
+  --gymx-radius-round: calc(infinity * 1px);
+
+  /* no radius when fullscreen */
+  /*
+  --radius-conditional-1: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-1));
+  --radius-conditional-2: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-2));
+  --radius-conditional-3: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-3));
+  --radius-conditional-4: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-4));
+  --radius-conditional-5: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-5));
+  --radius-conditional-6: clamp(0px, calc(100vw - 100%) * 1e5, var(--radius-6)); */
+}
