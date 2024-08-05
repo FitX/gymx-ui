@@ -1,12 +1,12 @@
 
 <script lang="ts" setup>
-
 import type { GymxButtonProps } from '@/components/gymx-button/types';
+import type { UIState } from '@/types';
 
 const props = withDefaults(defineProps<GymxButtonProps>(), {
   tag: 'button',
   isActive: false,
-  state: undefined,
+  state: undefined as UIState | undefined,
 });
 </script>
 <template>
