@@ -6,6 +6,30 @@
   --demo-ui-aspect-ratio: 1;
 }
 
+.demo--sizes.demo--sizes[TEMP] {
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 10vw);
+  align-items: baseline;
+
+  .demo__content {
+    /* writing-mode: vertical-lr; */
+    /* text-orientation: upright; */
+  }
+
+  .demo__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .demo__ui {
+    display: block;
+    width: 100%;
+    height: var(--demo-size);
+    order: -1;
+  }
+}
+
 .demo--sizes,
 .demo--borders,
 .demo--radius,
@@ -77,6 +101,19 @@
     grid:
       'content' auto
       'ui' auto / 1fr;
+    gap: var(--gymx-size-0);
+  }
+
+  .demo__content {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    /*
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+    */
+    padding: var(--gymx-size-000) 20px;
+    margin-inline: -20px;
   }
 }
 
