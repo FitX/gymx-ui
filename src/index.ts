@@ -1,2 +1,2 @@
-export type * from './types/index';
+export type * from './types';
 export * from './components/index';

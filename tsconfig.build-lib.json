@@ -17,7 +17,9 @@
     "declarationDir": "./dist/types",
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": false,
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client"
     ],
