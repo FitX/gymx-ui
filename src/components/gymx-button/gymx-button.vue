@@ -5,6 +5,8 @@ import type { GymxButtonProps } from '@/components/gymx-button/types';
 
 const props = withDefaults(defineProps<GymxButtonProps>(), {
   tag: 'button',
+  isActive: false,
+  state: undefined,
 });
 </script>
 <template>

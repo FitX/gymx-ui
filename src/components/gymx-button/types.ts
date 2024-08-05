@@ -6,5 +6,5 @@ export interface GymxButtonProps {
    * Active State
    */
   isActive?: boolean,
-  state: UIState,
+  state?: UIState,
 }
