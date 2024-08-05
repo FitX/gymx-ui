@@ -9,14 +9,15 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/index.d.ts"
     }
   },
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "npm run test:unit -- run --coverage && npm run build:storybook",
-    "build:lib": "rm -rf ./dist && vue-tsc --project tsconfig.build-lib.json && vite build",
+    "build:lib": "rm -rf ./dist && vite build",
+    "build:lib2": "rm -rf ./dist && vue-tsc --project tsconfig.build-lib.json && vite build",
     "build:storybook": "storybook build",
     "preview": "vite preview",
     "test:unit": "vitest",
