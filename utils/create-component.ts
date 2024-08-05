@@ -2,23 +2,35 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Usage: npx ts-node utils/create-component.ts button
+ * Usage: npx ts-node utils/create-component.ts fancy-button
  */
 
-const capitalize = (string: string): string => string.charAt(0).toUpperCase() + string.slice(1);
+/**
+ * @link https://stackoverflow.com/a/53952925
+ */
+const toPascalCase = (string: string): string => `${string}`
+  .toLowerCase()
+  .replace(new RegExp(/[-_]+/, 'g'), ' ')
+  .replace(new RegExp(/[^\w\s]/, 'g'), '')
+  .replace(
+    new RegExp(/\s+(.)(\w*)/, 'g'),
+    ($1, $2, $3) => `${$2.toUpperCase() + $3}`
+  )
+  .replace(new RegExp(/\w/), s => s.toUpperCase());
 
 const libNamePrefix = 'gymx';
 
 const contentTemplates = {
   index: (name) => `
 export * from './types';
-export { default as ${capitalize(libNamePrefix)}${capitalize(name)} } from './${libNamePrefix}-${name}.vue';\n`,
+export { default as ${toPascalCase(libNamePrefix)}${toPascalCase(name)} } from './${libNamePrefix}-${name}.vue';
+// @TODO update components/index before publishing\n`,
   types: (name) => `
-export interface ${capitalize(libNamePrefix)}${capitalize(name)}Props {
+export interface ${toPascalCase(libNamePrefix)}${toPascalCase(name)}Props {
 // @TODO Define your props here
 }\n`,
   test: (name) => {
-    const componentName = `${capitalize(libNamePrefix)}${capitalize(name)}`;
+    const componentName = `${toPascalCase(libNamePrefix)}${toPascalCase(name)}`;
     return `
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
@@ -69,6 +81,9 @@ const args = process.argv.slice(2);
 if (args.length === 0) {
   console.error('Usage: ts-node utils/create-component.ts <name>');
   process.exit(1);
+}
+if (args.length > 1) {
+  console.warn('currently we just accept 1 Parameter <name>')
 }
 
 const componentName = args[0];
