@@ -1,4 +1,4 @@
-import type { UIState } from '../../types';
+import type { UIState } from '@/types';
 
 export interface GymxButtonProps {
   tag: 'button' | 'span' | 'a', // default button
