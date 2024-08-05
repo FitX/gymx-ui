@@ -20,7 +20,7 @@ export default defineConfig({
     lib: {
       entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
       formats: ['es'],
-      name: '@fitx/gymx-ui',
+      name: 'gymx-ui', // @fitx/gymx-ui
       fileName: 'index',
     },
     rollupOptions: {
