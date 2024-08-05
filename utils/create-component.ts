@@ -10,15 +10,37 @@ const capitalize = (string: string): string => string.charAt(0).toUpperCase() + 
 const libNamePrefix = 'gymx';
 
 const contentTemplates = {
-  index: (name) => `export { default } from './${libNamePrefix}-${name}.vue';\n// @TODO add to index.ts`,
-  types: (name) => `export interface ${capitalize(name)}Props {\n  // @TODO Define your props here\n}\n`,
-  test: (name) => `import { mount } from '@vue/test-utils';\nimport { descripe, test } from 'vitest';\nimport Blubb${capitalize(name)} from './${libNamePrefix}-${name}.vue';\n\ndescribe('${libNamePrefix}${capitalize(name)}', () => {\n  test('is a Vue instance', () => {\n    const wrapper = mount(${libNamePrefix}${capitalize(name)});\n    expect(wrapper.exists()).toBeTruthy();n  });\n});\n`,
-  vue: (name) => `@TODO <script></script>\n<template>\n<!-- Have fun with ${name}</template>\n<style scoped></style>`,
+  index: (name) => `
+export * from './types';
+export { default as ${capitalize(libNamePrefix)}${capitalize(name)} } from './${libNamePrefix}-${name}.vue';\n`,
+  types: (name) => `
+export interface ${capitalize(libNamePrefix)}${capitalize(name)}Props {
+// @TODO Define your props here
+}\n`,
+  test: (name) => {
+    const componentName = `${capitalize(libNamePrefix)}${capitalize(name)}`;
+    return `
+import { mount } from '@vue/test-utils';
+import { describe, it, expect } from 'vitest';
+import { ${componentName} } from './index';
+
+describe('${componentName}', () => {
+  it('is a Vue instance', () => {
+    const wrapper = mount(${componentName});
+    expect(wrapper.exists()).toBeTruthy();
+  });
+});\n`
+  },
+  vue: (name) => `
+<script lang="ts" setup></script>
+<template>${libNamePrefix}-${name}</template>
+<style lang="scss" scoped></style>`,
 };
 
 function createComponent(name: string): void {
   // Verzeichnis- und Dateinamen definieren
-  const dirPath = path.join(__dirname, 'src', 'components', `${libNamePrefix}-${name}`);
+  const dirPath = path.join('src', 'components', `${libNamePrefix}-${name}`);
+
   const files = [
     { name: 'index.ts', content: contentTemplates.index(name) },
     { name: 'types.ts', content: contentTemplates.types(name) },
@@ -26,15 +48,16 @@ function createComponent(name: string): void {
     { name: `${libNamePrefix}-${name}.vue`, content: contentTemplates.vue(name) }
   ];
 
-  // Verzeichnis erstellen
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
+  if (fs.existsSync(dirPath)) {
+    console.error(`Folder for ${name} already exists.`);
+    process.exit(1);
 
-  // Dateien erstellen und Inhalt hinzufügen
-  files.forEach(file => {
-    fs.writeFileSync(path.join(dirPath, file.name), file.content);
-  });
+  } else {
+    fs.mkdirSync(dirPath, { recursive: true });
+    files.forEach(file => {
+      fs.writeFileSync(path.join(dirPath, file.name), file.content);
+    });
+  }
 
   console.log(`Component '${libNamePrefix}-${name}' created successfully in 'src/components/'`);
 }
