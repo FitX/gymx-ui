@@ -1,6 +1,10 @@
 {
   "name": "gymx-ui",
   "version": "0.0.3",
+  "files": [
+    "dist",
+    "src"
+  ],
   "module": "./dist/index.js",
   "exports": {
     ".": {
