@@ -15,6 +15,7 @@
     "lib": ["esnext", "dom"],
     "declaration": true,
     "declarationDir": "./dist/types",
+    "outDir": "./dist",
     "isolatedModules": true,
     "skipLibCheck": true,
     "noEmit": false,
