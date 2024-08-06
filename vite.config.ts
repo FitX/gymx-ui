@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    dts({
+    /* dts({
       tsconfigPath: './tsconfig.build-lib.json',
-    }),
+    }), */
   ],
   resolve: {
     alias: {

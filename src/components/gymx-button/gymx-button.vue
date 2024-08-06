@@ -1,7 +1,7 @@
 
 <script lang="ts" setup>
-import type { GymxButtonProps } from '@/components/gymx-button/types';
-import type { UIState } from '@/types';
+import type { GymxButtonProps } from './types';
+import type { UIState } from '../..//types';
 
 const props = withDefaults(defineProps<GymxButtonProps>(), {
   tag: 'button',

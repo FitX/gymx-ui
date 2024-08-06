@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run test:unit -- run --coverage && npm run build:storybook",
-    "build:lib": "rm -rf ./dist && vite build",
+    "build:lib": "rm -rf ./dist && vite build && vue-tsc --emitDeclarationOnly --project tsconfig.build-lib.json",
     "build:storybook": "storybook build",
     "preview": "vite preview",
     "test:unit": "vitest",
