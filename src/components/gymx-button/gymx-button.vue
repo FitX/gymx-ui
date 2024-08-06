@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import type { GymxButtonProps } from './types';
 import type { UIState } from '../../types';
+import { FancyIcon } from '../../components/icons/index';
 
 const props = withDefaults(defineProps<GymxButtonProps>(), {
   tag: 'button',
@@ -12,7 +13,12 @@ const props = withDefaults(defineProps<GymxButtonProps>(), {
 <template>
   <component
     :is="props.tag"
-    class="btn"></component>
+    class="btn">
+    <slot name="icon">
+      <fancy-icon />
+    </slot>
+    <slot name="default"></slot>
+  </component>
 </template>
 <style lang="scss" scoped>
 .btn {}
