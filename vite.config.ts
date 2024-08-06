@@ -20,7 +20,16 @@ export default defineConfig({
   build: {
     cssCodeSplit: true,
     lib: {
-      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+      entry: [
+        fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/borders.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/colors.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/sizes.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/normalize.css', import.meta.url)),
+        fileURLToPath(new URL('./src/assets/styles/typo.css', import.meta.url)),
+      ],
       formats: ['es'],
       name: 'gymx-ui', // @fitx/gymx-ui
       fileName: 'index',
@@ -30,6 +39,11 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue',
+        },
+        assetFileNames: (assetInfo) => {
+          console.log('assetinfo', assetInfo)
+          console.log('console.log(import.meta.url)', import.meta.url)
+          return `styles/${assetInfo.name}`;
         },
       },
     },
