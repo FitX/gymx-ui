@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
-import dts from "vite-plugin-dts";
+// import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,7 +24,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-        'styles/index': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
+        'styles/styles': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
         'styles/borders': fileURLToPath(new URL('./src/assets/styles/borders.css', import.meta.url)),
         'styles/colors': fileURLToPath(new URL('./src/assets/styles/colors.css', import.meta.url)),
         'styles/theme': fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
@@ -32,20 +32,8 @@ export default defineConfig({
         'styles/normalize': fileURLToPath(new URL('./src/assets/styles/normalize.css', import.meta.url)),
         'styles/typo': fileURLToPath(new URL('./src/assets/styles/typo.css', import.meta.url)),
       },
-      /**
-       * [
-       *         fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/borders.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/colors.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/sizes.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/normalize.css', import.meta.url)),
-       *         fileURLToPath(new URL('./src/assets/styles/typo.css', import.meta.url)),
-       *       ]
-       */
       formats: ['es'],
-      name: 'gymx-ui', // @fitx/gymx-ui
+      name: '@fitx/gymx-ui', // @fitx/gymx-ui
       fileName: 'index',
     },
     rollupOptions: {
