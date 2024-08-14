@@ -2,11 +2,9 @@
  Theme <3 Gymx Ui
  */
 :where(html) {
-  --gymx-component-font-size-default: var(--gymx-font-size-1);
-  --gymx-component-font-size-small: var(--gymx-font-size-0);
-
-  --gymx-form-font-size-default: var(--gymx-component-font-size-default);
-  --gymx-form-font-size-small: var(--gymx-component-font-size-small);
+  font-family: var(--gymx-font-family-default);
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
 }
 
 :where([data-theme=dark]) {

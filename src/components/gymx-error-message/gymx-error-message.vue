@@ -7,7 +7,8 @@ const props = defineProps<GymxErrorMessageProps>();
 <template>
   <span class="error-message">
      <!--
-      @slot pre-icon - Alternate slot for icon
+      @slot pre-icon -
+      Alternate slot for icon, to add gap add class error-message__icon
       -->
     <slot name="pre-icon">
         <icon-error class="error-message__icon" />
@@ -25,16 +26,18 @@ const props = defineProps<GymxErrorMessageProps>();
 
 <style lang="scss" scoped>
 .error-message {
-  --_error-message-font-size: var(--error-message-font-size, var(--gymx-font-size-0));
-  --_error-message-color: var(--error-message-color, var(--gymx-color-error-text));
   --_error-message-gap: var(--error-message-gap, var(--gymx-size-00));
   --_error-message-icon-size: var(--error-message-icon-size, var(--gymx-size-2));
 
-  font-size: var(--_error-message-font-size);
-  font-weight: var(--error-message-font-weight, var(--gymx-font-weight-4));
+  font-size: var(--error-message-font-size, var(--gymx-form-font-size-small));
+  font-weight: var(--error-message-font-weight, var(--gymx-form-font-weight-default));
+  border: var(--error-message-border);
+  border-radius: var(--error-message-radius);
+  padding: var(--error-message-padding-block) var(--error-message-padding-inline);
+  background: var(--error-message-color-background);
   display: grid;
   width: 100%;
-  color: var(--_error-message-color);
+  color: var(--error-message-color, var(--gymx-color-error-text));
   grid-template-columns: var(--_error-message-icon-size) 1fr;
   grid-gap: var(--_error-message-gap);
   align-items: center;

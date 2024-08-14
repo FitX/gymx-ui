@@ -2,6 +2,15 @@
  * This File contains all imports from tokens and themes
  */
 @import "normalize.css";
-@import "sizes.css";
-@import "typo.css";
-@import "borders.css";
+/**
+ (Internal) Tokens
+ */
+@import "tokens/index.css";
+/**
+ * Semantic Tokens
+ */
+@import "semantic.css";
+/**
+ * Theme specific
+ */
+@import "theme.css";

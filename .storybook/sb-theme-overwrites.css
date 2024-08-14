@@ -7,7 +7,7 @@ Storybook specific theming
 }
 
 [data-theme=dark] {
-  --storybook-background-color: #393939;
+  --storybook-background-color: #111113;
   --storybook-color: #fff;
 }
 /**
@@ -24,7 +24,9 @@ Storybook specific theming
 .sbdocs-wrapper:not(:has(#stories)) .custom-docs-content * {
   color: var(--storybook-color);
 }*/
-#storybook-docs {
+:root,
+#storybook-docs,
+.docs-story > *:first-child {
   background: var(--storybook-background-color);
   color: var(--storybook-color);
 }

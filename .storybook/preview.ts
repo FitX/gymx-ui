@@ -6,12 +6,14 @@ import { computed } from 'vue';
 
 import './sb-theme-overwrites.css';
 
+/*
 import '@/assets/styles/normalize.css';
-import '@/assets/styles/sizes.css';
-import '@/assets/styles/typo.css';
-import '@/assets/styles/colors.css';
-import '@/assets/styles/borders.css';
-import '@/assets/styles/theme.css';
+import '../src/assets/styles/tokens/sizes.css';
+import '../src/assets/styles/tokens/typo.css';
+import '../src/assets/styles/tokens/colors.css';
+import '../src/assets/styles/tokens/borders.css';
+import '@/assets/styles/theme.css'; */
+import '@/assets/styles/index.css';
 
 export const decorators = [
   themeDecorator,
