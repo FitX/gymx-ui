@@ -26,7 +26,6 @@ const props = defineProps<GymxErrorMessageProps>();
 
 <style lang="scss" scoped>
 .error-message {
-  --_error-message-gap: var(--error-message-gap, var(--gymx-size-00));
   --_error-message-icon-size: var(--error-message-icon-size, var(--gymx-size-2));
 
   font-size: var(--error-message-font-size, var(--gymx-form-font-size-small));
@@ -39,7 +38,7 @@ const props = defineProps<GymxErrorMessageProps>();
   width: 100%;
   color: var(--error-message-color, var(--gymx-color-error-text));
   grid-template-columns: var(--_error-message-icon-size) 1fr;
-  grid-gap: var(--_error-message-gap);
+  grid-gap: var(--error-message-gap, var(--gymx-size-00));
   align-items: center;
 
   &__icon {
