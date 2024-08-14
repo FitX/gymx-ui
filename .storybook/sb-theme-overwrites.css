@@ -10,10 +10,10 @@ Storybook specific theming
   --storybook-background-color: #393939;
   --storybook-color: #fff;
 }
-
 /**
  For root, storys and docs. without auto generated docs.
  */
+/*
 :root,
 .sbdocs.sbdocs-preview,
 .sbdocs.sbdocs-wrapper:not(:has(#stories)) {
@@ -22,5 +22,9 @@ Storybook specific theming
 }
 
 .sbdocs-wrapper:not(:has(#stories)) .custom-docs-content * {
+  color: var(--storybook-color);
+}*/
+#storybook-docs {
+  background: var(--storybook-background-color);
   color: var(--storybook-color);
 }
