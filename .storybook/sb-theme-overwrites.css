@@ -30,3 +30,10 @@ Storybook specific theming
   background: var(--storybook-background-color);
   color: var(--storybook-color);
 }
+
+/**
+ Fix Storybook Bugs -.-
+ */
+.custom-docs-content > :is(h1, h2, h3, h4, h5, h6) > a[aria-hidden] {
+  margin-left: -24px;
+}
