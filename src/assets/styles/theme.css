@@ -1,3 +1,12 @@
 /**
- Theme <3
+ Theme <3 Gymx Ui
  */
+:where(html) {
+  font-family: var(--gymx-font-family-default);
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
+}
+
+:where([data-theme=dark]) {
+  --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
+}

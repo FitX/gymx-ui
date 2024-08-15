@@ -1,0 +1,29 @@
+/**
+ Named Defaults
+ */
+:where(html) {
+  /**
+  named font weights
+   */
+  --gymx-font-weight-light: var(--gymx-font-weight-3, 300);
+  --gymx-font-weight-regular: var(--gymx-font-weight-4, 400);
+  --gymx-font-weight-medium: var(--gymx-font-weight-5, 500);
+  --gymx-font-weight-bold: var(--gymx-font-weight-7, 700);
+
+  --gymx-font-family-default: var(--gymx-font-family-sans);
+  /* --gymx-font-family-code: var(--gymx-font-family-sans); */
+
+  --gymx-font-size-default: var(--gymx-font-size-1);
+  --gymx-font-size-small: var(--gymx-font-size-0);
+
+  --gymx-font-lineheight-default: var(--gymx-font-lineheight-1);
+  --gymx-font-weight-default: var(--gymx-font-weight-regular);
+  --gymx-font-letterspacing-default: 0em;
+
+  /**
+  Form Component Styles
+   */
+  --gymx-form-font-size-default: var(--gymx-font-size-default);
+  --gymx-form-font-size-small: var(--gymx-font-size-small);
+  --gymx-form-font-weight-default: var(--gymx-font-weight-default);
+}

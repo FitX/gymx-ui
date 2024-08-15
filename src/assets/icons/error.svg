@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon-width, 18px); height: var(--icon-height, 18px);" viewBox="0 0 18 18">
+  <path fill="var(--icon-fill, #181D1E)" fill-rule="evenodd" d="M1 9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8Zm14.8 0A6.79 6.79 0 0 1 9 15.8 6.79 6.79 0 0 1 2.2 9 6.79 6.79 0 0 1 9 2.2 6.79 6.79 0 0 1 15.8 9ZM9 13a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6Zm-.6-3.4a.6.6 0 1 0 1.2 0V5.2a.6.6 0 1 0-1.2 0v4.4Z" clip-rule="evenodd"/>
+</svg>

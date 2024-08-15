@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Usage: npx ts-node utils/create-component.ts fancy-button
+ * Usage: npx tsx utils/create-component.ts fancy-button
  */
 
 /**
@@ -47,6 +47,35 @@ describe('${componentName}', () => {
 <script lang="ts" setup></script>
 <template>${libNamePrefix}-${name}</template>
 <style lang="scss" scoped></style>`,
+  story: (name) => {
+    const componentName = `${toPascalCase(libNamePrefix)}${toPascalCase(name)}`;
+    return `
+import type { Meta, StoryObj } from '@storybook/vue3';
+import { default as ${componentName} } from './${libNamePrefix}-${name}.vue';
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+const meta = {
+  title: 'components/WIP/${name}',
+  component: ${componentName},
+  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ['autodocs'],
+} satisfies Meta<typeof ${componentName}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+/*
+ *👇 Render functions are a framework specific feature to allow you control on how the component renders.
+ * See https://storybook.js.org/docs/api/csf
+ * to learn how to use render functions.
+ */
+export const Default: Story = {
+  args: {
+    // text: 'This is an error message',
+  },
+};
+
+  `
+  },
 };
 
 function createComponent(name: string): void {
@@ -57,7 +86,8 @@ function createComponent(name: string): void {
     { name: 'index.ts', content: contentTemplates.index(name) },
     { name: 'types.ts', content: contentTemplates.types(name) },
     { name: `${libNamePrefix}-${name}.test.ts`, content: contentTemplates.test(name) },
-    { name: `${libNamePrefix}-${name}.vue`, content: contentTemplates.vue(name) }
+    { name: `${libNamePrefix}-${name}.vue`, content: contentTemplates.vue(name) },
+    { name: `${libNamePrefix}-${name}.stories.ts`, content: contentTemplates.story(name) }
   ];
 
   if (fs.existsSync(dirPath)) {
@@ -68,10 +98,12 @@ function createComponent(name: string): void {
     fs.mkdirSync(dirPath, { recursive: true });
     files.forEach(file => {
       fs.writeFileSync(path.join(dirPath, file.name), file.content);
+      console.log(`${file.name} added`)
     });
   }
 
   console.log(`Component '${libNamePrefix}-${name}' created successfully in 'src/components/'`);
+  console.log(`dont forget to include '${libNamePrefix}-${name}' in 'src/components/index'`);
 }
 
 

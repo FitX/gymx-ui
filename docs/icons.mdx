@@ -1,0 +1,96 @@
+import { Meta, IconGallery, IconItem } from '@storybook/blocks';
+export const moduleStrings = import.meta.glob('@/assets/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+export const extractFileName = (path) => {
+  const match = path.match(/\/([^\/]+)\.svg$/);
+  return match ? match[1] : null;
+};
+
+export const getIcon = (raw) => <div dangerouslySetInnerHTML={{ __html: raw }}></div>;
+
+export const RenderIcons = () => (
+  <>
+    {Object.entries(moduleStrings).map(([key, value]) => (
+      <IconItem
+        name={extractFileName(key)}
+        className="icon-item"
+        key={key}>
+        {getIcon(value)}
+      </IconItem>
+    ))}
+  </>
+);
+
+<Meta title="Welcome/Icons" />
+
+## SVG Icons Documentation
+
+All SVG icons are provided both as SVG files and as Vue components. The Vue components include the prefix `Icon`.
+Accordingly, icons can be implemented using either
+```ts
+import { IconError } from '@fitx/gymx-ui';
+// <icon-error />
+```
+or
+```ts
+import ErrorIcon from '@fitx/gymx-ui/icons/error.svg?url';
+// <img :src="ErrorIcon" alt="">
+```
+
+The provided SVG icons are designed to be easily customizable through CSS variables.
+This allows you to adjust the size and colors of the icons without directly modifying the SVG files.
+
+### Example Code for icon-error
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon-width, 18px); height: var(--icon-height, 18px);" viewBox="0 0 18 18">
+  <path fill="var(--icon-fill-1, var(--icon-fill, #181D1E))" fill-rule="evenodd" d="M2 8.034C2 4.157 5.141 1 9 1c3.858 0 7 3.157 7 7.034 0 1.74-.635 3.337-1.68 4.564l-.002.002-.002.003s-2.831 3.274-4.04 4.432c-.71.68-1.843.68-2.553 0-1.06-1.016-4.038-4.43-4.038-4.43l-.003-.004-.003-.003A7.03 7.03 0 0 1 2 8.034Zm12.765 0C14.765 4.828 12.19 2.24 9 2.24c-3.19 0-5.765 2.587-5.765 5.793 0 1.437.521 2.743 1.383 3.757.02.024 3.078 3.503 3.957 4.346a.6.6 0 0 0 .849 0c1.053-1.009 3.944-4.33 3.957-4.345a5.768 5.768 0 0 0 1.384-3.758Z" clip-rule="evenodd"/>
+  <path fill="var(--icon-fill-2, var(--icon-fill, #ED6A12))" d="M13 6.246c-.685-.505-1.606-.878-2.656-1.053L9 6.54 7.656 5.193c-1.05.175-1.971.548-2.656 1.053l2.146 2.147L5 10.541c.685.505 1.606.878 2.656 1.052L9 10.248l1.345 1.345c1.05-.174 1.97-.547 2.655-1.052l-2.146-2.148L13 6.246Z"/>
+</svg>
+```
+
+
+### Customizing the Size
+To change the size of the icons, use the CSS variables `--icon-width` and `--icon-height`.
+These variables are defined in the style attribute of the SVG and default to `18px`.
+
+```css
+:root {
+  --icon-width: 24px;  /* Change the width of the icon */
+  --icon-height: 24px; /* Change the height of the icon */
+}
+```
+
+### Customizing the Colors
+
+The colors of the icons can be adjusted using the CSS variable `--icon-fill`.
+These variable control the fill color of the SVG path.
+
+If there are multiple paths, the paths are numbered. e.g `--icon-fill-1`.
+By default, each path uses `--icon-fill`.
+
+```css
+:root {
+  --icon-fill: #000000;   /* Change the global fill color of the icon */
+  --icon-fill-2: coral; /* Change specific path of the icon */
+}
+```
+
+### Summary
+By using CSS variables for size and color, you can easily customize the icons to fit your design needs.
+Simply adjust the variables in your CSS to make the desired changes.
+
+## Overview Icons
+
+<IconGallery>
+  {RenderIcons()}
+</IconGallery>
+
+<style>
+  {`
+  .icon-item { line-height: 0 }
+`}
+</style>

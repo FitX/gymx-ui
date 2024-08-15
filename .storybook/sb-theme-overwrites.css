@@ -7,13 +7,13 @@ Storybook specific theming
 }
 
 [data-theme=dark] {
-  --storybook-background-color: #393939;
+  --storybook-background-color: #111113;
   --storybook-color: #fff;
 }
-
 /**
  For root, storys and docs. without auto generated docs.
  */
+/*
 :root,
 .sbdocs.sbdocs-preview,
 .sbdocs.sbdocs-wrapper:not(:has(#stories)) {
@@ -23,4 +23,17 @@ Storybook specific theming
 
 .sbdocs-wrapper:not(:has(#stories)) .custom-docs-content * {
   color: var(--storybook-color);
+}*/
+:root,
+#storybook-docs,
+.docs-story > *:first-child {
+  background: var(--storybook-background-color);
+  color: var(--storybook-color);
+}
+
+/**
+ Fix Storybook Bugs -.-
+ */
+.custom-docs-content > :is(h1, h2, h3, h4, h5, h6) > a[aria-hidden] {
+  margin-left: -24px;
 }

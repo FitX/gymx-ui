@@ -24,13 +24,18 @@ export default defineConfig({
     lib: {
       entry: {
         index: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-        'styles/styles': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
-        'styles/borders': fileURLToPath(new URL('./src/assets/styles/borders.css', import.meta.url)),
-        'styles/colors': fileURLToPath(new URL('./src/assets/styles/colors.css', import.meta.url)),
-        'styles/theme': fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
-        'styles/sizes': fileURLToPath(new URL('./src/assets/styles/sizes.css', import.meta.url)),
+
+        'styles/tokens/borders': fileURLToPath(new URL('./src/assets/styles/tokens/borders.css', import.meta.url)),
+        'styles/tokens/colors': fileURLToPath(new URL('./src/assets/styles/tokens/colors.css', import.meta.url)),
+        'styles/tokens/sizes': fileURLToPath(new URL('./src/assets/styles/tokens/sizes.css', import.meta.url)),
+        'styles/tokens/typo': fileURLToPath(new URL('./src/assets/styles/tokens/typo.css', import.meta.url)),
+        'styles/tokens/index': fileURLToPath(new URL('./src/assets/styles/tokens/index.css', import.meta.url)),
+
         'styles/normalize': fileURLToPath(new URL('./src/assets/styles/normalize.css', import.meta.url)),
-        'styles/typo': fileURLToPath(new URL('./src/assets/styles/typo.css', import.meta.url)),
+        'styles/semantic': fileURLToPath(new URL('./src/assets/styles/semantic.css', import.meta.url)),
+        'styles/theme': fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
+
+        'styles/styles': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
       },
       formats: ['es'],
       name: '@fitx/gymx-ui', // @fitx/gymx-ui
