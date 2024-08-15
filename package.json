@@ -12,7 +12,8 @@
       "import": "./dist/index.js",
       "types": "./dist/types/index.d.ts"
     },
-    "./*.css": "./dist/styles/*.css"
+    "./*.css": "./dist/styles/*.css",
+    "./icons/*.svg": "./src/assets/icons/*.svg"
   },
   "type": "module",
   "scripts": {
