@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxButtonProps } from './types';
 import type { UIState } from '@/types';
@@ -21,5 +20,6 @@ const props = withDefaults(defineProps<GymxButtonProps>(), {
   </component>
 </template>
 <style lang="scss" scoped>
-.btn {}
+.btn {
+}
 </style>

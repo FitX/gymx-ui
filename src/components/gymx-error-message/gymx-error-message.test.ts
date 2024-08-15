@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxErrorMessage } from '@/index';
@@ -18,7 +17,7 @@ describe('GymxErrorMessage', () => {
     const wrapper = mount(GymxErrorMessage, {
       slots: {
         default: '<span>custom text</span>',
-      }
+      },
     });
     expect(wrapper.html()).toContain('<span>custom text</span>');
   });
@@ -27,7 +26,7 @@ describe('GymxErrorMessage', () => {
     const wrapper = mount(GymxErrorMessage, {
       slots: {
         'pre-icon': '<span>custom icon</span>',
-      }
+      },
     });
     expect(wrapper.html()).toContain('<span>custom icon</span>');
   });

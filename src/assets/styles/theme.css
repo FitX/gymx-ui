@@ -7,6 +7,6 @@
   font-weight: var(--gymx-font-weight-default);
 }
 
-:where([data-theme=dark]) {
+:where([data-theme='dark']) {
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
 }

@@ -57,8 +57,8 @@ export const Small: Story = {
 export const MamasBackrezepte: Story = {
   args: {
     primary: true,
-    label: "Rezept",
-    size: "large",
-    backgroundColor: "#be1515"
-  }
+    label: 'Rezept',
+    size: 'large',
+    backgroundColor: '#be1515',
+  },
 };

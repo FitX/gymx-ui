@@ -6,12 +6,12 @@ const props = defineProps<GymxErrorMessageProps>();
 </script>
 <template>
   <span class="error-message">
-     <!--
+    <!--
       @slot pre-icon -
       Alternate slot for icon, to add gap add class error-message__icon
       -->
     <slot name="pre-icon">
-        <icon-error class="error-message__icon" />
+      <icon-error class="error-message__icon" />
     </slot>
     <span>
       <!--

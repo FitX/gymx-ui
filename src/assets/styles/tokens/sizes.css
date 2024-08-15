@@ -1,8 +1,8 @@
 :where(html) {
-  --gymx-size-0000: .125rem;
-  --gymx-size-000: .25rem;
-  --gymx-size-00: .5rem;
-  --gymx-size-0: .75rem;
+  --gymx-size-0000: 0.125rem;
+  --gymx-size-000: 0.25rem;
+  --gymx-size-00: 0.5rem;
+  --gymx-size-0: 0.75rem;
   --gymx-size-1: 1rem;
   --gymx-size-2: 1.5rem;
   --gymx-size-3: 2rem;

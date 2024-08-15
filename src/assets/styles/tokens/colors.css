@@ -2,21 +2,21 @@
   /**
   Error Text Color #EC5D5E
    */
-  --gymx-color-error-text-on-light: #CE2C31;
-  --gymx-color-error-text-on-dark: #FF9592;
+  --gymx-color-error-text-on-light: #ce2c31;
+  --gymx-color-error-text-on-dark: #ff9592;
   --gymx-color-error-text: var(--gymx-color-error-text-on-light);
 
   /**
   Warning Text Color #FFD60A
    */
-  --gymx-color-warning-text-on-light: #AB6400;
-  --gymx-color-warning-text-on-dark: #FFCA16;
+  --gymx-color-warning-text-on-light: #ab6400;
+  --gymx-color-warning-text-on-dark: #ffca16;
   --gymx-color-warning-text: var(--gymx-color-warning-text-on-light);
 
   /**
   Success Text Color #33B074
    */
   --gymx-color-success-text-on-light: #218358;
-  --gymx-color-success-text-on-dark: #3DD68C;
+  --gymx-color-success-text-on-dark: #3dd68c;
   --gymx-color-success-text: var(--gymx-color-success-text-on-light);
 }

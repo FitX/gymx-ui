@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { GymxErrorMessage } from './index';
 
@@ -22,4 +21,3 @@ export const Default: Story = {
     text: 'With a smile the problem is solved.',
   },
 };
-

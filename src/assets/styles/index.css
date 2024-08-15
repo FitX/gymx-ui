@@ -1,16 +1,16 @@
 /**
  * This File contains all imports from tokens and themes
  */
-@import "normalize.css";
+@import 'normalize.css';
 /**
  (Internal) Tokens
  */
-@import "tokens/index.css";
+@import 'tokens/index.css';
 /**
  * Semantic Tokens
  */
-@import "semantic.css";
+@import 'semantic.css';
 /**
  * Theme specific
  */
-@import "theme.css";
+@import 'theme.css';

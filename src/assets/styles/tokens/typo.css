@@ -2,9 +2,11 @@
   --gymx-config-font-size-scale: 1.125; /* Major Third scale */
   --gymx-config-font-size-root: 1rem;
 
-  --gymx-font-family-sans: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
-  --gymx-font-family-serif: ui-serif,serif;
-  --gymx-font-family-mono: Dank Mono,Operator Mono,Inconsolata,Fira Mono,ui-monospace,SF Mono,Monaco,Droid Sans Mono,Source Code Pro,monospace;
+  --gymx-font-family-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans,
+    sans-serif;
+  --gymx-font-family-serif: ui-serif, serif;
+  --gymx-font-family-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono,
+    Monaco, Droid Sans Mono, Source Code Pro, monospace;
 
   --gymx-font-weight-1: 100;
   --gymx-font-weight-2: 200;
@@ -16,7 +18,7 @@
   --gymx-font-weight-8: 800;
   --gymx-font-weight-9: 900;
 
-  --gymx-font-lineheight-00: .95;
+  --gymx-font-lineheight-00: 0.95;
   --gymx-font-lineheight-0: 1.1;
   --gymx-font-lineheight-1: 1.25;
   --gymx-font-lineheight-2: 1.375;
@@ -24,13 +26,13 @@
   --gymx-font-lineheight-4: 1.75;
   --gymx-font-lineheight-5: 2;
 
-  --gymx-font-letterspacing-0: -.05em;
-  --gymx-font-letterspacing-1: .025em;
-  --gymx-font-letterspacing-2: .050em;
-  --gymx-font-letterspacing-3: .075em;
-  --gymx-font-letterspacing-4: .150em;
-  --gymx-font-letterspacing-5: .500em;
-  --gymx-font-letterspacing-6: .750em;
+  --gymx-font-letterspacing-0: -0.05em;
+  --gymx-font-letterspacing-1: 0.025em;
+  --gymx-font-letterspacing-2: 0.05em;
+  --gymx-font-letterspacing-3: 0.075em;
+  --gymx-font-letterspacing-4: 0.15em;
+  --gymx-font-letterspacing-5: 0.5em;
+  --gymx-font-letterspacing-6: 0.75em;
   --gymx-font-letterspacing-7: 1em;
 
   --gymx-font-size-00: calc(var(--gymx-font-size-0) / var(--gymx-config-font-size-scale));
