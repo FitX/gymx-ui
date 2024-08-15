@@ -43,6 +43,7 @@ const props = defineProps<GymxErrorMessageProps>();
 
   &__icon {
     --icon-width: var(--_error-message-icon-size);
+    --icon-height: var(--_error-message-icon-size);
     --icon-fill: currentColor;
     aspect-ratio: 1;
   }
