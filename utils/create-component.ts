@@ -76,6 +76,21 @@ export const Default: Story = {
 
   `
   },
+  e2e: (name) => {
+    const format = name
+      .split('-')
+      .map((word) => `${word[0].toUpperCase()}${word.slice(1)}`).toString().replaceAll(',', ' ');
+    return `
+import { test, expect } from '@playwright/test';
+import { getUrlByStorybookId } from '../../../utils/e2e-helper';
+
+test('${format} Snapshot', async ({ page }) => {
+  await page.goto(getUrlByStorybookId('${name}'));
+  await expect(page).toHaveScreenshot();
+});
+
+  `
+  },
 };
 
 function createComponent(name: string): void {
@@ -87,7 +102,8 @@ function createComponent(name: string): void {
     { name: 'types.ts', content: contentTemplates.types(name) },
     { name: `${libNamePrefix}-${name}.test.ts`, content: contentTemplates.test(name) },
     { name: `${libNamePrefix}-${name}.vue`, content: contentTemplates.vue(name) },
-    { name: `${libNamePrefix}-${name}.stories.ts`, content: contentTemplates.story(name) }
+    { name: `${libNamePrefix}-${name}.stories.ts`, content: contentTemplates.story(name) },
+    { name: `${libNamePrefix}-${name}.spec.ts`, content: contentTemplates.story(name) }
   ];
 
   if (fs.existsSync(dirPath)) {
