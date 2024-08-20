@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxLabelProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
@@ -10,9 +9,7 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
 <template>
   <label
     class="label"
-    :class="[
-      getModifierClasses('label', props.state)
-    ]"
+    :class="[getModifierClasses('label', props.state)]"
     :for="props.for">
     <!--
     @slot props.text alternative

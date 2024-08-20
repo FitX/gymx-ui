@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxLabel } from './index';
@@ -26,5 +25,4 @@ describe('GymxLabel', () => {
     });
     expect(wrapper.attributes('for')).toBeDefined();
   });
-
 });

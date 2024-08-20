@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import GymxLabel from './gymx-label.vue';
 import type { UIState } from '@/types';
@@ -13,8 +12,9 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     state: {
-      control: 'select', options: uiState
-    }
+      control: 'select',
+      options: uiState,
+    },
   },
 } satisfies Meta<typeof GymxLabel>;
 
@@ -30,4 +30,3 @@ export const Default: Story = {
     text: 'Firstname',
   },
 };
-
