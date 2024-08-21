@@ -1,6 +1,13 @@
 <script lang="ts" setup>
-import type { GymxLabelProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
+import type { UIState } from '@/types';
+
+export type GymxLabelProps = {
+  for?: string;
+  text?: string;
+  state?: UIState;
+  error?: boolean;
+}
 
 const props = withDefaults(defineProps<GymxLabelProps>(), {
   for: crypto.randomUUID(),

@@ -1,8 +1,6 @@
-import type { UIState } from '@/types';
+import { GymxLabel } from '@/components';
 
-export type GymxLabelProps = {
-  for?: string;
-  text?: string;
-  state?: UIState;
-  error?: boolean;
-}
+/**
+ * @link https://stackoverflow.com/a/77619585
+ */
+export type GymxLabelProps = Partial<Omit<InstanceType<typeof GymxLabel>, `$${string}`>>
