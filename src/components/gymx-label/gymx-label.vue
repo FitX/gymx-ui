@@ -1,13 +1,6 @@
 <script lang="ts" setup>
 import { getModifierClasses } from '@/utils/css-modifier';
-import type { UIState } from '@/types';
-
-export type GymxLabelProps = {
-  for?: string;
-  text?: string;
-  state?: UIState;
-  error?: boolean;
-}
+import type { GymxLabelProps } from '@/components';
 
 const props = withDefaults(defineProps<GymxLabelProps>(), {
   for: crypto.randomUUID(),
@@ -37,7 +30,7 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
   color: var(--label-color);
 
   &:is(:hover, &--hover) {
-    --label-color: var(--label-color-hover, red);
+    --label-color: var(--label-color-hover);
   }
 }
 </style>
