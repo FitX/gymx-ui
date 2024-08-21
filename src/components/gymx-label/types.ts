@@ -1,6 +1,6 @@
 import type { UIState } from '@/types';
 
-export interface GymxLabelProps {
+export type GymxLabelProps = {
   for?: string;
   text?: string;
   state?: UIState;
