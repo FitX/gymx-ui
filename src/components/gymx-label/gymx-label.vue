@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
   border: var(--label-border, 0);
   color: var(--label-color);
 
-  &:is(:hover, &--hover) {
+  &:where(:hover, &--hover) {
     --label-color: var(--label-color-hover);
   }
 }
