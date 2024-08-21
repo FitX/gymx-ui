@@ -9,7 +9,10 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
 <template>
   <label
     class="label"
-    :class="[getModifierClasses('label', props.state)]"
+    :class="[
+      getModifierClasses('label', props.state),
+      getModifierClasses('label', props.error ? 'error' : undefined),
+    ]"
     :for="props.for">
     <!--
     @slot props.text alternative
