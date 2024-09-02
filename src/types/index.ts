@@ -1,1 +1,2 @@
-export type UIState = 'hover' | 'focused' | 'disabled';
+export const uiStates = ['disabled', 'focused', 'hover'];
+export type UIState = typeof uiStates;

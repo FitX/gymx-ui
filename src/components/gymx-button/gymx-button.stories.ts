@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import GymxLabel from './gymx-label.vue';
+import { GymxButton } from './index';
 import { uiStates } from '@/types';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Form/Label',
-  component: GymxLabel,
+  title: 'components/Button',
+  component: GymxButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
@@ -13,8 +13,8 @@ const meta = {
       control: 'select',
       options: uiStates,
     },
-  },
-} satisfies Meta<typeof GymxLabel>;
+  }
+} satisfies Meta<typeof GymxButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -25,6 +25,6 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    text: 'Firstname',
+    default: 'Hello Button :)',
   },
 };

@@ -5,6 +5,18 @@
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
+
+  /*
+  Colors
+  */
+  --gymx-color-primary: #455d7a;
+
+  /**
+  Buttons
+   */
+  --button-color: #fff;
+  --button-color-background: #455d7a;
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.05) c h);
 }
 
 :where([data-theme='dark']) {
