@@ -9,14 +9,21 @@
   /*
   Colors
   */
-  --gymx-color-primary: #455d7a;
+  --gymx-color-primary: #33255B;
 
   /**
   Buttons
    */
   --button-color: #fff;
-  --button-color-background: #455d7a;
-  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.05) c h);
+  --button-color-background: var(--gymx-color-primary);
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.4) c h);
+  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.6) c h);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+
+  .btn:where(:focus-visible) {
+    --button-outline: 1px solid var(--button-color-background-focused);
+    outline-offset: 1px;
+  }
 }
 
 :where([data-theme='dark']) {
