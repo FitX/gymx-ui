@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GymxButtonProps } from './types';
+import type { GymxButtonProps, GymxButtonSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
 // import type { UIState } from '@/types';
 
@@ -7,6 +7,8 @@ const props = withDefaults(defineProps<GymxButtonProps>(), {
   tag: 'button',
   // state: undefined as UIState | undefined,
 });
+
+defineSlots<GymxButtonSlots>();
 </script>
 <template>
   <component
