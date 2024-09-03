@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import GymxLabel from './gymx-label.vue';
-import type { UIState } from '@/types';
-
-const uiState: UIState[] = ['disabled', 'focused', 'hover'];
+import { uiStates } from '@/types';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -13,7 +11,7 @@ const meta = {
   argTypes: {
     state: {
       control: 'select',
-      options: uiState,
+      options: uiStates,
     },
   },
 } satisfies Meta<typeof GymxLabel>;

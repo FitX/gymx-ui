@@ -32,6 +32,23 @@ npm run dev
 npm run build
 ```
 
+### Run Storybook
+```
+npm run storybook
+```
+
+### Create a new Storybook component
+```
+npx tsx utils/create-component.ts example-button
+```
+This will automatically create a folder called 'fitx-example-button' with the prefix 'fitx'.
+The folder will contain the vue file, a test file, index and types.
+
+### Build Storybook
+```
+npm run build-storybook
+```
+
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh

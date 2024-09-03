@@ -5,4 +5,4 @@ export type GymxLabelProps = {
   text?: string;
   state?: UIState;
   error?: boolean;
-}
+};

@@ -103,7 +103,7 @@ function createComponent(name: string): void {
     { name: `${libNamePrefix}-${name}.test.ts`, content: contentTemplates.test(name) },
     { name: `${libNamePrefix}-${name}.vue`, content: contentTemplates.vue(name) },
     { name: `${libNamePrefix}-${name}.stories.ts`, content: contentTemplates.story(name) },
-    { name: `${libNamePrefix}-${name}.spec.ts`, content: contentTemplates.story(name) }
+    { name: `${libNamePrefix}-${name}.spec.ts`, content: contentTemplates.e2e(name) }
   ];
 
   if (fs.existsSync(dirPath)) {

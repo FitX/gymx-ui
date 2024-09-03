@@ -25,7 +25,7 @@ describe('GymxErrorMessage', () => {
   it('renders error message with pre-icon slot', () => {
     const wrapper = mount(GymxErrorMessage, {
       slots: {
-        'pre-icon': '<span>custom icon</span>',
+        'icon-start': '<span>custom icon</span>',
       },
     });
     expect(wrapper.html()).toContain('<span>custom icon</span>');

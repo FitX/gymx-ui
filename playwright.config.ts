@@ -107,7 +107,7 @@ export default defineConfig({
     // command: process.env.CI ? 'vite preview --port 5173' : 'vite dev',
     // port: 5173,
     command: 'npm run storybook',
-    port: '6007',
+    port: '6006',
     reuseExistingServer: !process.env.CI
   }
 })
