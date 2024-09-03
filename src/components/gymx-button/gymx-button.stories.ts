@@ -13,7 +13,7 @@ const meta = {
       control: 'select',
       options: uiStates,
     },
-  }
+  },
 } satisfies Meta<typeof GymxButton>;
 
 export default meta;
