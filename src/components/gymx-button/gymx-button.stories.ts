@@ -28,3 +28,46 @@ export const Default: Story = {
     default: 'Hello Button :)',
   },
 };
+
+export const Hover: Story = {
+  args: {
+    default: 'Hello Hover',
+    state: 'hover',
+  },
+};
+
+export const Focused: Story = {
+  args: {
+    default: 'Hello Focused',
+    state: 'focused',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    default: 'Hello Disabled',
+    state: 'disabled',
+  },
+};
+
+export const OptionalIconStart: Story = {
+  args: {
+    'icon-start': '🚀',
+    default: 'Hello Icon',
+  },
+};
+
+export const OptionalIconEnd: Story = {
+  args: {
+    default: 'Hello Icon',
+    'icon-end': '🐨',
+  },
+};
+
+export const OptionalIcons: Story = {
+  args: {
+    'icon-start': '🚀',
+    default: 'Hello Icons',
+    'icon-end': '🐨',
+  },
+};
