@@ -64,34 +64,25 @@ defineSlots<GymxButtonSlots>();
   transition: var(--button-transition, 200ms ease background-color);
 
   display: grid;
-  grid: 'start content end' 1fr / var(--btn-icon-size-start, auto) 1fr var(
-      --btn-icon-size-end,
+  grid: 'start content end' 1fr / var(--button-icon-size-start, auto) 1fr var(
+      --button-icon-size-end,
       auto
     );
-  gap: var(--btn-gap, 0.5rem);
+  // gap: var(--btn-gap, 0.5rem);
 
   &__start {
     grid-area: start;
-  }
 
-  &__content {
-    grid-area: content;
-
-    #{$self}--has-no-icons & {
-      grid-column: 1 / -1;
-    }
-
-    #{$self}--has-icon-start:not(#{$self}--has-icon-end) & {
-      grid-column: 2 / 4;
-    }
-
-    #{$self}--has-icon-end:not(#{$self}--has-icon-start) & {
-      grid-column: 1 / 3;
+    &:not(:empty) {
+      margin-inline-end: var(--button-gap, 0.5rem);
     }
   }
 
   &__end {
     grid-area: end;
+    &:not(:empty) {
+      margin-inline-start: var(--button-gap, 0.5rem);
+    }
   }
 
   &:where(:hover, &--hover) {
