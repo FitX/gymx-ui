@@ -63,7 +63,7 @@ defineSlots<GymxButtonSlots>();
   box-shadow: var(--button-box-shadow);
   transition: var(--button-transition, 200ms ease background-color);
 
-  display: grid;
+  display: inline-grid;
   grid: 'start content end' 1fr / var(--button-icon-size-start, auto) 1fr var(
       --button-icon-size-end,
       auto
