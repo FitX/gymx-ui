@@ -50,7 +50,7 @@ defineSlots<GymxButtonSlots>();
   --_button-color: var(--button-color);
   --_button-color-background: var(--button-color-background);
   font-size: var(--button-font-size, var(--gymx-form-font-size-default), inherit);
-  font-weight: var(--button-font-size, var(--gymx-form-font-weight-default));
+  font-weight: var(--button-font-weight, var(--gymx-form-font-weight-default));
   font-family: var(--button-font-family, var(--gymx-font-family-default)), sans-serif;
   padding-inline: var(--button-padding-inline, 1rem);
   padding-block: var(--button-padding-block, 0.5rem);
