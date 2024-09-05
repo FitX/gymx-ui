@@ -58,7 +58,7 @@ defineSlots<GymxButtonSlots>();
   );
   --_button-color-border-hover: var(
       --button-color-border-hover,
-      var(--button-border-background)
+      var(--button-color-border)
   );
 
   --_button-color-focused: var(--button-color-focused, var(--button-color));
@@ -68,7 +68,7 @@ defineSlots<GymxButtonSlots>();
   );
   --_button-color-border-focused: var(
       --button-color-border-focused,
-      var(--button-border-background)
+      var(--button-color-border)
   );
 
   --_button-color-disabled: var(--button-color-disabled, var(--button-color));
@@ -78,7 +78,7 @@ defineSlots<GymxButtonSlots>();
   );
   --_button-color-border-disabled: var(
       --button-color-border-disabled,
-      var(--button-border-background)
+      var(--button-color-border)
   );
 
   --_button-font-size: var(--button-font-size, var(--gymx-form-font-size-default), inherit);
