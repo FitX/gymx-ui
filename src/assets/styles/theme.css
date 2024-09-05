@@ -1,7 +1,7 @@
 /**
  Theme <3 Gymx Ui
  */
-:where(html) {
+:where(html:not([data-theme=sg])) {
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
@@ -28,4 +28,33 @@
 
 :where([data-theme='dark']) {
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
+}
+
+[data-theme='sg'] {
+  --sg-color-link: #282372;
+  --sg-color-primary: #009ee3;
+  --sg-color-on-primary: #fff;
+
+  --button-color: var(--sg-color-link);
+  --button-color-background: var(--sg-color-on-primary);
+  --button-color-border: var(--sg-color-primary);
+
+  --button-color-hover: var(--sg-color-on-primary);
+  --button-color-background-hover: var(--sg-color-primary);
+  --button-color-border-hover: var(--sg-color-primary);
+
+  --button-color-focused: var(--sg-color-link);
+  --button-color-background-focused: var(--sg-color-on-primary);
+  --button-color-border-focused: var(--sg-color-link);
+
+  --button-color-disabled: #222;
+  --button-color-background-disabled: #efefef;
+  --button-color-border-disabled: var(--button-color-disabled);
+
+
+  /*
+  --button-color-background-hover: var(--sg-color-primary);
+  --button-color-background-focused: var(--button-color-background);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+   */
 }
