@@ -9,25 +9,39 @@
   /*
   Colors
   */
-  --gymx-color-primary: #33255b;
+  --gymx-color-primary: #3E63DD;
+  --accent-color: #3A5BC7;
 
   /**
   Buttons
    */
   --button-color: #fff;
   --button-color-background: var(--gymx-color-primary);
-  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.4) c h);
-  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.6) c h);
+  --button-color-border: var(--button-color-background);
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.2) c h);
+  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.4) c h);
   --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
 
   .btn:where(:focus-visible) {
     --button-outline: 1px solid var(--button-color-background-focused);
     outline-offset: 1px;
   }
+
+  /**
+  Links
+   */
+  --link-color: var(--accent-color);
+  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
 }
 
 :where([data-theme='dark']) {
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
+  --accent-color: #9EB1FF;
+  --link-color: var(--accent-color);
+
+  --link-color-hover: oklch(from var(--link-color) calc(l * 1.1) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 1.2) c h);
 }
 
 [data-theme='sg'] {
