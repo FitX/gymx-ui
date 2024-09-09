@@ -6,12 +6,12 @@
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
 }
-:where(html:not([data-theme=sg])) {
+:where(html:not([data-theme='sg'])) {
   /*
   Colors
   */
-  --gymx-color-primary: #3E63DD;
-  --accent-color: #3A5BC7;
+  --gymx-color-primary: #3e63dd;
+  --accent-color: #3a5bc7;
 
   /**
   Buttons
@@ -38,7 +38,7 @@
 
 :where([data-theme='dark']) {
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
-  --accent-color: #9EB1FF;
+  --accent-color: #9eb1ff;
   --link-color: var(--accent-color);
 
   --link-color-hover: oklch(from var(--link-color) calc(l * 1.1) c h);
@@ -71,7 +71,6 @@
 
   --link-color: var(--sg-color-primary);
   --link-color-hover: var(--sg-color-link);
-
 
   /*
   --button-color-background-hover: var(--sg-color-primary);

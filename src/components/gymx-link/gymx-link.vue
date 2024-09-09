@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxLinkProps, GymxLinkSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
@@ -14,9 +13,7 @@ defineSlots<GymxLinkSlots>();
   <component
     :is="props.tag"
     class="link"
-    :class="[
-      getModifierClasses('link', props.state)
-    ]">
+    :class="[getModifierClasses('link', props.state)]">
     <span class="link__start">
       <!--
      @slot icon-start - Optional Slot
@@ -38,7 +35,6 @@ defineSlots<GymxLinkSlots>();
   </component>
 </template>
 
-
 <style lang="scss" scoped>
 .link {
   $self: &;
@@ -48,34 +44,22 @@ defineSlots<GymxLinkSlots>();
   --_link-color-border: var(--link-color-border, var(--link-color-background));
 
   --_link-color-hover: var(--link-color-hover, var(--link-color));
-  --_link-color-background-hover: var(
-      --link-color-background-hover,
-      var(--link-color-background)
-  );
-  --_link-color-border-hover: var(
-      --link-color-border-hover,
-      var(--link-border-background)
-  );
+  --_link-color-background-hover: var(--link-color-background-hover, var(--link-color-background));
+  --_link-color-border-hover: var(--link-color-border-hover, var(--link-border-background));
 
   --_link-color-focused: var(--link-color-focused, var(--link-color));
   --_link-color-background-focused: var(
-      --link-color-background-focused,
-      var(--link-color-background)
+    --link-color-background-focused,
+    var(--link-color-background)
   );
-  --_link-color-border-focused: var(
-      --link-color-border-focused,
-      var(--link-border-background)
-  );
+  --_link-color-border-focused: var(--link-color-border-focused, var(--link-border-background));
 
   --_link-color-disabled: var(--link-color-disabled, var(--link-color));
   --_link-color-background-disabled: var(
-      --link-color-background-disabled,
-      var(--link-color-background)
+    --link-color-background-disabled,
+    var(--link-color-background)
   );
-  --_link-color-border-disabled: var(
-      --link-color-border-disabled,
-      var(--link-border-background)
-  );
+  --_link-color-border-disabled: var(--link-color-border-disabled, var(--link-border-background));
 
   --_link-font-size: var(--link-font-size, var(--gymx-form-font-size-default), inherit);
   --_link-font-weight: var(--link-font-weight, var(--gymx-form-font-weight-default));
@@ -144,4 +128,3 @@ defineSlots<GymxLinkSlots>();
   }
 }
 </style>
-

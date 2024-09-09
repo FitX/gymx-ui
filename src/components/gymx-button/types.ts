@@ -6,7 +6,7 @@ export interface GymxButtonProps {
 }
 
 export interface GymxButtonSlots {
-  'icon-start': () => any,
-  default: () => any,
-  'icon-end': () => any,
+  'icon-start': () => any;
+  default: () => any;
+  'icon-end': () => any;
 }

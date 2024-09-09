@@ -9,7 +9,7 @@ export interface GymxLinkProps {
 }
 
 export interface GymxLinkSlots {
-  'icon-start': () => any,
-  default: () => any,
-  'icon-end': () => any,
+  'icon-start': () => any;
+  default: () => any;
+  'icon-end': () => any;
 }

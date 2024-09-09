@@ -56,30 +56,21 @@ defineSlots<GymxButtonSlots>();
     --button-color-background-hover,
     var(--button-color-background)
   );
-  --_button-color-border-hover: var(
-      --button-color-border-hover,
-      var(--button-color-border)
-  );
+  --_button-color-border-hover: var(--button-color-border-hover, var(--button-color-border));
 
   --_button-color-focused: var(--button-color-focused, var(--button-color));
   --_button-color-background-focused: var(
-      --button-color-background-focused,
-      var(--button-color-background)
+    --button-color-background-focused,
+    var(--button-color-background)
   );
-  --_button-color-border-focused: var(
-      --button-color-border-focused,
-      var(--button-color-border)
-  );
+  --_button-color-border-focused: var(--button-color-border-focused, var(--button-color-border));
 
   --_button-color-disabled: var(--button-color-disabled, var(--button-color));
   --_button-color-background-disabled: var(
-      --button-color-background-disabled,
-      var(--button-color-background)
+    --button-color-background-disabled,
+    var(--button-color-background)
   );
-  --_button-color-border-disabled: var(
-      --button-color-border-disabled,
-      var(--button-color-border)
-  );
+  --_button-color-border-disabled: var(--button-color-border-disabled, var(--button-color-border));
 
   --_button-font-size: var(--button-font-size, var(--gymx-form-font-size-default), inherit);
   --_button-font-weight: var(--button-font-weight, var(--gymx-form-font-weight-default));
@@ -95,7 +86,6 @@ defineSlots<GymxButtonSlots>();
   --_button-outline: var(--button-outline, 0);
   --_button-radius: var(--button-radius, 0);
   --_button-transition: var(--button-transition, 200ms ease background-color);
-
 
   font-size: var(--_button-font-size);
   font-weight: var(--_button-font-weight);

@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxLink } from './gymx-link.vue';
 import { uiStates } from '@/types';
@@ -19,8 +18,8 @@ const meta = {
     },
   },
   args: {
-    href: '#'
-  }
+    href: '#',
+  },
 } satisfies Meta<typeof GymxLink>;
 
 export default meta;
@@ -40,7 +39,7 @@ export const Default: Story = {
 export const Hover: Story = {
   args: {
     default: 'Link hovered',
-    state: 'hover'
+    state: 'hover',
   },
 };
 
