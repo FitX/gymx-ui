@@ -91,8 +91,8 @@ defineSlots<GymxLinkSlots>();
   --_link-outline: var(--link-outline, 0);
   --_link-radius: var(--link-radius, 0);
   --_link-transition: var(--link-transition, 200ms ease background-color);
-  --_link-text-decoration: var(--link-text-decoration, underline);
-
+  --_link-text-decoration: var(--link-text-decoration, none);
+  --_link-box-shadow: var(--link-box-shadow, 0 1px var(--_link-color));
 
   font-size: var(--_link-font-size);
   font-weight: var(--_link-font-weight);
@@ -105,7 +105,7 @@ defineSlots<GymxLinkSlots>();
   border-radius: var(--_link-radius);
   color: var(--_link-color);
   background: var(--_link-color-background);
-  box-shadow: var(--link-box-shadow);
+  box-shadow: var(--_link-box-shadow);
   transition: var(--_link-transition);
   text-decoration: var(--_link-text-decoration);
 
@@ -116,14 +116,14 @@ defineSlots<GymxLinkSlots>();
     grid-area: start;
 
     &:not(:empty) {
-      margin-inline-end: var(--_link-gap);
+      padding-inline-end: var(--_link-gap);
     }
   }
 
   &__end {
     grid-area: end;
     &:not(:empty) {
-      margin-inline-start: var(--_link-gap);
+      padding-inline-start: var(--_link-gap);
     }
   }
 
