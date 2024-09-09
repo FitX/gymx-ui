@@ -1,11 +1,12 @@
 /**
  Theme <3 Gymx Ui
  */
-:where(html:not([data-theme=sg])) {
+:where(html) {
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
-
+}
+:where(html:not([data-theme=sg])) {
   /*
   Colors
   */
@@ -48,6 +49,7 @@
   --sg-color-link: #282372;
   --sg-color-primary: #009ee3;
   --sg-color-on-primary: #fff;
+  --sg-font-family: system-ui;
 
   --button-color: var(--sg-color-link);
   --button-color-background: var(--sg-color-on-primary);
@@ -64,6 +66,11 @@
   --button-color-disabled: #222;
   --button-color-background-disabled: #efefef;
   --button-color-border-disabled: var(--button-color-disabled);
+
+  --gymx-font-family-default: var(--sg-font-family);
+
+  --link-color: var(--sg-color-primary);
+  --link-color-hover: var(--sg-color-link);
 
 
   /*

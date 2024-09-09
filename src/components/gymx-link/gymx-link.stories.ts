@@ -51,10 +51,16 @@ export const Focused: Story = {
   },
 };
 
-export const DFBFFHGDF: Story = {
+export const OptionalIconStart: Story = {
   args: {
-    default: 'Link focused',
-    state: 'disabled',
+    default: 'Link',
+    'icon-start': '🐨',
   },
 };
 
+export const OptionalIconEnd: Story = {
+  args: {
+    default: 'Link',
+    'icon-end': '🐨',
+  },
+};
