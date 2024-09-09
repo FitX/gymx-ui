@@ -91,8 +91,8 @@ defineSlots<GymxLinkSlots>();
   --_link-outline: var(--link-outline, 0);
   --_link-radius: var(--link-radius, 0);
   --_link-transition: var(--link-transition, 200ms ease background-color);
-  --_link-text-decoration: var(--link-text-decoration, none);
-  --_link-box-shadow: var(--link-box-shadow, 0 1px var(--_link-color));
+  --_link-text-decoration: var(--link-text-decoration, underline);
+  --_link-box-shadow: var(--link-box-shadow);
 
   font-size: var(--_link-font-size);
   font-weight: var(--_link-font-weight);
@@ -107,10 +107,14 @@ defineSlots<GymxLinkSlots>();
   background: var(--_link-color-background);
   box-shadow: var(--_link-box-shadow);
   transition: var(--_link-transition);
-  text-decoration: var(--_link-text-decoration);
+  text-decoration: none;
 
   display: inline-grid;
   grid: 'start content end' 1fr / var(--_link-icon-size-start) 1fr var(--_link-icon-size-end);
+
+  &__content {
+    text-decoration: var(--_link-text-decoration);
+  }
 
   &__start {
     grid-area: start;
