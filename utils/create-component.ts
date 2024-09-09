@@ -85,7 +85,9 @@ import { test, expect } from '@playwright/test';
 import { getUrlByStorybookId } from '../../../utils/e2e-helper';
 
 test('${format} Snapshot', async ({ page }) => {
-  await page.goto(getUrlByStorybookId('${name}'));
+  await page.goto(getUrlByStorybookId('${name}'), {
+    waitForSelector: '.${name}',
+  });
   await expect(page).toHaveScreenshot();
 });
 
