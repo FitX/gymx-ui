@@ -61,9 +61,10 @@ defineSlots<GymxLinkSlots>();
   );
   --_link-color-border-disabled: var(--link-color-border-disabled, var(--link-border-background));
 
-  --_link-font-size: var(--link-font-size, var(--gymx-form-font-size-default), inherit);
   --_link-font-weight: var(--link-font-weight, var(--gymx-form-font-weight-default));
   --_link-font-family: var(--link-font-family, var(--gymx-font-family-default), inherit);
+  --_link-font-size: var(--link-font-size, var(--gymx-font-family-default), inherit);
+  --_link-line-height: var(--link-font-size, 1.15);
 
   --_link-padding-inline: var(--link-padding-inline, 0);
   --_link-padding-block: var(--link-padding-block, 0);
@@ -79,8 +80,9 @@ defineSlots<GymxLinkSlots>();
   --_link-box-shadow: var(--link-box-shadow);
 
   font-size: var(--_link-font-size);
+  line-height: var(--_link-line-height);
   font-weight: var(--_link-font-weight);
-  font-family: var(--_link-font-family);
+  font-family: var(--_link-font-family, inherit);
   padding-inline: var(--_link-padding-inline);
   padding-block: var(--_link-padding-block);
 
