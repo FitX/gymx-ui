@@ -79,6 +79,12 @@ defineSlots<GymxLinkSlots>();
   --_link-text-decoration: var(--link-text-decoration, underline);
   --_link-box-shadow: var(--link-box-shadow);
 
+  /**
+  Button Reset
+   */
+  all: unset;
+  align-items: baseline;
+
   font-size: var(--_link-font-size);
   line-height: var(--_link-line-height);
   font-weight: var(--_link-font-weight);
