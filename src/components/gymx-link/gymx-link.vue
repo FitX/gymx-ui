@@ -110,6 +110,7 @@ defineSlots<GymxLinkSlots>();
 
   &__start {
     grid-area: start;
+    align-self: center;
 
     &:not(:empty) {
       padding-inline-end: var(--_link-gap);
@@ -118,6 +119,7 @@ defineSlots<GymxLinkSlots>();
 
   &__end {
     grid-area: end;
+    align-self: center;
     &:not(:empty) {
       padding-inline-start: var(--_link-gap);
     }
