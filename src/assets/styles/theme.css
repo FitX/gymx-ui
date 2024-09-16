@@ -2,11 +2,13 @@
  Theme <3 Gymx Ui
  */
 :where(html) {
+  color-scheme: dark light;
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
 }
 :where(html:not([data-theme='sg'])) {
+  color-scheme: light;
   /*
   Colors
   */
@@ -37,6 +39,8 @@
 }
 
 :where([data-theme='dark']) {
+  color-scheme: dark;
+
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
   --accent-color: #9eb1ff;
   --link-color: var(--accent-color);
