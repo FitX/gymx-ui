@@ -14,6 +14,7 @@ import '../src/assets/styles/tokens/colors.css';
 import '../src/assets/styles/tokens/borders.css';
 import '@/assets/styles/theme.css'; */
 import '@/assets/styles/index.css';
+import '@/assets/styles/example-themes/fx.css';
 
 export const decorators = [
   themeDecorator,

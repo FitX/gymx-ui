@@ -1,0 +1,45 @@
+/**
+ Theme FitX Like
+ */
+:where([data-theme='fx']) {
+  /*
+  Colors
+  */
+  --gymx-color-primary: #ED6A12;
+  --accent-color: #ED6A12;
+
+  /**
+  Buttons
+   */
+  --button-color-border: var(--button-color-background);
+  --button-color-border-hover: var(--button-color-background-hover);
+  --button-color-border-focused: var(--button-color-background-focused);
+  --button-color-border-disabled: var(--button-color-background-disabled);
+  --button-color-background-focused: var(--button-color-background-hover);
+  --button-radius: 1rem;
+  /*
+  --button-color: #fff;
+  --button-color-background: var(--gymx-color-primary);
+  --button-color-border: var(--button-color-background);
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.2) c h);
+  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.4) c h);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+*/
+  /**
+  Links
+   */
+  /*
+  --link-color: var(--accent-color);
+  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
+
+  .btn:where(:focus-visible) {
+    --button-outline: 1px solid var(--button-color-background-focused);
+    outline-offset: 1px;
+  }
+   */
+
+  font-family: var(--gymx-font-family-default);
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
+}
