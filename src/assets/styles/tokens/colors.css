@@ -14,6 +14,23 @@
   --gymx-color-accent-200: color-mix(in srgb, var(--gymx-color-accent), transparent 80%);
   --gymx-color-accent-100: color-mix(in srgb, var(--gymx-color-accent), transparent 90%);
 
+
+  /*
+  Color Palette Gray
+  */
+  --gymx-color-black: #000;
+  --_gymx-color-black-invert: var(--gymx-color-black-invert, light-dark(transparent, #fff));
+
+  --gymx-color-black-900: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 10%);
+  --gymx-color-black-800: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 20%);
+  --gymx-color-black-700: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 30%);
+  --gymx-color-black-600: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 40%);
+  --gymx-color-black-500: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 50%);
+  --gymx-color-black-400: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 60%);
+  --gymx-color-black-300: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 70%);
+  --gymx-color-black-200: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 80%);
+  --gymx-color-black-100: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 90%);
+
   /**
   Error Text Color #EC5D5E
    */
