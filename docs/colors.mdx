@@ -1,0 +1,22 @@
+import { Meta, ColorItem, ColorPalette } from '@storybook/blocks';
+import { getCSSCustomProps } from './demo/utils/css-props';
+
+export const accentColors = getCSSCustomProps('--gymx-color-accent');
+export const FooBar = () => <section>{accentColors}</section>;
+
+<Meta title="Welcome/Colors" />
+
+## Colors
+
+blubb
+
+<FooBar />
+
+<ColorPalette>
+  <ColorItem
+  title="foo"
+  subtitle="bar"
+  data-colors={{ red: 'red', blueMix: 'color-mix(in srgb, var(--accent-color), transparent 10%)'}}
+  colors={{ ...accentColors }}
+  />
+</ColorPalette>
