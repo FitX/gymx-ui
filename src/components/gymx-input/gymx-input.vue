@@ -1,22 +1,37 @@
 
 <script lang="ts" setup>
 import type { GymxInputProps } from '@/components/gymx-input/types';
+import { getModifierClasses } from '@/utils/css-modifier';
+
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<GymxInputProps>(), {
   type: 'text',
   id: crypto.randomUUID(),
-})
+});
 </script>
 <template>
-  <div class="input">
+  <div
+    class="input"
+    :class="[
+      ...getModifierClasses('input', props.state),
+      $attrs?.class
+    ]">
     <span class="input__start">
       <slot name="input-start"></slot>
     </span>
-    <input :type="props.type" :id="props.id" class="input__input" />
+    <input
+      :type="props.type"
+      :id="props.id"
+      v-bind="$attrs"
+      class="input__input" />
     <span class="input__end">
       <slot name="input-end"></slot>
     </span>
   </div>
+  <h1>{{ $attrs }}</h1>
 </template>
 <style lang="scss" scoped>
 .input {
@@ -26,9 +41,14 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
   --_input-font-size: var(--input-font-size, var(--gymx-font-size-2));
   --_input-font-weight: var(--input-font-letter-spacing, inherit);
 
-  --_input-color: var(--input-color, inherit);
+  --_input-color: var(--input-color, var(--gymx-color-text));
   --_input-color-background: var(--input-color-background, transparent);
   --_input-color-border: var(--input-color-border, currentColor);
+
+  --_input-color-border-hover: var(--input-color-border-hover, var(--accent-color, currentColor));
+
+  --_input-color-border-disabled: #777;
+  --_input-color-background-disabled: #bcbcbc;
 
   --_input-radius: var(--input-radius, 0);
   --_input-border: var(--input-border, var(--gymx-border-size-1) solid var(--_input-color-border));
@@ -71,9 +91,19 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
     outline: 0;
   }
 
-  &:has(#{$self}__input:focus-visible) {
+  &:hover, &--hover {
+    --_input-color-border: var(--_input-color-border-hover);
+  }
+
+  &:has(#{$self}__input:focus-visible),
+  &--focused {
     outline: var(--_input-border);
     outline-offset: 1px;
+  }
+
+  &--disabled {
+    --_input-color-border: var(--_input-color-border-disabled);
+    --_input-color-background: var(--_input-color-background-disabled);
   }
 }
 </style>

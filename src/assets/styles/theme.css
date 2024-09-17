@@ -13,6 +13,7 @@
   Colors
   */
   --gymx-color-primary: #00328a;
+  --gymx-color-text: #222;
   --accent-color: #00328a;
 
   /**
@@ -42,6 +43,7 @@
   color-scheme: dark;
 
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
+  --gymx-color-text: #fefefe;
   --accent-color: #9eb1ff;
   --link-color: var(--accent-color);
 

@@ -1,6 +1,7 @@
+import type { UIState } from '@/types';
 
 export interface GymxInputProps {
   type?: HTMLInputElement['type'],
-  disabled?: boolean,
+  state?: UIState;
   id?: string,
 }
