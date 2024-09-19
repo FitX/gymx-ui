@@ -1,23 +1,154 @@
 import { Meta, ColorItem, ColorPalette } from '@storybook/blocks';
+import { useEffect, useState } from 'react';
 import { getCSSCustomProps } from './demo/utils/css-props';
 
-export const accentColors = getCSSCustomProps('--gymx-color-accent');
-export const grayColors = getCSSCustomProps('--gymx-color-black');
-export const generateItems = (items = []) => items.map(([name, value], index) => <ColorItem key={index} title={name} subtitle="" colors={{ [name]: value}} />);
+export const grayColors = []; //getCSSCustomProps('--gymx-color-black');
+export const generateItems = (propName) => {
+  const [items, setItems] = useState(getCSSCustomProps(propName));
 
-export const AccentColorItems = () => generateItems(accentColors);
-export const GrayColorItems = () => generateItems(grayColors);
+  const update = () => {
+    setItems(() => [...getCSSCustomProps(propName)]);
+  }
+
+  useEffect(() => {
+    document.addEventListener('themeChanged', () => {
+      //
+    });
+    /**
+     * update after dom load
+     */
+    if (items !== getCSSCustomProps(propName)) {
+      update();
+    }
+
+  }, []);
+
+  return (
+    <>
+  {
+    items
+      .map(([name, value], index) => <ColorItem key={index} title={name}
+                                                subtitle={document.documentElement.dataset.theme}
+                                                colors={{[name]: value}}/>)
+  }
+    </>)
+};
+
+export const AccentColorItems = () => generateItems('--gymx-color-accent');
+export const GrayolorItems = () => generateItems('--gymx-color-black');
 
 <Meta title="Welcome/Colors" />
 
 ## Colors
 
-@TODO Contrast Ratios
+## @TODO
+- Contrast Ratios / Accessibility
+- Usage
+- Semantic
+
+The **GymX UI Library** provides a flexible and dynamic color palette for use in modern web projects.
+It leverages advanced CSS techniques like `color-mix()`, the Display-P3 color space, and simplified handling of transparency.
+This Introduction explains how to effectively use the color palette and the options available for customization.
+
+## Table of Contents
+1. [Basic Color Configuration](#basic-color-configuration)
+2. [Using Colors in CSS](#using-colors-in-css)
+3. [Customization for Designers](#customization-for-designers)
+4. [Best Practices](#best-practices)
+5. [Additional Resources](#additional-resources)
+6. [Color Palettes](#color-palettes)
+
+## Basic Color Configuration
+
+The color palette is divided into **two main categories**:
+- **Accent Colors**: A primary accent color with different transparency levels.
+- **Grayscale (Black)**: A palette based on black, also with various transparency levels.
+
+### Accent Colors
+Accent colors are defined in various transparency levels. The base color is stored in the variable `--gymx-color-accent`, and the variations are denoted by suffixes like `-900`, `-800`, etc.
+
+```css
+--gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979); /* Base accent color */
+--gymx-color-accent-900: color-mix(in srgb, var(--gymx-color-accent), transparent 10%);
+--gymx-color-accent-800: color-mix(in srgb, var(--gymx-color-accent), transparent 20%);
+...
+--gymx-color-accent-100: color-mix(in srgb, var(--gymx-color-accent), transparent 90%);
+```
+
+### Grayscale (Black)
+
+The grayscale colors are based on black (#000) and offer different transparency levels created by mixing with an inverted color, depending on light or dark modes.
+
+```css
+--gymx-color-black: #000; /* Base black color */
+--gymx-color-black-900: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 10%);
+--gymx-color-black-800: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 20%);
+...
+--gymx-color-black-100: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 90%);
+```
+
+## Using Colors in CSS
+
+### Example for Accent Colors
+
+```css
+.button-primary {
+  background-color: var(--gymx-color-accent);
+  color: white;
+}
+
+.button-secondary {
+  background-color: var(--gymx-color-accent-500);
+  color: white;
+}
+```
+
+### Example for Grayscale
+
+```css
+.header {
+  background-color: var(--gymx-color-black-800);
+  color: var(--gymx-color-black-100);
+}
+```
+
+## Customization for Designers
+
+**Designers** can easily adjust the color palette to achieve the desired look and feel.
+
+- **Modifying the Accent Color**: The primary accent color can be changed by modifying the `--gymx-color-accent variable`.
+You can use any value in the `display-p3` or `srgb` color space to match your design guidelines.
+
+Example:
+```css
+--gymx-color-accent: color(display-p3 0.7 0.2 0.3); /* New accent color */
+```
+
+- **Modifying Grayscale**: You can also easily adjust the black-based variations by changing the base value of `--gymx-color-black`.
+For instance, if you want a darker gray, you can change the base color:
+```css
+--gymx-color-black: #333; /* Darker gray instead of black */
+```
+
+### Transparency
+All color variants come with predefined transparency levels (e.g., `-900` to `-100`),
+allowing you to control the intensity of the color without manually tweaking transparency values.
+
+## Best Practices
+- **Use predefined color variants** (`-900`, `-800`, etc.) to maintain consistency in transparency levels across your design.
+- **Avoid manually setting transparency**, as it may lead to inconsistencies.
+- **Leverage the inverted color palette** for implementing light and dark mode designs.
+The `light-dark()` function automatically adjusts colors based on the environment's lighting.
+
+### Additional Resources
+- [MDN: color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix)
+
+## Color Palettes
 
 <ColorPalette>
   <AccentColorItems />
 </ColorPalette>
 
 <ColorPalette>
-  <GrayColorItems />
+  <GrayolorItems />
 </ColorPalette>

@@ -5,7 +5,7 @@ const isSameDomain = (styleSheet: StyleSheet) => {
   return styleSheet.href.indexOf(window.location.origin) === 0;
 };
 
-export const getCSSCustomProps = (substring: string) => {
+export const getCSSCustomProps = (substring: string, ignoreList = []) => {
   const stylesheets = [...document.styleSheets]
     .filter((stylesheet) => isSameDomain(stylesheet));
 
@@ -16,10 +16,17 @@ export const getCSSCustomProps = (substring: string) => {
 
     for (const rule of rules) {
       if (rule instanceof CSSStyleRule) {
-        if (rule.selectorText === ':root') {
-          styleRulesByRoot.push(rule);
-        } else {
-          styleRules.push(rule);
+        const ruleIsIgnored = ignoreList.includes(rule.selectorText);
+        // console.log('foooo', rule.selectorText)
+        if (ruleIsIgnored) {
+          console.log('ignored', rule.selectorText)
+        }
+        if (!ruleIsIgnored) {
+          if (rule.selectorText === ':root') {
+            styleRulesByRoot.push(rule);
+          } else {
+            styleRules.push(rule);
+          }
         }
       }
     }
