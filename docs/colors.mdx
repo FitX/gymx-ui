@@ -1,33 +1,36 @@
-import { Meta, ColorItem, ColorPalette } from '@storybook/blocks';
+import { Meta, ColorItem, ColorPalette, Canvas } from '@storybook/blocks';
 import { useEffect, useState } from 'react';
 import { getCSSCustomProps } from './demo/utils/css-props';
+import * as ColorsOverview from './colors.stories';
 
 export const grayColors = []; //getCSSCustomProps('--gymx-color-black');
 export const generateItems = (propName) => {
   const [items, setItems] = useState(getCSSCustomProps(propName));
 
   const update = () => {
-    setItems(() => [...getCSSCustomProps(propName)]);
-  }
+    setItems(getCSSCustomProps(propName));
+  };
 
   useEffect(() => {
-    document.addEventListener('themeChanged', () => {
-      //
-    });
-    /**
-     * update after dom load
-     */
-    if (items !== getCSSCustomProps(propName)) {
+    const handleThemeChange = () => {
       update();
-    }
+      console.log('items', items)
+    };
 
-  }, []);
+    document.addEventListener('themeChanged', handleThemeChange);
+
+    update();
+
+    return () => {
+      document.removeEventListener('themeChanged', handleThemeChange);
+    };
+  }, [propName]);
 
   return (
     <>
   {
     items
-      .map(([name, value], index) => <ColorItem key={index} title={name}
+      .map(([name, value], index) => <ColorItem key={`${document.documentElement.dataset.theme}${index}}`} title={name}
                                                 subtitle={document.documentElement.dataset.theme}
                                                 colors={{[name]: value}}/>)
   }
@@ -40,6 +43,9 @@ export const GrayColorItems = () => generateItems('--gymx-color-black');
 <Meta title="Welcome/Colors" />
 
 ## Colors
+
+<Canvas of={ColorsOverview.Default} />
+
 
 ## @TODO
 - Contrast Ratios / Accessibility

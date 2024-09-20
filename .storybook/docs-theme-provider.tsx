@@ -14,7 +14,7 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
   const theme = (props.context as any).store.globals.globals.theme;
   document.documentElement.setAttribute('data-theme', theme);
   if (theme) {
-    switchCSS(`/src/assets/styles/example-themes/${theme}.css`);
+    switchCSS(`../src/assets/styles/example-themes/${theme}.css`);
   }
 
 

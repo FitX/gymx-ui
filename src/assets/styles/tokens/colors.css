@@ -1,36 +1,165 @@
 :where(html) {
-  /*
-  Color Palette Accent
-  */
-  --gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979);
-
-  --gymx-color-accent-900: color-mix(in srgb, var(--gymx-color-accent), transparent 10%);
-  --gymx-color-accent-800: color-mix(in srgb, var(--gymx-color-accent), transparent 20%);
-  --gymx-color-accent-700: color-mix(in srgb, var(--gymx-color-accent), transparent 30%);
-  --gymx-color-accent-600: color-mix(in srgb, var(--gymx-color-accent), transparent 40%);
-  --gymx-color-accent-500: color-mix(in srgb, var(--gymx-color-accent), transparent 50%);
-  --gymx-color-accent-400: color-mix(in srgb, var(--gymx-color-accent), transparent 60%);
-  --gymx-color-accent-300: color-mix(in srgb, var(--gymx-color-accent), transparent 70%);
-  --gymx-color-accent-200: color-mix(in srgb, var(--gymx-color-accent), transparent 80%);
-  --gymx-color-accent-100: color-mix(in srgb, var(--gymx-color-accent), transparent 90%);
-
-
-  /*
-  Color Palette Gray
-  */
+  /* black */
   --gymx-color-black: #000;
-  --_gymx-color-black-invert: var(--gymx-color-black-invert, light-dark(transparent, #fff));
+  --_gymx-color-black-invert: var(--gymx-color-black-invert, transparent);
 
-  --gymx-color-black-900: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 10%);
-  --gymx-color-black-800: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 20%);
-  --gymx-color-black-700: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 30%);
-  --gymx-color-black-600: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 40%);
-  --gymx-color-black-500: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 50%);
-  --gymx-color-black-400: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 60%);
-  --gymx-color-black-300: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 70%);
-  --gymx-color-black-200: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 80%);
-  --gymx-color-black-100: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 90%);
+  --gymx-color-black-1: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 0));
+  --gymx-color-black-2: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 1));
+  --gymx-color-black-3: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 2));
+  --gymx-color-black-4: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 3));
+  --gymx-color-black-5: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 4));
+  --gymx-color-black-6: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 5));
+  --gymx-color-black-7: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 6));
+  --gymx-color-black-8: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 7));
+  --gymx-color-black-9: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 8));
+  --gymx-color-black-10: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 9));
+  --gymx-color-black-11: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 10));
+  --gymx-color-black-12: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) calc(100% - (100% / 12) * 11));
 
+  /* White */
+  --gymx-color-white: #fff;
+  --_gymx-color-white-invert: var(--gymx-color-white-invert, transparent);
+
+  --gymx-color-white-1: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 0.5));
+  --gymx-color-white-2: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 1));
+  --gymx-color-white-3: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 2));
+  --gymx-color-white-4: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 3));
+  --gymx-color-white-5: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 4));
+  --gymx-color-white-6: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 5));
+  --gymx-color-white-7: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 6));
+  --gymx-color-white-8: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 7));
+  --gymx-color-white-9: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 8));
+  --gymx-color-white-10: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 9));
+  --gymx-color-white-11: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 10.5));
+  --gymx-color-white-12: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 11));
+
+  /* Gray */
+  --gymx-color-gray: #222;
+  --_gymx-color-gray-invert: var(--gymx-color-gray-invert, light-dark(#fefefe, #fefefe));
+
+  --gymx-color-gray-1: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 0.5)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 0.5))
+  );
+  --gymx-color-gray-2: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 1)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 1))
+  );
+  --gymx-color-gray-3: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 2)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 2))
+  );
+  --gymx-color-gray-4: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 3)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 3))
+  );
+  --gymx-color-gray-5: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 4)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 4))
+  );
+  --gymx-color-gray-6: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 5)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 5))
+  );
+  --gymx-color-gray-7: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 6)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 6))
+  );
+  --gymx-color-gray-8: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 7)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 7))
+  );
+  --gymx-color-gray-9: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 8)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 8))
+  );
+  --gymx-color-gray-10: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 9)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 9))
+  );
+  --gymx-color-gray-11: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 10.5)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 10.5))
+  );
+  --gymx-color-gray-12: light-dark(
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc(100% - (100% / 12) * 11)),
+    color-mix(in srgb, var(--gymx-color-gray), var(--_gymx-color-gray-invert) calc((100% / 12) * 11))
+  );
+
+  /* Accent */
+  --gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979);
+  --_gymx-color-accent-invert: var(--gymx-color-accent-invert, light-dark(transparent, transparent));
+
+  /**
+  Step 1+2 Hintergründe
+   */
+  --gymx-color-accent-1: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 0.5)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 0.5))
+  );
+  --gymx-color-accent-2: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 1)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 1))
+  );
+
+  /*
+  Step 3-5 Komponenten Hintergründe. Zum Beispiel 3 default, 4 hover und 5 active
+  Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
+  */
+  --gymx-color-accent-3: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 2)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 2))
+  );
+  --gymx-color-accent-4: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 3)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 3))
+  );
+  --gymx-color-accent-5: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 4)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 4))
+  );
+
+  /**
+  Step 6-8 Borders
+   */
+  --gymx-color-accent-6: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 5)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 5))
+  );
+  --gymx-color-accent-7: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 6)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 6))
+  );
+  --gymx-color-accent-8: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 7)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 7))
+  );
+  /**
+  Step 9-10 Hintergründe und Highlight
+   */
+  --gymx-color-accent-9: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 8)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 8))
+  );
+  --gymx-color-accent-10: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 9)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 9))
+  );
+
+  /*
+  Step 11+12 Contras Color für step 1+2
+  */
+  --gymx-color-accent-11: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 10.5)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 10.5))
+  );
+  --gymx-color-accent-12: light-dark(
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc(100% - (100% / 12) * 11)),
+    color-mix(in srgb, var(--gymx-color-accent), var(--_gymx-color-accent-invert) calc((100% / 12) * 11))
+  );
+}
+
+:where(html) {
   /**
   Error Text Color #EC5D5E
    */

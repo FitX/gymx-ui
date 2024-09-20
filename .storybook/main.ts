@@ -4,6 +4,8 @@ const config: StorybookConfig = {
   stories: ['../docs/**/*.mdx', '../docs/**/*.stories.ts', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   staticDirs: [
     { from: '../coverage', to: '/coverage'},
+    // Temp for adding theme.css in Theme Provider
+    // { from: '../src/assets/styles', to: '/src/assets/styles'},
     '../docs',
   ],
   addons: [
