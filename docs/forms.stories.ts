@@ -1,6 +1,7 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as FormExample } from './demo/forms-example.vue';
+import { default as FormExampleCode } from './demo/forms-example.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -12,6 +13,10 @@ const meta = {
     docs: {
       toc: {
         disable: true, // 👈 Disables the table of contents
+      },
+      source: {
+        type: 'code',
+        code: FormExampleCode,
       },
     },
   },
