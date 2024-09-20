@@ -7,3 +7,8 @@ export interface GymxInputProps {
   id?: string,
   inputAttributes?: InputHTMLAttributes,
 }
+
+export interface GymxInputSlots {
+  'input-start': () => any;
+  'input-end': () => any;
+}

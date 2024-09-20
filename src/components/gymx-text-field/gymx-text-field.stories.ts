@@ -1,28 +1,17 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
-// import { fn } from '@storybook/test';
-import { default as GymxInput } from './gymx-input.vue';
+import { default as GymxTextField } from './gymx-text-field.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Input',
-  component: GymxInput,
+  title: 'components/WIP/text-field',
+  component: GymxTextField,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-  parameters: {
-    a11y: {
-      config: {
-        // wen know....
-        rules: [{ id: 'label', enabled: false }],
-      },
-    },
-    // actions: { argTypesRegex: '^on.*' },
-  },
   args: {
-    // onClick: fn(),
+    label: 'Firstname'
   },
-
-} satisfies Meta<typeof GymxInput>;
+} satisfies Meta<typeof GymxTextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -36,6 +25,7 @@ export const Default: Story = {
     // text: 'This is an error message',
   },
 };
+
 
 export const Hover: Story = {
   args: {
@@ -77,3 +67,5 @@ export const WithAttributes: Story = {
     }
   },
 };
+
+
