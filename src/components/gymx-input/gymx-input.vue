@@ -2,22 +2,23 @@
 <script lang="ts" setup>
 import type { GymxInputProps } from '@/components/gymx-input/types';
 import { getModifierClasses } from '@/utils/css-modifier';
-
-defineOptions({
-  inheritAttrs: false,
-});
+import { computed } from 'vue';
 
 const props = withDefaults(defineProps<GymxInputProps>(), {
   type: 'text',
   id: crypto.randomUUID(),
 });
+
+const disabled = computed(() => props.state === 'disabled' || props.inputAttributes?.disabled)
+
+const modelValue = defineModel<string | number>({ default: '' });
 </script>
 <template>
   <div
     class="input"
     :class="[
-      ...getModifierClasses('input', props.state),
-      $attrs?.class
+      getModifierClasses('input', props.state),
+      getModifierClasses('input', disabled ? 'disabled' : undefined),
     ]">
     <span class="input__start">
       <slot name="input-start"></slot>
@@ -25,13 +26,14 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
     <input
       :type="props.type"
       :id="props.id"
-      v-bind="$attrs"
+      v-bind="props.inputAttributes"
+      :disabled="disabled || $attrs.disabled"
+      v-model="modelValue"
       class="input__input" />
     <span class="input__end">
       <slot name="input-end"></slot>
     </span>
   </div>
-  <h1>{{ $attrs }}</h1>
 </template>
 <style lang="scss" scoped>
 .input {
@@ -47,8 +49,8 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
 
   --_input-color-border-hover: var(--input-color-border-hover, var(--accent-color, currentColor));
 
-  --_input-color-border-disabled: #777;
-  --_input-color-background-disabled: #bcbcbc;
+  --_input-color-border-disabled: var(--gymx-color-black-100);
+  --_input-color-background-disabled: var(--gymx-color-black-100);
 
   --_input-radius: var(--input-radius, 0);
   --_input-border: var(--input-border, var(--gymx-border-size-1) solid var(--_input-color-border));

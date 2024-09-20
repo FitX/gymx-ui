@@ -45,7 +45,8 @@ export const Focused: Story = {
 
 export const Disabled: Story = {
   args: {
-    state: 'disabled'
+    state: 'disabled',
+    modelValue: 'Jon Doe'
   },
 };
 
@@ -61,10 +62,12 @@ export const OptionalIconEnd: Story = {
   },
 };
 
-export const OptionalIcons: Story = {
+export const WithAttributes: Story = {
   args: {
-    'input-start': '🐨',
-    'input-end': '🐨',
-    class: 'mutter kohl'
+    modelValue: 'Readonly',
+    inputAttributes: {
+      'aria-label': 'demo field',
+      readonly: true,
+    }
   },
 };
