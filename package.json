@@ -33,6 +33,7 @@
     "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html"
   },
   "dependencies": {
+    "react": "^18.3.1",
     "vue": "^3.4.29"
   },
   "devDependencies": {
