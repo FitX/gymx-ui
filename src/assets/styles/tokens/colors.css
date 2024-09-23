@@ -31,7 +31,8 @@
   --gymx-color-white-9: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 8));
   --gymx-color-white-10: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 9));
   --gymx-color-white-11: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 10.5));
-  --gymx-color-white-12: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 11));
+  /* --gymx-color-white-12: color-mix(in srgb, var(--gymx-color-white), var(--_gymx-color-white-invert) calc(100% - (100% / 12) * 11)); */
+  --gymx-color-white-12: var(--gymx-color-white);
 
   /* Gray */
   --gymx-color-gray: #222;
@@ -181,3 +182,55 @@
   --gymx-color-success-text-on-dark: #3dd68c;
   --gymx-color-success-text: var(--gymx-color-success-text-on-light);
 }
+
+
+
+
+
+
+:root {
+  --_gymx-color-accent: var(--gymx-color-accent, color(display-p3 0.843 0.298 0.507));
+
+  --_gymx-color-accent-dark-mix: var(--gymx-color-accent-dark-mix, color(display-p3 0 0 0));
+  --_gymx-color-accent-light-mix: var(--gymx-color-accent-light-mix, color(display-p3 1 1 1));
+
+  --gymx-color-accent-dark-1: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 80%);
+  --gymx-color-accent-dark-2: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 70%);
+  --gymx-color-accent-dark-3: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 60%);
+  --gymx-color-accent-dark-4: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 50%);
+  --gymx-color-accent-dark-5: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 40%);
+  --gymx-color-accent-dark-6: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 30%);
+  --gymx-color-accent-dark-7: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 20%);
+  --gymx-color-accent-dark-8: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 10%);
+  --gymx-color-accent-dark-9: var(--_gymx-color-accent);
+  --gymx-color-accent-dark-10: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 90%);
+  --gymx-color-accent-dark-11: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 95%);
+  --gymx-color-accent-dark-12: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix), var(--_gymx-color-accent) 98%);
+
+  --gymx-color-accent-light-1: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 90%);
+  --gymx-color-accent-light-2: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 80%);
+  --gymx-color-accent-light-3: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 70%);
+  --gymx-color-accent-light-4: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 60%);
+  --gymx-color-accent-light-5: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 50%);
+  --gymx-color-accent-light-6: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 40%);
+  --gymx-color-accent-light-7: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 30%);
+  --gymx-color-accent-light-8: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 20%);
+  --gymx-color-accent-light-9: var(--_gymx-color-accent);
+  --gymx-color-accent-light-10: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 10%);
+  --gymx-color-accent-light-11: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 5%);
+  --gymx-color-accent-light-12: color-mix(in display-p3, var(--_gymx-color-accent-light-mix), var(--_gymx-color-accent) 2%);
+
+  --gymx-color-accent-1: light-dark(var(--gymx-color-accent-light-1), var(--gymx-color-accent-dark-1));
+  --gymx-color-accent-2: light-dark(var(--gymx-color-accent-light-2), var(--gymx-color-accent-dark-2));
+  --gymx-color-accent-3: light-dark(var(--gymx-color-accent-light-3), var(--gymx-color-accent-dark-3));
+  --gymx-color-accent-4: light-dark(var(--gymx-color-accent-light-4), var(--gymx-color-accent-dark-4));
+  --gymx-color-accent-5: light-dark(var(--gymx-color-accent-light-5), var(--gymx-color-accent-dark-5));
+  --gymx-color-accent-6: light-dark(var(--gymx-color-accent-light-6), var(--gymx-color-accent-dark-6));
+  --gymx-color-accent-7: light-dark(var(--gymx-color-accent-light-7), var(--gymx-color-accent-dark-7));
+  --gymx-color-accent-8: light-dark(var(--gymx-color-accent-light-8), var(--gymx-color-accent-dark-8));
+  --gymx-color-accent-9: light-dark(var(--gymx-color-accent-light-9), var(--gymx-color-accent-dark-9));
+  --gymx-color-accent-10: light-dark(var(--gymx-color-accent-light-10), var(--gymx-color-accent-dark-10));
+  --gymx-color-accent-11: light-dark(var(--gymx-color-accent-light-11), var(--gymx-color-accent-dark-11));
+  --gymx-color-accent-12: light-dark(var(--gymx-color-accent-light-12), var(--gymx-color-accent-dark-12));
+}
+

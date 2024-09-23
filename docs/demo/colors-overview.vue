@@ -8,9 +8,11 @@ const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)');
 const defaultColors = [{
   name: 'Black',
   key: 'black',
+  alpha: true,
 }, {
   name: 'White',
   key: 'white',
+  alpha: true,
 },{
   name: 'Gray on Dark',
   key: 'gray',
@@ -133,14 +135,18 @@ onMounted(() => {
     <ul
       class="colors"
       v-for="(palette, index) in defaultColors"
+      :data-alpha="palette?.alpha"
       :data-color-scheme="palette.scheme ?? (isPreferredDark ? 'dark' : 'light')"
       :key="`palette-${index}`">
       <li
         v-for="n in 12"
         ref="itemRefs"
-        :key="`item-${index}-${n}`"
+        :key="`item-${index}-${n}`">
+      <span
+        class="preview-item"
         :style="`--background-color: var(--gymx-color-${palette.key}-${n});`">
-      <span>{{ palette.name }} {{ n }} {{ palette.scheme ?? (isPreferredDark ? 'dark' : 'light') }}</span>
+        {{ palette.name }} {{ n }} {{ palette.scheme ?? (isPreferredDark ? 'dark' : 'light') }}
+      </span>
       </li>
     </ul>
     <!-- <ul class="colors">
@@ -220,11 +226,26 @@ onMounted(() => {
   background-size: 16px 16px;
   background-position: 0 0, 8px 0, 8px -8px, 0 8px; */
 
+  &[data-alpha=true] {
+    --transparency-grid-color-1: grey;
+    --transparency-grid-color-2: #888;
+    border: 1px solid coral;
+  }
+
   li {
-    background: var(--background-color);
+    background-repeat: repeat;
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
+    background-color: var(--transparency-grid-color-1);
+    background-image: linear-gradient(45deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(135deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(45deg, #0000 75%, var(--transparency-grid-color-2) 75%), linear-gradient(135deg, #0000 75%, var(--transparency-grid-color-2) 75%);
+
     margin: 0;
     padding: 0;
     aspect-ratio: 1;
+  }
+
+  .preview-item {
+    background: var(--background-color);
   }
 }
 
