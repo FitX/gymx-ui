@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
   id: crypto.randomUUID(),
 });
 
-const disabled = computed(() => props.state === 'disabled' || props.inputAttributes?.disabled)
+const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled))
 
 const modelValue = defineModel<string | number>({ default: '' });
 </script>
@@ -27,7 +27,7 @@ const modelValue = defineModel<string | number>({ default: '' });
       :type="props.type"
       :id="props.id"
       v-bind="props.inputAttributes"
-      :disabled="disabled || $attrs.disabled"
+      :disabled="disabled || ($attrs.disabled ? true : false)"
       v-model="modelValue"
       class="input__input" />
     <span class="input__end">
