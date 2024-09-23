@@ -136,14 +136,15 @@ onMounted(() => {
       class="colors"
       v-for="(palette, index) in defaultColors"
       :data-alpha="palette?.alpha"
-      :data-color-scheme="palette.scheme ?? (isPreferredDark ? 'dark' : 'light')"
+      :data-color-scheme-fallback="palette.scheme ?? (isPreferredDark ? 'dark' : 'light')"
+      :data-color-scheme="palette.scheme"
       :key="`palette-${index}`">
       <li
         v-for="n in 12"
         ref="itemRefs"
         :key="`item-${index}-${n}`">
       <span
-        class="preview-item"
+        class="colors__preview-item"
         :style="`--background-color: var(--gymx-color-${palette.key}-${n});`">
         {{ palette.name }} {{ n }} {{ palette.scheme ?? (isPreferredDark ? 'dark' : 'light') }}
       </span>
@@ -193,20 +194,20 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+
 .colors, .color-description {
 
-  list-style: none; display: grid; grid-template-columns: repeat(12, 1fr); margin: 0; padding: 0;
+  list-style: none; display: grid; grid-template-columns: repeat(12, 1fr); margin: 0; padding: 0.5rem 0;
   gap: 0.5rem;
   margin-block-end: 0.5rem;
+  background: light-dark(white, black);
 
   &[data-color-scheme="dark"] {
     color-scheme: dark;
-    background: black;
   }
 
   &[data-color-scheme="light"] {
     color-scheme: light;
-    background: white;
   }
 
   li {
@@ -216,51 +217,28 @@ onMounted(() => {
 }
 
 .colors {
-  /* background: linear-gradient(45deg, #f3f3f3 25%, transparent 25%),
-  linear-gradient(-45deg, #f3f3f3 25%, transparent 25%),
-  linear-gradient(45deg, transparent 75%, #f3f3f3 75%),
-  linear-gradient(-45deg, transparent 75%, #f3f3f3 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
-  background-image: linear-gradient(45deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(135deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(45deg, #0000 75%, var(--transparency-grid-color-2) 75%), linear-gradient(135deg, #0000 75%, var(--transparency-grid-color-2) 75%);
-  background-size: 16px 16px;
-  background-position: 0 0, 8px 0, 8px -8px, 0 8px; */
+  --transparent-color-bg: light-dark(#808080, #808080);
+  --transparent-color-highlight: light-dark(#999, #999);
+  --colors-color-bg: transparent;
 
-  &[data-alpha=true] {
-    --transparency-grid-color-1: grey;
-    --transparency-grid-color-2: #888;
-    border: 1px solid coral;
+  &[data-alpha="true"] {
+    --colors-color-bg: repeating-linear-gradient(
+        45deg,
+        var(--transparent-color-highlight) 0px 2px,
+        var(--transparent-color-bg) 2px 12px
+    );
   }
 
   li {
-    background-repeat: repeat;
-    background-size: 16px 16px;
-    background-position: 0 0, 8px 0, 8px -8px, 0 8px;
-    background-color: var(--transparency-grid-color-1);
-    background-image: linear-gradient(45deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(135deg, var(--transparency-grid-color-2) 25%, #0000 25%), linear-gradient(45deg, #0000 75%, var(--transparency-grid-color-2) 75%), linear-gradient(135deg, #0000 75%, var(--transparency-grid-color-2) 75%);
-
-    margin: 0;
+    display: flex;
     padding: 0;
-    aspect-ratio: 1;
+    background: var(--colors-color-bg);
   }
 
-  .preview-item {
+  &__preview-item {
+    display: block;
+    padding: 0.5rem;
     background: var(--background-color);
   }
-}
-
-.text-on-dark span {
-  // color-scheme: dark;
-  // color: light-dark(#fff, black);
-  color: white;
-}
-
-.text-on-light span  {
-  // color: light-dark(black, white);;
-  color: black;
-}
-
-.foo span {
-  color: red;
 }
 </style>

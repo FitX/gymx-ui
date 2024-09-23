@@ -51,100 +51,113 @@ export const GrayColorItems = () => generateItems('--gymx-color-black');
 - Contrast Ratios / Accessibility
 - Usage
 - Semantic
+Accent Color Palette for Component Library
+==========================================
 
-The **GymX UI Library** provides a flexible and dynamic color palette for use in modern web projects.
-It leverages advanced CSS techniques like `color-mix()`, the Display-P3 color space, and simplified handling of transparency.
-This Introduction explains how to effectively use the color palette and the options available for customization.
+This component library uses a flexible and scalable accent color palette based on CSS variables. The palette provides light and dark variations of the accent color and dynamically adjusts to light and dark modes. By defining variables for different UI states (such as hover, active, borders), a consistent design is ensured.
 
-## Table of Contents
-1. [Basic Color Configuration](#basic-color-configuration)
-2. [Using Colors in CSS](#using-colors-in-css)
-3. [Customization for Designers](#customization-for-designers)
-4. [Best Practices](#best-practices)
-5. [Additional Resources](#additional-resources)
-6. [Color Palettes](#color-palettes)
+Table of Contents
+-----------------
 
-## Basic Color Configuration
+1. [Introduction](#introduction)
+2. [Accent Color Concept](#accent-color-concept)
+3. [Using the Color Steps](#using-color-steps)
+4. [Accent Color Configuration](#accent-color-configuration)
+5. [Dynamic Color Adjustment for Light/Dark Mode](#dynamic-color-adjustment)
+6. [Usage Example](#usage-example)
+7. [License](#license)
 
-The color palette is divided into **two main categories**:
-- **Accent Colors**: A primary accent color with different transparency levels.
-- **Grayscale (Black)**: A palette based on black, also with various transparency levels.
+Introduction
+------------
 
-### Accent Colors
-Accent colors are defined in various transparency levels. The base color is stored in the variable `--gymx-color-accent`, and the variations are denoted by suffixes like `-900`, `-800`, etc.
+This library implements a customizable color system for components.
+The color steps are managed through CSS variables and provide a flexible way to define colors for various UI states and interactions.
+
+The accent color palette consists of:
+
+- Light and dark shades of the accent color
+- Dynamically adjusting to light and dark design modes (Light/Dark Mode)
+
+Accent Color Concept
+--------------------
+
+The color system is based on a central accent color, represented in various shades of lightness and darkness.
+These color shades can be used for different UI components such as backgrounds, borders, buttons, and highlights.
+
+The accent color palette includes 12 levels:
+
+- **Step 1-9:** Light shades of the accent color
+- **Step 10-12:** Dark shades of the accent color
+
+### Structure of Color Steps
+
+- **Step 1-2:** Main background colors
+- **Step 3-5:** Colors for UI components (Default, Hover, Active)
+- **Step 6-8:** Colors for borders
+- **Step 9-10:** Colors for backgrounds and highlights
+- **Step 11-12:** Contrast colors for text on dark backgrounds
+
+Using the Color Steps
+---------------------
+
+### CSS Variables Overview
+
+The accent color variables are categorized as follows:
+
+1. **Accent Light Palette:**
+    - `--gymx-color-accent-light-1` to `--gymx-color-accent-light-12`
+2. **Accent Dark Palette:**
+    - `--gymx-color-accent-dark-1` to `--gymx-color-accent-dark-12`
+3. **Automatic Accent Colors:**
+    - `--gymx-color-accent-1` to `--gymx-color-accent-12` (dynamically based on Light/Dark Mode)
+
+### Example of Variable Usage:
 
 ```css
---gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979); /* Base accent color */
---gymx-color-accent-900: color-mix(in srgb, var(--gymx-color-accent), transparent 10%);
---gymx-color-accent-800: color-mix(in srgb, var(--gymx-color-accent), transparent 20%);
-...
---gymx-color-accent-100: color-mix(in srgb, var(--gymx-color-accent), transparent 90%);
-```
-
-### Grayscale (Black)
-
-The grayscale colors are based on black (#000) and offer different transparency levels created by mixing with an inverted color, depending on light or dark modes.
-
-```css
---gymx-color-black: #000; /* Base black color */
---gymx-color-black-900: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 10%);
---gymx-color-black-800: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 20%);
-...
---gymx-color-black-100: color-mix(in srgb, var(--gymx-color-black), var(--_gymx-color-black-invert) 90%);
-```
-
-## Using Colors in CSS
-
-### Example for Accent Colors
-
-```css
-.button-primary {
-  background-color: var(--gymx-color-accent);
-  color: white;
+.my-button {
+  background-color: var(--gymx-color-accent-3); /* Default background */
+  border: 1px solid var(--gymx-color-accent-6); /* Border color */
 }
 
-.button-secondary {
-  background-color: var(--gymx-color-accent-500);
-  color: white;
+.my-button:hover {
+  background-color: var(--gymx-color-accent-4); /* Hover background */
+}
+
+.my-button:active {
+  background-color: var(--gymx-color-accent-5); /* Active background */
 }
 ```
 
-### Example for Grayscale
+Accent Color Configuration
+--------------------------
+
+You can easily adjust the **base accent color** (`--_gymx-color-accent`) by overriding it in your stylesheet:
 
 ```css
-.header {
-  background-color: var(--gymx-color-black-800);
-  color: var(--gymx-color-black-100);
+:root {
+  --gymx-color-accent: color(display-p3 0.7 0.2 0.4); /* Example: Another hue */
 }
 ```
 
-## Customization for Designers
+The palette will automatically update to reflect this new accent color.
 
-**Designers** can easily adjust the color palette to achieve the desired look and feel.
+### Dynamic Color Mixing
 
-- **Modifying the Accent Color**: The primary accent color can be changed by modifying the `--gymx-color-accent variable`.
-You can use any value in the `display-p3` or `srgb` color space to match your design guidelines.
+The colors are generated using the CSS function `color-mix()` based on the accent color and a lighter or darker color.
+This creates the various lightness and darkness levels of the accent color.
+
+Dynamic Color Adjustment for Light/Dark Mode
+--------------------------------------------
+
+The color system is dynamic and uses the `light-dark()` function to automatically switch between light and dark versions of the accent colors, depending on whether the user is in light or dark mode.
 
 Example:
+
 ```css
---gymx-color-accent: color(display-p3 0.7 0.2 0.3); /* New accent color */
+.my-component {
+  background-color: var(--gymx-color-accent-1); /* Automatically switches based on light/dark */
+}
 ```
-
-- **Modifying Grayscale**: You can also easily adjust the black-based variations by changing the base value of `--gymx-color-black`.
-For instance, if you want a darker gray, you can change the base color:
-```css
---gymx-color-black: #333; /* Darker gray instead of black */
-```
-
-### Transparency
-All color variants come with predefined transparency levels (e.g., `-900` to `-100`),
-allowing you to control the intensity of the color without manually tweaking transparency values.
-
-## Best Practices
-- **Use predefined color variants** (`-900`, `-800`, etc.) to maintain consistency in transparency levels across your design.
-- **Avoid manually setting transparency**, as it may lead to inconsistencies.
-- **Leverage the inverted color palette** for implementing light and dark mode designs.
-The `light-dark()` function automatically adjusts colors based on the environment's lighting.
 
 ### Additional Resources
 - [MDN: color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix)
