@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUpdated, ref } from 'vue';
 import { useMediaQuery } from '@vueuse/core';
 import Color from 'colorjs.io';
 
@@ -38,93 +38,29 @@ const defaultColors = [{
  */
 const itemRefs = ref([]);
 
+onUpdated(() => {
+  console.log('update');
+})
+
 onMounted(() => {
-  console.log(itemRefs.value)
+  console.log('mounted');
   itemRefs.value.forEach((item) => {
-    // console.log('getComputedStyle(item)', window.getComputedStyle(item ,null).getPropertyValue('--background-color'))
-    // console.log('get', getComputedStyle(item).getPropertyValue('background-color').trim())
-    // const currentColor = new Color(getComputedStyle(item).getPropertyValue('--background-color').trim());
-    // const currentColor = new Color('white');
-    const itemBackground = getComputedStyle(item).getPropertyValue('background-color').trim();
-    const currentColor = new Color(itemBackground);
-    const parentBackground = getComputedStyle(item.parentNode).backgroundColor;
-    const backgroundColor = new Color(parentBackground);
-    // console.log(currentColor.alpha.raw)
-    // console.log(currentColor.luminance)
-    // console.log(item.parentNode, parentBackground);
-    const contrastToBlack = currentColor.contrast('#000', 'WCAG21');
-    const contrastToWhite = currentColor.contrast('#fff', 'WCAG21');
-    const contrastToBackground = backgroundColor.contrast(itemBackground, 'WCAG21');
-    const mix = currentColor.mix(parentBackground, Number(currentColor.alpha.raw));
-
-    if (item.innerText.startsWith('accent')) {
-      console.log({
-        // item,
-        // text: item.innerText, // "Gray on Dark 2 dark"
-        // contrastToBlack,
-        // contrastToWhite,
-        // luminance: currentColor.luminance,
-        text: item.innerText,
-        // parentBackground,
-        // contrastToBackground,
-        // itemBackground,
-        // currentColor: currentColor.toString({format: 'rgb'}),
-        mix,
-        contrastToBackground,
-        currentColor,
-        // contrast: currentColor.mix(parentBackground, Number(currentColor.alpha.raw)).contrast(parentBackground, 'WCAG21')
-      })
-    }
-
-    console.log(contrastToBackground, mix.contrast(itemBackground, 'WCAG21'), currentColor.luminance, currentColor.alpha.raw)
-
-    // item.classList.add(contrastToBlack < 4.5 ? 'text-on-dark' : 'text-on-light')
-    /* if (contrastToWhite >= contrastToBlack) {
-      item.classList.add(contrastToWhite >= 4.5 ? 'text-on-light' : 'text-on-dark');
-    } else {
-      item.classList.add(contrastToBlack >= 4.5 ? 'text-on-dark' : 'text-on-light');
-    } */
-
-    /* if (contrastToBlack >= 4.5 && contrastToWhite < 4.5) {
-      item.classList.add('text-on-dark');
-    } else if (contrastToWhite >= 4.5 && contrastToBlack < 4.5) {
-      item.classList.add('text-on-light');
-    } else {
-      if (contrastToBlack > contrastToWhite) {
-        item.classList.add('text-on-dark');
-      } else {
-        item.classList.add('text-on-light');
-      }
-    }*/
-    /*
-    if (currentColor.luminance < 1) {
-      if (contrastToWhite < contrastToBlack) {
-        item.classList.add('text-on-dark');
-      } else {
-        item.classList.add('text-on-light');
-      }
-    } else {
-      item.classList.add(contrastToBackground > 4.5 ? 'text-on-dark' : 'text-on-light')
-      console.log('ayay', contrastToBackground)
-    } */
-
-    /*
-    if (contrastToBackground > 4.5) {
-      item.classList.add('text-on-dark');
-    } else {
-      item.classList.add('text-on-light');
-    }*/
-    if (mix.contrast(itemBackground, 'WCAG21') < 4.5) {
+    const currentColor = getComputedStyle(item).getPropertyValue('background-color').trim();
+    // const currentColorItem = new Color(currentColor);
+    const parentBackgroundColor = getComputedStyle(item.parentNode).backgroundColor;
+    const currentBackgroundItem = new Color(parentBackgroundColor);
+    const currentContrast = currentBackgroundItem.contrast(currentColor, 'WCAG21');
+    // console.log(currentContrast);
+    if (currentContrast < 4.5) {
       item.classList.add('text-on-dark');
     } else {
       item.classList.add('text-on-light');
     }
-
   })
 })
 </script>
 <template>
-  <section>
+  <section class="wrapper">
     <ul class="color-description">
       <li style="--span: 2">Backgrounds</li>
       <li style="--span: 3">Interactions</li>
@@ -141,66 +77,40 @@ onMounted(() => {
       :key="`palette-${index}`">
       <li
         v-for="n in 12"
-        ref="itemRefs"
         :key="`item-${index}-${n}`">
       <span
+        ref="itemRefs"
         class="colors__preview-item"
         :style="`--background-color: var(--gymx-color-${palette.key}-${n});`">
-        {{ palette.name }} {{ n }} {{ palette.scheme ?? (isPreferredDark ? 'dark' : 'light') }}
+        {{ palette.name }} {{ n }}
       </span>
       </li>
     </ul>
-    <!-- <ul class="colors">
-      <li style="--background-color: var(--gymx-color-black-1);">Black 1</li>
-      <li style="--background-color: var(--gymx-color-black-2);">Black 2</li>
-      <li style="--background-color: var(--gymx-color-black-3);">Black 3</li>
-      <li style="--background-color: var(--gymx-color-black-4);">Black 4</li>
-      <li style="--background-color: var(--gymx-color-black-5);">Black 5</li>
-      <li style="--background-color: var(--gymx-color-black-6);">Black 6</li>
-      <li style="--background-color: var(--gymx-color-black-7);">Black 7</li>
-      <li style="--background-color: var(--gymx-color-black-8);">Black 8</li>
-      <li style="--background-color: var(--gymx-color-black-9);">Black 9</li>
-      <li style="--background-color: var(--gymx-color-black-10);">Black 10</li>
-      <li style="--background-color: var(--gymx-color-black-11);">Black 11</li>
-      <li style="--background-color: var(--gymx-color-black-12);">Black 12</li>
-
-      <li style="--background-color: var(--gymx-color-white-1); color: black;">White 1</li>
-      <li style="--background-color: var(--gymx-color-white-2); color: black;">White 2</li>
-      <li style="--background-color: var(--gymx-color-white-3); color: black;">White 3</li>
-      <li style="--background-color: var(--gymx-color-white-4); color: black;">White 4</li>
-      <li style="--background-color: var(--gymx-color-white-5); color: black;">White 5</li>
-      <li style="--background-color: var(--gymx-color-white-6); color: black;">White 6</li>
-      <li style="--background-color: var(--gymx-color-white-7); color: black;">White 7</li>
-      <li style="--background-color: var(--gymx-color-white-8); color: black;">White 8</li>
-      <li style="--background-color: var(--gymx-color-white-9); color: black;">White 9</li>
-      <li style="--background-color: var(--gymx-color-white-10); color: black;">White 10</li>
-      <li style="--background-color: var(--gymx-color-white-11); color: black;">White 11</li>
-      <li style="--background-color: var(--gymx-color-white-12); color: black;">White 12</li>
-
-      <li style="--background-color: var(--gymx-color-gray-1);">Gray 1</li>
-      <li style="--background-color: var(--gymx-color-gray-2);">Gray 2</li>
-      <li style="--background-color: var(--gymx-color-gray-3);">Gray 3</li>
-      <li style="--background-color: var(--gymx-color-gray-4);">Gray 4</li>
-      <li style="--background-color: var(--gymx-color-gray-5);">Gray 5</li>
-      <li style="--background-color: var(--gymx-color-gray-6);">Gray 6</li>
-      <li style="--background-color: var(--gymx-color-gray-7);">Gray 7</li>
-      <li style="--background-color: var(--gymx-color-gray-8);">Gray 8</li>
-      <li style="--background-color: var(--gymx-color-gray-9);">Gray 9</li>
-      <li style="--background-color: var(--gymx-color-gray-10);">Gray 10</li>
-      <li style="--background-color: var(--gymx-color-gray-11);">Gray 11</li>
-      <li style="--background-color: var(--gymx-color-gray-12);">Gray 12</li>
-    </ul> -->
   </section>
 </template>
 
 <style lang="scss" scoped>
 
+.wrapper {
+  // overflow-x: auto;
+  // min-width: 100vw;
+  // box-sizing: border-box;
+  overflow-x: auto;
+}
+
 .colors, .color-description {
 
-  list-style: none; display: grid; grid-template-columns: repeat(12, 1fr); margin: 0; padding: 0.5rem 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(70px, 1fr));
+  margin: 0;
+  padding: 0.5rem 0;
   gap: 0.5rem;
   margin-block-end: 0.5rem;
   background: light-dark(white, black);
+  // overflow-x: scroll;
+  box-sizing: border-box;
+  // min-width: 100vw;
 
   &[data-color-scheme="dark"] {
     color-scheme: dark;
@@ -240,5 +150,13 @@ onMounted(() => {
     padding: 0.5rem;
     background: var(--background-color);
   }
+}
+
+.text-on-dark {
+  color: white;
+}
+
+.text-on-light {
+  color: black
 }
 </style>
