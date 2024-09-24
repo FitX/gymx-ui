@@ -90,6 +90,8 @@ const modelValue = defineModel<string | number>({ default: '' });
     color: inherit;
     border: none;
     background: transparent;
+    padding: 0;
+    margin: 0;
     outline: 0;
   }
 

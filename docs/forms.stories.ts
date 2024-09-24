@@ -2,6 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as FormExample } from './demo/forms-example.vue';
 import { default as FormExampleCode } from './demo/forms-example.vue?raw';
+import { default as FormExampleTextFieldsCode } from './demo/forms-example-text-fields.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -32,6 +33,20 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     // text: 'This is an error message',
+  },
+};
+
+export const TextFields: Story = {
+  args: {
+    // text: 'This is an error message',
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: 'code',
+        code: FormExampleTextFieldsCode,
+      },
+    },
   },
 };
 

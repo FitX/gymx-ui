@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage } from '@/components';
+import { GymxTextField, GymxButton } from '@/components';
 import { ref } from 'vue';
 
 const firstName = ref<string>();
@@ -19,17 +19,24 @@ const submit = () => {
 <template>
   <form @submit.prevent="submit">
     <div class="item">
-      <gymx-label for="firstname">Firstname *</gymx-label>
-      <gymx-input id="firstname" v-model="firstName" />
-      <gymx-error-message v-if="errors.firstName" text="Please enter your Firstname" />
+      <gymx-text-field
+        v-model="firstName"
+        label="Firstname"
+        :error-message="errors.firstName ? 'Please enter your Firstname' : undefined"
+      />
     </div>
     <div class="item">
-      <gymx-label for="lastname">Lastname</gymx-label>
-      <gymx-input id="lastname" v-model="lastName" />
+      <gymx-text-field
+        v-model="lastName"
+        label="Lastname"
+      />
     </div>
     <div class="item">
-      <gymx-label for="dateOfBirth">Date of Birth</gymx-label>
-      <gymx-input id="dateOfBirth" type="date" v-model="dateOfBirth" />
+      <gymx-text-field
+        v-model="dateOfBirth"
+        type="date"
+        label="Date of Birth"
+      />
     </div>
     <div class="item">
       <gymx-button class="button">Speichern</gymx-button>
