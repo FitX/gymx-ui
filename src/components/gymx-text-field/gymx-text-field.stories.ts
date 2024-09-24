@@ -68,4 +68,26 @@ export const WithAttributes: Story = {
   },
 };
 
+export const HasHint: Story = {
+  args: {
+    modelValue: '',
+    hint: 'The part of your name before your last name'
+  },
+};
+
+export const HasError: Story = {
+  args: {
+    modelValue: '',
+    errorMessage: 'Please enter your name'
+  },
+};
+
+export const WithErrorAndHint: Story = {
+  args: {
+    modelValue: '',
+    hint: 'The part of your name before your last name',
+    errorMessage: 'Please enter your name'
+  },
+};
+
 
