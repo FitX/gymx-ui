@@ -26,6 +26,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     <gymx-input
       :id="props.id"
       v-bind="props.inputAttributes"
+      :state="props.state"
       class="text-field__input" v-model="modelValue">
       <!--<template v-for="slot in $slots" #[slot]>
         <slot :name="slot"></slot>
@@ -45,7 +46,7 @@ const modelValue = defineModel<string | number>({ default: '' });
       <slot name="input-hint">
         <span
           v-if="props.hint"
-          class="text-field__hint">{{ props.hint }} jo</span>
+          class="text-field__hint">{{ props.hint }}</span>
       </slot>
     </div>
   </div>
