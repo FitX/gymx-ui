@@ -31,7 +31,7 @@
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
     "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html",
-    "temp-fix-copy-themes": "mkdir -p ./storybook-static/src/assets/styles/example-themes/ && cp -r ./src/assets/styles/example-themes/ ./storybook-static/src/assets/styles/example-themes/"
+    "temp-fix-copy-themes": "mkdir -p ./public/src/assets/styles/example-themes/ && cp -r ./src/assets/styles/example-themes/ ./public/src/assets/styles/example-themes/"
   },
   "dependencies": {
     "@vueuse/core": "^11.1.0",
