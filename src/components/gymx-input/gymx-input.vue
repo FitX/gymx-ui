@@ -58,8 +58,8 @@ const modelValue = defineModel<string | number>({ default: '' });
 
   /* Other */
   --_input-radius: var(--input-radius, 0);
-  --_input-border: var(--input-border, var(--gymx-border-size-1) solid var(--_input-color-border));
-  --_input-outline: var(--input-outline, var(--_input-border));
+  --_input-border: var(--input-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border, inherit));
+  --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
 
   --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));
   --_input-padding-block: var(--input-padding-block, var(--gymx-size-00));
