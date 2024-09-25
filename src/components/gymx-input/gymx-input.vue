@@ -103,6 +103,8 @@ const modelValue = defineModel<string | number>({ default: '' });
   }
 
   &:hover, &--hover {
+    --input-color: var(--_input-color-hover);
+    --input-color-background: var(--_input-color-background-hover);
     --input-color-border: var(--_input-color-border-hover);
   }
 
