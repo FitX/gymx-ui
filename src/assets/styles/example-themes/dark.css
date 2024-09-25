@@ -1,6 +1,11 @@
 /**
  Theme Dark
  */
-:root {
-  --gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979)
+:where(html) {
+  --gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979);
+
+  --input-color-border: var(--gymx-color-white-6);
+  --input-color-border-hover: var(--gymx-color-white-7);
+  --input-color-border-disabled: var(--gymx-color-white-2);
+  --input-color-background-disabled: var(--gymx-color-white-1);
 }

@@ -47,4 +47,12 @@
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
+
+
+
+  /* Input */
+  --input-color-border: #B5B5B5;
+  --input-color-border-hover: #717171;
+  --input-color-border-disabled: #B5B5B5;
+  --input-color-background-disabled: #F5F5F5;
 }

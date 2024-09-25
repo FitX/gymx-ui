@@ -43,15 +43,20 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-font-size: var(--input-font-size, var(--gymx-font-size-2));
   --_input-font-weight: var(--input-font-letter-spacing, inherit);
 
+  /* State defaults */
   --_input-color: var(--input-color, var(--gymx-color-text));
   --_input-color-background: var(--input-color-background, transparent);
   --_input-color-border: var(--input-color-border, currentColor);
 
-  --_input-color-border-hover: var(--input-color-border-hover, var(--accent-color, currentColor));
+  --_input-color-hover: var(--input-color-hover, var(--_input-color));
+  --_input-color-background-hover: var(--input-color-background-hover, var(--_input-color-background));
+  --_input-color-border-hover: var(--input-color-border-hover, var(--gymx-color-accent, currentColor));
 
-  --_input-color-border-disabled: var(--gymx-color-black-100);
-  --_input-color-background-disabled: var(--gymx-color-black-100);
+  --_input-color-disabled: var(--input-color, var(--gymx-color-text));
+  --_input-color-background-disabled: var(--input-color-background-disabled, var(--gymx-color-black-1));
+  --_input-color-border-disabled: var(--input-color-border-disabled, var(--gymx-color-black-2));
 
+  /* Other */
   --_input-radius: var(--input-radius, 0);
   --_input-border: var(--input-border, var(--gymx-border-size-1) solid var(--_input-color-border));
   --_input-outline: var(--input-outline, var(--_input-border));
@@ -73,6 +78,8 @@ const modelValue = defineModel<string | number>({ default: '' });
   padding-inline: var(--_input-padding-inline);
   padding-block: var(--_input-padding-block);
   border-radius: var(--_input-radius);
+
+  outline-offset: 1px;
 
   &__start:not(:empty) {
     margin-inline-end: var(--_input-gap);
@@ -96,18 +103,18 @@ const modelValue = defineModel<string | number>({ default: '' });
   }
 
   &:hover, &--hover {
-    --_input-color-border: var(--_input-color-border-hover);
+    --input-color-border: var(--_input-color-border-hover);
   }
 
   &:has(#{$self}__input:focus-visible),
   &--focused {
     outline: var(--_input-border);
-    outline-offset: 1px;
   }
 
   &--disabled {
-    --_input-color-border: var(--_input-color-border-disabled);
-    --_input-color-background: var(--_input-color-background-disabled);
+    --input-color: var(--_input-color-disabled);
+    --input-color-border: var(--_input-color-border-disabled);
+    --input-color-background: var(--_input-color-background-disabled);
   }
 }
 </style>
