@@ -22,7 +22,6 @@ const modelValue = defineModel<string | number>({ default: '' });
     ]">
     <span class="input__start">
       <slot name="input-start"></slot>
-      blubb
     </span>
     <input
       :type="props.type"
