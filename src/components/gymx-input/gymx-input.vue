@@ -52,7 +52,7 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-color-background-hover: var(--input-color-background-hover, var(--_input-color-background));
   --_input-color-border-hover: var(--input-color-border-hover, var(--gymx-color-accent, currentColor));
 
-  --_input-color-disabled: var(--input-color, var(--gymx-color-text));
+  --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
   --_input-color-background-disabled: var(--input-color-background-disabled, var(--gymx-color-black-1));
   --_input-color-border-disabled: var(--input-color-border-disabled, var(--gymx-color-black-2));
 
