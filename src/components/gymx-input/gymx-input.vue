@@ -22,6 +22,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     ]">
     <span class="input__start">
       <slot name="input-start"></slot>
+      blubb
     </span>
     <input
       :type="props.type"
@@ -48,8 +49,8 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-color-background: var(--input-color-background, transparent);
   --_input-color-border: var(--input-color-border, currentColor);
 
-  --_input-color-hover: var(--input-color-hover, var(--_input-color));
-  --_input-color-background-hover: var(--input-color-background-hover, var(--_input-color-background));
+  --_input-color-hover: var(--input-color-hover, inherit);
+  --_input-color-background-hover: var(--input-color-background-hover, inherit);
   --_input-color-border-hover: var(--input-color-border-hover, var(--gymx-color-accent, currentColor));
 
   --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
