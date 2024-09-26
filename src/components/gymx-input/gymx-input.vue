@@ -36,9 +36,7 @@ const modelValue = defineModel<string | number>({ default: '' });
   </div>
 </template>
 <style lang="scss" scoped>
-.input {
-  $self: &;
-
+:where(.input) {
   --_input-font-family: var(--input-font-family, var(--gymx-font-family-default));
   --_input-font-size: var(--input-font-size, var(--gymx-font-size-2));
   --_input-font-weight: var(--input-font-letter-spacing, inherit);
@@ -64,6 +62,9 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));
   --_input-padding-block: var(--input-padding-block, var(--gymx-size-00));
   --_input-gap: var(--input-gap, var(--_input-padding-inline));
+}
+.input {
+  $self: &;
 
   display: flex;
   flex-wrap: nowrap;
@@ -102,7 +103,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: 0;
   }
 
-  &:hover, &--hover {
+  :where(&:hover, &--hover) {
     --input-color: var(--_input-color-hover);
     --input-color-background: var(--_input-color-background-hover);
     --input-color-border: var(--_input-color-border-hover);
@@ -113,7 +114,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: var(--_input-border);
   }
 
-  &--disabled {
+  :where(&--disabled) {
     --input-color: var(--_input-color-disabled);
     --input-color-border: var(--_input-color-border-disabled);
     --input-color-background: var(--_input-color-background-disabled);
