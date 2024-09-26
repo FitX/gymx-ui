@@ -103,13 +103,9 @@ const modelValue = defineModel<string | number>({ default: '' });
   }
 
   &:is(:hover, &--hover) {
-    /* --input-color: var(--_input-color-hover);
-    --input-color-background: var(--_input-color-background-hover);
-    --input-color-border: var(--_input-color-border-hover); */
-
-    --_input-color: var(--_input-color-hover);
-    --_input-color-background: var(--_input-color-background-hover);
-    --_input-color-border: var(--_input-color-border-hover);
+    color: var(--_input-color-hover);
+    background: var(--_input-color-background-hover);
+    border-color: var(--_input-color-border-hover);
   }
 
   &:has(#{$self}__input:focus-visible),
@@ -118,9 +114,9 @@ const modelValue = defineModel<string | number>({ default: '' });
   }
 
   &--disabled {
-    --input-color: var(--_input-color-disabled);
-    --input-color-border: var(--_input-color-border-disabled);
-    --input-color-background: var(--_input-color-background-disabled);
+    color: var(--_input-color-disabled);
+    background: var(--_input-color-background-disabled);
+    border-color: var(--_input-color-border-disabled);
   }
 }
 </style>
