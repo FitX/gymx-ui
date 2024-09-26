@@ -49,8 +49,8 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-color-border: var(--input-color-border, currentColor);
 
   --_input-color-hover: var(--input-color-hover, inherit);
-  --_input-color-background-hover: var(--input-color-background-hover, inherit);
-  --_input-color-border-hover: var(--input-color-border-hover, var(--gymx-color-accent, currentColor));
+  --_input-color-background-hover: var(--input-color-background-hover, initial);
+  --_input-color-border-hover: var(--input-color-border-hover, initial);
 
   --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
   --_input-color-background-disabled: var(--input-color-background-disabled, var(--gymx-color-black-1));
@@ -58,7 +58,7 @@ const modelValue = defineModel<string | number>({ default: '' });
 
   /* Other */
   --_input-radius: var(--input-radius, 0);
-  --_input-border: var(--input-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border, inherit));
+  --_input-border: var(--input-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border));
   --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
 
   --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));

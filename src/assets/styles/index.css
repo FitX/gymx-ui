@@ -14,3 +14,7 @@
  * Theme specific
  */
 @import 'theme.css';
+
+:where(html) {
+  /* --input-color-border-hover: green; */
+}
