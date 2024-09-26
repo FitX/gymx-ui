@@ -102,7 +102,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: 0;
   }
 
-  &:is(:hover, &--hover):not(:hover, &--hover) {
+  &:is(:hover, &--hover):not(&--disabled, [disabled]) {
     color: var(--_input-color-hover);
     background: var(--_input-color-background-hover);
     border-color: var(--_input-color-border-hover);
