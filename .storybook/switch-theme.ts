@@ -6,6 +6,13 @@ export const loadCSSFile = (url: string) => {
   link.href = url;
   link.id = dynamicCssId;
   document.head.appendChild(link);
+
+  link.addEventListener('load', () => {
+    const event = new CustomEvent('theme-css-loaded', {
+      detail: { id: dynamicCssId }
+    });
+    document.dispatchEvent(event);
+  });
 };
 
 export const removeCSSFile = () => {

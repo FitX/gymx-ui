@@ -103,7 +103,8 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
   /*
   Accent Config
   */
-  --_gymx-color-accent: var(--gymx-color-accent, color(display-p3 0.843 0.298 0.507));
+  /* --_gymx-color-accent: var(--gymx-color-accent, color(display-p3 0.843 0.298 0.507)); */
+  --_gymx-color-accent: var(--gymx-color-accent, color(display-p3 0.357 0.357 0.81));
 
   --_gymx-color-accent-dark-mix: var(--gymx-color-accent-dark-mix, color(display-p3 0 0 0));
   --_gymx-color-accent-light-mix: var(--gymx-color-accent-light-mix, color(display-p3 1 1 1));
@@ -126,7 +127,7 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
 
 
   /* Accent Dark Color Palette */
-  --gymx-color-accent-dark-1: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 95%, var(--_gymx-color-accent) 5%);
+  /* --gymx-color-accent-dark-1: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 95%, var(--_gymx-color-accent) 5%);
   --gymx-color-accent-dark-2: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 80%, var(--_gymx-color-accent) 10%);
   --gymx-color-accent-dark-3: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 60%, var(--_gymx-color-accent) 20%);
   --gymx-color-accent-dark-4: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 50%, var(--_gymx-color-accent) 25%);
@@ -134,6 +135,18 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
   --gymx-color-accent-dark-6: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 30%, var(--_gymx-color-accent) 45%);
   --gymx-color-accent-dark-7: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 20%, var(--_gymx-color-accent) 55%);
   --gymx-color-accent-dark-8: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 10%, var(--_gymx-color-accent) 70%);
+  */
+  /* Accent Dark Color Palette */
+  --gymx-color-accent-dark-1: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 85%, var(--_gymx-color-accent) 15%);
+  --gymx-color-accent-dark-2: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 75%, var(--_gymx-color-accent) 25%);
+  --gymx-color-accent-dark-3: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 65%, var(--_gymx-color-accent) 35%);
+  --gymx-color-accent-dark-4: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 55%, var(--_gymx-color-accent) 45%);
+  --gymx-color-accent-dark-5: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 45%, var(--_gymx-color-accent) 55%);
+  --gymx-color-accent-dark-6: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 35%, var(--_gymx-color-accent) 65%);
+  --gymx-color-accent-dark-7: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 25%, var(--_gymx-color-accent) 75%);
+  --gymx-color-accent-dark-8: color-mix(in display-p3, var(--_gymx-color-accent-dark-mix) 15%, var(--_gymx-color-accent) 85%);
+
+
   --gymx-color-accent-dark-9: var(--_gymx-color-accent);
 
   /* lighten */

@@ -23,11 +23,11 @@ const defaultColors = [{
     key: 'gray',
     scheme: 'light',
   }, {
-  name: 'accent on Dark',
+  name: 'Accent on Dark',
   key: 'accent',
   scheme: 'dark',
   }, {
-    name: 'accent on Light',
+    name: 'Accent on Light',
     key: 'accent',
     scheme: 'light',
   }];
@@ -40,23 +40,52 @@ const itemRefs = ref([]);
 
 onUpdated(() => {
   console.log('update');
-})
+});
 
-onMounted(() => {
-  console.log('mounted');
+const checkContrast = () => {
+  // console.log('mounted', itemRefs.value.find((el) => el.innerHTML === 'accent on Dark 9'));
+  // console.log('mounted', getComputedStyle(itemRefs.value.find((el) => el.innerHTML === 'accent on Dark 9')).getPropertyValue('background-color').trim());
   itemRefs.value.forEach((item) => {
+    const currentColor = getComputedStyle(item).getPropertyValue('background-color').trim();
+    // console.log(item.parentNode.parentNode.dataset.colorScheme)
+    // const scheme = item.parentNode.parentNode.dataset.colorScheme;
+    const textColorLight = '#fff';
+    const textColorDark = '#000';
+
+    const contrastLight = new Color(currentColor).contrast(textColorLight, 'WCAG21');
+    const contrastDark = new Color(currentColor).contrast(textColorDark, 'WCAG21');
+
+    if (contrastDark < 4.5) {
+      item.classList.add('text-on-dark');
+    } else {
+      item.classList.add('text-on-light');
+    }
+
+    item.dataset.contrastLight = contrastLight;
+    item.dataset.contrastDark = contrastDark;
+
+    /*
     const currentColor = getComputedStyle(item).getPropertyValue('background-color').trim();
     // const currentColorItem = new Color(currentColor);
     const parentBackgroundColor = getComputedStyle(item.parentNode).backgroundColor;
     const currentBackgroundItem = new Color(parentBackgroundColor);
     const currentContrast = currentBackgroundItem.contrast(currentColor, 'WCAG21');
+
+    console.log('foo', currentBackgroundItem.contrast(currentColor, 'WCAG21'))
     // console.log(currentContrast);
     if (currentContrast < 4.5) {
       item.classList.add('text-on-dark');
     } else {
       item.classList.add('text-on-light');
-    }
-  })
+    } */
+  });
+};
+
+onMounted(() => {
+  document.addEventListener('theme-css-loaded', (event) => {
+    console.log('theme-css-loaded:', event.detail.id);
+    checkContrast();
+  });
 })
 </script>
 <template>
@@ -67,6 +96,10 @@ onMounted(() => {
       <li style="--span: 3">Borders</li>
       <li style="--span: 2">Highlights</li>
       <li style="--span: 2">Accessible text</li>
+    </ul>
+    <ul class="color-description color-count">
+      <li v-for="n in 12"
+          :key="`count-${index}-${n}`">{{ n }}</li>
     </ul>
     <ul
       class="colors"
@@ -82,7 +115,7 @@ onMounted(() => {
         ref="itemRefs"
         class="colors__preview-item"
         :style="`--background-color: var(--gymx-color-${palette.key}-${n});`">
-        {{ palette.name }} {{ n }}
+        {{ palette.name }} <!--{{ n }}-->
       </span>
       </li>
     </ul>
@@ -104,7 +137,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(12, minmax(70px, 1fr));
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0;
   gap: 0.5rem;
   margin-block-end: 0.5rem;
   background: light-dark(white, black);
@@ -141,13 +174,19 @@ onMounted(() => {
 
   li {
     display: flex;
+    place-items: center;
     padding: 0;
+    aspect-ratio: 1;
     background: var(--colors-color-bg);
   }
 
   &__preview-item {
-    display: block;
-    padding: 0.5rem;
+    flex: 1 0 100%;
+    align-self: stretch;
+    place-content: center;
+    text-align: center;
+    padding: 0.2rem;
+    font-size: 0.85rem;
     background: var(--background-color);
   }
 }
