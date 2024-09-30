@@ -1,4 +1,4 @@
 
 export interface GymxBadgeProps {
-  text?: string; // required if slot is not filled
+  text?: string | number; // required if slot is not filled
 }
