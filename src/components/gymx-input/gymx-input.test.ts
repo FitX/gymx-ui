@@ -45,4 +45,55 @@ describe('GymxInput', () => {
     await wrapper.setProps({ inputAttributes: { disabled: 'disabled'} });
     expect(wrapper.html()).toContain('input--disabled');
   });
+
+  it('should set disabled to true when props.state is disabled', () => {
+    const wrapper = mount(GymxInput, {
+      props: {
+        state: 'disabled',
+        inputAttributes: {},
+      },
+    });
+
+    const input = wrapper.find('input');
+    expect(input.attributes('disabled')).toBeDefined();
+  });
+
+  it('should set disabled to true when inputAttributes.disabled is true', () => {
+    const wrapper = mount(GymxInput, {
+      props: {
+        state: 'active', // active or any other state that's not 'disabled'
+        inputAttributes: { disabled: true },
+      },
+    });
+
+    const input = wrapper.find('input');
+    expect(input.attributes('disabled')).toBeDefined();
+  });
+
+  it('should set disabled to true when $attrs.disabled is true', () => {
+    const wrapper = mount(GymxInput, {
+      props: {
+        state: 'active',
+        inputAttributes: {},
+      },
+      attrs: {
+        disabled: true,
+      },
+    });
+
+    const input = wrapper.find('input');
+    expect(input.attributes('disabled')).toBeDefined();
+  });
+
+  it('should not set disabled when neither props.state nor $attrs.disabled are true', () => {
+    const wrapper = mount(GymxInput, {
+      props: {
+        state: 'active',
+        inputAttributes: {},
+      },
+    });
+
+    const input = wrapper.find('input');
+    expect(input.attributes('disabled')).toBeUndefined();
+  });
 });
