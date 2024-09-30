@@ -102,7 +102,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: 0;
   }
 
-  &:is(:hover, &--hover):not(&--disabled, [disabled]) {
+  &--hover, &:hover {
     color: var(--_input-color-hover);
     background: var(--_input-color-background-hover);
     border-color: var(--_input-color-border-hover);
@@ -113,7 +113,7 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: var(--_input-border);
   }
 
-  &--disabled {
+  &:is(&--disabled, [disabled]) {
     color: var(--_input-color-disabled);
     background: var(--_input-color-background-disabled);
     border-color: var(--_input-color-border-disabled);
