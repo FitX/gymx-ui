@@ -99,7 +99,7 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
 # Step 11+12 Contras Color für step 1+2
 
 */
-:root {
+:where(html) {
   /*
   Accent Config
   */

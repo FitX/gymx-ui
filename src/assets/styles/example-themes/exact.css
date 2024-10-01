@@ -1,0 +1,66 @@
+/**
+ Theme Exact
+ */
+:where([data-theme='exact']) {
+
+}
+[data-theme='exact'] {
+  color-scheme: dark;
+
+  --exact-color-black-1: #000;
+
+  --exact-color-white-1: #fff;
+
+  --exact-color-gray-1: #eee;
+  --exact-color-gray-2: #ededed;
+  --exact-color-gray-3: #55595c;
+
+  --exact-color-pink: #e4097e;
+
+  --exact-color-dark: var(--exact-color-black-1);
+  --exact-color-light: var(--exact-color-white-1);
+  --exact-color-accent: var(--exact-color-pink);
+
+  --exact-font-size-1: 18px;
+  --exact-font-size-2: 24px;
+  --exact-font-size-3: 26px;
+  --exact-font-size-4: 38px;
+  --exact-font-size-5: 52px;
+
+  --exact-font-family: 'Work Sans';
+
+  /* GymX UI Theme Overwrites */
+  --gymx-color-accent: var(--exact-color-accent);
+  /*
+  --gymx-font-size-1: var(--exact-font-size-1);
+  --gymx-font-size-2: var(--exact-font-size-2);
+  --gymx-font-size-3: var(--exact-font-size-3);
+  --gymx-font-size-4: var(--exact-font-size-4);
+   */
+  --gymx-config-font-size-root: 18px;
+
+  .btn {
+    --button-color-border: var(--exact-color-accent);
+    --button-color-border-hover: var(--button-color-border);
+    --button-color-border-focused: var(--button-color-border);
+    --button-color-border-disabled: var(--exact-color-gray-3);
+    --button-color-background: linear-gradient(90deg, var(--gymx-color-accent-8) 50%, var(--exact-color-accent) 50%);
+    --button-color-background-hover: var(--button-color-background);
+    --button-color-background-focused: var(--button-color-background);
+    --button-color-background-disabled: var(--exact-color-gray-3);
+    --button-radius: 5px;
+
+    background-origin: border-box;
+    background-size: 200%;
+    background-position-x: 100%;
+    transition: .3s ease-in-out;
+    transition-property:
+      color, background-color, background-position, background-size, border-color, box-shadow;
+    border-width: 3px;
+  }
+
+  .btn:hover, .btn--hover {
+    /* --button-border: 3px solid var(--exact-color-light); */
+    background-position-x: 0;
+  }
+}

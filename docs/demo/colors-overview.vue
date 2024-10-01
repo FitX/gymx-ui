@@ -99,7 +99,7 @@ onMounted(() => {
     </ul>
     <ul class="color-description color-count">
       <li v-for="n in 12"
-          :key="`count-${index}-${n}`">{{ n }}</li>
+          :key="`count-${n}`">{{ n }}</li>
     </ul>
     <ul
       class="colors"

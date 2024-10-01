@@ -11,27 +11,17 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
    * When switching to the Doc Pages, the data-theme attribute is only sporadically updated.
    * Therefore, the manual update here in the Theme Provider
    */
-  const theme = (props.context as any).store.globals.globals.theme;
+  const themeMaybeUndefinedOrEmpty = (props.context as any).store.globals.globals.theme;
+  const theme = themeMaybeUndefinedOrEmpty && themeMaybeUndefinedOrEmpty?.length > 0 ? themeMaybeUndefinedOrEmpty : 'light';
   document.documentElement.setAttribute('data-theme', theme);
   if (theme) {
-    console.log('import.meta.env', import.meta.env);
     const isProd = import.meta.env.MODE === 'production';
     /**
      * Handle different paths between prod and preview
      * We cant map src/assets/styles to staticDirs because we loose HMR
+     * @see .storybook/main.ts
      */
     const themePath = isProd ? '/example-themes' : '../src/assets/styles/example-themes';
-    // console.log(import.meta.env);
-    /**
-     * {
-     *     "BASE_URL": "/",
-     *     "DEV": true,
-     *     "MODE": "development",
-     *     "PROD": false,
-     *     "SSR": false,
-     *     "STORYBOOK": "true"
-     * }
-     */
     switchCSS(`${themePath}/${theme}.css`);
   }
 
@@ -44,4 +34,3 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
     ><div className={'custom-docs-content'}>{props.children}</div></DocsContainer>
   )
 }
-/* vielleicht auf dom ebene prüfen ob data-theme schon existiert */
