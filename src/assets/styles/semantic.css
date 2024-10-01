@@ -19,11 +19,4 @@
   --gymx-font-lineheight-default: var(--gymx-font-lineheight-1);
   --gymx-font-weight-default: var(--gymx-font-weight-regular);
   --gymx-font-letterspacing-default: 0em;
-
-  /**
-  Form Component Styles
-   */
-  --gymx-form-font-size-default: var(--gymx-font-size-default);
-  --gymx-form-font-size-small: var(--gymx-font-size-small);
-  --gymx-form-font-weight-default: var(--gymx-font-weight-default);
 }

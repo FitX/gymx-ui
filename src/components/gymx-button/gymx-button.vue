@@ -72,9 +72,9 @@ defineSlots<GymxButtonSlots>();
   );
   --_button-color-border-disabled: var(--button-color-border-disabled, var(--_button-color-background-disabled));
 
-  --_button-font-size: var(--button-font-size, var(--gymx-form-font-size-default), inherit);
-  --_button-font-weight: var(--button-font-weight, var(--gymx-form-font-weight-default));
-  --_button-font-family: var(--button-font-family, var(--gymx-font-family-default), sans-serif);
+  --_button-font-size: var(--button-font-size, var(--gymx-font-size-1));
+  --_button-font-weight: var(--button-font-weight, var(--gymx-font-weight-regular));
+  --_button-font-family: var(--button-font-family, var(--gymx-font-family-default));
 
   --_button-padding-inline: var(--button-padding-inline, 1rem);
   --_button-padding-block: var(--button-padding-block, calc(var(--_button-padding-inline) / 2));

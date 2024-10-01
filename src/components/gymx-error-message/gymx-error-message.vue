@@ -28,8 +28,8 @@ const props = defineProps<GymxErrorMessageProps>();
 .error-message {
   --_error-message-icon-size: var(--error-message-icon-size, var(--gymx-size-2));
 
-  font-size: var(--error-message-font-size, var(--gymx-form-font-size-small));
-  font-weight: var(--error-message-font-weight, var(--gymx-form-font-weight-default));
+  font-size: var(--error-message-font-size, var(--gymx-font-size-0));
+  font-weight: var(--error-message-font-weight, var(--gymx-font-weight-regular));
   border: var(--error-message-border);
   border-radius: var(--error-message-radius);
   padding: var(--error-message-padding-block) var(--error-message-padding-inline);

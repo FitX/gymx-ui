@@ -61,7 +61,7 @@ defineSlots<GymxLinkSlots>();
   );
   --_link-color-border-disabled: var(--link-color-border-disabled, var(--link-border-background));
 
-  --_link-font-weight: var(--link-font-weight, var(--gymx-form-font-weight-default));
+  --_link-font-weight: var(--link-font-weight, var(--gymx-font-weight-regular));
   --_link-font-family: var(--link-font-family, var(--gymx-font-family-default), inherit);
   --_link-font-size: var(--link-font-size, var(--gymx-font-family-default), inherit);
   --_link-line-height: var(--link-font-size, 1.15);

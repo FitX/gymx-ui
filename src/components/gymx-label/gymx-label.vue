@@ -24,8 +24,8 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
 </template>
 <style lang="scss" scoped>
 .label {
-  font-size: var(--label-font-size, var(--gymx-form-font-size-default));
-  font-weight: var(--label-font-size, var(--gymx-form-font-weight-default));
+  font-size: var(--label-font-size, var(--gymx-font-size-1));
+  font-weight: var(--label-font-size, var(--gymx-font-weight-regular));
   font-family: var(--label-font-family, var(--gymx-font-family-default)), sans-serif;
   padding-inline: var(--label-padding-inline);
   padding-block: var(--label-padding-block);
