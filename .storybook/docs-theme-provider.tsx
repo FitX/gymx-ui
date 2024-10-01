@@ -14,7 +14,25 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
   const theme = (props.context as any).store.globals.globals.theme;
   document.documentElement.setAttribute('data-theme', theme);
   if (theme) {
-    switchCSS(`../src/assets/styles/example-themes/${theme}.css`);
+    console.log('import.meta.env', import.meta.env);
+    const isProd = import.meta.env.MODE === 'production';
+    /**
+     * Handle different paths between prod and preview
+     * We cant map src/assets/styles to staticDirs because we loose HMR
+     */
+    const themePath = isProd ? '/example-themes' : '../src/assets/styles/example-themes';
+    // console.log(import.meta.env);
+    /**
+     * {
+     *     "BASE_URL": "/",
+     *     "DEV": true,
+     *     "MODE": "development",
+     *     "PROD": false,
+     *     "SSR": false,
+     *     "STORYBOOK": "true"
+     * }
+     */
+    switchCSS(`${themePath}/${theme}.css`);
   }
 
 

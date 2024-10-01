@@ -21,7 +21,7 @@
     "dev": "vite",
     "build": "npm run test:unit -- run --coverage && npm run build:storybook",
     "build:lib": "rm -rf ./dist && vite build && vue-tsc --emitDeclarationOnly --project tsconfig.build-lib.json && tsc-alias -p tsconfig.build-lib.json",
-    "build:storybook": "storybook build && npm run temp-fix-copy-storybook && npm run temp-fix-copy-themes",
+    "build:storybook": "storybook build && npm run temp-fix-copy-storybook",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
@@ -30,8 +30,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html",
-    "temp-fix-copy-themes": "mkdir -p ./public/src/assets/styles/example-themes/ && cp -r ./src/assets/styles/example-themes/ ./public/src/assets/styles/example-themes/"
+    "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html"
   },
   "dependencies": {
     "@vueuse/core": "^11.1.0",
