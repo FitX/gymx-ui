@@ -30,6 +30,7 @@
   --exact-font-family: 'Work Sans';
 
   /* GymX UI Theme Overwrites */
+  --gymx-font-family-sans: var(--exact-font-family);
   --gymx-color-accent: var(--exact-color-accent);
   /*
   --gymx-font-size-1: var(--exact-font-size-1);
