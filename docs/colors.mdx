@@ -4,25 +4,29 @@ import { getCSSCustomProps } from './demo/utils/css-props';
 import * as ColorsOverview from './colors.stories';
 
 export const grayColors = []; //getCSSCustomProps('--gymx-color-black');
+
 export const generateItems = (propName) => {
   const [items, setItems] = useState(getCSSCustomProps(propName));
 
-  const update = () => {
-    setItems(getCSSCustomProps(propName));
+  const updateItems = () => {
+    const newItems = getCSSCustomProps(propName);
+    setItems(newItems);
   };
 
   useEffect(() => {
+    // updateItems();
+
     const handleThemeChange = () => {
-      update();
-      console.log('items', items)
+      updateItems();
+      console.log('items', propName, items)
     };
 
-    document.addEventListener('themeChanged', handleThemeChange);
+    document.addEventListener('theme-css-loaded', handleThemeChange);
 
-    update();
+    updateItems();
 
     return () => {
-      document.removeEventListener('themeChanged', handleThemeChange);
+      document.removeEventListener('theme-css-loaded', handleThemeChange);
     };
   }, [propName]);
 
