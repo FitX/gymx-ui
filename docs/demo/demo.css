@@ -1,5 +1,5 @@
 .demo {
-  --demo-color-accent: #5468ff;
+  --demo-color-accent: var(--accent-color, #5468ff);
   --demo-gap-block: var(--gymx-size-000);
   --demo-gap-inline: var(--gymx-size-2);
   --demo-item-ui-border-size: 1px;

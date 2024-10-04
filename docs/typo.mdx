@@ -1,5 +1,5 @@
 import { isIdentifier } from '@rushstack/eslint-patch/lib/eslint-bulk-suppressions/ast-guards.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Meta } from '@storybook/blocks';
 import { getCSSCustomProps } from './demo/utils/css-props';
 import './demo/demo.css';
@@ -11,17 +11,53 @@ export const demoSpecialCharacters = '! " § $ % & \' ( ) * + , - . / : ; < = > 
 export const allTypes = `${demoABC} ${demoABCSmall} ${demoNumbers} ${demoSpecialCharacters}`;
 export const demoText = 'This text serves as a sample to demonstrate the visual representation of CSS font settings';
 
-export const DemoSizes = ({ sizes = [], modifier = '', content = 'Lorem Ipsum'}) => <section className={`demo demo--typo--${modifier}`}>
-  {
-    sizes?.map(([identifier, value], index) => <div key={index+'foo'} className='demo__item' style={{ '--demo-value': value }}>
-      <span className='demo__content'>
-        <b className='demo__identifier'>{identifier}</b>
-        <span className='demo__value'>{value}</span>
-      </span>
-      <span className='demo__ui'>{content}</span>
-  </div>) ?? <b>Loading</b>
-  }
-</section>;
+export const DemoSizes = ({ sizes = [], modifier = '', content = 'Lorem Ipsum'}) => {
+  // Ein State-Array, um die Werte für die CSS-Variablen zu speichern
+  const [identifierValues, setIdentifierValues] = useState([]);
+  const refs = useRef([]);
+
+  useEffect(() => {
+    // Array vorbereiten, um die ausgelesenen Werte zu speichern
+    const newIdentifierValues = sizes.map(() => '');
+
+    // Durchlaufe alle Refs und lese die CSS-Variablen aus
+    refs.current.forEach((ref, index) => {
+      if (ref) {
+        const computedStyles = getComputedStyle(ref);
+        const identifierValue = computedStyles.getPropertyValue('--identifier').trim();
+        newIdentifierValues[index] = identifierValue; // Speichere den Wert im Array
+      }
+    });
+
+    // Setze die ausgelesenen Werte in den State
+    setIdentifierValues(newIdentifierValues);
+  }, [sizes]); // Der Effekt läuft, wenn sich `sizes` ändert
+
+  return (
+    <section className={`demo demo--typo--${modifier}`}>
+      {
+        sizes?.map(([identifier, value], index) => (
+          <div key={index + 'foo'} className='demo__item' style={{ '--demo-value': value }}>
+            <div className='demo__content'>
+              <b
+                className='demo__identifier'
+                style={{ '--identifier': value }}
+                ref={el => refs.current[index] = el}
+              >
+                {identifier}
+              </b>
+              <div className='demo__value'>
+                { value }
+                <small>{ value?.trim() !== identifierValues[index]?.trim() ? (<small>: {identifierValues[index]}</small>) : null}</small>
+              </div>
+            </div>
+            <span className='demo__ui'>{content}</span>
+          </div>
+        )) ?? <b>Loading</b>
+      }
+    </section>
+  );
+};
 
 export const AllTogether = () => {
   const [items, setItems] = useState();

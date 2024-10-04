@@ -1,9 +1,10 @@
 /**
  Theme Exact
  */
-:where([data-theme='exact']) {
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-}
+:where([data-theme='exact']) {}
+
 [data-theme='exact'] {
   color-scheme: dark;
 
@@ -32,6 +33,7 @@
   /* GymX UI Theme Overwrites */
   --gymx-font-family-sans: var(--exact-font-family);
   --gymx-color-accent: var(--exact-color-accent);
+  --gymx-color-text: var(--exact-color-light);
   /*
   --gymx-font-size-1: var(--exact-font-size-1);
   --gymx-font-size-2: var(--exact-font-size-2);
@@ -50,6 +52,7 @@
     --button-color-background-focused: var(--button-color-background);
     --button-color-background-disabled: var(--exact-color-gray-3);
     --button-radius: 5px;
+    --button-font-weight: 600;
 
     background-origin: border-box;
     background-size: 200%;
@@ -60,7 +63,7 @@
     border-width: 3px;
   }
 
-  .btn:hover, .btn--hover {
+  .btn:hover, .btn--hover, .btn:focus-visible, .btn--focused {
     /* --button-border: 3px solid var(--exact-color-light); */
     background-position-x: 0;
   }

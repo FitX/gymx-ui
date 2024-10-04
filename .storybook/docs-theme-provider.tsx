@@ -25,11 +25,14 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
     switchCSS(`${themePath}/${theme}.css`);
   }
 
+  const darkThemeList = ['dark', 'exact'];
+
+  const isDark = darkThemeList.includes(theme)
 
   return (
     <DocsContainer
       context={props.context}
-      theme={theme === 'dark' ? themes.dark : themes.light}
+      theme={isDark ? themes.dark : themes.light}
       data-theme={theme}
     ><div className={'custom-docs-content'}>{props.children}</div></DocsContainer>
   )
