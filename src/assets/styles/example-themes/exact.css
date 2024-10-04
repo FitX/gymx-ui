@@ -44,8 +44,8 @@
 
   .btn {
     --button-color-border: var(--exact-color-accent);
-    --button-color-border-hover: var(--button-color-border);
-    --button-color-border-focused: var(--button-color-border);
+    --button-color-border-hover: var(--exact-color-white-1);
+    --button-color-border-focused: var(--exact-color-white-1);
     --button-color-border-disabled: var(--exact-color-gray-3);
     --button-color-background: linear-gradient(90deg, var(--gymx-color-accent-8) 50%, var(--exact-color-accent) 50%);
     --button-color-background-hover: var(--button-color-background);

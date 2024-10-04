@@ -3,7 +3,7 @@
  */
 :where(html) {
   color-scheme: dark light;
-  font-family: var(--gymx-font-family-default);
+  font-family: var(--gymx-font-family-default), sans-serif;
   font-size: var(--gymx-font-size-default);
   font-weight: var(--gymx-font-weight-default);
 }

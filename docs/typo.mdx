@@ -39,17 +39,35 @@ export const DemoSizes = ({ sizes = [], modifier = '', content = 'Lorem Ipsum'})
         sizes?.map(([identifier, value], index) => (
           <div key={index + 'foo'} className='demo__item' style={{ '--demo-value': value }}>
             <div className='demo__content'>
-              <b
+              <pre
                 className='demo__identifier'
                 style={{ '--identifier': value }}
                 ref={el => refs.current[index] = el}
               >
-                {identifier}
-              </b>
-              <div className='demo__value'>
-                { value }
-                <small>{ value?.trim() !== identifierValues[index]?.trim() ? (<small>: {identifierValues[index]}</small>) : null}</small>
-              </div>
+                {identifier}:
+              </pre>
+              <pre className='demo__value' style={{ fontWeight: '400' }}>
+                <small>{ index + '-value'}
+                  { value?.trim() !== identifierValues[index]?.trim() ? (
+                    <span>
+                      { value }
+                      <button
+                        style={{ anchorName: '--tooltip-'+ index + '-value-' + modifier}}
+                        popovertargetaction={'toggle'}
+                        popovertarget={index + '-value-' + modifier}>?</button></span>
+                  ) : value}
+                </small>
+              </pre>
+              <div
+                onMouseLeave={(e) => e.target.togglePopover()}
+                onClick={(e) => e.target.hidePopover()}
+                style={{
+                  positionAnchor: '--tooltip-' + index + '-value-' + modifier,
+                  insetArea: 'top',
+                  positionTryFallbacks: 'flip-block',
+                  padding: '0.5rem'
+              }}
+                popover={'popover'} id={index + '-value-' + modifier}>Rendered: {identifierValues[index]}</div>
             </div>
             <span className='demo__ui'>{content}</span>
           </div>

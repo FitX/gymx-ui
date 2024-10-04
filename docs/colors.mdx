@@ -43,25 +43,20 @@ export const generateItems = (propName) => {
 
 export const AccentColorItems = () => generateItems('--gymx-color-accent');
 export const GrayColorItems = () => generateItems('--gymx-color-black');
+export const SuccessColorItems = () => generateItems('--gymx-color-success');
+export const WarningColorItems = () => generateItems('--gymx-color-warning');
+export const ErrorColorItems = () => generateItems('--gymx-color-error');
 
 <Meta title="Welcome/Colors" />
 
-## Colors
+# Colors
 
-<Canvas of={ColorsOverview.Default} />
-
-
-## @TODO
+### @TODO
 - Contrast Ratios / Accessibility
-- Usage
-- Semantic
-Accent Color Palette for Component Library
-==========================================
 
 This component library uses a flexible and scalable accent color palette based on CSS variables. The palette provides light and dark variations of the accent color and dynamically adjusts to light and dark modes. By defining variables for different UI states (such as hover, active, borders), a consistent design is ensured.
 
-Table of Contents
------------------
+## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Accent Color Concept](#accent-color-concept)
@@ -70,6 +65,17 @@ Table of Contents
 5. [Dynamic Color Adjustment for Light/Dark Mode](#dynamic-color-adjustment)
 6. [Usage Example](#usage-example)
 7. [License](#license)
+
+<Canvas of={ColorsOverview.Default} />
+
+## Success
+<SuccessColorItems />
+
+## Warning
+<WarningColorItems />
+
+## Error
+<ErrorColorItems />
 
 Introduction
 ------------
