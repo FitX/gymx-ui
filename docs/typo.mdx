@@ -47,7 +47,7 @@ export const DemoSizes = ({ sizes = [], modifier = '', content = 'Lorem Ipsum'})
                 {identifier}:
               </pre>
               <pre className='demo__value' style={{ fontWeight: '400' }}>
-                <small>{ index + '-value'}
+                <small>
                   { value?.trim() !== identifierValues[index]?.trim() ? (
                     <span>
                       { value }
@@ -60,7 +60,6 @@ export const DemoSizes = ({ sizes = [], modifier = '', content = 'Lorem Ipsum'})
               </pre>
               <div
                 onMouseLeave={(e) => e.target.togglePopover()}
-                onClick={(e) => e.target.hidePopover()}
                 style={{
                   positionAnchor: '--tooltip-' + index + '-value-' + modifier,
                   insetArea: 'top',
