@@ -1,10 +1,12 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxNotification } from './gymx-notification.vue';
+import IconError from '@/assets/icons/error.svg';
+import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/notification',
+  title: 'components/Notification',
   component: GymxNotification,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -48,6 +50,15 @@ export const Error: Story = {
   args: {
     text: 'Error',
     type: 'error',
+  },
+};
+
+export const WithIcon: Story = {
+
+  args: {
+    text: 'No way!',
+    type: 'error',
+    icon: h(IconError),
   },
 };
 
