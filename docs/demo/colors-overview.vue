@@ -30,6 +30,34 @@ const defaultColors = [{
     name: 'Accent on Light',
     key: 'accent',
     scheme: 'light',
+  },
+  {
+    name: 'Success on Light',
+    key: 'success',
+    scheme: 'light',
+  },
+  {
+    name: 'Success on Dark',
+    key: 'success',
+    scheme: 'dark',
+  },
+  {
+    name: 'Warning on Light',
+    key: 'warning',
+    scheme: 'light',
+  },
+  {
+    name: 'Warning on Dark',
+    key: 'warning',
+    scheme: 'dark',
+  },{
+    name: 'Error on Light',
+    key: 'error',
+    scheme: 'light',
+  },{
+    name: 'Error on Dark',
+    key: 'error',
+    scheme: 'dark',
   }];
 
 /**
@@ -47,13 +75,14 @@ const checkContrast = () => {
   // console.log('mounted', getComputedStyle(itemRefs.value.find((el) => el.innerHTML === 'accent on Dark 9')).getPropertyValue('background-color').trim());
   itemRefs.value.forEach((item) => {
     const currentColor = getComputedStyle(item).getPropertyValue('background-color').trim();
+    const currentColorItem = new Color(currentColor);
     // console.log(item.parentNode.parentNode.dataset.colorScheme)
     // const scheme = item.parentNode.parentNode.dataset.colorScheme;
     const textColorLight = '#fff';
     const textColorDark = '#000';
 
-    const contrastLight = new Color(currentColor).contrast(textColorLight, 'WCAG21');
-    const contrastDark = new Color(currentColor).contrast(textColorDark, 'WCAG21');
+    const contrastLight = currentColorItem.contrast(textColorLight, 'WCAG21');
+    const contrastDark = currentColorItem.contrast(textColorDark, 'WCAG21');
 
     if (contrastDark < 4.5) {
       item.classList.add('text-on-dark');
@@ -63,6 +92,7 @@ const checkContrast = () => {
 
     item.dataset.contrastLight = contrastLight;
     item.dataset.contrastDark = contrastDark;
+    // item.dataset.hex = currentColorItem.toGamut({space: 'srgb'}).to('srgb').toString({format: 'hex'});
 
     /*
     const currentColor = getComputedStyle(item).getPropertyValue('background-color').trim();
