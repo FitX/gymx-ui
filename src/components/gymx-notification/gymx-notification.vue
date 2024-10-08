@@ -9,7 +9,7 @@ const props = defineProps<GymxNotificationProps>();
     class="notification"
     :class="getModifierClasses('notification', props.type)"
   >
-    <component class="notification__icon" :is="props.icon" v-if="props.icon" />
+    <component class="notification__icon" :is="props.icon" v-if="props.icon" aria-hidden="true" />
 
     <span v-if="props.text">{{ props.text }}</span>
   </div>
