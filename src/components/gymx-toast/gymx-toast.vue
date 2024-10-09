@@ -18,6 +18,7 @@ onMounted(() => {
 <template>
   <div
     class="toast"
+    :role="props.type === 'error' ? 'alert' : 'status'"
     :class="getModifierClasses('toast', props.type)"
   >
     <component class="toast__icon" :is="props.icon" v-if="props.icon" aria-hidden="true" />

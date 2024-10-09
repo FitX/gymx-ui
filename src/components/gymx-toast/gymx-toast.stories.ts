@@ -117,7 +117,6 @@ export const Usage: Story = {
               :key="toast.id"
               :text="toast.msg"
               :type="toast.type"
-              :role="toast.type === 'error' ? 'alert' : 'status'"
               :duration="toast.duration"
               @close="removeToast(toast.id)"
             />

@@ -105,7 +105,7 @@ To provide more flexibility, the live region implementation is neither in the co
 
 ```vue
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
+  import { computed } from 'vue';
   import { useToast } from '@fitx/gymx-ui';
   const { toasts, addToast, removeToast } = useToast();
 
@@ -151,7 +151,6 @@ To provide more flexibility, the live region implementation is neither in the co
     :key="toast.id"
     :text="toast.msg"
     :type="toast.type"
-    :role="toast.type === 'error' ? 'alert' : 'status'"
     :duration="toast.duration"
     @close="removeToast(toast.id)" />
 
