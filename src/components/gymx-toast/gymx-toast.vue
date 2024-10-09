@@ -9,7 +9,7 @@ const emit = defineEmits(['close']);
 
 const { start } = useTimeoutFn(() => {
   emit('close');
-}, props.duration, { immediate: false });
+}, props?.duration || 0, { immediate: false });
 
 onMounted(() => {
   if (props.duration) {

@@ -10,6 +10,8 @@ export interface Toast {
 
 const DEFAULT_DURATION = 6000;
 
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
 export const useToast = () => {
   const toasts = ref<Toast[]>([]);
   const id = ref(0);
@@ -19,15 +21,15 @@ export const useToast = () => {
       .filter((toast) => toast.id !== id);
   };
 
-  const addToast = (toastContent: Omit<Toast, 'id' | 'type'>) => {
+  const addToast = (toastContent: Optional<Omit<Toast, 'id'>, 'type'>) => {
     if (!toastContent.msg) throw new Error('Message is required');
     id.value += 1;
 
     toasts.value.unshift({
       id: id.value,
-      type: toastContent.type || 'info',
+      type: toastContent?.type || 'info',
       msg: toastContent.msg,
-      duration: toastContent.duration || toastContent.type === 'error' ? undefined : DEFAULT_DURATION,
+      duration: toastContent.duration || toastContent?.type === 'error' ? undefined : DEFAULT_DURATION,
     });
   };
 
