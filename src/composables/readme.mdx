@@ -1,0 +1,11 @@
+import { Meta, Canvas, Markdown } from '@storybook/addon-docs';
+import Readme from './readme.md?raw';
+import * as GymxToast from '../components/gymx-toast/gymx-toast.stories';
+
+<Meta title="Composables/useToast" />
+
+<Markdown>
+  {Readme}
+</Markdown>
+
+<Canvas of={GymxToast.Usage} />

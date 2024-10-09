@@ -1,11 +1,11 @@
 
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import { GymxNotification } from './index';
+import { GymxToast } from './index';
 
-describe('GymxNotification', () => {
+describe('GymxToast', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxNotification);
+    const wrapper = mount(GymxToast);
     expect(wrapper.exists()).toBeTruthy();
   });
 });

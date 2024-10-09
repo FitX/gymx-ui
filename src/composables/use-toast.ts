@@ -1,9 +1,9 @@
 import { ref } from 'vue';
-import type { GymxNotificationProps } from '@/components/gymx-notification';
+import type { GymxToastProps } from 'src/components/gymx-toast';
 
 export interface Toast {
   id: number,
-  type: GymxNotificationProps['type'],
+  type: GymxToastProps['type'],
   msg: string,
   duration?: number,
 }
@@ -23,11 +23,11 @@ export const useToast = () => {
     if (!toastContent.msg) throw new Error('Message is required');
     id.value += 1;
 
-    toasts.value.push({
+    toasts.value.unshift({
       id: id.value,
       type: toastContent.type || 'info',
       msg: toastContent.msg,
-      duration: toastContent.duration || DEFAULT_DURATION,
+      duration: toastContent.duration || toastContent.type === 'error' ? undefined : DEFAULT_DURATION,
     });
   };
 

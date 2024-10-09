@@ -29,16 +29,16 @@ describe('toast', () => {
     }]);
     addToast({ msg: 'Tada 2', duration: 5000, type: 'error' });
     expect(toasts.value).toStrictEqual([{
+      type: 'error',
+      id: 2,
+      msg: 'Tada 2',
+      duration: undefined, // because error has no duration
+    },{
       id: 1,
       msg: 'Tada',
       type: 'info',
       duration: 6000,
-    }, {
-        type: 'error',
-        id: 2,
-        msg: 'Tada 2',
-        duration: 5000,
-      }]);
+    }]);
 
 
     removeToast(2);
