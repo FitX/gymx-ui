@@ -37,63 +37,63 @@ onMounted(() => {
 <style lang="scss" scoped>
 .toast {
   $self: &;
-  --_-toast-color-background: var(---toast-color-background, var(--gymx-color-gray-2));
-  --_-toast-color: var(---toast-color, var(--gymx-color-gray-12));
-  --_-toast-color-border: var(---toast-color-border, var(---toast-color-background));
-  --_-toast-padding-inline: var(---toast-padding-inline, var(--gymx-size-0));
-  --_-toast-padding-block: var(---toast-padding-block, var(--gymx-size-00));
-  --_-toast-radius: var(---toast-radius, var(--gymx-radius-0));
-  --_-toast-icon-fill: var(---toast-icon-fill, currentColor);
-  --_-toast-icon-gap: var(---toast-icon-gap, var(--gymx-size-0));
+  --_toast-color-background: var(--toast-color-background, var(--gymx-color-gray-2));
+  --_toast-color: var(--toast-color, var(--gymx-color-gray-12));
+  --_toast-color-border: var(--toast-color-border, var(--toast-color-background));
+  --_toast-padding-inline: var(--toast-padding-inline, var(--gymx-size-0));
+  --_toast-padding-block: var(--toast-padding-block, var(--gymx-size-00));
+  --_toast-radius: var(--toast-radius, var(--gymx-radius-0));
+  --_toast-icon-fill: var(--toast-icon-fill, currentColor);
+  --_toast-icon-gap: var(--toast-icon-gap, var(--gymx-size-0));
 
-  --_-toast-color-success:
-    var(---toast-color-success, var(--gymx-color-black-12));
-  --_-toast-color-background-success:
-    var(---toast-color-background-success, var(--gymx-color-success-9));
+  --_toast-color-success:
+    var(--toast-color-success, var(--gymx-color-black-12));
+  --_toast-color-background-success:
+    var(--toast-color-background-success, var(--gymx-color-success-9));
 
-  --_-toast-color-warning:
-    var(---toast-color-warning, var(--gymx-color-black-12));
-  --_-toast-color-background-warning:
-    var(---toast-color-background-warning, var(--gymx-color-warning-9));
+  --_toast-color-warning:
+    var(--toast-color-warning, var(--gymx-color-black-12));
+  --_toast-color-background-warning:
+    var(--toast-color-background-warning, var(--gymx-color-warning-9));
 
-  --_-toast-color-error:
-    var(---toast-color-error, var(--gymx-color-white-12));
-  --_-toast-color-background-error:
-    var(---toast-color-background-error, var(--gymx-color-error-9));
+  --_toast-color-error:
+    var(--toast-color-error, var(--gymx-color-white-12));
+  --_toast-color-background-error:
+    var(--toast-color-background-error, var(--gymx-color-error-9));
 
-  background: var(--_-toast-color-background);
-  color: var(--_-toast-color);
-  border: var(--_-toast-color-border);
-  padding-inline: var(--_-toast-padding-inline);
-  padding-block: var(--_-toast-padding-block);
-  border-radius: var(--_-toast-radius);
+  background: var(--_toast-color-background);
+  color: var(--_toast-color);
+  border: var(--_toast-color-border);
+  padding-inline: var(--_toast-padding-inline);
+  padding-block: var(--_toast-padding-block);
+  border-radius: var(--_toast-radius);
   display: inline-flex;
-  gap: var(--_-toast-icon-gap);
+  gap: var(--_toast-icon-gap);
   align-items: center;
   align-content: center;
   justify-content: space-between;
 
   &--success {
-    ---toast-color: var(--_-toast-color-success);
-    ---toast-color-background: var(--_-toast-color-background-success);
+    --toast-color: var(--_toast-color-success);
+    --toast-color-background: var(--_toast-color-background-success);
   }
 
   &--warning {
-    ---toast-color: var(--_-toast-color-warning);
-    ---toast-color-background: var(--_-toast-color-background-warning);
+    --toast-color: var(--_toast-color-warning);
+    --toast-color-background: var(--_toast-color-background-warning);
   }
 
   &--error {
-    ---toast-color: var(--_-toast-color-error);
-    ---toast-color-background: var(--_-toast-color-background-error);
+    --toast-color: var(--_toast-color-error);
+    --toast-color-background: var(--_toast-color-background-error);
   }
 
   &__icon {
-    --icon-fill: var(--_-toast-icon-fill);
+    --icon-fill: var(--_toast-icon-fill);
   }
 
   :deep(#{$self}__icon) {
-    --icon-fill: var(--_-toast-icon-fill);
+    --icon-fill: var(--_toast-icon-fill);
   }
 
   &__btn-close {
