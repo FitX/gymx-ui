@@ -1,17 +1,19 @@
-
 <script lang="ts" setup>
+import { onMounted } from 'vue';
+import { useTimeoutFn } from '@vueuse/core';
 import type { GymxToastProps } from '@/components/gymx-toast/types';
 import { getModifierClasses } from '@/utils/css-modifier';
-import { onMounted, ref } from 'vue';
 const props = defineProps<GymxToastProps>();
 
 const emit = defineEmits(['close']);
 
-const timeOut = ref();
+const { start } = useTimeoutFn(() => {
+  emit('close');
+}, props.duration, { immediate: false });
 
 onMounted(() => {
   if (props.duration) {
-    timeOut.value = setTimeout(() => emit('close'), props.duration);
+    start();
   }
 });
 </script>
