@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   useToast,
-} from './use-toast';
+} from '@/composables';
 
 describe('toast', () => {
   it('defaults are correct', () => {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxToast } from './gymx-toast.vue';
 import IconError from '@/assets/icons/error.svg';
 import { h, ref, computed } from 'vue';
-import { useToast } from '@/composables/use-toast';
+import { useToast } from '@/composables';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
