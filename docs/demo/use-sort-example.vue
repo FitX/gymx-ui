@@ -54,17 +54,19 @@ const initialData = ref<DataItem[]>([
 ]);
 
 const searchTerm = ref('');
+const searchKey = ref('name');
 
 const sortOptions = ref<SortOption<DataItem>[]>([{ key: 'id', order: 'asc' }]);
 const searchOptions = computed<FilterOption<DataItem>[]>(() => (
   [{
-    key: 'name',
+    key: searchKey.value,
     value: searchTerm.value,
-    predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+    predicate: (a, b) => (String(a)).toLowerCase().includes((String(b)).toLowerCase()),
   }]
 ));
 
 const updateSortOrder = (option: SortOption<DataItem>) => {
+  end.value = null;
   start.value = performance.now();
   sortOptions.value[0] = option;
 };
@@ -79,10 +81,15 @@ const {
 
 const {
   paginated,
+  totalPages,
+  currentPage,
+  nextPage,
+  prevPage,
 } = usePagination(filtered);
 
 // watch(processedData, (val) => {
-watch(sorted, (val) => {
+watch(paginated, (val) => {
+  console.log(val);
   end.value = performance.now();
 });
 
@@ -91,23 +98,18 @@ const demoPerformance = computed(() => end.value - start.value);
 </script>
 
 <template>
-  <div>
+  <div class="table-wrapper">
     <h1>
-      {{ initialData?.length }} -
-      {{ sortOptions }} <!-- - {{ totalPages }} - {{ filterValue }} -->
-      {{ demoPerformance }}
+      Search / Filter / Pagination
     </h1>
 
-    <input v-model="searchTerm" placeholder="Filter by Nme" type="search" />
-
-    <!--<button @click="updateSortOrder('asc')">Ascending</button>
-    <button @click="updateSortOrder('desc')">Descending</button>-->
-    <button @click="updateSortOrder({ key: 'name', order: 'asc' })">
-      ascending
-    </button>
-    <button @click="updateSortOrder({ key: 'name', order: 'desc' })">
-      Descendiing
-    </button>
+    <div>
+      <input v-model="searchTerm" placeholder="Filter by Nme" type="search" />
+      <label v-for="key in ['name', 'id']" :key="key">
+        <input type="radio" name="sort" :value="key" v-model="searchKey" />
+        {{ key }}
+      </label>
+    </div>
 
     <div>
       <button @click="prevPage" :disabled="currentPage <= 1">Prevv</button>
@@ -122,19 +124,27 @@ const demoPerformance = computed(() => end.value - start.value);
       <tr class="table__row">
         <th>
           ID
-          <button @click="updateSortOrder({ key: 'id', order: 'asc' })">
+          <button
+            @click="updateSortOrder({ key: 'id', order: 'asc' })"
+            :disabled="sortOptions[0].key === 'id' && sortOptions[0].order === 'asc'">
             asc
           </button>
-          <button @click="updateSortOrder({ key: 'id', order: 'desc' })">
+          <button
+            @click="updateSortOrder({ key: 'id', order: 'desc' })"
+            :disabled="sortOptions[0].key === 'id' && sortOptions[0].order === 'desc'">
             desc
           </button>
         </th>
         <th>
           Name
-          <button @click="updateSortOrder({ key: 'name', order: 'asc' })">
+          <button
+            @click="updateSortOrder({ key: 'name', order: 'asc' })"
+            :disabled="sortOptions[0].key === 'name' && sortOptions[0].order === 'asc'">
             asc
           </button>
-          <button @click="updateSortOrder({ key: 'name', order: 'desc' })">
+          <button
+            @click="updateSortOrder({ key: 'name', order: 'desc' })"
+            :disabled="sortOptions[0].key === 'name' && sortOptions[0].order === 'desc'">
             desc
           </button>
         </th>
@@ -149,10 +159,19 @@ const demoPerformance = computed(() => end.value - start.value);
       </tr>
       </tbody>
     </table>
+    <p>
+      <small>All Items {{ initialData?.length }}</small>
+    </p>
+    <p v-if="demoPerformance"><small>Performance (Filter Time in ms): {{ demoPerformance }}</small></p>
   </div>
 </template>
 
 <style scoped>
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 table {
   width: 100%;
   border-collapse: collapse;
