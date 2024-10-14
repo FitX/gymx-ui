@@ -7,10 +7,8 @@ import {
 } from 'unique-names-generator';
 import {
   type SortOption,
-  type FilterOption,
-  type PaginationOption,
-  useTable,
-} from '@/composables/use-table';
+  useSort,
+} from '@/composables/use-sort';
 
 interface DataItem {
   id: number;
@@ -38,12 +36,12 @@ const generateDemoItems = (count: number) => {
 };
 
 const initialData = ref<DataItem[]>([
-  { id: 1, name: 'Jessica' },
-  { id: 2, name: 'Frank' },
-  { id: 3, name: 'Timmy' },
-  { id: 4, name: 'Paul' },
-  { id: 5, name: 'Danny' },
-  { id: 6, name: 'Micha' },
+  { id: 1_9999999999, name: 'Jessica' },
+  { id: 2_9999999999, name: 'Frank' },
+  { id: 3_9999999999, name: 'Timmy' },
+  { id: 4_9999999999, name: 'Paul' },
+  { id: 5_9999999999, name: 'Danny' },
+  { id: 6_9999999999, name: 'Micha' },
   ...generateDemoItems(1_000), // 130.000 ms 1million 1000 100.000
 ]);
 
@@ -51,44 +49,8 @@ const sortOptions = ref<SortOption<DataItem>[]>([{ key: 'id', order: 'asc' }]);
 
 const updateSortOrder = (option: SortOption<DataItem>) => {
   start.value = performance.now();
-  sortOptions.value[0] = option; // { key: 'id', order: val }
-  // sortOptions.value[0] = { key: 'id', order: 'asc' }; // { key: 'id', order: val }
-  // currentPage.value = 1;
+  sortOptions.value[0] = option;
 };
-
-const filterValue = ref('');
-const filterOptions = computed<FilterOption<DataItem>[]>(() => [
-  {
-    key: 'name',
-    value: filterValue.value,
-    predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
-  },
-]);
-
-const perPage = 20;
-const currentPage = ref(1);
-
-const paginationOption = computed<PaginationOption>(() => ({
-  page: currentPage.value,
-  perPage,
-}));
-
-const { processedData } = useTable({
-  initialData,
-  sortOptions,
-  filterOptions,
-  paginationOption,
-});
-
-const totalPages = computed<number>(() => {
-  const filteredData = initialData.value.filter((item) =>
-    filterOptions.value.every((option) => {
-      console.log(option);
-      return option.predicate(item[option.key], option.value);
-    })
-  );
-  return Math.ceil(filteredData.length / perPage);
-});
 
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
@@ -102,13 +64,12 @@ const prevPage = () => {
   }
 };
 
-watch(totalPages, (val) => {
-  if (val < currentPage.value) {
-    currentPage.value = 1;
-  }
-});
+const {
+  sorted,
+} = useSort({ initialData, sortOptions });
 
-watch(processedData, (val) => {
+// watch(processedData, (val) => {
+watch(sorted, (val) => {
   end.value = performance.now();
 });
 
@@ -119,8 +80,8 @@ const demoPerformance = computed(() => end.value - start.value);
 <template>
   <div>
     <h1>
-      {{ initialData.length }} -
-      {{ sortOptions }} - {{ totalPages }} - {{ filterValue }}
+      {{ initialData?.length }} -
+      {{ sortOptions }} <!-- - {{ totalPages }} - {{ filterValue }} -->
       {{ demoPerformance }}
     </h1>
 
@@ -167,7 +128,7 @@ const demoPerformance = computed(() => end.value - start.value);
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in processedData" :key="item.id">
+      <tr v-for="item in sorted" :key="item.id">
         <td>{{ item.id }}</td>
         <td>
           {{ item.name }}
