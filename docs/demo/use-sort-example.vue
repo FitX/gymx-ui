@@ -10,6 +10,11 @@ import {
   useSort,
 } from '@/composables/use-sort';
 
+import {
+  type FilterOption,
+  useSearch,
+} from '@/composables/use-filter';
+
 interface DataItem {
   id: number;
   name: string;
@@ -45,7 +50,16 @@ const initialData = ref<DataItem[]>([
   ...generateDemoItems(1_000), // 130.000 ms 1million 1000 100.000
 ]);
 
+const searchTerm = ref('');
+
 const sortOptions = ref<SortOption<DataItem>[]>([{ key: 'id', order: 'asc' }]);
+const searchOptions = computed<FilterOption<DataItem>[]>(() => (
+  [{
+    key: 'name',
+    value: searchTerm.value,
+    predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+  }]
+));
 
 const updateSortOrder = (option: SortOption<DataItem>) => {
   start.value = performance.now();
@@ -68,6 +82,10 @@ const {
   sorted,
 } = useSort({ initialData, sortOptions });
 
+const {
+  filtered,
+} = useSearch({initialData: sorted, searchOptions});
+
 // watch(processedData, (val) => {
 watch(sorted, (val) => {
   end.value = performance.now();
@@ -85,7 +103,7 @@ const demoPerformance = computed(() => end.value - start.value);
       {{ demoPerformance }}
     </h1>
 
-    <input v-model="filterValue" placeholder="Filter by Nme" type="search" />
+    <input v-model="searchTerm" placeholder="Filter by Nme" type="search" />
 
     <!--<button @click="updateSortOrder('asc')">Ascending</button>
     <button @click="updateSortOrder('desc')">Descending</button>-->
@@ -128,7 +146,7 @@ const demoPerformance = computed(() => end.value - start.value);
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in sorted" :key="item.id">
+      <tr v-for="item in filtered" :key="item.id">
         <td>{{ item.id }}</td>
         <td>
           {{ item.name }}
