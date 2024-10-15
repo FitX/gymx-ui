@@ -103,20 +103,12 @@ const demoPerformance = computed(() => end.value - start.value);
       Search / Filter / Pagination
     </h1>
 
-    <div>
-      <input v-model="searchTerm" placeholder="Filter by Nme" type="search" />
+    <div class="filter">
+      <input v-model="searchTerm" :placeholder="`Filter by ${searchKey}`" type="search" />
       <label v-for="key in ['name', 'id']" :key="key">
         <input type="radio" name="sort" :value="key" v-model="searchKey" />
         {{ key }}
       </label>
-    </div>
-
-    <div>
-      <button @click="prevPage" :disabled="currentPage <= 1">Prevv</button>
-      <span>Page {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage >= totalPages">
-        Next
-      </button>
     </div>
 
     <table class="table">
@@ -159,10 +151,16 @@ const demoPerformance = computed(() => end.value - start.value);
       </tr>
       </tbody>
     </table>
+    <nav class="pagination">
+      <button @click="prevPage" :disabled="currentPage <= 1">Prevv</button>
+      <span>Page {{ currentPage }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="currentPage >= totalPages">
+        Next
+      </button>
+    </nav>
     <p>
-      <small>All Items {{ initialData?.length }}</small>
-    </p>
-    <p v-if="demoPerformance"><small>Performance (Filter Time in ms): {{ demoPerformance }}</small></p>
+      <small>All Items {{ initialData?.length }}</small><br />
+      <small v-if="demoPerformance">Performance (Filter Time in ms): {{ demoPerformance }}</small></p>
   </div>
 </template>
 
@@ -175,6 +173,12 @@ const demoPerformance = computed(() => end.value - start.value);
 table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.filter,
+.pagination {
+  display: flex;
+  gap: 1rem;
 }
 
 th,
