@@ -37,3 +37,7 @@ Storybook specific theming
 .custom-docs-content > :is(h1, h2, h3, h4, h5, h6) > a[aria-hidden] {
   margin-left: -24px;
 }
+
+.custom-docs-content *:not(.docblock-source, pre, div, .docs-story *) {
+  max-width: 60ch;
+}

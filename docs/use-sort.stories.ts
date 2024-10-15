@@ -8,7 +8,7 @@ const meta = {
   title: 'examples/useSort',
   component: UseSortExample,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
-  // tags: ['!dev', '!autodocs'],
+  tags: ['!dev', '!autodocs'],
   parameters: {
     docs: {
       toc: {
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
-export const Default: Story = {
+export const Example: Story = {
   args: {
     // text: 'This is an error message',
   },

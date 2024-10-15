@@ -95,6 +95,17 @@ watch(paginated, (val) => {
 
 const demoPerformance = computed(() => end.value - start.value);
 
+const isKeyCurrentlySorted = (key: SortOption['key'], order?: SortOption['order']) => {
+  const isCurrentKey = sortOptions.value[0]?.key === key;
+  if (!order) return isCurrentKey;
+  return isCurrentKey && sortOptions.value[0]?.order === order;
+};
+
+const getAriaSortDirection = (key: SortOption['key']) => {
+  const isCurrentKey = sortOptions.value[0]?.key === key;
+  if (!isCurrentKey) return 'none';
+  return isCurrentKey && sortOptions.value.find((option) => option.key === key)?.order === 'asc' ? 'ascending' : 'descending';
+};
 </script>
 
 <template>
@@ -105,38 +116,46 @@ const demoPerformance = computed(() => end.value - start.value);
 
     <div class="filter">
       <input v-model="searchTerm" :placeholder="`Filter by ${searchKey}`" type="search" />
-      <label v-for="key in ['name', 'id']" :key="key">
+      <label v-for="key in ['name', 'id']" :key="key" :aria-label="`Change search key to ${key}`">
         <input type="radio" name="sort" :value="key" v-model="searchKey" />
         {{ key }}
       </label>
     </div>
 
     <table class="table">
+      <caption class="sr-only">
+        Demo table to present the functionalities use-sort, use-search and use-pagination.
+        (column headers with buttons are sortable).
+      </caption>
       <thead>
       <tr class="table__row">
-        <th>
+        <th :aria-sort="getAriaSortDirection('id')">
           ID
           <button
             @click="updateSortOrder({ key: 'id', order: 'asc' })"
-            :disabled="sortOptions[0].key === 'id' && sortOptions[0].order === 'asc'">
+            aria-label="Sort by id ascending"
+            :disabled="isKeyCurrentlySorted('id', 'asc')">
             asc
           </button>
           <button
             @click="updateSortOrder({ key: 'id', order: 'desc' })"
-            :disabled="sortOptions[0].key === 'id' && sortOptions[0].order === 'desc'">
+            aria-label="Sort by id descending"
+            :disabled="isKeyCurrentlySorted('id', 'desc')">
             desc
           </button>
         </th>
-        <th>
+        <th :aria-sort="getAriaSortDirection('name')">
           Name
           <button
             @click="updateSortOrder({ key: 'name', order: 'asc' })"
-            :disabled="sortOptions[0].key === 'name' && sortOptions[0].order === 'asc'">
+            aria-label="Sort by name ascending"
+            :disabled="isKeyCurrentlySorted('name', 'asc')">
             asc
           </button>
           <button
             @click="updateSortOrder({ key: 'name', order: 'desc' })"
-            :disabled="sortOptions[0].key === 'name' && sortOptions[0].order === 'desc'">
+            aria-label="Sort by name descending"
+            :disabled="isKeyCurrentlySorted('name', 'desc')">
             desc
           </button>
         </th>
@@ -151,8 +170,8 @@ const demoPerformance = computed(() => end.value - start.value);
       </tr>
       </tbody>
     </table>
-    <nav class="pagination">
-      <button @click="prevPage" :disabled="currentPage <= 1">Prevv</button>
+    <nav class="pagination" aria-label="Table Pagination">
+      <button @click="prevPage" :disabled="currentPage <= 1">Prev</button>
       <span>Page {{ currentPage }} / {{ totalPages }}</span>
       <button @click="nextPage" :disabled="currentPage >= totalPages">
         Next
@@ -160,7 +179,11 @@ const demoPerformance = computed(() => end.value - start.value);
     </nav>
     <p>
       <small>All Items {{ initialData?.length }}</small><br />
-      <small v-if="demoPerformance">Performance (Filter Time in ms): {{ demoPerformance }}</small></p>
+      <small v-if="demoPerformance">Performance (Filter Time in ms): {{ demoPerformance }}</small>
+    </p>
+    <div aria-live="polite" aria-atomic="false" class="sr-only">
+      {{ filtered.length }} Results found for "{{ searchTerm }}"
+    </div>
   </div>
 </template>
 
@@ -190,5 +213,17 @@ td {
 
 th {
   background-color: #f2f2f2;
+}
+
+.sr-only:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>
