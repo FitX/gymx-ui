@@ -13,7 +13,7 @@ import {
 import {
   type FilterOption,
   useSearch,
-} from '@/composables/use-filter';
+} from '@/composables/use-search';
 import {
   usePagination,
 } from '@/composables/use-pagination';
@@ -130,34 +130,42 @@ const getAriaSortDirection = (key: SortOption['key']) => {
       <thead>
       <tr class="table__row">
         <th :aria-sort="getAriaSortDirection('id')">
-          ID
-          <button
-            @click="updateSortOrder({ key: 'id', order: 'asc' })"
-            aria-label="Sort by id ascending"
-            :disabled="isKeyCurrentlySorted('id', 'asc')">
-            asc
-          </button>
-          <button
-            @click="updateSortOrder({ key: 'id', order: 'desc' })"
-            aria-label="Sort by id descending"
-            :disabled="isKeyCurrentlySorted('id', 'desc')">
-            desc
-          </button>
+          <span class="table-sort">
+            <span class="table-sort__title">ID</span>
+            <span class="table-sort__buttons">
+              <button
+                @click="updateSortOrder({ key: 'id', order: 'asc' })"
+                aria-label="Sort by id ascending"
+                :disabled="isKeyCurrentlySorted('id', 'asc')">
+              asc
+            </button>
+            <button
+              @click="updateSortOrder({ key: 'id', order: 'desc' })"
+              aria-label="Sort by id descending"
+              :disabled="isKeyCurrentlySorted('id', 'desc')">
+              desc
+            </button>
+            </span>
+          </span>
         </th>
         <th :aria-sort="getAriaSortDirection('name')">
-          Name
-          <button
-            @click="updateSortOrder({ key: 'name', order: 'asc' })"
-            aria-label="Sort by name ascending"
-            :disabled="isKeyCurrentlySorted('name', 'asc')">
-            asc
-          </button>
-          <button
-            @click="updateSortOrder({ key: 'name', order: 'desc' })"
-            aria-label="Sort by name descending"
-            :disabled="isKeyCurrentlySorted('name', 'desc')">
-            desc
-          </button>
+          <span class="table-sort">
+            <span class="table-sort__title">Name</span>
+            <span class="table-sort__buttons">
+            <button
+              @click="updateSortOrder({ key: 'name', order: 'asc' })"
+              aria-label="Sort by name ascending"
+              :disabled="isKeyCurrentlySorted('name', 'asc')">
+              asc
+            </button>
+            <button
+              @click="updateSortOrder({ key: 'name', order: 'desc' })"
+              aria-label="Sort by name descending"
+              :disabled="isKeyCurrentlySorted('name', 'desc')">
+              desc
+            </button>
+            </span>
+          </span>
         </th>
       </tr>
       </thead>
@@ -187,7 +195,7 @@ const getAriaSortDirection = (key: SortOption['key']) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .table-wrapper {
   display: flex;
   flex-direction: column;
@@ -213,6 +221,16 @@ td {
 
 th {
   background-color: #f2f2f2;
+}
+
+.table-sort {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
 .sr-only:not(:focus):not(:active) {

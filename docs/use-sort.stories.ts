@@ -5,7 +5,7 @@ import { default as UseSortExampleCode } from './demo/use-sort-example.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'examples/useSort',
+  title: 'examples/useSortDemo',
   component: UseSortExample,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['!dev', '!autodocs'],
