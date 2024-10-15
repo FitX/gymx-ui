@@ -38,6 +38,6 @@ Storybook specific theming
   margin-left: -24px;
 }
 
-.custom-docs-content *:not(.docblock-source, pre, div, .docs-story *) {
+/* .custom-docs-content *:not(.docblock-source, pre, div, .docs-story *) {
   max-width: 60ch;
-}
+} */

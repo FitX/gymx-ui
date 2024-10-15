@@ -33,8 +33,8 @@ export interface UseSearchOptionsShared<T> {
 
 export interface UseSearchOptionsWithSearchOptions<T>
   extends UseSearchOptionsShared<T> {
-  searchOptions?: MaybeRefOrGetter<FilterOption<T>[]>;
-  customSort?: never;
+  searchOptions: MaybeRefOrGetter<FilterOption<T>[]>;
+  customSearch?: never;
 }
 
 export interface UseSearchOptionsWithCustomSearchFunction<T>

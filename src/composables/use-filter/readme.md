@@ -3,16 +3,11 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Usage](#usage)
-  - [Basic Setup](#basic-setup)
   - [Using a Custom Search Function](#using-a-custom-search-function)
 - [API](#api)
   - [Types](#types)
-    - [FilterOption<T>](#filteroption)
-    - [UseSearchOptions<T>](#usesearchoptions)
   - [Methods](#methods)
-    - [useSearch<T>](#usesearch)
   - [Helper Functions](#helper-functions)
-    - [defaultSearch<T>](#defaultsearch)
 - [Example](#example)
 
 ## Introduction
@@ -60,12 +55,13 @@ like finding a value by a key.
 ### Using a Custom Search Function
 If the default filter logic doesn't fit your needs,
 you can provide a custom search function:
+
 ```ts
   const data = [
     { name: 'Jessica', job: 'product owner' },
     { name: 'Frank', job: 'developer' },
     { name: 'Micha', job: 'developer' },
-    { name: 'Owner', job: '' },
+    { name: 'Owner', job: 'boss' },
   ];
 
   const searchTerm = ref('Owner');
@@ -80,20 +76,18 @@ you can provide a custom search function:
     initialData: ref(data),
     customSearch,
   });
-
-  console.log(filtered.value);
 ```
 ## API
 
 ### Types
 
-#### FilterOption<T>
+#### `FilterOption<T>`
 Defines a filter criterion for a specific field.
 - **key**: `keyof T` — The field to filter on.
 - **value**: `any` — The value to compare with.
 - **predicate**: `(a: any, b: any) => boolean` — A function to compare the field value (`a`) against the provided filter value (`b`).
 
-#### UseSearchOptions<T>
+#### `UseSearchOptions<T>`
 Union type that allows two configurations:
 
 1.  **With Filter Options**: Use predefined filter options to filter data.
@@ -107,7 +101,7 @@ Union type that allows two configurations:
 
 ### Methods
 
-#### useSearch<T>(options: UseSearchOptions<T>): { filtered: ComputedRef<T[]> }
+#### `useSearch<T>(options: UseSearchOptions<T>): { filtered: ComputedRef<T[]> }`
 
 Creates a computed property that returns the filtered data.
 
@@ -123,7 +117,7 @@ Creates a computed property that returns the filtered data.
 
 ### Helper Functions
 
-#### defaultSearch<T>(data: T[], filterOptions: FilterOption<T>[]): T[]
+#### `defaultSearch<T>(data: T[], filterOptions: FilterOption<T>[]): T[]`
 
 The `defaultSearch` function performs a basic filtering operation. It checks if each item in the `data` array matches all the provided filter options.
 
@@ -135,20 +129,11 @@ The `defaultSearch` function performs a basic filtering operation. It checks if 
 - **T[]**: An array of filtered items.
 
 ## Example
-Here is a complete example of using the `useSearch` composable in a Vue component:
-```vue
-  <template>
-    <div>
-      <input v-model="searchTerm" placeholder="Search..." />
-      <ul>
-        <li v-for="item in filtered" :key="item.name">
-          {{ item.name }} ({{ item.job }})
-        </li>
-      </ul>
-    </div>
-  </template>
+This example showcases a custom search function that dynamically filters the data based on user input.
+The `filtered` computed property is automatically updated as the `searchTerm` changes.
 
-  <script lang="ts" setup>
+```vue
+<script lang="ts" setup>
   import { ref } from 'vue';
   import { useSearch } from '@fitx/gymx-ui';
 
@@ -171,8 +156,15 @@ Here is a complete example of using the `useSearch` composable in a Vue componen
     initialData: ref(data),
     customSearch,
   });
-  </script>
+</script>
+<template>
+  <div>
+    <input v-model="searchTerm" placeholder="Search..." />
+    <ul>
+      <li v-for="item in filtered" :key="item.name">
+        {{ item.name }} ({{ item.job }})
+      </li>
+    </ul>
+  </div>
+</template>
 ```
-
-This example showcases a custom search function that dynamically filters the data based on user input.
-The `filtered` computed property is automatically updated as the `searchTerm` changes.

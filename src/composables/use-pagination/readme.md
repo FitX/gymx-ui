@@ -2,22 +2,18 @@
 
 ## Table of Contents
 
-# usePagination Documentation
-
-## Table of Contents
-
 - [Introduction](#introduction)
 - [Usage](#usage)
   - [Changing Page and Items Per Page](#changing-page-and-items-per-page)
 - [API](#api)
 - [Example](#example)
-- [Warnings and Errors](#warnings-and-errors)
 
 ## Introduction
 The `usePagination` composable manages the pagination logic and provides reactive properties and methods to navigate through pages.
 
 ## Usage
 To use `usePagination`, you need to provide a reactive reference to the data you want to paginate. By default, it initializes with the first page and ten items per page.
+
 ```ts
 import { usePagination } from '@fitx/gymx-ui';
 import { ref } from 'vue';
@@ -31,6 +27,7 @@ const { paginated } = usePagination(data);
 ### Changing Page and Items Per Page
 You can change the current page and items per page by setting `currentPage` and `perPage` values.
 For example, to go to the second page:
+
 ```ts
 const { currentPage, nextPage, perPage } = usePagination(data);
 
@@ -55,6 +52,7 @@ perPage.value = 20;
 - **prevPage()**: A method to decrement the current page by one.
 
 ## Example
+
 ```ts
 import { usePagination } from '@fitx/gymx-ui';
 import { ref } from 'vue';

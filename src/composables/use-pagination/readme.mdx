@@ -1,0 +1,14 @@
+import { Meta, Canvas, Markdown } from '@storybook/addon-docs';
+import Readme from './readme.md?raw';
+import * as UseSort from '../../../docs/use-sort.stories';
+
+<Meta title="Composables/usePagination" />
+
+<Markdown>
+  {Readme}
+</Markdown>
+
+
+## Live Preview
+Combination usage of `useFilter`, `useSort` and `usePagination`
+<Canvas of={UseSort.Example} />

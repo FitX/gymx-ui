@@ -10,6 +10,7 @@
  * Semantic Tokens
  */
 @import 'semantic.css';
+@import 'ui/table.css';
 /**
  * Theme specific
  */
