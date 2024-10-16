@@ -118,11 +118,9 @@ const getAriaSortDirection = (key: SortOption['key']) => {
       <input v-model="searchTerm" :placeholder="`Filter by ${searchKey}`" type="search" />
       <label v-for="key in ['name', 'id']" :key="key" :aria-label="`Change search key to ${key}`">
         <input type="radio" name="sort" :value="key" v-model="searchKey" />
-        {{ key }}
+        <span>{{ key }}</span>
       </label>
     </div>
-
-    <pre>{{ sortOptions }}</pre>
 
     <table class="table">
       <caption class="sr-only">
@@ -137,7 +135,7 @@ const getAriaSortDirection = (key: SortOption['key']) => {
             @click="updateSortOrder({ key: 'id', order: getAriaSortDirection('id') !== 'ascending' ? 'asc' : 'desc' })"
             :aria-label="`Press to Sort id by ${getAriaSortDirection('id') !== 'ascending' ? 'ascending' : 'descending' } order`">
             <span class="table-sort__title">ID</span>
-            <span class="table-sort__buttons">
+            <span class="table-sort__icons">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
                 <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
                 <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
@@ -151,7 +149,7 @@ const getAriaSortDirection = (key: SortOption['key']) => {
             @click="updateSortOrder({ key: 'name', order: getAriaSortDirection('name') !== 'ascending' ? 'asc' : 'desc' })"
             :aria-label="`Press to Sort name by ${getAriaSortDirection('name') !== 'ascending' ? 'ascending' : 'descending' } order`">
             <span class="table-sort__title">Name</span>
-            <span class="table-sort__buttons">
+            <span class="table-sort__icons">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
                 <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
                 <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
@@ -172,7 +170,7 @@ const getAriaSortDirection = (key: SortOption['key']) => {
     </table>
     <nav class="pagination" aria-label="Table Pagination">
       <button @click="prevPage" :disabled="currentPage <= 1">Prev</button>
-      <span>Page {{ currentPage }} / {{ totalPages }}</span>
+      <span class="pagination__current">Page {{ currentPage }} / {{ totalPages }}</span>
       <button @click="nextPage" :disabled="currentPage >= totalPages">
         Next
       </button>
@@ -198,38 +196,24 @@ const getAriaSortDirection = (key: SortOption['key']) => {
   flex-direction: column;
   gap: 1rem;
 }
-table {
-  --sort-icon-asc: var(--gymx-color-gray-5);
-  --sort-icon-desc: var(--gymx-color-gray-5);
-  width: 100%;
-  border-collapse: collapse;
-}
 
 .filter,
 .pagination {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.table-sort {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  &__buttons {
+.filter {
+  label {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.2rem;
   }
+}
+
+.pagination__current {
+  font-size: var(--gymx-size-0);
 }
 
 .sr-only:not(:focus):not(:active) {
@@ -242,12 +226,5 @@ th {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-}
-
-[aria-sort="ascending"] {
-  --sort-icon-asc: var(--gymx-color-accent);
-}
-[aria-sort="descending"] {
-  --sort-icon-desc: var(--gymx-color-accent);
 }
 </style>

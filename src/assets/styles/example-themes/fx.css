@@ -55,4 +55,26 @@
   --input-color-border-hover: #717171;
   --input-color-border-disabled: #B5B5B5;
   --input-color-background-disabled: #F5F5F5;
+
+
+
+  .table {
+    --gymx-table-border: 2px solid var(--exact-color-gray-3);
+    --gymx-table-color-header: none;
+    --sort-icon-active: #000;
+
+    td, th {
+      border-left: none;
+      border-right: none;
+    }
+
+    th {
+      border: none;
+    }
+  }
+
+  .table-sort {
+    justify-content: start;
+    gap: var(--gymx-size-00);
+  }
 }

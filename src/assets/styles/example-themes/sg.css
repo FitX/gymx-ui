@@ -37,4 +37,9 @@
   --button-color-background-focused: var(--button-color-background);
   --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
    */
+
+  .table {
+    --sort-icon-active: var(--gymx-color-accent);
+    --gymx-table-color-header: var(--gymx-color-gray-1)
+  }
 }

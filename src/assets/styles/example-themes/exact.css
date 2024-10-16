@@ -67,4 +67,19 @@
     /* --button-border: 3px solid var(--exact-color-light); */
     background-position-x: 0;
   }
+
+
+  .table {
+    --gymx-table-border: 2px solid var(--exact-color-gray-3);
+
+    td, th {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+
+    th {
+      border: none;
+    }
+  }
 }
