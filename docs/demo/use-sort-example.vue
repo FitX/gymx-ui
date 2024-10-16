@@ -122,6 +122,8 @@ const getAriaSortDirection = (key: SortOption['key']) => {
       </label>
     </div>
 
+    <pre>{{ sortOptions }}</pre>
+
     <table class="table">
       <caption class="sr-only">
         Demo table to present the functionalities use-sort, use-search and use-pagination.
@@ -130,42 +132,32 @@ const getAriaSortDirection = (key: SortOption['key']) => {
       <thead>
       <tr class="table__row">
         <th :aria-sort="getAriaSortDirection('id')">
-          <span class="table-sort">
+          <button
+            class="table-sort"
+            @click="updateSortOrder({ key: 'id', order: getAriaSortDirection('id') !== 'ascending' ? 'asc' : 'desc' })"
+            :aria-label="`Press to Sort id by ${getAriaSortDirection('id') !== 'ascending' ? 'ascending' : 'descending' } order`">
             <span class="table-sort__title">ID</span>
             <span class="table-sort__buttons">
-              <button
-                @click="updateSortOrder({ key: 'id', order: 'asc' })"
-                aria-label="Sort by id ascending"
-                :disabled="isKeyCurrentlySorted('id', 'asc')">
-              asc
-            </button>
-            <button
-              @click="updateSortOrder({ key: 'id', order: 'desc' })"
-              aria-label="Sort by id descending"
-              :disabled="isKeyCurrentlySorted('id', 'desc')">
-              desc
-            </button>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
+                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
+                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
+              </svg>
             </span>
-          </span>
+          </button>
         </th>
         <th :aria-sort="getAriaSortDirection('name')">
-          <span class="table-sort">
+          <button
+            class="table-sort"
+            @click="updateSortOrder({ key: 'name', order: getAriaSortDirection('name') !== 'ascending' ? 'asc' : 'desc' })"
+            :aria-label="`Press to Sort name by ${getAriaSortDirection('name') !== 'ascending' ? 'ascending' : 'descending' } order`">
             <span class="table-sort__title">Name</span>
             <span class="table-sort__buttons">
-            <button
-              @click="updateSortOrder({ key: 'name', order: 'asc' })"
-              aria-label="Sort by name ascending"
-              :disabled="isKeyCurrentlySorted('name', 'asc')">
-              asc
-            </button>
-            <button
-              @click="updateSortOrder({ key: 'name', order: 'desc' })"
-              aria-label="Sort by name descending"
-              :disabled="isKeyCurrentlySorted('name', 'desc')">
-              desc
-            </button>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
+                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
+                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
+              </svg>
             </span>
-          </span>
+          </button>
         </th>
       </tr>
       </thead>
@@ -192,6 +184,11 @@ const getAriaSortDirection = (key: SortOption['key']) => {
     <div aria-live="polite" aria-atomic="false" class="sr-only">
       {{ filtered.length }} Results found for "{{ searchTerm }}"
     </div>
+    <!--
+    <div aria-live="polite" aria-atomic="true" class="sr-only">
+      Table sorted by {{ sortOptions[0].key }} in {{ sortOptions[0].order }} order.
+    </div>
+    -->
   </div>
 </template>
 
@@ -202,6 +199,8 @@ const getAriaSortDirection = (key: SortOption['key']) => {
   gap: 1rem;
 }
 table {
+  --sort-icon-asc: var(--gymx-color-gray-5);
+  --sort-icon-desc: var(--gymx-color-gray-5);
   width: 100%;
   border-collapse: collapse;
 }
@@ -243,5 +242,12 @@ th {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+[aria-sort="ascending"] {
+  --sort-icon-asc: var(--gymx-color-accent);
+}
+[aria-sort="descending"] {
+  --sort-icon-desc: var(--gymx-color-accent);
 }
 </style>
