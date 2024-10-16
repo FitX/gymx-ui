@@ -34,6 +34,7 @@ export default defineConfig({
         'styles/normalize': fileURLToPath(new URL('./src/assets/styles/normalize.css', import.meta.url)),
         'styles/semantic': fileURLToPath(new URL('./src/assets/styles/semantic.css', import.meta.url)),
         'styles/theme': fileURLToPath(new URL('./src/assets/styles/theme.css', import.meta.url)),
+        'styles/ui/table': fileURLToPath(new URL('./src/assets/styles/ui/table.css', import.meta.url)),
 
         'styles/styles': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
       },
