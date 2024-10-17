@@ -123,6 +123,10 @@ const getAriaSortDirection = (key: SortOption['key']) => {
     </div>
 
     <table class="table">
+      <colgroup>
+        <col class="table__col-id" />
+        <col class="table__col-name" />
+      </colgroup>
       <caption class="sr-only">
         Demo table to present the functionalities use-sort, use-search and use-pagination.
         (column headers with buttons are sortable).
@@ -137,8 +141,8 @@ const getAriaSortDirection = (key: SortOption['key']) => {
             <span class="table-sort__title">ID</span>
             <span class="table-sort__icons">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
-                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
-                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
+                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-desc, currentColor)" />
+                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-asc, currentColor)" />
               </svg>
             </span>
           </button>
@@ -151,8 +155,8 @@ const getAriaSortDirection = (key: SortOption['key']) => {
             <span class="table-sort__title">Name</span>
             <span class="table-sort__icons">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="1rem" height="1rem" aria-hidden="true" viewBox="0 0 32 32">
-                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-asc, currentColor)" />
-                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-desc, currentColor)" />
+                <path d="M27.6 20.6 24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6z" fill="var(--sort-icon-desc, currentColor)" />
+                <path d="M9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" fill="var(--sort-icon-asc, currentColor)" />
               </svg>
             </span>
           </button>
@@ -214,6 +218,10 @@ const getAriaSortDirection = (key: SortOption['key']) => {
 
 .pagination__current {
   font-size: var(--gymx-size-0);
+}
+
+.table__col-id {
+  width: 30%;
 }
 
 .sr-only:not(:focus):not(:active) {
