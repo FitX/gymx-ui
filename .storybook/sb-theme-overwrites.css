@@ -41,3 +41,12 @@ Storybook specific theming
 /* .custom-docs-content *:not(.docblock-source, pre, div, .docs-story *) {
   max-width: 60ch;
 } */
+
+/**
+ Storybook -.-
+ If .custom-docs-content is rendered, flex is not working,
+ */
+.custom-docs-content {
+  display: contents;
+  /* all: initial; */
+}
