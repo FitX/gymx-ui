@@ -69,6 +69,26 @@ describe('useSort', () => {
     ]);
   });
 
+  it('should sort data by same keys', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'B' },
+      { id: 1, name: 'A' },
+      { id: 2, name: 'C' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([
+      { key: 'id', order: 'asc' },
+    ]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions });
+
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'B' },
+      { id: 1, name: 'A' },
+      { id: 2, name: 'C' },
+    ]);
+  });
+
   it('should use customSort function if provided', () => {
     const data = ref<Item[]>([
       { id: 1, name: 'A' },

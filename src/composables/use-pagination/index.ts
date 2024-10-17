@@ -1,4 +1,4 @@
-import { type MaybeRefOrGetter, computed, toValue, ref, unref, toRef, watch } from 'vue';
+import { type MaybeRefOrGetter, computed, toValue, ref, watch } from 'vue';
 
 export interface PaginationOption {
   page: number;

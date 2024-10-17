@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { ref } from 'vue';
+import { ref, nextTick, defineComponent } from 'vue';
 import { usePagination, paginate } from './index';
+import { flushPromises, mount } from '@vue/test-utils';
 
 describe('paginate', () => {
   it('should return the full data set when pagination option is not provided', () => {
@@ -70,14 +71,15 @@ describe('usePagination', () => {
   });
 
   it('should increment the current page correctly', () => {
-    const data = ref([1, 2, 3, 4, 5]);
-    const { currentPage, totalPages, nextPage } = usePagination(data);
+    const data = ref([1, 2, 3, 4]);
+    const { currentPage, nextPage, perPage } = usePagination(data);
+    perPage.value = 2;
 
     expect(currentPage.value).toBe(1);
-    expect(totalPages.value).toBe(1);
-
     nextPage();
-    expect(currentPage.value).toBe(1);
+    expect(currentPage.value).toBe(2);
+    nextPage();
+    expect(currentPage.value).toBe(2);
   });
 
   it('should decrement the current page correctly', () => {
@@ -85,9 +87,44 @@ describe('usePagination', () => {
     const { currentPage, prevPage } = usePagination(data);
 
     expect(currentPage.value).toBe(1);
+    currentPage.value = 2;
 
     prevPage();
     expect(currentPage.value).toBe(1);
+    prevPage();
+    expect(currentPage.value).toBe(1);
   });
+
+
+  it('should return 1 view if no values found in list', async () => {
+    const TestComponent = defineComponent({
+      setup () {
+        const data = ref([1,2,3,4]);
+        const { currentPage, totalPages, perPage, nextPage } = usePagination(data);
+
+        perPage.value = 2;
+        currentPage.value = 2;
+
+        const filter = () => {
+          data.value = [];
+        };
+
+        return {
+          currentPage,
+          totalPages,
+          filter
+        };
+      },
+      template: '<div>{{ currentPage }} <button @click="filter()">filter</button></div>'
+    })
+
+    const wrapper = mount(TestComponent, {})
+    await wrapper.find('button').trigger('click');
+    await flushPromises();
+
+    // expect(wrapper.html()).toEqual('<div>1</div>')
+    expect(wrapper.vm).includes({totalPages: 1, currentPage: 1 })
+  })
+
 });
 
