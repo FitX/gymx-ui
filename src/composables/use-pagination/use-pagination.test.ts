@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { ref, nextTick, defineComponent } from 'vue';
+import { describe, it, expect } from 'vitest';
+import { ref, defineComponent } from 'vue';
 import { usePagination, paginate } from './index';
 import { flushPromises, mount } from '@vue/test-utils';
 
@@ -59,7 +59,7 @@ describe('usePagination', () => {
 
   it('should paginate data correctly on page change', () => {
     const data = ref([1, 2, 3, 4, 5]);
-    const { currentPage, perPage, paginated, nextPage } = usePagination(data);
+    const { currentPage, paginated } = usePagination(data);
 
     expect(paginated.value).toEqual([1, 2, 3, 4, 5]);
 
@@ -100,7 +100,7 @@ describe('usePagination', () => {
     const TestComponent = defineComponent({
       setup () {
         const data = ref([1,2,3,4]);
-        const { currentPage, totalPages, perPage, nextPage } = usePagination(data);
+        const { currentPage, totalPages, perPage } = usePagination(data);
 
         perPage.value = 2;
         currentPage.value = 2;

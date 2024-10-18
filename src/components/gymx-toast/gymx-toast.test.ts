@@ -1,7 +1,6 @@
 
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
-import { useTimeoutFn } from '@vueuse/core';
 import { GymxToast } from './index';
 import { ref } from 'vue';
 

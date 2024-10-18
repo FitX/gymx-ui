@@ -94,12 +94,12 @@ watch(paginated, (val) => {
 });
 
 const demoPerformance = computed(() => end.value - start.value);
-
+/*
 const isKeyCurrentlySorted = (key: SortOption['key'], order?: SortOption['order']) => {
   const isCurrentKey = sortOptions.value[0]?.key === key;
   if (!order) return isCurrentKey;
   return isCurrentKey && sortOptions.value[0]?.order === order;
-};
+};*/
 
 const getAriaSortDirection = (key: SortOption['key']) => {
   const isCurrentKey = sortOptions.value[0]?.key === key;

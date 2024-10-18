@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { ref, toValue } from 'vue';
 import { type FilterOption, useSearch, defaultSearch } from './index';
 
