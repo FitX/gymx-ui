@@ -1,5 +1,5 @@
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends object">
 import {
   type GymxSelectOption,
   type GymxSelectFieldProps,
@@ -7,20 +7,20 @@ import {
 } from './types';
 import {   GymxErrorMessage,
   GymxLabel,} from '@/components'
-import { computed } from 'vue';
+import { computed, defineModel } from 'vue';
 import { getModifierClasses } from '@/utils/css-modifier';
 // import { useSlots } from 'vue';
 
 defineSlots<GymxSelectFieldSlots>();
 
-const props = withDefaults(defineProps<GymxSelectFieldProps>(), {
+const props = withDefaults(defineProps<GymxSelectFieldProps<T>>(), {
   id: crypto.randomUUID(),
 });
 
 const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled));
 
 // const slots = useSlots();
-const modelValue = defineModel<GymxSelectOption>();
+const modelValue = defineModel<GymxSelectOption<T>>();
 </script>
 <template>
   <div
@@ -44,10 +44,10 @@ const modelValue = defineModel<GymxSelectOption>();
       class="input-field__input"
       v-model="modelValue">
       <option
-        v-for="(option, index) in options"
+        v-for="(option, index) in props.options"
         :key="index"
         :value="option">
-        {{ typeof option === 'object' ? option.text : option }}
+        {{ option.text }}
       </option>
     </select>
     <div class="select-field__additional">
