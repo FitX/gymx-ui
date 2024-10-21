@@ -23,7 +23,7 @@ export const Default: Story = {
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     // Vue: Type number is not assignable to type GymxSelectOption<unknown>
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    options: [1,2,3,4,5],
+    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
     label: 'Select any Number'
   },
 };
@@ -33,7 +33,7 @@ export const WithCustomInterface: Story = {
   args: {
     options: [{ value: 1, text: 'jo' }, { value: 2, text: 'jo' }],
     label: 'Select any Number',
-    modelValue: { foo: 'bar', text: 'jo'}
+    modelValue: { value: 1, text: 'jo'}
   },
 };
 
