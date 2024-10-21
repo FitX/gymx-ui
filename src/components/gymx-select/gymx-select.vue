@@ -1,17 +1,17 @@
 
-<script lang="ts" setup generic="T extends GymxSelectOption<T>">
+<script lang="ts" setup generic="SelectItem extends GymxSelectOption<SelectItem>">
 import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed } from 'vue';
 
 defineSlots<GymxSelectSlots>();
 
-const props = withDefaults(defineProps<GymxSelectProps<T>>(), {
+const props = withDefaults(defineProps<GymxSelectProps>(), {
   id: crypto.randomUUID(),
 });
 
 const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled))
-const modelValue = defineModel<GymxSelectOption<T> | GymxSelectOption<T>[]>();
+const modelValue = defineModel<SelectItem | SelectItem[]>();
 </script>
 <template>
   <div

@@ -2,10 +2,15 @@
 import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage, GymxSelect } from '../../src/components';
 import { ref } from 'vue';
 
+type DemoSelectOption = {
+  text2: string;
+  count: number;
+}
+
 const firstName = ref<string>();
 const lastName = ref<string>();
 const dateOfBirth = ref<string>();
-const selectOptions = [1, 2, 3].map((count) => ({ text: count.toString() }));
+const selectOptions: DemoSelectOption[] = [1, 2, 3].map((count) => ({ text2: count.toString() , count, }));
 const selectedOption = ref();
 
 const errors = ref({
