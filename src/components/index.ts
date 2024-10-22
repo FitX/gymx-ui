@@ -7,5 +7,5 @@ export * from './gymx-text-field';
 export * from './gymx-badge';
 export * from './gymx-toast';
 export * from './gymx-select';
-// export * from './gymx-select-field';
+export * from './gymx-select-field';
 export * from './icons';

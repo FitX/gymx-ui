@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxSelect } from './index';
-import { nextTick } from 'vue';
 
 describe('GymxSelect', () => {
   it('is a Vue instance', () => {

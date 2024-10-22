@@ -1,7 +1,6 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxSelect } from './gymx-select.vue';
-import type { GymxSelectOption } from './types';
 
 /**
  * Buggy storybook issue: https://github.com/storybookjs/storybook/issues/24238#issuecomment-2152883652
@@ -40,7 +39,7 @@ export const Default: Story = {
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     // Vue: Type number is not assignable to type GymxSelectOption<unknown>
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    options: demoValues,
     modelValue: { text: '2', },
     inputAttributes: {
       "aria-label": "Default Example"
