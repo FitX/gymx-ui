@@ -23,9 +23,11 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
       getModifierClasses('select', props.state),
       getModifierClasses('select', disabled ? 'disabled' : undefined),
     ]">
+    <!--
     <span class="select__start">
       <slot name="select-start"></slot>
     </span>
+    -->
     <select
       :id="props.id"
       v-bind="props.inputAttributes"
@@ -36,12 +38,15 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
         v-for="(option, index) in props.options"
         :key="index"
         :value="option">
-        {{ option.text }}
+        <slot name="option">
+          {{ option.text }}
+        </slot>
       </option>
     </select>
+    <!--
     <span class="select__end">
       <slot name="select-end"></slot>
-    </span>
+    </span>-->
   </div>
 </template>
 <style lang="scss" scoped>
