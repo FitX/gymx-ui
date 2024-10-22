@@ -3,14 +3,14 @@ import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage, GymxSelect } from '
 import { ref } from 'vue';
 
 type DemoSelectOption = {
-  text2: string;
+  text: string;
   count: number;
 }
 
 const firstName = ref<string>();
 const lastName = ref<string>();
 const dateOfBirth = ref<string>();
-const selectOptions: DemoSelectOption[] = [1, 2, 3].map((count) => ({ text2: count.toString() , count, }));
+const selectOptions: DemoSelectOption[] = [1, 2, 3].map((count) => ({ text: count.toString() , count, }));
 const selectedOption = ref();
 
 const errors = ref({

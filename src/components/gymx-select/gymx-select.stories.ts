@@ -12,7 +12,7 @@ type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
 
 type DemoValue = { text: string, value: number };
 
-const demoValues: GymxSelectOption<DemoValue>[] = [
+const demoValues = [
   { text: '1', value: 2, },
   { text: '2', value: 2, },
   { text: '3', value: 3, }
@@ -24,7 +24,7 @@ const meta = {
   component: GymxSelect,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-} satisfies GenericMeta<typeof GymxSelect<GymxSelectOption<DemoValue>>>;
+} satisfies GenericMeta<typeof GymxSelect<DemoValue>>;
 // } satisfies Meta<typeof GymxSelect>;
 
 export default meta;
@@ -47,10 +47,6 @@ export const Default: Story = {
 
 export const Multi: Story = {
   args: {
-    // options: GymxSelectOption<GymxSelectOption<any>>[] & GymxSelectOption<any>[]
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    // Vue: Type number is not assignable to type GymxSelectOption<unknown>
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     options: [{ text: '1', value: 1, }, { text: '2', value: 2, }, { text: '3', value: 3, }],
     inputAttributes: {
       multiple: true,
@@ -61,10 +57,6 @@ export const Multi: Story = {
 
 export const Disabled: Story = {
   args: {
-    // options: GymxSelectOption<GymxSelectOption<any>>[] & GymxSelectOption<any>[]
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    // Vue: Type number is not assignable to type GymxSelectOption<unknown>
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     options: [{ text: '1', }, { text: '2', }, { text: '3'}],
     state: 'disabled',
     modelValue: [{ text: '2', }],

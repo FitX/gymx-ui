@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<GymxSelectProps>(), {
 });
 
 const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled))
-const modelValue = defineModel<SelectItem | SelectItem[]>();
+const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
 </script>
 <template>
   <div
