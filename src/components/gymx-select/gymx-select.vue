@@ -4,7 +4,7 @@ import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from './types
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed } from 'vue';
 
-const emit = defineEmits<{
+defineEmits<{
   'update:modelValue': []
 }>();
 defineSlots<GymxSelectSlots>();
