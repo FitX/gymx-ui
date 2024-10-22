@@ -11,7 +11,8 @@ export interface GymxSelectProps {
   state?: UIState;
   id?: string,
   inputAttributes?: SelectHTMLAttributes,
-  options: GymxSelectOption<object>[]
+  options: GymxSelectOption<object>[],
+  placeholder?: string;
 }
 
 export interface GymxSelectSlots {

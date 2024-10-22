@@ -4,6 +4,9 @@ import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from './types
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed } from 'vue';
 
+const emit = defineEmits<{
+  'update:modelValue': []
+}>();
 defineSlots<GymxSelectSlots>();
 
 const props = withDefaults(defineProps<GymxSelectProps>(), {
@@ -39,7 +42,6 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
     <span class="select__end">
       <slot name="select-end"></slot>
     </span>
-    <pre>{{ modelValue }}</pre>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -64,9 +66,9 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
   --_select-color-border-disabled: var( --select-color-border-disabled, var(--gymx-color-black-2));
 
   /* Other */
-  --_select-radius: var( --select-radius, 0);
-  --_select-border: var( --select-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border));
-  --_select-outline: var( --select-outline, var(--_input-border)); // maybe not
+  --_select-radius: var(--select-radius, 0);
+  --_select-border: var(--select-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border, currentColor));
+  --_select-outline: var(--select-outline, var(--_input-border)); // maybe not
 
   --_select-padding-inline: var( --select-padding-inline, var(--gymx-size-0));
   --_select-padding-block: var( --select-padding-block, var(--gymx-size-00));
@@ -75,25 +77,25 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
   display: flex;
   flex-wrap: nowrap;
   place-content: stretch;
-  font-family: var(--_input-font-family);
-  font-size: var(--_input-font-size);
-  font-weight: var(--_input-font-weight);
+  font-family: var(--_select-font-family);
+  font-size: var(--_select-font-size);
+  font-weight: var(--_select-font-weight);
 
-  color: var(--_input-color);
-  background: var(--_input-color-background);
-  border: var(--_input-border);
-  padding-inline: var(--_input-padding-inline);
-  padding-block: var(--_input-padding-block);
-  border-radius: var(--_input-radius);
+  color: var(--_select-color);
+  background: var(--_select-color-background);
+  border: var(--_select-border);
+  padding-inline: var(--_select-padding-inline);
+  padding-block: var(--_select-padding-block);
+  border-radius: var(--_select-radius);
 
   outline-offset: 1px;
 
   &__start:not(:empty) {
-    margin-inline-end: var(--_input-gap);
+    margin-inline-end: var(--_select-gap);
   }
 
   &__end:not(:empty) {
-    margin-inline-start: var(--_input-gap);
+    margin-inline-start: var(--_select-gap);
   }
 
   &__input {
@@ -110,20 +112,20 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
   }
 
   &--hover, &:hover {
-    color: var(--_input-color-hover);
-    background: var(--_input-color-background-hover);
-    border-color: var(--_input-color-border-hover);
+    color: var(--_select-color-hover);
+    background: var(--_select-color-background-hover);
+    border-color: var(--_select-color-border-hover);
   }
 
   &:has(#{$self}__input:focus-visible),
   &--focused {
-    outline: var(--_input-border);
+    outline: var(--_select-border);
   }
 
   &:is(&--disabled, [disabled]) {
-    color: var(--_input-color-disabled);
-    background: var(--_input-color-background-disabled);
-    border-color: var(--_input-color-border-disabled);
+    color: var(--_select-color-disabled);
+    background: var(--_select-color-background-disabled);
+    border-color: var(--_select-color-border-disabled);
   }
 }
 </style>

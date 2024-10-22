@@ -20,7 +20,7 @@ const demoValues = [
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/select',
+  title: 'components/Form/Select',
   component: GymxSelect,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -42,16 +42,31 @@ export const Default: Story = {
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     options: [{ text: '1', }, { text: '2', }, { text: '3'}],
     modelValue: { text: '2', },
+    inputAttributes: {
+      "aria-label": "Default Example"
+    }
   },
 };
 
-export const Multi: Story = {
+export const Hover: Story = {
   args: {
-    options: [{ text: '1', value: 1, }, { text: '2', value: 2, }, { text: '3', value: 3, }],
+    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    state: 'hover',
+    modelValue: { text: '2', },
     inputAttributes: {
-      multiple: true,
-    },
-    modelValue: [{ text: '2', value: 2 }],
+      "aria-label": "Hovered Example"
+    }
+  },
+};
+
+export const Focused: Story = {
+  args: {
+    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    state: 'focused',
+    modelValue: { text: '2', },
+    inputAttributes: {
+      "aria-label": "Focused Example"
+    }
   },
 };
 
@@ -59,7 +74,17 @@ export const Disabled: Story = {
   args: {
     options: [{ text: '1', }, { text: '2', }, { text: '3'}],
     state: 'disabled',
-    modelValue: [{ text: '2', }],
+    modelValue: { text: '2', },
+    inputAttributes: {
+      "aria-label": "Disabled Example"
+    }
   },
 };
+
+/* export const WithPlaceholder: Story = {
+  args: {
+    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    placeholder: 'Select any Number',
+  },
+}; */
 
