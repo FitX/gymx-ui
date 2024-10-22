@@ -35,7 +35,7 @@ describe('GymxSelect', () => {
     const select = wrapper.find('select');
     expect(select.attributes('disabled')).toBeDefined();
   });
-  
+
 
   it('should set disabled to true when $attrs.disabled is true', () => {
     const wrapper = mount(GymxSelect, {

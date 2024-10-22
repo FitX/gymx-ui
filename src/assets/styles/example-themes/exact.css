@@ -42,6 +42,15 @@
    */
   --gymx-config-font-size-root: 18px;
 
+
+  .input, .select {
+
+  }
+
+  --input-color-border: var(--exact-color-accent);
+  --select-color-border: var(--exact-color-accent);
+
+
   .btn {
     --button-color-border: var(--exact-color-accent);
     --button-color-border-hover: var(--exact-color-white-1);

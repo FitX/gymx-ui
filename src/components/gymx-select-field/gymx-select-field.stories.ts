@@ -2,13 +2,28 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxSelectField } from './gymx-select-field.vue';
 
+/**
+ * Buggy storybook issue: https://github.com/storybookjs/storybook/issues/24238#issuecomment-2152883652
+ */
+type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
+  component: Record<keyof C, unknown>
+}
+
+type DemoValue = { text: string, value: number };
+
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/select-field',
+  title: 'components/Form/Select Field',
   component: GymxSelectField,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
-} satisfies Meta<typeof GymxSelectField>;
+  args: {
+    label: 'Select any',
+    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    modelValue: { text: '2', },
+  }
+} satisfies GenericMeta<typeof GymxSelectField<DemoValue>>;
+// } satisfies Meta<typeof GymxSelectField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -17,23 +32,26 @@ type Story = StoryObj<typeof meta>;
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
+
 export const Default: Story = {
+  args: {},
+};
+
+export const Hover: Story = {
   args: {
-    // options: GymxSelectOption<GymxSelectOption<any>>[] & GymxSelectOption<any>[]
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    // Vue: Type number is not assignable to type GymxSelectOption<unknown>
-    // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
-    label: 'Select any Number'
+    state: 'hover',
   },
 };
 
-
-export const WithCustomInterface: Story = {
+export const Focused: Story = {
   args: {
-    options: [{ value: 1, text: 'jo' }, { value: 2, text: 'jo' }],
-    label: 'Select any Number',
-    modelValue: { value: 1, text: 'jo'}
+    state: 'focused',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    state: 'disabled',
   },
 };
 

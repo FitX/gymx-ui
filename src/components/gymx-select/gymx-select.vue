@@ -43,7 +43,6 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
         </slot>
       </option>
     </select>
-    <pre>model: {{ modelValue}}</pre>
     <!--
     <span class="select__end">
       <slot name="select-end"></slot>
@@ -54,31 +53,31 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
 .select {
   $self: &;
 
-  --_select-font-family: var( --select-font-family, var(--gymx-font-family-default));
-  --_select-font-size: var( --select-font-size, var(--gymx-font-size-2));
-  --_select-font-weight: var( --select-font-letter-spacing, inherit);
+  --_select-font-family: var(--select-font-family, var(--gymx-font-family-default));
+  --_select-font-size: var(--select-font-size, var(--gymx-font-size-2));
+  --_select-font-weight: var(--select-font-letter-spacing, inherit);
 
   /* State defaults */
-  --_select-color: var( --select-color, var(--gymx-color-text));
-  --_select-color-background: var( --select-color-background, transparent);
-  --_select-color-border: var( --select-color-border, currentColor);
+  --_select-color: var(--select-color, var(--gymx-color-text));
+  --_select-color-background: var(--select-color-background, transparent);
+  --_select-color-border: var(--select-color-border, currentColor);
 
-  --_select-color-hover: var( --select-color-hover, inherit);
-  --_select-color-background-hover: var( --select-color-background-hover, initial);
-  --_select-color-border-hover: var( --select-color-border-hover, initial);
+  --_select-color-hover: var(--select-color-hover, inherit);
+  --_select-color-background-hover: var(--select-color-background-hover, initial);
+  --_select-color-border-hover: var(--select-color-border-hover, initial);
 
-  --_select-color-disabled: var( --select-color-disabled, var(--gymx-color-text));
-  --_select-color-background-disabled: var( --select-color-background-disabled, var(--gymx-color-black-1));
-  --_select-color-border-disabled: var( --select-color-border-disabled, var(--gymx-color-black-2));
+  --_select-color-disabled: var(--select-color-disabled, var(--gymx-color-text));
+  --_select-color-background-disabled: var(--select-color-background-disabled, var(--gymx-color-black-1));
+  --_select-color-border-disabled: var(--select-color-border-disabled, var(--gymx-color-black-2));
 
   /* Other */
   --_select-radius: var(--select-radius, 0);
-  --_select-border: var(--select-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border, currentColor));
-  --_select-outline: var(--select-outline, var(--_input-border)); // maybe not
+  --_select-border: var(--select-border, var(--gymx-border-size-1, 1px) solid var(--_select-color-border, currentColor));
+  --_select-outline: var(--select-outline, var(--_select-border)); // maybe not
 
-  --_select-padding-inline: var( --select-padding-inline, var(--gymx-size-0));
-  --_select-padding-block: var( --select-padding-block, var(--gymx-size-00));
-  --_select-gap: var( --select-gap, var(--_input-padding-inline));
+  --_select-padding-inline: var(--select-padding-inline, var(--gymx-size-0));
+  --_select-padding-block: var(--select-padding-block, var(--gymx-size-00));
+  --_select-gap: var(--select-gap, var(--_select-padding-inline));
 
   display: flex;
   flex-wrap: nowrap;
