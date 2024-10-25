@@ -76,7 +76,7 @@ export const Disabled: Story = {
     modelValue: { text: '2', },
     inputAttributes: {
       "aria-label": "Disabled Example"
-    }
+    },
   },
 };
 

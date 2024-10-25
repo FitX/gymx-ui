@@ -44,10 +44,10 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
           </slot>
         </option>
       </select>
+      <span class="select__end">
+        <slot name="select-end" />
+      </span>
     </div>
-    <span class="select__end">
-      <slot name="select-end" />
-    </span>
   </div>
 </template>
 <style lang="scss" scoped>
