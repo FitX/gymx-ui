@@ -25,7 +25,11 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
       v-model="modelValue"
       :inputAttributes="props.inputAttributes"
       :state="props.state"
-      class="select-field__input"/>
+      class="select-field__input">
+      <template #select-end>
+        <slot name="select-end" />
+      </template>
+    </gymx-select>
 
     <div class="select-field__additional">
       <slot name="input-error-message">

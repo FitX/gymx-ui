@@ -13,6 +13,7 @@ describe('GymxSelect', () => {
     const wrapper = mount(GymxSelect, {
       props: {
         modelValue: { text: 'foo' },
+        options: [],
         state: 'disabled',
       },
     });
@@ -27,6 +28,7 @@ describe('GymxSelect', () => {
     const wrapper = mount(GymxSelect, {
       props: {
         state: 'disabled',
+        options: [],
         inputAttributes: {},
       },
     });
@@ -63,5 +65,33 @@ describe('GymxSelect', () => {
 
     const select = wrapper.find('select');
     expect(select.attributes('disabled')).toBeUndefined();
+  });
+
+  it('should render slot content', () => {
+    const wrapper = mount(GymxSelect, {
+      slots: {
+        'select-end': 'Hi from Slot',
+        option: ''
+      },
+    });
+
+    const select = wrapper.find('.select__end');
+    expect(select.text()).toBe('Hi from Slot');
+  });
+
+  it('modelValue should be updated', async () => {
+    const wrapper = mount(GymxSelect, {
+      attachTo: document.body,
+      props: {
+        modelValue: undefined,
+        // @ts-ignore because vue test utils only accept simple values for setValue
+        options: [1,2,3],
+      },
+    });
+    const select = wrapper.find('select');
+    await select.setValue(2);
+    const emitted = await wrapper.emitted('update:modelValue');
+
+    expect(emitted?.[0][0]).toBe(2)
   });
 });

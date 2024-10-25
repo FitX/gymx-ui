@@ -17,6 +17,6 @@ export interface GymxSelectProps {
 
 export interface GymxSelectSlots {
   // 'select-start': () => any;
-  // 'select-end': () => any;
-  'option': () => any;
+  'select-end'?: () => any;
+  'option'?: () => any;
 }

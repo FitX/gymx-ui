@@ -9,6 +9,6 @@ export interface GymxSelectFieldProps extends GymxSelectProps {
 }
 
 export interface GymxSelectFieldSlots extends GymxSelectSlots {
-  'input-hint': () => any;
-  'input-error-message': () => any;
+  'input-hint'?: () => any;
+  'input-error-message'?: () => any;
 }
