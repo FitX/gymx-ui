@@ -28,21 +28,23 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
       <slot name="select-start"></slot>
     </span>
     -->
-    <select
-      :id="props.id"
-      v-bind="props.inputAttributes"
-      :disabled="disabled || ($attrs.disabled ? true : false)"
-      v-model="modelValue"
-      class="select__input">
-      <option
-        v-for="(option, index) in props.options"
-        :key="index"
-        :value="option">
-        <slot name="option">
-          {{ option.text }}
-        </slot>
-      </option>
-    </select>
+    <div class="select__input-wrapper">
+      <select
+        :id="props.id"
+        v-bind="props.inputAttributes"
+        :disabled="disabled || ($attrs.disabled ? true : false)"
+        v-model="modelValue"
+        class="select__input">
+        <option
+          v-for="(option, index) in props.options"
+          :key="index"
+          :value="option">
+          <slot name="option">
+            {{ option.text }}
+          </slot>
+        </option>
+      </select>
+    </div>
     <span class="select__end">
       <slot name="select-end" />
     </span>
@@ -100,6 +102,13 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
 
   &__end:not(:empty) {
     margin-inline-start: var(--_select-gap);
+  }
+
+  &__input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    place-content: stretch;
   }
 
   &__input {
