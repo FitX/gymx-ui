@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
@@ -135,14 +134,14 @@ onMounted(() => {
     opacity: 0;
   }
 
-  &__header {
+  :where(&__header) {
     display: flex;
     gap: var(--gymx-size-0);
     justify-content: space-between;
     align-items: center;
   }
 
-  :is(&__header, &__body, &__footer):not(:empty) {
+  :where(&__header, &__body, &__footer):not(:empty) {
     padding: var(--dialog-block-padding) var(--dialog-inline-padding);
   }
 
