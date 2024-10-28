@@ -51,5 +51,6 @@
   }
   .dialog__button-close {
     --icon-fill: var(--gymx-color-accent);
+    align-self: center;
   }
 }

@@ -99,7 +99,7 @@
 
 /* Dialog */
 [data-theme='exact'] {
-  --dialog-animation-duration: 2s;
+  --dialog-animation-duration: 300ms;
   --dialog-animation-in: dialog-in-exact var(--dialog-animation-duration) ease-in-out forwards;
   --dialog-animation-out: dialog-out-exact var(--dialog-animation-duration) ease-in-out forwards;
   --dialog-inline-padding: var(--gymx-size-2);
@@ -120,6 +120,10 @@
 
   .dialog {
     min-width: 70vw;
+  }
+
+  .dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
   }
 
   .dialog__header {
