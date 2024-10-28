@@ -42,6 +42,10 @@
    */
   --gymx-config-font-size-root: 18px;
 
+  --exact-color-background: var(--exact-color-dark);
+  --storybook-background-color: var(--exact-color-background);
+
+
 
   .input, .select {
 
@@ -89,6 +93,50 @@
 
     th {
       border: none;
+    }
+  }
+}
+
+/* Dialog */
+[data-theme='exact'] {
+  --dialog-animation-duration: 2s;
+  --dialog-animation-in: dialog-in-exact var(--dialog-animation-duration) ease-in-out forwards;
+  --dialog-animation-out: dialog-out-exact var(--dialog-animation-duration) ease-in-out forwards;
+  --dialog-inline-padding: var(--gymx-size-2);
+  --dialog-block-padding: var(--gymx-size-1);
+  --dialog-border-radius: var(--gymx-radius-2);
+  --_exact-dialog-shadow-spacing: 10px;
+  --_exact-dialog-shadow-offset: -2px;
+  --dialog-shadow:
+    var(--gymx-color-accent-12) 0px 0px 0px 2px inset,
+    var(--exact-color-background) var(--_exact-dialog-shadow-spacing) calc(var(--_exact-dialog-shadow-spacing) * -1) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-10) var(--_exact-dialog-shadow-spacing) calc(var(--_exact-dialog-shadow-spacing) * -1),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 2) calc(var(--_exact-dialog-shadow-spacing) * -2) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-8) calc(var(--_exact-dialog-shadow-spacing) * 2) calc(var(--_exact-dialog-shadow-spacing) * -2),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 3) calc(var(--_exact-dialog-shadow-spacing) * -3) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-6) calc(var(--_exact-dialog-shadow-spacing) * 3) calc(var(--_exact-dialog-shadow-spacing) * -3),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 4) calc(var(--_exact-dialog-shadow-spacing) * -4) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-4) calc(var(--_exact-dialog-shadow-spacing) * 4) calc(var(--_exact-dialog-shadow-spacing) * -4);
+
+  .dialog {
+    min-width: 70vw;
+  }
+
+  .dialog__header {
+    border-bottom: 1px solid var(--gymx-color-gray-4);
+  }
+
+  @keyframes dialog-out-exact {
+    to {
+      scale: .75;
+      opacity: 0;
+    }
+  }
+
+  @keyframes dialog-in-exact {
+    from {
+      scale: 1;
+      opacity: 1;
     }
   }
 }

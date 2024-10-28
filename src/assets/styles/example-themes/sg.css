@@ -42,4 +42,14 @@
     --sort-icon-active: var(--gymx-color-accent);
     --gymx-table-color-header: var(--gymx-color-gray-1)
   }
+
+  .dialog {
+    min-inline-size: min(400px, 70vw);
+  }
+  .dialog__header {
+    background: var(--gymx-color-gray-2);
+  }
+  .dialog__button-close {
+    --icon-fill: var(--gymx-color-accent);
+  }
 }

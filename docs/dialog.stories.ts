@@ -1,23 +1,26 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { default as GymxDialog } from './gymx-dialog.vue';
+import { default as DialogExample } from './demo/dialog-examples.vue';
+import { default as DialogExampleCode } from './demo/dialog-examples.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/dialog',
-  component: GymxDialog,
+  title: 'examples/Dialog',
+  component: DialogExample,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
+  tags: ['!dev', '!autodocs'],
   parameters: {
-    layout: 'fullscreen',
-    // layout: 'centered',
     docs: {
-      canvas: {
-        layout: 'fullscreen'
-      }
-    }
-  }
-} satisfies Meta<typeof GymxDialog>;
+      toc: {
+        disable: true, // 👈 Disables the table of contents
+      },
+      source: {
+        type: 'code',
+        code: DialogExampleCode,
+      },
+    },
+  },
+} satisfies Meta<typeof DialogExample>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -28,9 +31,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    modelValue: true,
-    default: 'Lorem Ipsum Dolor Sit Amet',
-    title: 'Optional Title',
-    style: 'min-height: 30rem; min-width: 30rem;',
+    // text: 'This is an error message',
   },
 };
+

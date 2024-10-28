@@ -34,8 +34,9 @@ const closeDialog = () => {
       v-model="isOpen"
       :is-modal="isModal"
       :close-on-outside="closeOnOutsideClick">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+      <p>GymxDialog supports modal and non-modal behavior.</p>
+      <p>Also slots for header, body, and footer content, and can be closed by clicking outside.</p>
+      <GymxButton @click="closeDialog()">Ok</GymxButton>
     </gymx-dialog>
   </section>
 </template>

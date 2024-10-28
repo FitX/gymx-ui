@@ -77,4 +77,42 @@
     justify-content: start;
     gap: var(--gymx-size-00);
   }
+
+  .dialog {
+    --dialog-border-radius: 1rem;
+    --dialog-block-padding: 2rem;
+    --dialog-inline-padding: 2rem;
+    --dialog-title-font-size: 1.575rem;
+    --icon-width: var(--dialog-title-font-size);
+    --icon-height: var(--dialog-title-font-size);
+    --dialog-animation-in: dialog-in-fx var(--dialog-animation-duration) ease-in-out forwards;
+    --dialog-animation-out: dialog-out-fx var(--dialog-animation-duration) ease-in-out forwards;
+    --dialog-shadow: none;
+
+    min-inline-size: min(600px, 80vw);
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .dialog__body {
+    padding-block-start: 0;
+  }
+
+  .dialog__button-close {
+    align-self: center;
+  }
+
+  @keyframes dialog-out-fx {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes dialog-in-fx {
+    from {
+      opacity: 1;
+    }
+  }
 }

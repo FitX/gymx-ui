@@ -22,8 +22,7 @@ const open = () => {
   emit('opened');
 };
 
-const handleClickOutside = (e) => {
-  console.log('ayay', e)
+const handleClickOutside = () => {
   if (props.closeOnOutside) {
     close();
   }
