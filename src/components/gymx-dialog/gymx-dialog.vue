@@ -10,7 +10,7 @@ defineSlots<GymxDialogSlots>();
 
 const dialogEl = ref<HTMLDialogElement>();
 
-// const isOpen = defineModel<boolean>();
+const isOpen = defineModel<boolean>();
 
 const open = () => {
   if (props.isModal) {
@@ -33,12 +33,12 @@ const handleClickOutside = (e) => {
 const close = () => {
   dialogEl.value?.close();
   // isOpen.value = false;
-  emit('update:modelValue', false)
+  // emit('update:modelValue', false)
   emit('closed');
 };
 
 onMounted(() => {
-  watch(() => props.modelValue, (val) => {
+  /* watch(() => props.modelValue, (val) => {
     console.log('watch modelValue', val)
     if (val) {
       open();
@@ -46,19 +46,20 @@ onMounted(() => {
       close();
     }
     console.log('el', dialogEl.value.open)
-    }, { immediate: true });
+    }, { immediate: true }); */
+
+  watch(isOpen, (val) => {
+    if (val) {
+      open();
+    } else {
+      close();
+    }
+  }, { immediate: true});
 });
 
-/*
-watch((isOpen), (val) => {
-  console.log('isOpen', val)
-  if (val) {
-    open();
-  } else {
-    close();
-  }});
-*/
-
+const internalClose = () => {
+  isOpen.value = false;
+};
 </script>
 <template>
   <div>
@@ -74,7 +75,7 @@ watch((isOpen), (val) => {
           <slot name="header">
             <h2 class="dialog__title">{{ props.title }}</h2>
             <p>Lorem</p>
-            <button class="dialog__button-close" @click="close()">Close</button>
+            <button class="dialog__button-close" @click="internalClose()">Close</button>
           </slot>
         </header>
         <div class="dialog__body">
