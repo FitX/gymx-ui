@@ -43,7 +43,7 @@ const closeDialog = () => {
 
 <style lang="scss" scoped>
 .demo-wrapper {
-  height: 50vh;
+  height: 60vh;
 }
 
 .nav { display: flex; flex-wrap: wrap; gap: 1rem;

@@ -37,44 +37,45 @@ const close = () => {
 };
 
 onMounted(() => {
-  watch(isOpen, (val) => {
-    if (val) {
-      open();
-    } else {
-      close();
-    }
-  }, { immediate: true });
+  watch(
+    isOpen,
+    (val) => {
+      if (val) {
+        open();
+      } else {
+        close();
+      }
+    },
+    { immediate: true },
+  );
 });
 </script>
 <template>
-  <div>
-    <div class="pseudo-dialog-backdrop">
-
-    </div>
-
-    <dialog
-      ref="dialogEl"
-      @close="close()"
-      class="dialog"
-      :class="getModifierClasses('dialog', props.closeOnOutside ? 'close-on-outside' : undefined)">
-      <div class="dialog__content">
-        <header class="dialog__header">
-          <slot name="header">
-            <h1 class="dialog__title">{{ props.title }}</h1>
-            <button class="dialog__button-close" @click="close()" aria-label="Close">
-              <icon-close aria-hidden="true" />
-            </button>
-          </slot>
-        </header>
-        <div class="dialog__body">
-          <slot name="default" />
-        </div>
-        <div class="dialog__footer">
-          <slot name="footer" />
-        </div>
+  <dialog
+    ref="dialogEl"
+    @close="close()"
+    class="dialog"
+    :class="getModifierClasses('dialog', props.closeOnOutside ? 'close-on-outside' : undefined)">
+    <div class="dialog__content">
+      <header class="dialog__header">
+        <slot name="header">
+          <h1 class="dialog__title">{{ props.title }}</h1>
+          <button
+            class="dialog__button-close"
+            @click="close()"
+            aria-label="Close">
+            <icon-close aria-hidden="true" />
+          </button>
+        </slot>
+      </header>
+      <div class="dialog__body">
+        <slot name="default" />
       </div>
-    </dialog>
-  </div>
+      <div class="dialog__footer">
+        <slot name="footer" />
+      </div>
+    </div>
+  </dialog>
 </template>
 <style lang="scss">
 :root {
@@ -88,12 +89,13 @@ onMounted(() => {
   --dialog-border-radius: 0;
   --dialog-border: 1px solid var(--gymx-color-gray-2);
   // --dialog-shadow: 0 0 3rem 0 var(--gymx-color-gray-6);
-  --dialog-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px, var(--gymx-color-gray-5) 0px 0px 0px 1px;
+  --dialog-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px,
+    var(--gymx-color-gray-5) 0px 0px 0px 1px;
   --dialog-title-font-size: var(--gymx-font-size-3);
 
   @keyframes dialog-out {
     to {
-      scale: .75;
+      scale: 0.75;
       translate: 0 100%;
     }
   }
@@ -118,7 +120,7 @@ onMounted(() => {
     overlay var(--dialog-animation-duration) allow-discrete,
     opacity var(--dialog-animation-duration);
   animation: var(--dialog-animation-out);
-  animation-timing-function: cubic-bezier(.5, -.5, .1, 1.5);
+  animation-timing-function: cubic-bezier(0.5, -0.5, 0.1, 1.5);
   border-radius: var(--dialog-border-radius);
   padding: 0;
   border: var(--dialog-border);
