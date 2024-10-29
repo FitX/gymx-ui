@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxSelect } from './gymx-select.vue';
 
@@ -6,15 +5,15 @@ import { default as GymxSelect } from './gymx-select.vue';
  * Buggy storybook issue: https://github.com/storybookjs/storybook/issues/24238#issuecomment-2152883652
  */
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
-  component: Record<keyof C, unknown>
-}
+  component: Record<keyof C, unknown>;
+};
 
-type DemoValue = { text: string, value: number };
+type DemoValue = { text: string; value: number };
 
 const demoValues = [
-  { text: '1', value: 2, },
-  { text: '2', value: 2, },
-  { text: '3', value: 3, }
+  { text: '1', value: 2 },
+  { text: '2', value: 2 },
+  { text: '3', value: 3 },
 ];
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -40,42 +39,42 @@ export const Default: Story = {
     // Vue: Type number is not assignable to type GymxSelectOption<unknown>
     // Vue: Type number is not assignable to type GymxSelectOption<GymxSelectOption<any>>
     options: demoValues,
-    modelValue: { text: '2', },
+    modelValue: { text: '2' },
     inputAttributes: {
-      "aria-label": "Default Example"
-    }
+      'aria-label': 'Default Example',
+    },
   },
 };
 
 export const Hover: Story = {
   args: {
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    options: [{ text: '1' }, { text: '2' }, { text: '3' }],
     state: 'hover',
-    modelValue: { text: '2', },
+    modelValue: { text: '2' },
     inputAttributes: {
-      "aria-label": "Hovered Example"
-    }
+      'aria-label': 'Hovered Example',
+    },
   },
 };
 
 export const Focused: Story = {
   args: {
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    options: [{ text: '1' }, { text: '2' }, { text: '3' }],
     state: 'focused',
-    modelValue: { text: '2', },
+    modelValue: { text: '2' },
     inputAttributes: {
-      "aria-label": "Focused Example"
-    }
+      'aria-label': 'Focused Example',
+    },
   },
 };
 
 export const Disabled: Story = {
   args: {
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
+    options: [{ text: '1' }, { text: '2' }, { text: '3' }],
     state: 'disabled',
-    modelValue: { text: '2', },
+    modelValue: { text: '2' },
     inputAttributes: {
-      "aria-label": "Disabled Example"
+      'aria-label': 'Disabled Example',
     },
   },
 };
@@ -86,4 +85,3 @@ export const Disabled: Story = {
     placeholder: 'Select any Number',
   },
 }; */
-

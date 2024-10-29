@@ -7,20 +7,22 @@
 - [Default Values](#default-values)
 - [Error Handling](#error-handling)
 - [Composable Structure](#composable-structure)
-    - [State](#state)
-    - [Methods](#methods)
-      - [addToast](#addToast)
-      - [removeToast](#removeToast)
+  - [State](#state)
+  - [Methods](#methods)
+    - [addToast](#addToast)
+    - [removeToast](#removeToast)
 - [Usage Example](#usage-example)
 - [Accessibility](#accessibility-example-with-live-regions)
 - [Use Cases](#use-cases)
 
 ## Introduction
+
 The `useToast` composable provides a simple way to manage toast notifications.
 It allows adding and removing toast notifications with different types and optional durations.
 [Take a look at the toast component](/docs/components-toast--docs).
 
 ## Toast Interface
+
 The `Toast` interface defines the structure of a toast notification:
 
 ```ts
@@ -31,6 +33,7 @@ interface Toast {
   duration?: number;
 }
 ```
+
 - **id**: A unique number that is automatically generated to identify each toast notification.
 - **type**: The type of the toast notification. Defined by `GymxToastProps['type']` and can have different styles or icons ('info' | 'success' | 'warning' | 'error').
 - **msg**: The actual message that will be displayed in the toast. This value is required.
@@ -45,14 +48,17 @@ it will stay visible for 6000 ms (6 seconds).
 Toast notifications of type `error` do not have an automatic time limit and must be manually dismissed.
 
 ### Error Handling
+
 If a toast notification is added without a `msg`, an error is thrown: `Message is required`.
 
-
 ### State
+
 `toasts`: A `ref<Toast[]>` array that stores the list of current toast notifications.
 
 ### Methods
+
 #### addToast
+
 `addToast(toastContent: Omit<Toast, 'id' | 'type'>): void`
 Adds a new toast notification.
 
@@ -69,6 +75,7 @@ addToast({
 ```
 
 #### removeToast
+
 `removeToast(id: number): void`
 Removes a toast notification by its `id`.
 
@@ -105,45 +112,46 @@ To provide more flexibility, the live region implementation is neither in the co
 
 ```vue
 <script lang="ts" setup>
-  import { computed } from 'vue';
-  import { useToast } from '@fitx/gymx-ui';
-  const { toasts, addToast, removeToast } = useToast();
+import { computed } from 'vue';
+import { useToast } from '@fitx/gymx-ui';
+const { toasts, addToast, removeToast } = useToast();
 
-  const success = () => addToast({
-    msg: "your message has been received.",
-    type: "success"
+const success = () =>
+  addToast({
+    msg: 'your message has been received.',
+    type: 'success',
   });
 
-  const warning = () => addToast({
-    msg: "If you are inactive for another minute you will be logged out.",
-    type: "warning"
+const warning = () =>
+  addToast({
+    msg: 'If you are inactive for another minute you will be logged out.',
+    type: 'warning',
   });
 
-  const info = () => addToast({
-    msg: "You have 3 new messages."
+const info = () =>
+  addToast({
+    msg: 'You have 3 new messages.',
   });
 
-  const error = () => addToast({
-    msg: "Message cannot be sent. Please log in again.",
-    type: "error"
+const error = () =>
+  addToast({
+    msg: 'Message cannot be sent. Please log in again.',
+    type: 'error',
   });
 
-  const alertMessage = computed(() =>
-    toasts.value.find((t) => t.type === "error")?.msg);
-  const statusMessage = computed(() =>
-    toasts.value.find((t) => t.type !== "error")?.msg
-  );
+const alertMessage = computed(() => toasts.value.find((t) => t.type === 'error')?.msg);
+const statusMessage = computed(() => toasts.value.find((t) => t.type !== 'error')?.msg);
 
-  return {
-    toasts,
-    removeToast,
-    alertMessage,
-    statusMessage,
-    success,
-    warning,
-    error,
-    info
-  };
+return {
+  toasts,
+  removeToast,
+  alertMessage,
+  statusMessage,
+  success,
+  warning,
+  error,
+  info,
+};
 </script>
 <template>
   <gymx-toast
@@ -154,20 +162,30 @@ To provide more flexibility, the live region implementation is neither in the co
     :duration="toast.duration"
     @close="removeToast(toast.id)" />
 
-  <div id="alert-live-region" aria-live="assertive" aria-atomic="false" class="sr-only">
+  <div
+    id="alert-live-region"
+    aria-live="assertive"
+    aria-atomic="false"
+    class="sr-only">
     {{ alertMessage }}
   </div>
 
-  <div id="status-live-region" aria-live="polite" aria-atomic="false" class="sr-only">
+  <div
+    id="status-live-region"
+    aria-live="polite"
+    aria-atomic="false"
+    class="sr-only">
     {{ statusMessage }}
   </div>
 </template>
 ```
 
 ## Use Cases
+
 - Displaying notifications after a successful user action.
 - Showing error messages when something goes wrong.
 - Informing the user of important status changes.
 
 ## Additional Resources
+
 - [MDN Live Region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions)

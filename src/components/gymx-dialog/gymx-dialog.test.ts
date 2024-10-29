@@ -7,7 +7,7 @@ beforeEach(() => {
   HTMLDialogElement.prototype.showModal = vi.fn();
   HTMLDialogElement.prototype.show = vi.fn();
   HTMLDialogElement.prototype.close = vi.fn();
-})
+});
 describe('GymxDialog', () => {
   it('is a Vue instance', () => {
     const wrapper = mount(GymxDialog, { attachTo: document.body });

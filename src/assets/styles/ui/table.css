@@ -10,7 +10,8 @@
   width: 100%;
   text-align: left;
 
-  td, th {
+  td,
+  th {
     padding-block: var(--gymx-table-cell-spacing-block);
     padding-inline: var(--gymx-table-cell-spacing-inline);
     border: var(--gymx-table-border, 1px solid var(--gymx-color-gray-4));
@@ -58,9 +59,9 @@
   gap: 1rem;
 }
 
-[aria-sort="ascending"] {
+[aria-sort='ascending'] {
   --sort-icon-asc: var(--sort-icon-active, var(--gymx-color-gray-11));
 }
-[aria-sort="descending"] {
+[aria-sort='descending'] {
   --sort-icon-desc: var(--sort-icon-active, var(--gymx-color-gray-11));
 }

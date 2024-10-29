@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxSelectField } from './gymx-select-field.vue';
 
@@ -6,10 +5,10 @@ import { default as GymxSelectField } from './gymx-select-field.vue';
  * Buggy storybook issue: https://github.com/storybookjs/storybook/issues/24238#issuecomment-2152883652
  */
 type GenericMeta<C> = Omit<Meta<C>, 'component'> & {
-  component: Record<keyof C, unknown>
-}
+  component: Record<keyof C, unknown>;
+};
 
-type DemoValue = { text: string, value: number };
+type DemoValue = { text: string; value: number };
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -19,9 +18,9 @@ const meta = {
   tags: ['autodocs'],
   args: {
     label: 'Select any',
-    options: [{ text: '1', }, { text: '2', }, { text: '3'}],
-    modelValue: { text: '2', },
-  }
+    options: [{ text: '1' }, { text: '2' }, { text: '3' }],
+    modelValue: { text: '2' },
+  },
 } satisfies GenericMeta<typeof GymxSelectField<DemoValue>>;
 // } satisfies Meta<typeof GymxSelectField>;
 
@@ -34,8 +33,7 @@ type Story = StoryObj<typeof meta>;
  */
 
 export const Default: Story = {
-  args: {
-  },
+  args: {},
 };
 
 export const Hover: Story = {
@@ -55,4 +53,3 @@ export const Disabled: Story = {
     state: 'disabled',
   },
 };
-

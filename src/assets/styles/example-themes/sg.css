@@ -40,7 +40,7 @@
 
   .table {
     --sort-icon-active: var(--gymx-color-accent);
-    --gymx-table-color-header: var(--gymx-color-gray-1)
+    --gymx-table-color-header: var(--gymx-color-gray-1);
   }
 
   .dialog {

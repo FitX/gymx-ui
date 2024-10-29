@@ -2,10 +2,10 @@ import type { UIState } from '@/types';
 import type { InputHTMLAttributes } from 'vue';
 
 export interface GymxInputProps {
-  type?: HTMLInputElement['type'], //InputTypeHTMLAttribute
+  type?: HTMLInputElement['type']; //InputTypeHTMLAttribute
   state?: UIState;
-  id?: string,
-  inputAttributes?: InputHTMLAttributes,
+  id?: string;
+  inputAttributes?: InputHTMLAttributes;
 }
 
 export interface GymxInputSlots {

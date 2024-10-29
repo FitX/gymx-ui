@@ -1,12 +1,10 @@
-
 <script lang="ts" setup>
 import { type GymxBadgeProps } from './types';
 
 const props = defineProps<GymxBadgeProps>();
 </script>
 <template>
-  <span
-    class="badge">
+  <span class="badge">
     <slot>
       {{ props.text }}
     </slot>

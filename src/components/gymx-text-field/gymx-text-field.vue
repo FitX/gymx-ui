@@ -1,11 +1,10 @@
-
 <script lang="ts" setup>
 import {
   GymxErrorMessage,
   GymxInput,
   GymxLabel,
   type GymxTextFieldProps,
-  type GymxTextFieldSlots
+  type GymxTextFieldSlots,
 } from '@/components';
 // import { useSlots } from 'vue';
 
@@ -22,12 +21,14 @@ const modelValue = defineModel<string | number>({ default: '' });
   <div class="text-field">
     <gymx-label
       :for="props.id"
-      :text="props.label" class="text-field__label" />
+      :text="props.label"
+      class="text-field__label" />
     <gymx-input
       :id="props.id"
       v-bind="props.inputAttributes"
       :state="props.state"
-      class="text-field__input" v-model="modelValue">
+      class="text-field__input"
+      v-model="modelValue">
       <!--<template v-for="slot in $slots" #[slot]>
         <slot :name="slot"></slot>
       </template>-->
@@ -46,23 +47,25 @@ const modelValue = defineModel<string | number>({ default: '' });
       <slot name="input-hint">
         <span
           v-if="props.hint"
-          class="text-field__hint">{{ props.hint }}</span>
+          class="text-field__hint"
+          >{{ props.hint }}</span
+        >
       </slot>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-  .text-field {
+.text-field {
+  display: grid;
+  gap: var(--text-field-gap, var(--gymx-size-00));
+  font-size: var(--text-field-additional, var(--gymx-font-size-00));
+
+  &__additional {
     display: grid;
     gap: var(--text-field-gap, var(--gymx-size-00));
-    font-size: var(--text-field-additional, var(--gymx-font-size-00));
-
-    &__additional {
-      display: grid;
-      gap: var(--text-field-gap, var(--gymx-size-00));
-      justify-content: space-between;
-      align-items: center;
-      grid-template-columns: auto auto;
-    }
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: auto auto;
   }
+}
 </style>

@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxBadge } from './gymx-badge.vue';
 
@@ -40,6 +39,6 @@ export const ExampleStyles: Story = {
         .badge-4 { --badge-color-background: #ECEEED; --badge-color-text: #121212; }
         .badge-5 { --badge-padding-inline: 2rem; --badge-radius: 2rem; &:hover { --badge-radius: 0; } }
       </component>
-    `
+    `,
   }),
 };

@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxToast } from './gymx-toast.vue';
 import IconError from '@/assets/icons/error.svg';
@@ -69,11 +68,7 @@ export const Usage: Story = {
       GymxToast,
     },
     setup() {
-      const {
-        toasts,
-        addToast,
-        removeToast,
-      } = useToast();
+      const { toasts, addToast, removeToast } = useToast();
 
       const demoId = ref(0); // only for screen-reader content testing
 
@@ -83,11 +78,11 @@ export const Usage: Story = {
           id: demoId.value,
           msg: type ? `${type} ${demoId.value}` : `Default ${demoId.value}`,
           type,
-        })
+        });
       };
 
-      const alertMessage = computed(() => toasts.value.find(t => t.type === 'error')?.msg);
-      const statusMessage = computed(() => toasts.value.find(t => t.type !== 'error')?.msg);
+      const alertMessage = computed(() => toasts.value.find((t) => t.type === 'error')?.msg);
+      const statusMessage = computed(() => toasts.value.find((t) => t.type !== 'error')?.msg);
       return {
         args,
         toasts,
@@ -162,6 +157,5 @@ export const Usage: Story = {
         }
       </component>
     `,
-  })
+  }),
 };
-

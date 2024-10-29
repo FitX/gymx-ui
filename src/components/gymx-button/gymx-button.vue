@@ -56,21 +56,30 @@ defineSlots<GymxButtonSlots>();
     --button-color-background-hover,
     var(--button-color-background)
   );
-  --_button-color-border-hover: var(--button-color-border-hover, var(--_button-color-background-hover));
+  --_button-color-border-hover: var(
+    --button-color-border-hover,
+    var(--_button-color-background-hover)
+  );
 
   --_button-color-focused: var(--button-color-focused, var(--button-color));
   --_button-color-background-focused: var(
     --button-color-background-focused,
     var(--button-color-background)
   );
-  --_button-color-border-focused: var(--button-color-border-focused, var(--_button-color-background-focused));
+  --_button-color-border-focused: var(
+    --button-color-border-focused,
+    var(--_button-color-background-focused)
+  );
 
   --_button-color-disabled: var(--button-color-disabled, var(--button-color));
   --_button-color-background-disabled: var(
     --button-color-background-disabled,
     var(--button-color-background)
   );
-  --_button-color-border-disabled: var(--button-color-border-disabled, var(--_button-color-background-disabled));
+  --_button-color-border-disabled: var(
+    --button-color-border-disabled,
+    var(--_button-color-background-disabled)
+  );
 
   --_button-font-size: var(--button-font-size, var(--gymx-font-size-1));
   --_button-font-weight: var(--button-font-weight, var(--gymx-font-weight-regular));

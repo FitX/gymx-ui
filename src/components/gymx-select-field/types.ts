@@ -3,9 +3,9 @@ import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from '@/compo
 export interface GymxSelectFieldOption<T = object> extends GymxSelectOption {}
 
 export interface GymxSelectFieldProps extends GymxSelectProps {
-  label: string,
-  errorMessage?: string,
-  hint?: string,
+  label: string;
+  errorMessage?: string;
+  hint?: string;
 }
 
 export interface GymxSelectFieldSlots extends GymxSelectSlots {

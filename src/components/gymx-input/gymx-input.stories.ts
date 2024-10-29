@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 // import { fn } from '@storybook/test';
 import { default as GymxInput } from './gymx-input.vue';
@@ -21,7 +20,6 @@ const meta = {
   args: {
     // onClick: fn(),
   },
-
 } satisfies Meta<typeof GymxInput>;
 
 export default meta;
@@ -39,20 +37,20 @@ export const Default: Story = {
 
 export const Hover: Story = {
   args: {
-    state: 'hover'
+    state: 'hover',
   },
 };
 
 export const Focused: Story = {
   args: {
-    state: 'focused'
+    state: 'focused',
   },
 };
 
 export const Disabled: Story = {
   args: {
     state: 'disabled',
-    modelValue: 'Jon Doe'
+    modelValue: 'Jon Doe',
   },
 };
 
@@ -74,6 +72,6 @@ export const WithAttributes: Story = {
     inputAttributes: {
       'aria-label': 'demo field',
       readonly: true,
-    }
+    },
   },
 };

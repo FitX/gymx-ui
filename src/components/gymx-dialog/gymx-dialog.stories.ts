@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxDialog } from './gymx-dialog.vue';
 
@@ -10,13 +9,8 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    // layout: 'centered',
-    docs: {
-      canvas: {
-        layout: 'fullscreen'
-      }
-    }
-  }
+  },
+  decorators: [() => ({ template: '<div style="height: 50vh;"><story/></div>' })],
 } satisfies Meta<typeof GymxDialog>;
 
 export default meta;
@@ -31,6 +25,6 @@ export const Default: Story = {
     modelValue: true,
     default: 'Lorem Ipsum Dolor Sit Amet',
     title: 'Optional Title',
-    style: 'min-height: 30rem; min-width: 30rem;',
+    // style: 'min-height: 30rem; min-width: 30rem;',
   },
 };

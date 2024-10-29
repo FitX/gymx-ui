@@ -3,7 +3,8 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-:where([data-theme='exact']) {}
+:where([data-theme='exact']) {
+}
 
 [data-theme='exact'] {
   color-scheme: dark;
@@ -45,22 +46,23 @@
   --exact-color-background: var(--exact-color-dark);
   --storybook-background-color: var(--exact-color-background);
 
-
-
-  .input, .select {
-
+  .input,
+  .select {
   }
 
   --input-color-border: var(--exact-color-accent);
   --select-color-border: var(--exact-color-accent);
-
 
   .btn {
     --button-color-border: var(--exact-color-accent);
     --button-color-border-hover: var(--exact-color-white-1);
     --button-color-border-focused: var(--exact-color-white-1);
     --button-color-border-disabled: var(--exact-color-gray-3);
-    --button-color-background: linear-gradient(90deg, var(--gymx-color-accent-8) 50%, var(--exact-color-accent) 50%);
+    --button-color-background: linear-gradient(
+      90deg,
+      var(--gymx-color-accent-8) 50%,
+      var(--exact-color-accent) 50%
+    );
     --button-color-background-hover: var(--button-color-background);
     --button-color-background-focused: var(--button-color-background);
     --button-color-background-disabled: var(--exact-color-gray-3);
@@ -70,22 +72,25 @@
     background-origin: border-box;
     background-size: 200%;
     background-position-x: 100%;
-    transition: .3s ease-in-out;
-    transition-property:
-      color, background-color, background-position, background-size, border-color, box-shadow;
+    transition: 0.3s ease-in-out;
+    transition-property: color, background-color, background-position, background-size, border-color,
+      box-shadow;
     border-width: 3px;
   }
 
-  .btn:hover, .btn--hover, .btn:focus-visible, .btn--focused {
+  .btn:hover,
+  .btn--hover,
+  .btn:focus-visible,
+  .btn--focused {
     /* --button-border: 3px solid var(--exact-color-light); */
     background-position-x: 0;
   }
 
-
   .table {
     --gymx-table-border: 2px solid var(--exact-color-gray-3);
 
-    td, th {
+    td,
+    th {
       border-left: none;
       border-right: none;
       border-top: none;
@@ -107,19 +112,26 @@
   --dialog-border-radius: var(--gymx-radius-2);
   --_exact-dialog-shadow-spacing: 10px;
   --_exact-dialog-shadow-offset: -2px;
-  --dialog-shadow:
-    var(--gymx-color-accent-12) 0px 0px 0px 2px inset,
-    var(--exact-color-background) var(--_exact-dialog-shadow-spacing) calc(var(--_exact-dialog-shadow-spacing) * -1) 0px var(--_exact-dialog-shadow-offset),
-    var(--gymx-color-accent-10) var(--_exact-dialog-shadow-spacing) calc(var(--_exact-dialog-shadow-spacing) * -1),
-    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 2) calc(var(--_exact-dialog-shadow-spacing) * -2) 0px var(--_exact-dialog-shadow-offset),
-    var(--gymx-color-accent-8) calc(var(--_exact-dialog-shadow-spacing) * 2) calc(var(--_exact-dialog-shadow-spacing) * -2),
-    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 3) calc(var(--_exact-dialog-shadow-spacing) * -3) 0px var(--_exact-dialog-shadow-offset),
-    var(--gymx-color-accent-6) calc(var(--_exact-dialog-shadow-spacing) * 3) calc(var(--_exact-dialog-shadow-spacing) * -3),
-    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 4) calc(var(--_exact-dialog-shadow-spacing) * -4) 0px var(--_exact-dialog-shadow-offset),
-    var(--gymx-color-accent-4) calc(var(--_exact-dialog-shadow-spacing) * 4) calc(var(--_exact-dialog-shadow-spacing) * -4);
+  --dialog-shadow: var(--gymx-color-accent-12) 0px 0px 0px 2px inset,
+    var(--exact-color-background) var(--_exact-dialog-shadow-spacing)
+      calc(var(--_exact-dialog-shadow-spacing) * -1) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-10) var(--_exact-dialog-shadow-spacing)
+      calc(var(--_exact-dialog-shadow-spacing) * -1),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 2)
+      calc(var(--_exact-dialog-shadow-spacing) * -2) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-8) calc(var(--_exact-dialog-shadow-spacing) * 2)
+      calc(var(--_exact-dialog-shadow-spacing) * -2),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 3)
+      calc(var(--_exact-dialog-shadow-spacing) * -3) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-6) calc(var(--_exact-dialog-shadow-spacing) * 3)
+      calc(var(--_exact-dialog-shadow-spacing) * -3),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 4)
+      calc(var(--_exact-dialog-shadow-spacing) * -4) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-4) calc(var(--_exact-dialog-shadow-spacing) * 4)
+      calc(var(--_exact-dialog-shadow-spacing) * -4);
 
   .dialog {
-    min-width: 70vw;
+    width: 70vw;
   }
 
   .dialog::backdrop {
@@ -132,7 +144,7 @@
 
   @keyframes dialog-out-exact {
     to {
-      scale: .75;
+      scale: 0.75;
       opacity: 0;
     }
   }

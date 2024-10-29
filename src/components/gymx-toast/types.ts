@@ -5,5 +5,5 @@ export interface GymxToastProps {
   icon?: Component | string;
   text: string;
   closeText?: string;
-  duration?: number,
+  duration?: number;
 }

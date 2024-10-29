@@ -1,11 +1,10 @@
-
 <script lang="ts" setup generic="SelectItem extends GymxSelectOption<SelectItem>">
 import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed } from 'vue';
 
 defineEmits<{
-  'update:modelValue': []
+  'update:modelValue': [];
 }>();
 defineSlots<GymxSelectSlots>();
 
@@ -13,8 +12,10 @@ const props = withDefaults(defineProps<GymxSelectProps>(), {
   id: crypto.randomUUID(),
 });
 
-const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled))
-const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
+const disabled = computed(
+  () => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled),
+);
+const [modelValue] = defineModel<SelectItem | SelectItem[]>();
 </script>
 <template>
   <div
@@ -68,12 +69,18 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
   --_select-color-border-hover: var(--select-color-border-hover, initial);
 
   --_select-color-disabled: var(--select-color-disabled, var(--gymx-color-text));
-  --_select-color-background-disabled: var(--select-color-background-disabled, var(--gymx-color-black-1));
+  --_select-color-background-disabled: var(
+    --select-color-background-disabled,
+    var(--gymx-color-black-1)
+  );
   --_select-color-border-disabled: var(--select-color-border-disabled, var(--gymx-color-black-2));
 
   /* Other */
   --_select-radius: var(--select-radius, 0);
-  --_select-border: var(--select-border, var(--gymx-border-size-1, 1px) solid var(--_select-color-border, currentColor));
+  --_select-border: var(
+    --select-border,
+    var(--gymx-border-size-1, 1px) solid var(--_select-color-border, currentColor)
+  );
   --_select-outline: var(--select-outline, var(--_select-border)); // maybe not
 
   --_select-padding-inline: var(--select-padding-inline, var(--gymx-size-0));
@@ -124,7 +131,8 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
     outline: 0;
   }
 
-  &--hover, &:hover {
+  &--hover,
+  &:hover {
     color: var(--_select-color-hover);
     background: var(--_select-color-background-hover);
     border-color: var(--_select-color-border-hover);

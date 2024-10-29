@@ -15,9 +15,7 @@ describe('useSort', () => {
       { id: 2, name: 'B' },
     ]);
 
-    const sortOptions = ref<SortOption<Item>[]>([
-      { key: 'id', order: 'asc' },
-    ]);
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'id', order: 'asc' }]);
 
     const { sorted } = useSort({ initialData: data, sortOptions });
 
@@ -35,9 +33,7 @@ describe('useSort', () => {
       { id: 2, name: 'B' },
     ]);
 
-    const sortOptions = ref<SortOption<Item>[]>([
-      { key: 'id', order: 'desc' },
-    ]);
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'id', order: 'desc' }]);
 
     const { sorted } = useSort({ initialData: data, sortOptions });
 
@@ -76,9 +72,7 @@ describe('useSort', () => {
       { id: 2, name: 'C' },
     ]);
 
-    const sortOptions = ref<SortOption<Item>[]>([
-      { key: 'id', order: 'asc' },
-    ]);
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'id', order: 'asc' }]);
 
     const { sorted } = useSort({ initialData: data, sortOptions });
 

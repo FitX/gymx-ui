@@ -8,7 +8,6 @@ describe('GymxSelect', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
 
-
   it('disabled works', async () => {
     const wrapper = mount(GymxSelect, {
       props: {
@@ -20,7 +19,7 @@ describe('GymxSelect', () => {
     expect(wrapper.html()).toContain('select--disabled');
     await wrapper.setProps({ state: undefined });
     expect(wrapper.html()).not.toContain('select--disabled');
-    await wrapper.setProps({ inputAttributes: { disabled: 'disabled'} });
+    await wrapper.setProps({ inputAttributes: { disabled: 'disabled' } });
     expect(wrapper.html()).toContain('select--disabled');
   });
 
@@ -36,7 +35,6 @@ describe('GymxSelect', () => {
     const select = wrapper.find('select');
     expect(select.attributes('disabled')).toBeDefined();
   });
-
 
   it('should set disabled to true when $attrs.disabled is true', () => {
     const wrapper = mount(GymxSelect, {
@@ -71,7 +69,7 @@ describe('GymxSelect', () => {
     const wrapper = mount(GymxSelect, {
       slots: {
         'select-end': 'Hi from Slot',
-        option: ''
+        option: '',
       },
     });
 
@@ -85,13 +83,13 @@ describe('GymxSelect', () => {
       props: {
         modelValue: undefined,
         // @ts-ignore because vue test utils only accept simple values for setValue
-        options: [1,2,3],
+        options: [1, 2, 3],
       },
     });
     const select = wrapper.find('select');
     await select.setValue(2);
     const emitted = await wrapper.emitted('update:modelValue');
 
-    expect(emitted?.[0][0]).toBe(2)
+    expect(emitted?.[0][0]).toBe(2);
   });
 });

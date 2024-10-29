@@ -5,10 +5,7 @@ export interface PaginationOption {
   perPage: number;
 }
 
-export const paginate = <T>(
-  data: T[] = [],
-  paginationOption?: PaginationOption
-): T[] => {
+export const paginate = <T>(data: T[] = [], paginationOption?: PaginationOption): T[] => {
   if (!paginationOption) return data;
 
   const { page, perPage } = paginationOption;
@@ -28,8 +25,9 @@ export const usePagination = <T>(data: MaybeRefOrGetter<T[]>) => {
     });
   });
 
-  const totalPages = computed<number>(() =>
-    Math.ceil(toValue(data).length / toValue(perPage)) || 1);
+  const totalPages = computed<number>(
+    () => Math.ceil(toValue(data).length / toValue(perPage)) || 1,
+  );
 
   const nextPage = () => {
     if (toValue(currentPage) < toValue(totalPages)) {
@@ -56,5 +54,5 @@ export const usePagination = <T>(data: MaybeRefOrGetter<T[]>) => {
     totalPages,
     nextPage,
     prevPage,
-  }
+  };
 };

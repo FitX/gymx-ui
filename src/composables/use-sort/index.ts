@@ -11,14 +11,12 @@ export interface UseSortOptionsShared<T> {
   initialData: MaybeRefOrGetter<T[]>;
 }
 
-export interface UseSortOptionsWithSortOptions<T>
-  extends UseSortOptionsShared<T> {
+export interface UseSortOptionsWithSortOptions<T> extends UseSortOptionsShared<T> {
   sortOptions?: MaybeRefOrGetter<SortOption<T>[]>;
   customSort?: never;
 }
 
-export interface UseSortOptionsWithCustomSortFunction<T>
-  extends UseSortOptionsShared<T> {
+export interface UseSortOptionsWithCustomSortFunction<T> extends UseSortOptionsShared<T> {
   customSort: MaybeRefOrGetter<(data: T[]) => T[]>;
   sortOptions?: never;
 }
@@ -27,7 +25,7 @@ const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
   if (!sortOptions?.[0]?.order) {
     console.warn('No sort options provided. Returning original data.');
     return data;
-  };
+  }
   return data.sort((a, b) => {
     for (const { key, order } of sortOptions) {
       const compare = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
@@ -44,10 +42,10 @@ export type UseSortOptions<T> =
   | UseSortOptionsWithCustomSortFunction<T>;
 
 export const useSort = <T>({
-   initialData = [],
-   sortOptions = [],
-   customSort,
- }: UseSortOptions<T>) => {
+  initialData = [],
+  sortOptions = [],
+  customSort,
+}: UseSortOptions<T>) => {
   const sorted = computed(() => {
     if (typeof customSort === 'function') {
       customSort(toValue(initialData));

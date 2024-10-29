@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxInput } from './index';
@@ -25,9 +24,9 @@ describe('GymxInput', () => {
       props: {
         modelValue: 'foo',
         'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
-      }
+      },
     });
-    await wrapper.find('input').setValue('test')
+    await wrapper.find('input').setValue('test');
     expect(wrapper.props('modelValue')).toBe('test');
   });
 
@@ -41,7 +40,7 @@ describe('GymxInput', () => {
     expect(wrapper.html()).toContain('input--disabled');
     await wrapper.setProps({ state: undefined });
     expect(wrapper.html()).not.toContain('input--disabled');
-    await wrapper.setProps({ inputAttributes: { disabled: 'disabled'} });
+    await wrapper.setProps({ inputAttributes: { disabled: 'disabled' } });
     expect(wrapper.html()).toContain('input--disabled');
   });
 

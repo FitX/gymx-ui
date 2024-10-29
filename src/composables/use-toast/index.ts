@@ -2,10 +2,10 @@ import { ref } from 'vue';
 import type { GymxToastProps } from 'src/components/gymx-toast';
 
 export interface Toast {
-  id: number,
-  type: GymxToastProps['type'],
-  msg: string,
-  duration?: number,
+  id: number;
+  type: GymxToastProps['type'];
+  msg: string;
+  duration?: number;
 }
 
 const DEFAULT_DURATION = 6000;
@@ -17,8 +17,7 @@ export const useToast = () => {
   const id = ref(0);
 
   const removeToast = (id: number) => {
-    toasts.value = toasts.value
-      .filter((toast) => toast.id !== id);
+    toasts.value = toasts.value.filter((toast) => toast.id !== id);
   };
 
   const addToast = (toastContent: Optional<Omit<Toast, 'id'>, 'type'>) => {
@@ -29,7 +28,8 @@ export const useToast = () => {
       id: id.value,
       type: toastContent?.type || 'info',
       msg: toastContent.msg,
-      duration: toastContent.duration || toastContent?.type === 'error' ? undefined : DEFAULT_DURATION,
+      duration:
+        toastContent.duration || toastContent?.type === 'error' ? undefined : DEFAULT_DURATION,
     });
   };
 
@@ -37,5 +37,5 @@ export const useToast = () => {
     toasts,
     addToast,
     removeToast,
-  }
+  };
 };

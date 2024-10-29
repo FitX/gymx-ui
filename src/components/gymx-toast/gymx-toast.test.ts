@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { GymxToast } from './index';
@@ -12,12 +11,12 @@ vi.mock('@vueuse/core', () => ({
       setTimeout(() => {
         cb();
         immediate.value = false;
-      }, interval)
-    }
+      }, interval);
+    };
     return {
       start,
-    }
-  })
+    };
+  }),
 }));
 
 describe('GymxToast', () => {
@@ -43,7 +42,7 @@ describe('GymxToast', () => {
     const wrapper = mount(GymxToast, {
       props: {
         closeText: 'Schliessen',
-      }
+      },
     });
     expect(wrapper.find('[aria-label="Schliessen"]').exists()).toBe(true);
   });
@@ -52,7 +51,7 @@ describe('GymxToast', () => {
     const wrapper = mount(GymxToast, {
       props: {
         type: 'error',
-      }
+      },
     });
     expect(wrapper.find('[role="alert"]').exists()).toBe(true);
   });
@@ -61,7 +60,7 @@ describe('GymxToast', () => {
     const wrapper = mount(GymxToast, {
       props: {
         text: 'A Message from dev.',
-      }
+      },
     });
     expect(wrapper.text()).contains('A Message from dev.');
   });
@@ -69,8 +68,8 @@ describe('GymxToast', () => {
   it('Rendered Text', () => {
     const wrapper = mount(GymxToast, {
       props: {
-        icon: '🐨'
-      }
+        icon: '🐨',
+      },
     });
     expect(wrapper.html()).contains('🐨');
   });
@@ -78,7 +77,7 @@ describe('GymxToast', () => {
   it('Close Button works', () => {
     const wrapper = mount(GymxToast, {});
     wrapper.find('.toast__btn-close').trigger('click');
-    expect(wrapper.emitted()).toHaveProperty('close')
+    expect(wrapper.emitted()).toHaveProperty('close');
   });
 
   it('Close Event by Duration', () => {
@@ -86,7 +85,7 @@ describe('GymxToast', () => {
     const wrapper = mount(GymxToast, {
       props: {
         duration: 50000,
-      }
+      },
     });
 
     vi.runAllTimers();
@@ -99,7 +98,7 @@ describe('GymxToast', () => {
     const wrapper = mount(GymxToast, {
       props: {
         duration: undefined,
-      }
+      },
     });
 
     vi.runAllTimers();

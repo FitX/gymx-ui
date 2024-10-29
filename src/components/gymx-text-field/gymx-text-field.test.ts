@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxTextField } from './index';
@@ -13,8 +12,8 @@ describe('GymxTextField', () => {
     const wrapper = mount(GymxTextField, {
       props: {
         label: 'Test Label',
-        inputAttributes: { placeholder: 'Enter text' }
-      }
+        inputAttributes: { placeholder: 'Enter text' },
+      },
     });
 
     const label = wrapper.findComponent({ name: 'GymxLabel' });
@@ -27,8 +26,8 @@ describe('GymxTextField', () => {
       props: {
         label: 'Test Label',
         modelValue: 'Initial Value',
-        inputAttributes: { placeholder: 'Enter text' }
-      }
+        inputAttributes: { placeholder: 'Enter text' },
+      },
     });
 
     const input = wrapper.find('input');
@@ -50,8 +49,8 @@ describe('GymxTextField', () => {
       },
       slots: {
         'input-start': '<div class="start">Start</div>',
-        'input-end': '<div class="end">End</div>'
-      }
+        'input-end': '<div class="end">End</div>',
+      },
     });
 
     expect(wrapper.html()).toContain('<div class="start">Start</div>');

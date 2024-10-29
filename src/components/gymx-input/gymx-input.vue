@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxInputProps } from '@/components/gymx-input/types';
 import { getModifierClasses } from '@/utils/css-modifier';
@@ -9,7 +8,9 @@ const props = withDefaults(defineProps<GymxInputProps>(), {
   id: crypto.randomUUID(),
 });
 
-const disabled = computed(() => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled))
+const disabled = computed(
+  () => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled),
+);
 
 const modelValue = defineModel<string | number>({ default: '' });
 </script>
@@ -53,12 +54,18 @@ const modelValue = defineModel<string | number>({ default: '' });
   --_input-color-border-hover: var(--input-color-border-hover, initial);
 
   --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
-  --_input-color-background-disabled: var(--input-color-background-disabled, var(--gymx-color-black-1));
+  --_input-color-background-disabled: var(
+    --input-color-background-disabled,
+    var(--gymx-color-black-1)
+  );
   --_input-color-border-disabled: var(--input-color-border-disabled, var(--gymx-color-black-2));
 
   /* Other */
   --_input-radius: var(--input-radius, 0);
-  --_input-border: var(--input-border, var(--gymx-border-size-1, 1px) solid var(--_input-color-border));
+  --_input-border: var(
+    --input-border,
+    var(--gymx-border-size-1, 1px) solid var(--_input-color-border)
+  );
   --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
 
   --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));
@@ -102,7 +109,8 @@ const modelValue = defineModel<string | number>({ default: '' });
     outline: 0;
   }
 
-  &--hover, &:hover {
+  &--hover,
+  &:hover {
     color: var(--_input-color-hover);
     background: var(--_input-color-background-hover);
     border-color: var(--_input-color-border-hover);

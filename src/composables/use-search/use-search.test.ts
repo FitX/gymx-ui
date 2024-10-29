@@ -69,18 +69,23 @@ describe('useSearch', () => {
     const initialDataRef = ref(data);
     const searchTerm = ref('Owne');
     const keysToSearch = ['name', 'job'];
-    const customSearch = (items: Item[]) => items
-      .filter((item) =>
-        keysToSearch.some((key) => String(item[key])
-          .toLowerCase()
-          .includes(String(toValue(searchTerm).toLowerCase()).toLowerCase()))
-    );
+    const customSearch = (items: Item[]) =>
+      items.filter((item) =>
+        keysToSearch.some((key) =>
+          String(item[key])
+            .toLowerCase()
+            .includes(String(toValue(searchTerm).toLowerCase()).toLowerCase()),
+        ),
+      );
 
     const { filtered } = useSearch({
       initialData: initialDataRef,
       customSearch,
     });
 
-    expect(filtered.value).toEqual([{ name: 'Jessica', job: 'product owner' }, { name: 'Owner', job: '' }]);
+    expect(filtered.value).toEqual([
+      { name: 'Jessica', job: 'product owner' },
+      { name: 'Owner', job: '' },
+    ]);
   });
 });

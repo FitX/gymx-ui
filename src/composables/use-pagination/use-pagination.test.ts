@@ -95,11 +95,10 @@ describe('usePagination', () => {
     expect(currentPage.value).toBe(1);
   });
 
-
   it('should return 1 view if no values found in list', async () => {
     const TestComponent = defineComponent({
-      setup () {
-        const data = ref([1,2,3,4]);
+      setup() {
+        const data = ref([1, 2, 3, 4]);
         const { currentPage, totalPages, perPage } = usePagination(data);
 
         perPage.value = 2;
@@ -112,19 +111,17 @@ describe('usePagination', () => {
         return {
           currentPage,
           totalPages,
-          filter
+          filter,
         };
       },
-      template: '<div>{{ currentPage }} <button @click="filter()">filter</button></div>'
-    })
+      template: '<div>{{ currentPage }} <button @click="filter()">filter</button></div>',
+    });
 
-    const wrapper = mount(TestComponent, {})
+    const wrapper = mount(TestComponent, {});
     await wrapper.find('button').trigger('click');
     await flushPromises();
 
     // expect(wrapper.html()).toEqual('<div>1</div>')
-    expect(wrapper.vm).includes({totalPages: 1, currentPage: 1 })
-  })
-
+    expect(wrapper.vm).includes({ totalPages: 1, currentPage: 1 });
+  });
 });
-

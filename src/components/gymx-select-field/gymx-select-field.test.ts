@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxSelectField } from './index';
@@ -13,7 +12,7 @@ describe('GymxSelectField', () => {
     const wrapper = mount(GymxSelectField, {
       props: {
         label: 'Test Label',
-        options: []
+        options: [],
       },
     });
 
@@ -45,7 +44,7 @@ describe('GymxSelectField', () => {
       props: {
         modelValue: undefined,
         // @ts-ignore because vue test utils only accept simple values for setValue
-        options: [1,2,3],
+        options: [1, 2, 3],
       },
     });
     const select = wrapper.find('select');

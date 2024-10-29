@@ -3,7 +3,7 @@ import type { GymxSelectFieldOption, GymxSelectFieldProps, GymxSelectFieldSlots 
 import { GymxErrorMessage, GymxLabel, GymxSelect } from '@/components';
 
 defineEmits<{
-  'update:modelValue': []
+  'update:modelValue': [];
 }>();
 defineSlots<GymxSelectFieldSlots>();
 
@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<GymxSelectFieldProps>(), {
   id: crypto.randomUUID(),
 });
 
-const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
+const [modelValue] = defineModel<SelectItem | SelectItem[]>();
 </script>
 <template>
   <div class="select-field">
@@ -40,7 +40,9 @@ const [ modelValue ] = defineModel<SelectItem | SelectItem[]>();
       <slot name="input-hint">
         <span
           v-if="props.hint"
-          class="select-field__hint">{{ props.hint }}</span>
+          class="select-field__hint"
+          >{{ props.hint }}</span
+        >
       </slot>
     </div>
   </div>

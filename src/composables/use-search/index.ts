@@ -14,9 +14,7 @@ export interface FilterOption<T> {
 
 export const defaultSearch = <T>(data: T[], filterOptions: FilterOption<T>[]): T[] =>
   data.filter((item) =>
-    filterOptions.every(({ key, value, predicate }) =>
-      predicate(item[key], value)
-    )
+    filterOptions.every(({ key, value, predicate }) => predicate(item[key], value)),
   );
 
 /* const defaultSearch = (data: T[], searchTerm: searchOptions['term']): boolean => {
@@ -31,14 +29,12 @@ export interface UseSearchOptionsShared<T> {
   initialData: MaybeRefOrGetter<T[]>;
 }
 
-export interface UseSearchOptionsWithSearchOptions<T>
-  extends UseSearchOptionsShared<T> {
+export interface UseSearchOptionsWithSearchOptions<T> extends UseSearchOptionsShared<T> {
   searchOptions: MaybeRefOrGetter<FilterOption<T>[]>;
   customSearch?: never;
 }
 
-export interface UseSearchOptionsWithCustomSearchFunction<T>
-  extends UseSearchOptionsShared<T> {
+export interface UseSearchOptionsWithCustomSearchFunction<T> extends UseSearchOptionsShared<T> {
   customSearch: MaybeRefOrGetter<(data: T[]) => T[]>;
   searchOptions?: never;
 }
@@ -48,9 +44,9 @@ export type UseSearchOptions<T> =
   | UseSearchOptionsWithCustomSearchFunction<T>;
 
 export const useSearch = <T>({
- initialData = [],
- searchOptions = [],
- customSearch,
+  initialData = [],
+  searchOptions = [],
+  customSearch,
 }: UseSearchOptions<T>) => {
   const filtered = computed(() => {
     if (typeof customSearch === 'function') {
