@@ -21,7 +21,7 @@ vi.mock('@vueuse/core', () => ({
 
 describe('GymxToast', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxToast);
+    const wrapper = mount(GymxToast, { props: { text: 'Test' }});
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -33,7 +33,7 @@ describe('GymxToast', () => {
    *   duration?: number,
    */
   it('defaults works correctly', () => {
-    const wrapper = mount(GymxToast);
+    const wrapper = mount(GymxToast, { props: { text: 'Test' } });
     expect(wrapper.find('[role="status"]').exists()).toBe(true);
     expect(wrapper.find('[aria-label="Close"]').exists()).toBe(true);
   });
@@ -41,6 +41,7 @@ describe('GymxToast', () => {
   it('closeText text works correctly', () => {
     const wrapper = mount(GymxToast, {
       props: {
+        text: 'Test',
         closeText: 'Schliessen',
       },
     });
@@ -50,6 +51,7 @@ describe('GymxToast', () => {
   it('Role by status works correctly', () => {
     const wrapper = mount(GymxToast, {
       props: {
+        text: 'Test',
         type: 'error',
       },
     });
@@ -68,6 +70,7 @@ describe('GymxToast', () => {
   it('Rendered Text', () => {
     const wrapper = mount(GymxToast, {
       props: {
+        text: 'Test',
         icon: '🐨',
       },
     });
@@ -75,7 +78,7 @@ describe('GymxToast', () => {
   });
 
   it('Close Button works', () => {
-    const wrapper = mount(GymxToast, {});
+    const wrapper = mount(GymxToast, { props: {text: 'Test'} });
     wrapper.find('.toast__btn-close').trigger('click');
     expect(wrapper.emitted()).toHaveProperty('close');
   });
@@ -84,6 +87,7 @@ describe('GymxToast', () => {
     vi.useFakeTimers();
     const wrapper = mount(GymxToast, {
       props: {
+        text: 'Test',
         duration: 50000,
       },
     });
@@ -97,6 +101,7 @@ describe('GymxToast', () => {
     vi.useFakeTimers();
     const wrapper = mount(GymxToast, {
       props: {
+        text: 'Test',
         duration: undefined,
       },
     });

@@ -43,6 +43,7 @@ describe('GymxSelectField', () => {
       attachTo: document.body,
       props: {
         modelValue: undefined,
+        label: 'Test Label',
         // @ts-ignore because vue test utils only accept simple values for setValue
         options: [1, 2, 3],
       },
