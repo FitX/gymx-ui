@@ -8,7 +8,8 @@ const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
 });
 
-// const model = defineModel<string | number>();
+// [role="option"]:not([aria-disabled="true"])
+const optionSelectableSelectorString = '.combobox__option:not(.combobox__option--disabled)';
 const model = ref<string | number>(props.value || '');
 const text = ref<string | number>('');
 
@@ -16,7 +17,8 @@ const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
 const isListOpen = ref(false);
-const selectedOption = ref<Option | null>(null);
+const selectedOption = defineModel<Option | null>();
+// const selectedOption = ref<Option | null>();
 
 const onInputKeyup = async (event: KeyboardEvent) => {
   switch (event.key) {
@@ -36,7 +38,7 @@ const onInputKeyup = async (event: KeyboardEvent) => {
        */
       await nextTick();
       listElement.value
-        ?.querySelector<HTMLLIElement>(`[role="option"]:not([aria-disabled="true"])`)
+        ?.querySelector<HTMLLIElement>(optionSelectableSelectorString)
         ?.focus();
       event.preventDefault();
       event.stopPropagation();
@@ -71,10 +73,11 @@ const onInputClick = (event: MouseEvent) => {
     ?.scrollIntoView();
 };
 
-const handleOptionClick = (event: MouseEvent) => {
-  if (!(event.target as HTMLLIElement).matches(`[role="option"]:not([aria-disabled="true"])`))
+const handleOptionClick = (event: MouseEvent) => {;
+  const optionTarget: HTMLLIElement | null = (event.target as HTMLElement).closest(optionSelectableSelectorString);
+  if (!optionTarget)
     return;
-  selectOption(event.target as HTMLLIElement);
+  selectOption(optionTarget);
   hideList();
 };
 
@@ -85,7 +88,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
       // eslint-disable-next-line no-case-declarations
       let prevOptionElement = event.target?.previousElementSibling as HTMLLIElement;
       while (prevOptionElement) {
-        if (prevOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
+        if (prevOptionElement.matches(optionSelectableSelectorString)) break;
         prevOptionElement = prevOptionElement.previousElementSibling as HTMLLIElement;
       }
       prevOptionElement?.focus();
@@ -95,7 +98,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
       // eslint-disable-next-line no-case-declarations
       let nextOptionElement = event.target?.nextElementSibling as HTMLLIElement;
       while (nextOptionElement) {
-        if (nextOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
+        if (nextOptionElement.matches(optionSelectableSelectorString)) break;
         nextOptionElement = nextOptionElement.nextElementSibling as HTMLLIElement;
       }
       nextOptionElement?.focus();
