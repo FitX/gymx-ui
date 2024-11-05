@@ -11,13 +11,14 @@ const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
 // [role="option"]:not([aria-disabled="true"])
 const optionSelectableSelectorString = '.combobox__option:not(.combobox__option--disabled)';
 const model = ref<string | number>(props.value || '');
-const text = ref<string | number>('');
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
 const isListOpen = ref(false);
 const selectedOption = defineModel<Option | null>();
+
+const text = ref<string | number>(selectedOption.value?.text || '');
 // const selectedOption = ref<Option | null>();
 
 const onInputKeyup = async (event: KeyboardEvent) => {
