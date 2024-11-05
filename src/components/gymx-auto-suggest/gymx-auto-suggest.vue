@@ -9,12 +9,12 @@ const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
 });
 
 // [role="option"]:not([aria-disabled="true"])
-const optionSelectableSelectorString = '.combobox__option:not(.combobox__option--disabled)';
+const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled)';
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
-const isListOpen = ref(false);
+const isListOpen = ref(props.expanded || false);
 const selectedOption = defineModel<Option | null>();
 
 const text = ref<string | number>(selectedOption.value?.text || '');
@@ -83,7 +83,6 @@ const handleOptionClick = (event: MouseEvent) => {;
 
 const handleListKeyDown = (event: KeyboardEvent) => {
   let preventEvent = false;
-  console.log('event.target', event.target)
   switch (event.key) {
     case 'ArrowUp':
       // eslint-disable-next-line no-case-declarations
@@ -155,10 +154,10 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <div class="combobox" ref="wrapperElement">
+  <div class="auto-suggest" ref="wrapperElement">
     <label
       :for="props.id"
-      class="combobox__label">
+      class="auto-suggest__label">
       {{ props.label }}
     </label>
 
@@ -182,7 +181,7 @@ const filteredList = computed(() => {
         @keyup="onInputKeyup"
         @keydown="onInputKeydown"
         @mousedown="onInputClick"
-        class="combobox__input" />
+        class="auto-suggest__input" />
 
       <ul
         ref="listElement"
@@ -191,12 +190,12 @@ const filteredList = computed(() => {
         :hidden="!isListOpen"
         @click="handleOptionClick"
         @keydown="handleListKeyDown"
-        class="combobox__list">
+        class="auto-suggest__list">
         <li
           v-for="(option, index) in filteredList"
           :key="index"
-          class="combobox__option"
-          :class="{ 'combobox__option--disabled': option.disabled }"
+          class="auto-suggest__option"
+          :class="{ 'auto-suggest__option--disabled': option.disabled }"
           role="option"
           :tabindex="option.disabled === true ? undefined : '-1'"
           :data-text="option.text"
@@ -215,7 +214,7 @@ const filteredList = computed(() => {
           :filteredOptionLength="filteredList.length">
         <li
           v-if="filteredList.length === 0"
-          class="combobox__no-results">
+          class="auto-suggest__no-results">
           {{ props.noResultsText }}
         </li>
         </slot>
@@ -226,7 +225,7 @@ const filteredList = computed(() => {
         :isListOpen="isListOpen"
         :filteredOptionLength="filteredList.length">
         <div
-          class="visually-hidden combobox__status"
+          class="visually-hidden auto-suggest__status"
           role="status"
           aria-live="polite">
           {{ filteredList.length }} results available.
@@ -235,7 +234,35 @@ const filteredList = computed(() => {
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
+<style lang="scss">
+:root {
+  --auto-suggest-border-radius: 0;
+  --auto-suggest-border: 1px solid var(--gymx-color-gray-2);
+  --auto-suggest-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px,
+  var(--gymx-color-gray-5) 0px 0px 0px 1px;
 
-li { padding: 1rem; border: 1px solid red}
+  --auto-suggest-list-block-size: auto;
+  --auto-suggest-list-inline-size: 100%;
+
+  --auto-suggest-item-text-font-size: var(--gymx-font-size-1);
+  --auto-suggest-item-inline-padding: 0;
+  --auto-suggest-item-block-padding: var(--gymx-size-00);
+}
+</style>
+<style lang="scss" scoped>
+.auto-suggest {
+  &__list {
+    list-style: '';
+    margin: 0;
+    padding: 0;
+    font-size: var(--auto-suggest-item-text-font-size);
+    block-size: var(--auto-suggest-list-block-size);
+    inline-size: var(--auto-suggest-list-inline-size);
+  }
+
+  &__option {
+    padding-inline: var(--auto-suggest-item-inline-padding);
+    padding-block: var(--auto-suggest-item-block-padding);
+  }
+}
 </style>
