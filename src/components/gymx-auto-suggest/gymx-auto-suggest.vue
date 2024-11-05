@@ -10,7 +10,6 @@ const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
 
 // [role="option"]:not([aria-disabled="true"])
 const optionSelectableSelectorString = '.combobox__option:not(.combobox__option--disabled)';
-const model = ref<string | number>(props.value || '');
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
@@ -84,10 +83,11 @@ const handleOptionClick = (event: MouseEvent) => {;
 
 const handleListKeyDown = (event: KeyboardEvent) => {
   let preventEvent = false;
+  console.log('event.target', event.target)
   switch (event.key) {
     case 'ArrowUp':
       // eslint-disable-next-line no-case-declarations
-      let prevOptionElement = event.target?.previousElementSibling as HTMLLIElement;
+      let prevOptionElement = (event.target as HTMLLIElement)?.previousElementSibling as HTMLLIElement;
       while (prevOptionElement) {
         if (prevOptionElement.matches(optionSelectableSelectorString)) break;
         prevOptionElement = prevOptionElement.previousElementSibling as HTMLLIElement;
@@ -97,7 +97,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
       break;
     case 'ArrowDown':
       // eslint-disable-next-line no-case-declarations
-      let nextOptionElement = event.target?.nextElementSibling as HTMLLIElement;
+      let nextOptionElement = (event.target as HTMLLIElement)?.nextElementSibling as HTMLLIElement;
       while (nextOptionElement) {
         if (nextOptionElement.matches(optionSelectableSelectorString)) break;
         nextOptionElement = nextOptionElement.nextElementSibling as HTMLLIElement;
@@ -132,24 +132,16 @@ const showList = () => {
 
 const hideList = () => {
   if (!isListOpen.value) return;
-  if (selectedOption.value) {
-    // inputElement.value!.value = selectedOption.value.text;
-  }
   isListOpen.value = false;
   inputElement.value?.focus();
 };
 
-/**
- * @TODO emit
- */
 const selectOption = (optionElement: HTMLLIElement) => {
-  model.value = optionElement.dataset.value as string;
   text.value = optionElement.dataset.text as string;
   selectedOption.value = {
     text: optionElement.dataset.text!,
     value: optionElement.dataset.value!,
   };
-  // hideList();
 };
 
 onClickOutside(wrapperElement, hideList);
@@ -218,7 +210,7 @@ const filteredList = computed(() => {
           :tabindex="option.disabled === true ? undefined : '-1'"
           :data-text="option.text"
           :data-value="option.value"
-          :aria-selected="model === option.value"
+          :aria-selected="selectedOption?.value === option.value"
           :aria-disabled="option.disabled">
           <slot
             name="option"

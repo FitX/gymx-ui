@@ -16,7 +16,10 @@ export interface GymxAutoSuggestProps {
   placeholder?: string;
   readonly?: boolean;
   required?: boolean;
-  value?: string | number;
   noResultsText?: string;
   filterFunction?: () => Option[]
+}
+
+export interface GymxAutoSuggestEmits {
+
 }

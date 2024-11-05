@@ -27,7 +27,7 @@ export const Default: Story = {
       text: `Text ${i + 1}`,
       value: `Value ${i + 1}`,
     })),
-    modelValue: 'model',
+    modelValue: undefined,
     // text: 'This is an error message',
   },
 };
@@ -48,7 +48,7 @@ export const CustomSlots: Story = {
         value: `Value ${i + 1}`,
       })));
 
-      const model = ref('model');
+      const model = ref(options.value[2]);
 
       const addOption = () => {
         const currentLength = options.value.length;
@@ -64,7 +64,7 @@ export const CustomSlots: Story = {
     template: `
       <gymx-auto-suggest v-bind="args" :options="options" v-model="model">
         <template #option="{ option }">
-          <div>Custom Option {{ option }}</div>
+          <div style="display: contents">Custom Option {{ option }}</div>
         </template>
         <template #no-results="{ filteredOptionLength, isListOpen }">
           <li><button @click="addOption">Add Option</button></li>

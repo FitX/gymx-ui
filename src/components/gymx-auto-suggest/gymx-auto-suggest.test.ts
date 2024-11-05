@@ -63,7 +63,7 @@ describe('GymxAutoSuggest', () => {
     expect(document.activeElement).toBe(firstOption!.element);
 
     await firstOption!.trigger('keydown', { key: 'Enter' });
-    expect(wrapper.vm.model).toBe('1');
+    expect(wrapper.vm.selectedOption?.value).toBe('1');
   });
 
   it('handle input keys', async () => {
@@ -126,7 +126,7 @@ describe('GymxAutoSuggest', () => {
     // await input.trigger('keydown', { key: 'Enter' });
     await firstLi!.trigger('keydown', { key: 'Enter' });
 
-    expect(wrapper.vm.model).toBe('1');
+    expect(wrapper.vm.selectedOption?.value).toBe('1');
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
@@ -187,7 +187,7 @@ describe('GymxAutoSuggest', () => {
     const disabledOption = wrapper.findAll('li').at(0);
 
     await disabledOption.trigger('click');
-    expect(wrapper.vm.model).toBe('1');
+    expect(wrapper.vm.selectedOption?.value).toBe('1');
   });
 
   it('prevents selection of disabled options', async () => {
@@ -195,7 +195,7 @@ describe('GymxAutoSuggest', () => {
     const disabledOption = wrapper.findAll('li').at(1);
 
     await disabledOption.trigger('click');
-    expect(wrapper.vm.model).not.toBe('2');
+    expect(wrapper.vm.selectedOption?.value).not.toBe('2');
   });
 
   it('No Results Text is visible', async () => {
