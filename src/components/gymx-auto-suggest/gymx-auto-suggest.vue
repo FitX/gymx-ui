@@ -1,30 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
+import type { GymxAutoSuggestProps, Option } from '@/components/gymx-auto-suggest/types';
+import { filter } from '@/components/gymx-auto-suggest/utils';
 
-interface Option {
-  text: string;
-  value: string | number;
-  disabled?: boolean;
-}
-
-interface Props {
-  disabled?: boolean;
-  error?: string;
-  expand?: boolean;
-  id?: string;
-  label?: string;
-  loading?: boolean;
-  name: string;
-  options: Option[];
-  placeholder?: string;
-  readonly?: boolean;
-  required?: boolean;
-  value?: string | number;
-  noResultsText?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
 });
 
@@ -32,22 +12,13 @@ const props = withDefaults(defineProps<Props>(), {
 const model = ref<string | number>(props.value || '');
 const text = ref<string | number>('');
 
-const filter = (text: string): Option[] => {
-  const sanitized = text.toLowerCase().trim();
-  return props.options.filter(option =>
-    option.text.toLowerCase().includes(sanitized)
-  );
-};
-
 const listElement = ref<HTMLUListElement | null>(null);
-const wrapperElement = ref<HTMLUListElement | null>(null);
+const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
 const isListOpen = ref(false);
 const selectedOption = ref<Option | null>(null);
 
 const onInputKeyup = async (event: KeyboardEvent) => {
-  console.log('onInputKeyup', listElement.value
-    ?.querySelector<HTMLLIElement>(`[role="option"]:not([aria-disabled="true"])`))
   switch (event.key) {
     case 'Escape':
     case 'ArrowUp':
@@ -76,7 +47,6 @@ const onInputKeyup = async (event: KeyboardEvent) => {
 };
 
 const onInputKeydown = (event: KeyboardEvent) => {
-  console.log('onInputKeydown event', event)
   let preventEvent = false;
   switch (event.key) {
     case 'Escape':
@@ -102,7 +72,6 @@ const onInputClick = (event: MouseEvent) => {
 };
 
 const handleOptionClick = (event: MouseEvent) => {
-  console.log('handleOptionClick', event.target)
   if (!(event.target as HTMLLIElement).matches(`[role="option"]:not([aria-disabled="true"])`))
     return;
   selectOption(event.target as HTMLLIElement);
@@ -113,6 +82,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
   let preventEvent = false;
   switch (event.key) {
     case 'ArrowUp':
+      // eslint-disable-next-line no-case-declarations
       let prevOptionElement = event.target?.previousElementSibling as HTMLLIElement;
       while (prevOptionElement) {
         if (prevOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
@@ -122,6 +92,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
       preventEvent = true;
       break;
     case 'ArrowDown':
+      // eslint-disable-next-line no-case-declarations
       let nextOptionElement = event.target?.nextElementSibling as HTMLLIElement;
       while (nextOptionElement) {
         if (nextOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
@@ -164,6 +135,9 @@ const hideList = () => {
   inputElement.value?.focus();
 };
 
+/**
+ * @TODO emit
+ */
 const selectOption = (optionElement: HTMLLIElement) => {
   model.value = optionElement.dataset.value as string;
   text.value = optionElement.dataset.text as string;
@@ -187,7 +161,9 @@ const filteredList = computed(() => {
 
   // return filter(inputValue);
   // return (inputValue === '' || isExactMatch) ? props.options : filter(inputValue);
-  return inputValue === '' ? props.options : filter(inputValue);
+  if (inputValue === '') return props.options;
+  if (typeof props.filterFunction === 'function') return props.filterFunction;
+  return filter(props.options, inputValue);
 });
 </script>
 
@@ -195,13 +171,11 @@ const filteredList = computed(() => {
   <div class="combobox" ref="wrapperElement">
     <label
       :for="props.id"
-      class="combobox__label label">
-      {{ props.label }} {{ isListOpen }}<!--{{ selectedOption }} {{ model }}-->
+      class="combobox__label">
+      {{ props.label }}
     </label>
 
     <div class="input-container">
-      <slot name="icon-start" />
-
       <input
         v-model="text"
         ref="inputElement"
@@ -234,8 +208,8 @@ const filteredList = computed(() => {
         <li
           v-for="(option, index) in filteredList"
           :key="index"
-          class="list__option"
-          :class="{ '--disabled': option.disabled }"
+          class="combobox__option"
+          :class="{ 'combobox__option--disabled': option.disabled }"
           role="option"
           :tabindex="option.disabled === true ? undefined : '-1'"
           :data-text="option.text"
@@ -248,19 +222,29 @@ const filteredList = computed(() => {
             >{{ option.text }}</slot
           >
         </li>
+        <slot
+          name="no-results"
+          :isListOpen="isListOpen"
+          :filteredOptionLength="filteredList.length">
         <li
           v-if="filteredList.length === 0"
-          class="list__no-results">
+          class="combobox__no-results">
           {{ props.noResultsText }}
         </li>
+        </slot>
       </ul>
 
-      <div
-        class="visually-hidden"
-        role="status"
-        aria-live="polite">
-        {{ filteredList.length }} results available.
-      </div>
+      <slot
+        name="aria-status"
+        :isListOpen="isListOpen"
+        :filteredOptionLength="filteredList.length">
+        <div
+          class="visually-hidden combobox__status"
+          role="status"
+          aria-live="polite">
+          {{ filteredList.length }} results available.
+        </div>
+      </slot>
     </div>
   </div>
 </template>

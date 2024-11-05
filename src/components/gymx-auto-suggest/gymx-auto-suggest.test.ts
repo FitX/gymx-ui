@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { GymxAutoSuggest } from './index';
-import { nextTick } from 'vue';
 
 const options = [
   { text: 'Option 1', value: '1' },
@@ -28,13 +27,13 @@ describe('GymxAutoSuggest', () => {
 
   it('render with label and options', () => {
     const wrapper = mountGymxAutoSuggest();
-    expect(wrapper.find('label').text()).toContain('Test GymxAutoSuggest');
-    expect(wrapper.findAll('li').length).toBe(3);
+    expect(wrapper.find('.combobox__label').text()).toContain('Test GymxAutoSuggest');
+    expect(wrapper.findAll('.combobox__option').length).toBe(3);
   });
 
   it('filters options based on input text', async () => {
     const wrapper = mountGymxAutoSuggest();
-    await wrapper.find('input').setValue('Option 1');
+    await wrapper.find('.combobox__input').setValue('Option 1');
     expect(wrapper.vm.filteredList).toEqual([{ text: 'Option 1', value: '1' }]);
   });
 
@@ -45,9 +44,7 @@ describe('GymxAutoSuggest', () => {
     expect(wrapper.vm.isListOpen).toBe(false);
 
     await input.trigger('mousedown');
-    await nextTick();
-    console.log('Nach Focus isListOpen:', wrapper.vm.isListOpen);
-    // expect(wrapper.find('ul').isVisible()).toBe(true);
+
     expect(wrapper.vm.isListOpen).toBe(true);
 
     await wrapper.vm.hideList();
@@ -56,25 +53,25 @@ describe('GymxAutoSuggest', () => {
 
   it('handle arrow key navigation and selection', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keyup', { key: 'ArrowDown' });
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(true);
 
-    const firstOption = wrapper.findAll('li').at(0);
-    expect(document.activeElement).toBe(firstOption.element);
+    const firstOption = wrapper.findAll('.combobox__option').at(0);
+    expect(document.activeElement).toBe(firstOption!.element);
 
-    await firstOption.trigger('keydown', { key: 'Enter' });
+    await firstOption!.trigger('keydown', { key: 'Enter' });
     expect(wrapper.vm.model).toBe('1');
   });
 
   it('handle input keys', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keyup', { key: 'A' });
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(true);
   });
 
@@ -86,13 +83,11 @@ describe('GymxAutoSuggest', () => {
         { text: 'Option 3', value: '3' },
       ]
     });
-    const input = wrapper.find('input');
-
+    const input = wrapper.find('.combobox__input');
     await input.trigger('keyup', { key: 'ArrowDown' });
-    await nextTick();
 
-    const maybeSelectedOptionNotDisabled = wrapper.findAll('li').at(1);
-    expect(document.activeElement).toBe(maybeSelectedOptionNotDisabled.element);
+    const maybeSelectedOptionNotDisabled = wrapper.findAll('.combobox__option').at(1);
+    expect(document.activeElement).toBe(maybeSelectedOptionNotDisabled!.element);
   });
 
   it('ignores defined keyup cases ', async () => {
@@ -106,11 +101,11 @@ describe('GymxAutoSuggest', () => {
       'Shift'
     ];
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     const testKeys = async (key: string) => {
       await input.trigger('keyup', { key });
-      await nextTick();
+
       expect(wrapper.vm.isListOpen).toBe(false);
     };
 
@@ -122,77 +117,69 @@ describe('GymxAutoSuggest', () => {
 
   it('selects option with Enter key and closes list', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keydown', { key: 'ArrowDown' });
-    await nextTick();
+
     // li
     const firstLi = wrapper.findAll('li').at(0);
     // await input.trigger('keydown', { key: 'Enter' });
-    await firstLi.trigger('keydown', { key: 'Enter' });
-    await nextTick();
+    await firstLi!.trigger('keydown', { key: 'Enter' });
 
-    console.log('vm', wrapper.vm)
-    await nextTick();
     expect(wrapper.vm.model).toBe('1');
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
   it('hide list on escape keydown event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keydown', { key: 'Escape' });
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
   it('hide list on escape tab event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keydown', { key: 'Tab' });
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
   it('ul hide list on escape tab event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('ul');
+    const input = wrapper.find('.combobox__list');
 
     await input.trigger('keydown', { key: 'Tab' });
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
   it('ul hide list on escape escape event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('ul');
+    const input = wrapper.find('.combobox__list');
 
     await input.trigger('keydown', { key: 'Escape'});
-    await nextTick();
+
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
 
-
   it('navigate list items', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('input');
+    const input = wrapper.find('.combobox__input');
 
     await input.trigger('keyup', { key: 'O' });
-    const listItems = wrapper.findAll('li');
+    const listItems = wrapper.findAll('.combobox__option');
 
-    await listItems.at(0).trigger('keydown', { key: 'ArrowDown' });
-    expect(document.activeElement).toBe(listItems.at(2).element);
+    await listItems.at(0)!.trigger('keydown', { key: 'ArrowDown' });
+    expect(document.activeElement).toBe(listItems.at(2)!.element);
 
-    await listItems.at(2).trigger('keydown', { key: 'ArrowUp' });
-    expect(document.activeElement).toBe(listItems.at(0).element);
+    await listItems.at(2)!.trigger('keydown', { key: 'ArrowUp' });
+    expect(document.activeElement).toBe(listItems.at(0)!.element);
   });
-
-
-
-
 
 
   it('selects option with click', async () => {
@@ -213,41 +200,33 @@ describe('GymxAutoSuggest', () => {
 
   it('No Results Text is visible', async () => {
     const wrapper = mountGymxAutoSuggest();;
-    expect(wrapper.find('.list__no-results').exists()).toBe(false);
+    expect(wrapper.find('.combobox__no-results').exists()).toBe(false);
     const input = wrapper.find('input');
     await input.setValue('Not included');
-    expect(wrapper.find('.list__no-results').exists()).toBe(true);
-    expect(wrapper.find('.list__no-results').text()).toBe('No results available');
+    expect(wrapper.find('.combobox__no-results').exists()).toBe(true);
+    expect(wrapper.find('.combobox__no-results').text()).toBe('No results available');
     await wrapper.setProps({ noResultsText: 'Another Text'});
-    expect(wrapper.find('.list__no-results').text()).toBe('Another Text');
+    expect(wrapper.find('.combobox__no-results').text()).toBe('Another Text');
   });
-
-
-
-
-
-
 
   it('set focus as default', async () => {
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('input');
     const firstLi = wrapper.findAll('li').at(0);
-    await firstLi.trigger('keydown', { key: 'O' });
+    await firstLi?.trigger('keydown', { key: 'O' });
 
-    await nextTick();
     expect(document.activeElement).toBe(input.element);
   });
 
   it('calls scrollIntoView when input is clicked and list is shown', async () => {
     const wrapper = mountGymxAutoSuggest();
     const scrollIntoViewMock = vi.fn();
-    HTMLLIElement.prototype.scrollIntoView = scrollIntoViewMock;
-    HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
-    window.HTMLElement.prototype.scrollIntoView = () => {};
-    window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+    // HTMLLIElement.prototype.scrollIntoView = scrollIntoViewMock;
+    // HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+    // window.HTMLElement.prototype.scrollIntoView = () => {};
+    // window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 
     const input = wrapper.find('input');
-    const list = wrapper.find('ul');
     const listItem = wrapper.find(`[role="option"][data-value="1"]`);
 
     await input.setValue('Option 1')
@@ -257,14 +236,8 @@ describe('GymxAutoSuggest', () => {
     await input.trigger('mousedown');
 
     expect(wrapper.vm.isListOpen).toBe(true);
-
     expect(listItem.exists()).toBe(true);
-
-    await nextTick();
-
     expect(scrollIntoViewMock).toHaveBeenCalled();
-
-
     expect(scrollIntoViewMock).toHaveBeenCalled();
   });
 });
