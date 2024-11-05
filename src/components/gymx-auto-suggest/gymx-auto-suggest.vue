@@ -148,17 +148,8 @@ onClickOutside(wrapperElement, hideList);
 
 const filteredList = computed(() => {
   const inputValue = text.value.toString().trim().toLowerCase();
-  const isExactMatch = props.options.some((option) => option.text.toLowerCase() === inputValue);
-
-  console.log({
-    inputValue,
-    isExactMatch
-  })
-
-  // return filter(inputValue);
-  // return (inputValue === '' || isExactMatch) ? props.options : filter(inputValue);
   if (inputValue === '') return props.options;
-  if (typeof props.filterFunction === 'function') return props.filterFunction();
+  if (typeof props.filterFunction === 'function') return props.filterFunction(props.options, inputValue);
   return filter(props.options, inputValue);
 });
 </script>

@@ -37,6 +37,11 @@ describe('GymxAutoSuggest', () => {
     expect(wrapper.vm.filteredList).toEqual([{ text: 'Option 1', value: '1' }]);
   });
 
+  it('input text based on model', async () => {
+    const wrapper = mountGymxAutoSuggest({ modelValue: options[2]});
+    expect(wrapper.vm.text).toBe('Option 3');
+  });
+
   it('open and closes the list when input is clicked', async () => {
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('input');
@@ -240,4 +245,18 @@ describe('GymxAutoSuggest', () => {
     expect(scrollIntoViewMock).toHaveBeenCalled();
     expect(scrollIntoViewMock).toHaveBeenCalled();
   });
+
+  it('should call filterFunction when provide', async () => {
+    type demoOption = { text: string, value: string, id: number }
+    const filterFunction = (items: demoOption[]) => {
+      return items?.filter((item) => item.id < 2)
+    };
+    const wrapper = mountGymxAutoSuggest({
+      options: [{ text: 't1', value: 'v1', id: 1}, { text: 't2', value: 'v2', id: 2}],
+      filterFunction,
+    });
+    const input = wrapper.find('input');
+    await input.setValue('blubb');
+    expect(wrapper.vm.filteredList.length).toBe(1)
+  })
 });

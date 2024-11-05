@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAutoSuggest } from './gymx-auto-suggest.vue';
 import { ref } from 'vue';
+import type { Option } from '@/components/gymx-auto-suggest/types';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -43,32 +44,61 @@ export const CustomSlots: Story = {
   render: (args) => ({
     components: { GymxAutoSuggest },
     setup() {
+      type ExtraOption = {
+        text: string;
+        value: string;
+        extra: number;
+      }
       const options = ref(Array.from({length: 20}, (_, i) => ({
         text: `Text ${i + 1}`,
         value: `Value ${i + 1}`,
+        extra: (i + 100),
       })));
 
-      const model = ref(options.value[2]);
+      const extraFilter = (options: ExtraOption[], text: string): Option[] => {
+        const sanitized = Number(text.toLowerCase().trim());
+        return options.filter(option =>
+          option.extra > sanitized
+        );
+      };
+
+      // const model = ref(options.value[2]);
+      const model = ref();
 
       const addOption = () => {
         const currentLength = options.value.length;
-        options.value.push({ text: `Text ${currentLength + 1 }`, value: `Value ${currentLength + 1}`})
+        options.value.push({
+          text: `Text ${currentLength + 1 }`,
+          value: `Value ${currentLength + 1}`,
+          extra: (currentLength + 1),
+        })
       };
       return {
         args,
         model,
         options,
         addOption,
+        extraFilter,
       };
     },
     template: `
-      <gymx-auto-suggest v-bind="args" :options="options" v-model="model">
+      <gymx-auto-suggest
+        v-bind="args"
+        :options="options"
+        label="Search by Amount"
+        placeholder="e.g. 100"
+        v-model="model"
+        :filter-function="extraFilter">
         <template #option="{ option }">
-          <div style="display: contents">Custom Option {{ option }}</div>
+          <div>Custom {{ option.text }} <b>Amount: {{ option.extra }}</b></div>
         </template>
         <template #no-results="{ filteredOptionLength, isListOpen }">
-          <li><button @click="addOption">Add Option</button></li>
+          <li v-if="filteredOptionLength <= 0"><button @click="addOption">Add Option</button></li>
         </template>
-      </gymx-auto-suggest><p>model: {{ model }}</p>`,
+      </gymx-auto-suggest>
+      <p>model:
+        <pre>{{ model }}</pre>
+      </p>
+    `,
   }),
 };
