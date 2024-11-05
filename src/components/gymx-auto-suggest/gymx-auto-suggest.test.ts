@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { GymxAutoSuggest } from './index';
 import { nextTick } from 'vue';
 
@@ -156,6 +156,24 @@ describe('GymxAutoSuggest', () => {
     expect(wrapper.vm.isListOpen).toBe(false);
   });
 
+  it('ul hide list on escape tab event', async () => {
+    const wrapper = mountGymxAutoSuggest();
+    const input = wrapper.find('ul');
+
+    await input.trigger('keydown', { key: 'Tab' });
+    await nextTick();
+    expect(wrapper.vm.isListOpen).toBe(false);
+  });
+
+  it('ul hide list on escape escape event', async () => {
+    const wrapper = mountGymxAutoSuggest();
+    const input = wrapper.find('ul');
+
+    await input.trigger('keydown', { key: 'Escape'});
+    await nextTick();
+    expect(wrapper.vm.isListOpen).toBe(false);
+  });
+
 
 
   it('navigate list items', async () => {
@@ -202,5 +220,51 @@ describe('GymxAutoSuggest', () => {
     expect(wrapper.find('.list__no-results').text()).toBe('No results available');
     await wrapper.setProps({ noResultsText: 'Another Text'});
     expect(wrapper.find('.list__no-results').text()).toBe('Another Text');
+  });
+
+
+
+
+
+
+
+  it('set focus as default', async () => {
+    const wrapper = mountGymxAutoSuggest();
+    const input = wrapper.find('input');
+    const firstLi = wrapper.findAll('li').at(0);
+    await firstLi.trigger('keydown', { key: 'O' });
+
+    await nextTick();
+    expect(document.activeElement).toBe(input.element);
+  });
+
+  it('calls scrollIntoView when input is clicked and list is shown', async () => {
+    const wrapper = mountGymxAutoSuggest();
+    const scrollIntoViewMock = vi.fn();
+    HTMLLIElement.prototype.scrollIntoView = scrollIntoViewMock;
+    HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+    window.HTMLElement.prototype.scrollIntoView = () => {};
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+    const input = wrapper.find('input');
+    const list = wrapper.find('ul');
+    const listItem = wrapper.find(`[role="option"][data-value="1"]`);
+
+    await input.setValue('Option 1')
+
+    listItem.element.scrollIntoView = scrollIntoViewMock;
+
+    await input.trigger('mousedown');
+
+    expect(wrapper.vm.isListOpen).toBe(true);
+
+    expect(listItem.exists()).toBe(true);
+
+    await nextTick();
+
+    expect(scrollIntoViewMock).toHaveBeenCalled();
+
+
+    expect(scrollIntoViewMock).toHaveBeenCalled();
   });
 });

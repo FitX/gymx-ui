@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
 interface Option {
@@ -46,6 +46,8 @@ const isListOpen = ref(false);
 const selectedOption = ref<Option | null>(null);
 
 const onInputKeyup = async (event: KeyboardEvent) => {
+  console.log('onInputKeyup', listElement.value
+    ?.querySelector<HTMLLIElement>(`[role="option"]:not([aria-disabled="true"])`))
   switch (event.key) {
     case 'Escape':
     case 'ArrowUp':
@@ -57,6 +59,11 @@ const onInputKeyup = async (event: KeyboardEvent) => {
       break;
     case 'ArrowDown':
       showList();
+      /*
+       Make sure the list is visible before focusing the first item
+       @TODO try other solutions
+       */
+      await nextTick();
       listElement.value
         ?.querySelector<HTMLLIElement>(`[role="option"]:not([aria-disabled="true"])`)
         ?.focus();
@@ -89,7 +96,8 @@ const onInputKeydown = (event: KeyboardEvent) => {
 const onInputClick = (event: MouseEvent) => {
   showList();
   listElement.value
-    ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
+    // ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
+    ?.querySelector<HTMLLIElement>(`[role="option"][data-text="${event?.target?.value}"]`)
     ?.scrollIntoView();
 };
 
@@ -102,11 +110,10 @@ const handleOptionClick = (event: MouseEvent) => {
 };
 
 const handleListKeyDown = (event: KeyboardEvent) => {
-  console.log('handleListKeyDown', event.key)
   let preventEvent = false;
   switch (event.key) {
     case 'ArrowUp':
-      let prevOptionElement = event.target.previousElementSibling as HTMLLIElement;
+      let prevOptionElement = event.target?.previousElementSibling as HTMLLIElement;
       while (prevOptionElement) {
         if (prevOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
         prevOptionElement = prevOptionElement.previousElementSibling as HTMLLIElement;
@@ -115,8 +122,7 @@ const handleListKeyDown = (event: KeyboardEvent) => {
       preventEvent = true;
       break;
     case 'ArrowDown':
-      let nextOptionElement = event.target.nextElementSibling as HTMLLIElement;
-      console.log('nextOptionElement',  event.target.nextElementSibling)
+      let nextOptionElement = event.target?.nextElementSibling as HTMLLIElement;
       while (nextOptionElement) {
         if (nextOptionElement.matches(`[role="option"]:not([aria-disabled="true"])`)) break;
         nextOptionElement = nextOptionElement.nextElementSibling as HTMLLIElement;
