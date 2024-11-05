@@ -162,7 +162,7 @@ const filteredList = computed(() => {
   // return filter(inputValue);
   // return (inputValue === '' || isExactMatch) ? props.options : filter(inputValue);
   if (inputValue === '') return props.options;
-  if (typeof props.filterFunction === 'function') return props.filterFunction;
+  if (typeof props.filterFunction === 'function') return props.filterFunction();
   return filter(props.options, inputValue);
 });
 </script>
