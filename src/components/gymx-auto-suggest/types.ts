@@ -7,9 +7,9 @@ export interface Option {
 export interface GymxAutoSuggestProps {
   disabled?: boolean;
   error?: string;
-  expand?: boolean;
+  expanded?: boolean;
   id?: string;
-  label?: string;
+  label: string;
   loading?: boolean;
   name: string;
   options: Option[];
@@ -17,7 +17,7 @@ export interface GymxAutoSuggestProps {
   readonly?: boolean;
   required?: boolean;
   noResultsText?: string;
-  filterFunction?: () => Option[]
+  filterFunction?: (options?: Option[], text?: string) => Option[]
 }
 
 export interface GymxAutoSuggestEmits {
