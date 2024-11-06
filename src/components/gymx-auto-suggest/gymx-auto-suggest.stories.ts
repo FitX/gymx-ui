@@ -42,6 +42,22 @@ export const Default: Story = {
   },
 };
 
+export const HasError: Story = {
+  args: {
+    label: 'Demo',
+    name: 'demo',
+    id: 'demo',
+    errorMessage: 'This is an error message',
+    placeholder: 'Demo...',
+    options: Array.from({length: 10}, (_, i) => ({
+      text: `Text ${i + 1}`,
+      value: `Value ${i + 1}`,
+    })),
+    modelValue: undefined,
+    // text: 'This is an error message',
+  },
+};
+
 export const CustomSlots: Story = {
   args: {
     label: 'Demo',

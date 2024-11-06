@@ -1,3 +1,5 @@
+import type { InputHTMLAttributes, HTMLAttributes } from 'vue';
+
 export interface Option {
   text: string;
   value: string | number;
@@ -6,18 +8,18 @@ export interface Option {
 
 export interface GymxAutoSuggestProps {
   disabled?: boolean;
-  error?: string;
+  errorMessage?: string;
   expanded?: boolean;
   id?: string;
   label: string;
-  loading?: boolean;
   name: string;
   options: Option[];
   placeholder?: string;
   readonly?: boolean;
   required?: boolean;
   noResultsText?: string;
-  filterFunction?: (options?: Option[], text?: string) => Option[]
+  filterFunction?: (options?: Option[], text?: string) => Option[];
+  inputAttributes?: InputHTMLAttributes;
 }
 
 export interface GymxAutoSuggestEmits {

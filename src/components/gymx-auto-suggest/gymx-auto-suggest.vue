@@ -7,6 +7,9 @@ import { GymxTextField } from '@/components';
 
 const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
+  inputAttributes: () => ({
+    type: 'text'
+  }),
 });
 
 const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled)';
@@ -14,7 +17,6 @@ const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest_
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
-const textFieldComponent = ref();
 const isListOpen = ref(props.expanded || false);
 const selectedOption = defineModel<Option | null>();
 
@@ -157,7 +159,6 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <p>?{{ inputElement }}</p>
   <div class="auto-suggest" ref="wrapperElement">
     <gymx-text-field
       :ref="(el) => inputElement = el?.inputRef"
@@ -165,15 +166,17 @@ const filteredList = computed(() => {
       v-model="text"
       :id="props.id"
       :name="props.name"
+      :error-message="props.errorMessage"
       :inputAttributes="{
         type: 'text',
-        required: props.required,
         autocapitalize: 'none',
         autocomplete: 'off',
         spellcheck: false,
+        placeholder: props.placeholder,
+        ...props.inputAttributes,
+        required: props.required,
         disabled: props.disabled,
         readonly: props.readonly,
-        placeholder: props.placeholder,
         role: 'combobox',
         'aria-autocomplete': 'list',
         'aria-expanded': isListOpen,
@@ -182,9 +185,6 @@ const filteredList = computed(() => {
         onKeydown: onInputKeydown,
         onMousedown: onInputClick
       }"
-      @keyup="onInputKeyup"
-      @keydown="onInputKeydown"
-      @mousedown="onInputClick"
       class="auto-suggest__input" />
 
     <div class="input-container">
