@@ -36,9 +36,8 @@ defineExpose({
     </span>
     <input
       :type="props.type"
-      data-ref="() => props.inputAttributes?.ref"
       :id="props.id"
-      v-bind="{ ...props.inputAttributes, ...$attrs }"
+      v-bind="props.inputAttributes"
       ref="inputRef"
       :disabled="disabled || ($attrs.disabled ? true : false)"
       v-model="modelValue"

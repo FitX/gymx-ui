@@ -29,7 +29,6 @@ defineExpose({
 });
 </script>
 <template>
-  <p>{{ inputRef }}</p>
   <div class="text-field">
     <gymx-label
       :for="props.id"
@@ -38,7 +37,7 @@ defineExpose({
     <gymx-input
       :ref="(el) => inputRef = el?.inputRef"
       :id="props.id"
-      v-bind="props.inputAttributes"
+      :input-attributes="props.inputAttributes"
       :state="props.state"
       class="text-field__input"
       v-model="modelValue">
