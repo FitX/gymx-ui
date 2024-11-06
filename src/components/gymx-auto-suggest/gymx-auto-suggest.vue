@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { computed, ref, nextTick } from 'vue';
+import { computed, ref, nextTick, onMounted, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import type { GymxAutoSuggestProps, Option } from '@/components/gymx-auto-suggest/types';
 import { filter } from '@/components/gymx-auto-suggest/utils';
+import { GymxTextField } from '@/components';
 
 const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
 });
 
-// [role="option"]:not([aria-disabled="true"])
 const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled)';
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
+const textFieldComponent = ref();
 const isListOpen = ref(props.expanded || false);
 const selectedOption = defineModel<Option | null>();
 
 const text = ref<string | number>(selectedOption.value?.text || '');
-// const selectedOption = ref<Option | null>();
 
 const onInputKeyup = async (event: KeyboardEvent) => {
   switch (event.key) {
@@ -82,6 +82,7 @@ const handleOptionClick = (event: MouseEvent) => {;
 };
 
 const handleListKeyDown = (event: KeyboardEvent) => {
+  console.log('inputElement', inputElement.value)
   let preventEvent = false;
   switch (event.key) {
     case 'ArrowUp':
@@ -129,10 +130,12 @@ const showList = () => {
   isListOpen.value = true;
 };
 
-const hideList = () => {
+const hideList = (withFocus = true) => {
   if (!isListOpen.value) return;
   isListOpen.value = false;
-  inputElement.value?.focus();
+  if (withFocus) {
+    inputElement.value?.focus();
+  }
 };
 
 const selectOption = (optionElement: HTMLLIElement) => {
@@ -143,7 +146,7 @@ const selectOption = (optionElement: HTMLLIElement) => {
   };
 };
 
-onClickOutside(wrapperElement, hideList);
+onClickOutside(wrapperElement, () => hideList(false));
 
 const filteredList = computed(() => {
   const inputValue = text.value.toString().trim().toLowerCase();
@@ -154,35 +157,37 @@ const filteredList = computed(() => {
 </script>
 
 <template>
+  <p>?{{ inputElement }}</p>
   <div class="auto-suggest" ref="wrapperElement">
-    <label
-      :for="props.id"
-      class="auto-suggest__label">
-      {{ props.label }}
-    </label>
+    <gymx-text-field
+      :ref="(el) => inputElement = el?.inputRef"
+      :label="props.label"
+      v-model="text"
+      :id="props.id"
+      :name="props.name"
+      :inputAttributes="{
+        type: 'text',
+        required: props.required,
+        autocapitalize: 'none',
+        autocomplete: 'off',
+        spellcheck: false,
+        disabled: props.disabled,
+        readonly: props.readonly,
+        placeholder: props.placeholder,
+        role: 'combobox',
+        'aria-autocomplete': 'list',
+        'aria-expanded': isListOpen,
+        'aria-required': props.required,
+        onKeyup: onInputKeyup,
+        onKeydown: onInputKeydown,
+        onMousedown: onInputClick
+      }"
+      @keyup="onInputKeyup"
+      @keydown="onInputKeydown"
+      @mousedown="onInputClick"
+      class="auto-suggest__input" />
 
     <div class="input-container">
-      <input
-        v-model="text"
-        ref="inputElement"
-        type="text"
-        autocapitalize="none"
-        autocomplete="off"
-        spellcheck="false"
-        :disabled="props.disabled"
-        :id="props.id"
-        :name="props.name"
-        :readonly="props.readonly"
-        :placeholder="props.placeholder"
-        role="combobox"
-        aria-autocomplete="list"
-        :aria-expanded="isListOpen"
-        :aria-required="props.required"
-        @keyup="onInputKeyup"
-        @keydown="onInputKeydown"
-        @mousedown="onInputClick"
-        class="auto-suggest__input" />
-
       <ul
         ref="listElement"
         role="listbox"

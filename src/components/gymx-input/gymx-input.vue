@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import type { GymxInputProps } from '@/components/gymx-input/types';
 import { getModifierClasses } from '@/utils/css-modifier';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+
+defineOptions({
+  inheritAttrs: false
+})
 
 const props = withDefaults(defineProps<GymxInputProps>(), {
   type: 'text',
@@ -13,6 +17,12 @@ const disabled = computed(
 );
 
 const modelValue = defineModel<string | number>({ default: '' });
+
+const inputRef = ref<HTMLInputElement>();
+
+defineExpose({
+  inputRef,
+});
 </script>
 <template>
   <div
@@ -26,8 +36,10 @@ const modelValue = defineModel<string | number>({ default: '' });
     </span>
     <input
       :type="props.type"
+      data-ref="() => props.inputAttributes?.ref"
       :id="props.id"
-      v-bind="props.inputAttributes"
+      v-bind="{ ...props.inputAttributes, ...$attrs }"
+      ref="inputRef"
       :disabled="disabled || ($attrs.disabled ? true : false)"
       v-model="modelValue"
       class="input__input" />

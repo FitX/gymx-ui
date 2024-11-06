@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAutoSuggest } from './gymx-auto-suggest.vue';
 import { ref } from 'vue';
 import type { Option } from '@/components/gymx-auto-suggest/types';
+import ReadmeMarkdown from './readme.md?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -9,6 +10,14 @@ const meta = {
   component: GymxAutoSuggest,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        //story: ComponentDescription,
+        component: ReadmeMarkdown,
+      },
+    },
+  },
 } satisfies Meta<typeof GymxAutoSuggest>;
 
 export default meta;
@@ -88,6 +97,7 @@ export const CustomSlots: Story = {
         label="Search by Amount"
         placeholder="e.g. 100"
         v-model="model"
+        :expanded="true"
         :filter-function="extraFilter">
         <template #option="{ option }">
           <div>Custom {{ option.text }} <b>Amount: {{ option.extra }}</b></div>
@@ -96,9 +106,9 @@ export const CustomSlots: Story = {
           <li v-if="filteredOptionLength <= 0"><button @click="addOption">Add Option</button></li>
         </template>
       </gymx-auto-suggest>
-      <p>model:
-        <pre>{{ model }}</pre>
-      </p>
+      <p>model:</p>
+      <pre>{{ model }}</pre>
+      <component is="style">.auto-suggest__list { max-height: 300px; overflow-y: scroll; }</component>
     `,
   }),
 };
