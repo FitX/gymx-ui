@@ -34,7 +34,7 @@ export const Default: Story = {
     name: 'demo',
     id: 'demo',
     placeholder: 'Demo...',
-    options: Array.from({length: 10}, (_, i) => ({
+    options: Array.from({ length: 10 }, (_, i) => ({
       text: `Text ${i + 1}`,
       value: `Value ${i + 1}`,
     })),
@@ -50,7 +50,7 @@ export const HasError: Story = {
     id: 'demo',
     errorMessage: 'This is an error message',
     placeholder: 'Demo...',
-    options: Array.from({length: 10}, (_, i) => ({
+    options: Array.from({ length: 10 }, (_, i) => ({
       text: `Text ${i + 1}`,
       value: `Value ${i + 1}`,
     })),
@@ -75,18 +75,18 @@ export const CustomSlots: Story = {
         value: string;
         extra: number;
         image: string;
-      }
-      const options = ref(Array.from({length: 20}, (_, i) => ({
-        text: `Text ${i + 1}`,
-        value: `Value ${i + 1}`,
-        extra: (i + 100),
-        image: 'https://picsum.photos/seed/picsum/150/50',
-      })));
+      };
+      const options = ref(
+        Array.from({ length: 20 }, (_, i) => ({
+          text: `Text ${i + 1}`,
+          value: `Value ${i + 1}`,
+          extra: i + 100,
+          image: 'https://picsum.photos/seed/picsum/150/50',
+        })),
+      );
 
       const extraFilter = (options: ExtraOption[], text: string): Option[] => {
-        return options.filter(option =>
-          option.extra.toString().includes(text)
-        );
+        return options.filter((option) => option.extra.toString().includes(text));
       };
 
       // const model = ref(options.value[2]);
@@ -95,11 +95,11 @@ export const CustomSlots: Story = {
       const addOption = () => {
         const currentLength = options.value.length;
         options.value.push({
-          text: `Text ${currentLength + 1 }`,
+          text: `Text ${currentLength + 1}`,
           value: `Value ${currentLength + 1}`,
-          extra: (currentLength + 1),
-          image: 'https://picsum.photos/seed/picsum/150/50'
-        })
+          extra: currentLength + 1,
+          image: 'https://picsum.photos/seed/picsum/150/50',
+        });
       };
       return {
         args,

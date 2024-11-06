@@ -8,7 +8,7 @@ import { GymxTextField } from '@/components';
 const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
   inputAttributes: () => ({
-    type: 'text'
+    type: 'text',
   }),
 });
 
@@ -39,9 +39,7 @@ const onInputKeyup = async (event: KeyboardEvent) => {
        @TODO try other solutions
        */
       await nextTick();
-      listElement.value
-        ?.querySelector<HTMLLIElement>(optionSelectableSelectorString)
-        ?.focus();
+      listElement.value?.querySelector<HTMLLIElement>(optionSelectableSelectorString)?.focus();
       event.preventDefault();
       event.stopPropagation();
       break;
@@ -71,14 +69,17 @@ const onInputClick = (event: MouseEvent) => {
   showList();
   listElement.value
     // ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
-    ?.querySelector<HTMLLIElement>(`[role="option"][data-text="${(event?.target as HTMLInputElement)?.value}"]`)
+    ?.querySelector<HTMLLIElement>(
+      `[role="option"][data-text="${(event?.target as HTMLInputElement)?.value}"]`,
+    )
     ?.scrollIntoView();
 };
 
-const handleOptionClick = (event: MouseEvent) => {;
-  const optionTarget: HTMLLIElement | null = (event.target as HTMLElement).closest(optionSelectableSelectorString);
-  if (!optionTarget)
-    return;
+const handleOptionClick = (event: MouseEvent) => {
+  const optionTarget: HTMLLIElement | null = (event.target as HTMLElement).closest(
+    optionSelectableSelectorString,
+  );
+  if (!optionTarget) return;
   selectOption(optionTarget);
   hideList();
 };
@@ -88,7 +89,8 @@ const handleListKeyDown = (event: KeyboardEvent) => {
   switch (event.key) {
     case 'ArrowUp':
       // eslint-disable-next-line no-case-declarations
-      let prevOptionElement = (event.target as HTMLLIElement)?.previousElementSibling as HTMLLIElement;
+      let prevOptionElement = (event.target as HTMLLIElement)
+        ?.previousElementSibling as HTMLLIElement;
       while (prevOptionElement) {
         if (prevOptionElement.matches(optionSelectableSelectorString)) break;
         prevOptionElement = prevOptionElement.previousElementSibling as HTMLLIElement;
@@ -152,15 +154,19 @@ onClickOutside(wrapperElement, () => hideList(false));
 const filteredList = computed(() => {
   const inputValue = text.value?.toString()?.trim()?.toLowerCase();
   if (inputValue === '') return props.options;
-  if (typeof props.filterFunction === 'function') return props.filterFunction(props.options, inputValue);
+  if (typeof props.filterFunction === 'function')
+    return props.filterFunction(props.options, inputValue);
   return filter(props.options, inputValue);
 });
 </script>
 
 <template>
-  <div class="auto-suggest" ref="wrapperElement" :data-expanded="isListOpen">
+  <div
+    class="auto-suggest"
+    ref="wrapperElement"
+    :data-expanded="isListOpen">
     <gymx-text-field
-      :ref="(el) => inputElement = el?.inputRef"
+      :ref="(el) => (inputElement = (el as any)?.inputRef)"
       :label="props.label"
       v-model="text"
       :id="props.id"
@@ -182,7 +188,7 @@ const filteredList = computed(() => {
         'aria-required': props.required,
         onKeyup: onInputKeyup,
         onKeydown: onInputKeydown,
-        onMousedown: onInputClick
+        onMousedown: onInputClick,
       }"
       class="auto-suggest__input">
       <template #input-hint>
@@ -222,7 +228,7 @@ const filteredList = computed(() => {
         <slot
           name="option"
           :option="option"
-        >{{ option.text }}</slot
+          >{{ option.text }}</slot
         >
       </li>
       <li
@@ -232,7 +238,7 @@ const filteredList = computed(() => {
           name="no-results"
           :isListOpen="isListOpen"
           :filteredOptionLength="filteredList.length">
-            {{ props.noResultsText }}
+          {{ props.noResultsText }}
         </slot>
       </li>
     </ul>
@@ -243,7 +249,7 @@ const filteredList = computed(() => {
   --auto-suggest-border-radius: 0;
   --auto-suggest-border: 1px solid var(--gymx-color-gray-2);
   --auto-suggest-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px,
-  var(--gymx-color-gray-5) 0px 0px 0px 1px;
+    var(--gymx-color-gray-5) 0px 0px 0px 1px;
 
   --auto-suggest-list-block-size: auto;
   --auto-suggest-list-inline-size: 100%;
@@ -268,7 +274,7 @@ const filteredList = computed(() => {
   /* display: grid;
   grid-template-rows: auto 1fr; */
 
-  &[data-expanded="true"] {
+  &[data-expanded='true'] {
     :deep(.text-field__additional) {
       position: absolute;
       opacity: 0;
@@ -294,7 +300,9 @@ const filteredList = computed(() => {
     color: var(--auto-suggest-item-color);
     background: var(--auto-suggest-item-color-background);
 
-    &:hover, &[aria-selected="true"], &:focus-visible {
+    &:hover,
+    &[aria-selected='true'],
+    &:focus-visible {
       color: var(--auto-suggest-item-color-hover);
       background: var(--auto-suggest-item-color-background-hover);
       outline-color: var(--auto-suggest-item-color-focus);

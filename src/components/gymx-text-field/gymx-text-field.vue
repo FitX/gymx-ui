@@ -12,8 +12,8 @@ import { ref } from 'vue';
 defineSlots<GymxTextFieldSlots>();
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<GymxTextFieldProps>(), {
   id: crypto.randomUUID(),
@@ -35,7 +35,7 @@ defineExpose({
       :text="props.label"
       class="text-field__label" />
     <gymx-input
-      :ref="(el) => inputRef = el?.inputRef"
+      :ref="(el) => (inputRef = (el as any)?.inputRef)"
       :id="props.id"
       :input-attributes="props.inputAttributes"
       :state="props.state"

@@ -1,7 +1,7 @@
 ## Keyboard Interactions
 
 | **Command**     | **Desscription**                                                                                                                 |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `ArrowDown`     | When the input field is focused, it opens the dropdown list and focuses the first selectable option (skipping disabled options). |
 | `ArrowUp`       | When the dropdown is open, it focuses the previous selectable option (skipping disabled options).                                |
 | `Escape`        | Closes the dropdown if it is open.                                                                                               |

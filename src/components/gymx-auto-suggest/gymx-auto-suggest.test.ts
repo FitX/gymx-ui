@@ -17,7 +17,7 @@ describe('GymxAutoSuggest', () => {
         label: 'Test GymxAutoSuggest',
         ...props,
       },
-      attachTo: document.body
+      attachTo: document.body,
     });
 
   it('is a Vue instance', () => {
@@ -38,7 +38,7 @@ describe('GymxAutoSuggest', () => {
   });
 
   it('input text based on model', async () => {
-    const wrapper = mountGymxAutoSuggest({ modelValue: options[2]});
+    const wrapper = mountGymxAutoSuggest({ modelValue: options[2] });
     expect(wrapper.vm.text).toBe('Option 3');
   });
 
@@ -86,7 +86,7 @@ describe('GymxAutoSuggest', () => {
         { text: 'Option 1', value: '1', disabled: true },
         { text: 'Option 2', value: '2' },
         { text: 'Option 3', value: '3' },
-      ]
+      ],
     });
     const input = wrapper.find('input');
     await input.trigger('keyup', { key: 'ArrowDown' });
@@ -96,15 +96,7 @@ describe('GymxAutoSuggest', () => {
   });
 
   it('ignores defined keyup cases ', async () => {
-    const ignoreKeys = [
-      'Escape',
-      'ArrowUp',
-      'ArrowLeft',
-      'ArrowRight',
-      'Enter',
-      'Tab',
-      'Shift'
-    ];
+    const ignoreKeys = ['Escape', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Enter', 'Tab', 'Shift'];
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('input');
 
@@ -166,11 +158,10 @@ describe('GymxAutoSuggest', () => {
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('.auto-suggest__list');
 
-    await input.trigger('keydown', { key: 'Escape'});
+    await input.trigger('keydown', { key: 'Escape' });
 
     expect(wrapper.vm.isListOpen).toBe(false);
   });
-
 
   it('navigate list items', async () => {
     const wrapper = mountGymxAutoSuggest();
@@ -185,7 +176,6 @@ describe('GymxAutoSuggest', () => {
     await listItems.at(2)!.trigger('keydown', { key: 'ArrowUp' });
     expect(document.activeElement).toBe(listItems.at(0)!.element);
   });
-
 
   it('selects option with click', async () => {
     const wrapper = mountGymxAutoSuggest();
@@ -204,13 +194,13 @@ describe('GymxAutoSuggest', () => {
   });
 
   it('No Results Text is visible', async () => {
-    const wrapper = mountGymxAutoSuggest();;
+    const wrapper = mountGymxAutoSuggest();
     expect(wrapper.find('.auto-suggest__no-results').exists()).toBe(false);
     const input = wrapper.find('input');
     await input.setValue('Not included');
     expect(wrapper.find('.auto-suggest__no-results').exists()).toBe(true);
     expect(wrapper.find('.auto-suggest__no-results').text()).toBe('No results available');
-    await wrapper.setProps({ noResultsText: 'Another Text'});
+    await wrapper.setProps({ noResultsText: 'Another Text' });
     expect(wrapper.find('.auto-suggest__no-results').text()).toBe('Another Text');
   });
 
@@ -218,7 +208,7 @@ describe('GymxAutoSuggest', () => {
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('input');
     const list = wrapper.find('.auto-suggest__list');
-    await input.setValue('Option 1')
+    await input.setValue('Option 1');
     await list.trigger('keydown', { key: 't' });
 
     expect(document.activeElement).toBe(input.element);
@@ -247,7 +237,7 @@ describe('GymxAutoSuggest', () => {
     const input = wrapper.find('input');
     const listItem = wrapper.find(`[role="option"][data-value="1"]`);
 
-    await input.setValue('Option 1')
+    await input.setValue('Option 1');
 
     listItem.element.scrollIntoView = scrollIntoViewMock;
 
@@ -260,16 +250,19 @@ describe('GymxAutoSuggest', () => {
   });
 
   it('should call filterFunction when provide', async () => {
-    type demoOption = { text: string, value: string, id: number }
+    type demoOption = { text: string; value: string; id: number };
     const filterFunction = (items: demoOption[]) => {
-      return items?.filter((item) => item.id < 2)
+      return items?.filter((item) => item.id < 2);
     };
     const wrapper = mountGymxAutoSuggest({
-      options: [{ text: 't1', value: 'v1', id: 1}, { text: 't2', value: 'v2', id: 2}],
+      options: [
+        { text: 't1', value: 'v1', id: 1 },
+        { text: 't2', value: 'v2', id: 2 },
+      ],
       filterFunction,
     });
     const input = wrapper.find('input');
     await input.setValue('blubb');
-    expect(wrapper.vm.filteredList.length).toBe(1)
-  })
+    expect(wrapper.vm.filteredList.length).toBe(1);
+  });
 });

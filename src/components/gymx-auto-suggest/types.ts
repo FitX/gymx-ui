@@ -22,6 +22,4 @@ export interface GymxAutoSuggestProps {
   inputAttributes?: InputHTMLAttributes;
 }
 
-export interface GymxAutoSuggestEmits {
-
-}
+export interface GymxAutoSuggestEmits {}

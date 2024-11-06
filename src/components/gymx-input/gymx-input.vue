@@ -4,8 +4,8 @@ import { getModifierClasses } from '@/utils/css-modifier';
 import { computed, ref } from 'vue';
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = withDefaults(defineProps<GymxInputProps>(), {
   type: 'text',
