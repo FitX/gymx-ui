@@ -84,9 +84,8 @@ export const CustomSlots: Story = {
       })));
 
       const extraFilter = (options: ExtraOption[], text: string): Option[] => {
-        const sanitized = Number(text.toLowerCase().trim());
         return options.filter(option =>
-          option.extra > sanitized
+          option.extra.toString().includes(text)
         );
       };
 
