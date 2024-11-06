@@ -1,5 +1,3 @@
-# Auto Suggest Nottes
-
 ## Keyboard Interactions
 
 | **Command**     | **Desscription**                                                                                                                 |

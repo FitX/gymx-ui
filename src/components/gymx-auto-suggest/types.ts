@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, HTMLAttributes } from 'vue';
+import type { InputHTMLAttributes } from 'vue';
 
 export interface Option {
   text: string;

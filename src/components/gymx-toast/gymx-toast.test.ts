@@ -21,7 +21,7 @@ vi.mock('@vueuse/core', () => ({
 
 describe('GymxToast', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxToast, { props: { text: 'Test' }});
+    const wrapper = mount(GymxToast, { props: { text: 'Test' } });
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -78,7 +78,7 @@ describe('GymxToast', () => {
   });
 
   it('Close Button works', () => {
-    const wrapper = mount(GymxToast, { props: {text: 'Test'} });
+    const wrapper = mount(GymxToast, { props: { text: 'Test' } });
     wrapper.find('.toast__btn-close').trigger('click');
     expect(wrapper.emitted()).toHaveProperty('close');
   });

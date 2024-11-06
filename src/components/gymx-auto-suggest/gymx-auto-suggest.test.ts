@@ -27,13 +27,13 @@ describe('GymxAutoSuggest', () => {
 
   it('render with label and options', () => {
     const wrapper = mountGymxAutoSuggest();
-    expect(wrapper.find('.auto-suggest__label').text()).toContain('Test GymxAutoSuggest');
+    expect(wrapper.find('label').text()).toContain('Test GymxAutoSuggest');
     expect(wrapper.findAll('.auto-suggest__option').length).toBe(3);
   });
 
   it('filters options based on input text', async () => {
     const wrapper = mountGymxAutoSuggest();
-    await wrapper.find('.auto-suggest__input').setValue('Option 1');
+    await wrapper.find('input').setValue('Option 1');
     expect(wrapper.vm.filteredList).toEqual([{ text: 'Option 1', value: '1' }]);
   });
 
@@ -58,7 +58,7 @@ describe('GymxAutoSuggest', () => {
 
   it('handle arrow key navigation and selection', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keyup', { key: 'ArrowDown' });
 
@@ -73,7 +73,7 @@ describe('GymxAutoSuggest', () => {
 
   it('handle input keys', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keyup', { key: 'A' });
 
@@ -88,7 +88,7 @@ describe('GymxAutoSuggest', () => {
         { text: 'Option 3', value: '3' },
       ]
     });
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
     await input.trigger('keyup', { key: 'ArrowDown' });
 
     const maybeSelectedOptionNotDisabled = wrapper.findAll('.auto-suggest__option').at(1);
@@ -106,7 +106,7 @@ describe('GymxAutoSuggest', () => {
       'Shift'
     ];
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     const testKeys = async (key: string) => {
       await input.trigger('keyup', { key });
@@ -122,7 +122,7 @@ describe('GymxAutoSuggest', () => {
 
   it('selects option with Enter key and closes list', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keydown', { key: 'ArrowDown' });
 
@@ -137,7 +137,7 @@ describe('GymxAutoSuggest', () => {
 
   it('hide list on escape keydown event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keydown', { key: 'Escape' });
 
@@ -146,7 +146,7 @@ describe('GymxAutoSuggest', () => {
 
   it('hide list on escape tab event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keydown', { key: 'Tab' });
 
@@ -155,9 +155,9 @@ describe('GymxAutoSuggest', () => {
 
   it('ul hide list on escape tab event', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__list');
+    const list = wrapper.find('.auto-suggest__list');
 
-    await input.trigger('keydown', { key: 'Tab' });
+    await list.trigger('keydown', { key: 'Tab' });
 
     expect(wrapper.vm.isListOpen).toBe(false);
   });
@@ -174,7 +174,7 @@ describe('GymxAutoSuggest', () => {
 
   it('navigate list items', async () => {
     const wrapper = mountGymxAutoSuggest();
-    const input = wrapper.find('.auto-suggest__input');
+    const input = wrapper.find('input');
 
     await input.trigger('keyup', { key: 'O' });
     const listItems = wrapper.findAll('.auto-suggest__option');
@@ -217,11 +217,24 @@ describe('GymxAutoSuggest', () => {
   it('set focus as default', async () => {
     const wrapper = mountGymxAutoSuggest();
     const input = wrapper.find('input');
-    const firstLi = wrapper.findAll('li').at(0);
-    await firstLi?.trigger('keydown', { key: 'O' });
+    const list = wrapper.find('.auto-suggest__list');
+    await input.setValue('Option 1')
+    await list.trigger('keydown', { key: 't' });
 
     expect(document.activeElement).toBe(input.element);
   });
+
+  /* it.only('set focus as default', async () => {
+    const wrapper = mountGymxAutoSuggest();
+    const input = wrapper.find('input');
+    const list = wrapper.find('.auto-suggest__list');
+    // const firstLi = wrapper.findAll('li').at(0);
+    //await firstLi?.trigger('keydown', { key: 'O' });
+    // await nextTick()
+    await list.trigger('keydown', { key: 'O' });
+
+    expect(document.activeElement).toBe(input.element);
+  }); */
 
   it('calls scrollIntoView when input is clicked and list is shown', async () => {
     const wrapper = mountGymxAutoSuggest();

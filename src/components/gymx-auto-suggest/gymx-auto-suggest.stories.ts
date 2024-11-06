@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAutoSuggest } from './gymx-auto-suggest.vue';
 import { ref } from 'vue';
 import type { Option } from '@/components/gymx-auto-suggest/types';
+import { GymxButton } from '@/components';
 import ReadmeMarkdown from './readme.md?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/auto-suggest',
+  title: 'components/Auto Suggest',
   component: GymxAutoSuggest,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -67,17 +68,19 @@ export const CustomSlots: Story = {
     // text: 'This is an error message',
   },
   render: (args) => ({
-    components: { GymxAutoSuggest },
+    components: { GymxAutoSuggest, GymxButton },
     setup() {
       type ExtraOption = {
         text: string;
         value: string;
         extra: number;
+        image: string;
       }
       const options = ref(Array.from({length: 20}, (_, i) => ({
         text: `Text ${i + 1}`,
         value: `Value ${i + 1}`,
         extra: (i + 100),
+        image: 'https://picsum.photos/seed/picsum/150/50',
       })));
 
       const extraFilter = (options: ExtraOption[], text: string): Option[] => {
@@ -96,6 +99,7 @@ export const CustomSlots: Story = {
           text: `Text ${currentLength + 1 }`,
           value: `Value ${currentLength + 1}`,
           extra: (currentLength + 1),
+          image: 'https://picsum.photos/seed/picsum/150/50'
         })
       };
       return {
@@ -113,18 +117,35 @@ export const CustomSlots: Story = {
         label="Search by Amount"
         placeholder="e.g. 100"
         v-model="model"
+        class="demo-auto-suggest"
         :expanded="true"
         :filter-function="extraFilter">
         <template #option="{ option }">
-          <div>Custom {{ option.text }} <b>Amount: {{ option.extra }}</b></div>
+          <div class="fancy">
+            <img :src="option.image" alt="">
+            <span>Custom {{ option.text }} <b>Amount: {{ option.extra }}</b></span>
+          </div>
         </template>
         <template #no-results="{ filteredOptionLength, isListOpen }">
-          <li v-if="filteredOptionLength <= 0"><button @click="addOption">Add Option</button></li>
+         <gymx-button @click="addOption">Add Option</gymx-button>
         </template>
       </gymx-auto-suggest>
       <p>model:</p>
       <pre>{{ model }}</pre>
-      <component is="style">.auto-suggest__list { max-height: 300px; overflow-y: scroll; }</component>
+      <component is="style">
+        .demo-auto-suggest {
+          --auto-suggest-list-color-background: var(--input-color-background);
+          --auto-suggest-item-block-padding: var(--gymx-size-1);
+          max-inline-size: 400px;
+        }
+        .auto-suggest__option:nth-child(even) { background: var(--gymx-color-white-1); }
+        .auto-suggest__list { max-height: 300px; overflow-y: auto; }
+        .fancy {
+        display: grid; grid-template-columns: auto 1fr; gap: 1rem;
+        & span { display: grid; grid-template-rows: auto auto; gap: 0.2rem; }
+        }
+        .auto-suggest__no-results {line-height: 1}
+      </component>
     `,
   }),
 };

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, nextTick, onMounted, watch } from 'vue';
+import { computed, ref, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import type { GymxAutoSuggestProps, Option } from '@/components/gymx-auto-suggest/types';
 import { filter } from '@/components/gymx-auto-suggest/utils';
@@ -71,7 +71,7 @@ const onInputClick = (event: MouseEvent) => {
   showList();
   listElement.value
     // ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
-    ?.querySelector<HTMLLIElement>(`[role="option"][data-text="${event?.target?.value}"]`)
+    ?.querySelector<HTMLLIElement>(`[role="option"][data-text="${(event?.target as HTMLInputElement)?.value}"]`)
     ?.scrollIntoView();
 };
 
@@ -84,7 +84,6 @@ const handleOptionClick = (event: MouseEvent) => {;
 };
 
 const handleListKeyDown = (event: KeyboardEvent) => {
-  console.log('inputElement', inputElement.value)
   let preventEvent = false;
   switch (event.key) {
     case 'ArrowUp':
@@ -151,7 +150,7 @@ const selectOption = (optionElement: HTMLLIElement) => {
 onClickOutside(wrapperElement, () => hideList(false));
 
 const filteredList = computed(() => {
-  const inputValue = text.value.toString().trim().toLowerCase();
+  const inputValue = text.value?.toString()?.trim()?.toLowerCase();
   if (inputValue === '') return props.options;
   if (typeof props.filterFunction === 'function') return props.filterFunction(props.options, inputValue);
   return filter(props.options, inputValue);
@@ -159,7 +158,7 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <div class="auto-suggest" ref="wrapperElement">
+  <div class="auto-suggest" ref="wrapperElement" :data-expanded="isListOpen">
     <gymx-text-field
       :ref="(el) => inputElement = el?.inputRef"
       :label="props.label"
@@ -185,58 +184,58 @@ const filteredList = computed(() => {
         onKeydown: onInputKeydown,
         onMousedown: onInputClick
       }"
-      class="auto-suggest__input" />
+      class="auto-suggest__input">
+      <template #input-hint>
+        <slot
+          name="aria-status"
+          :isListOpen="isListOpen"
+          :filteredOptionLength="filteredList.length">
+          <div
+            class="visually-hidden auto-suggest__status"
+            role="status"
+            aria-live="polite">
+            {{ filteredList.length }} results available.
+          </div>
+        </slot>
+      </template>
+    </gymx-text-field>
 
-    <div class="input-container">
-      <ul
-        ref="listElement"
-        role="listbox"
-        :aria-label="props.label"
-        :hidden="!isListOpen"
-        @click="handleOptionClick"
-        @keydown="handleListKeyDown"
-        class="auto-suggest__list">
-        <li
-          v-for="(option, index) in filteredList"
-          :key="index"
-          class="auto-suggest__option"
-          :class="{ 'auto-suggest__option--disabled': option.disabled }"
-          role="option"
-          :tabindex="option.disabled === true ? undefined : '-1'"
-          :data-text="option.text"
-          :data-value="option.value"
-          :aria-selected="selectedOption?.value === option.value"
-          :aria-disabled="option.disabled">
-          <slot
-            name="option"
-            :option="option"
-            >{{ option.text }}</slot
-          >
-        </li>
+    <ul
+      ref="listElement"
+      role="listbox"
+      :aria-label="props.label"
+      :hidden="!isListOpen"
+      @click="handleOptionClick"
+      @keydown="handleListKeyDown"
+      class="auto-suggest__list">
+      <li
+        v-for="(option, index) in filteredList"
+        :key="index"
+        class="auto-suggest__option"
+        :class="{ 'auto-suggest__option--disabled': option.disabled }"
+        role="option"
+        :tabindex="option.disabled === true ? undefined : '-1'"
+        :data-text="option.text"
+        :data-value="option.value"
+        :aria-selected="selectedOption?.value === option.value"
+        :aria-disabled="option.disabled">
+        <slot
+          name="option"
+          :option="option"
+        >{{ option.text }}</slot
+        >
+      </li>
+      <li
+        v-if="filteredList.length === 0"
+        class="auto-suggest__option auto-suggest__no-results">
         <slot
           name="no-results"
           :isListOpen="isListOpen"
           :filteredOptionLength="filteredList.length">
-        <li
-          v-if="filteredList.length === 0"
-          class="auto-suggest__no-results">
-          {{ props.noResultsText }}
-        </li>
+            {{ props.noResultsText }}
         </slot>
-      </ul>
-
-      <slot
-        name="aria-status"
-        :isListOpen="isListOpen"
-        :filteredOptionLength="filteredList.length">
-        <div
-          class="visually-hidden auto-suggest__status"
-          role="status"
-          aria-live="polite">
-          {{ filteredList.length }} results available.
-        </div>
-      </slot>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 <style lang="scss">
@@ -248,14 +247,35 @@ const filteredList = computed(() => {
 
   --auto-suggest-list-block-size: auto;
   --auto-suggest-list-inline-size: 100%;
+  --auto-suggest-list-color-background: var(--gymx-color-gray-1);
+  --auto-suggest-list-border: 1px solid currentColor;
 
   --auto-suggest-item-text-font-size: var(--gymx-font-size-1);
-  --auto-suggest-item-inline-padding: 0;
+  --auto-suggest-item-inline-padding: var(--input-padding-inline, var(--gymx-size-0));
   --auto-suggest-item-block-padding: var(--gymx-size-00);
+  --auto-suggest-item-color: inherit;
+  --auto-suggest-item-color-background: none;
+  --auto-suggest-item-color-focus: var(--gymx-color-accent-11);
+
+  --auto-suggest-item-color-hover: inherit;
+  --auto-suggest-item-color-background-hover: var(--gymx-color-accent-3);
 }
 </style>
 <style lang="scss" scoped>
 .auto-suggest {
+  $self: &;
+  position: relative;
+  /* display: grid;
+  grid-template-rows: auto 1fr; */
+
+  &[data-expanded="true"] {
+    :deep(.text-field__additional) {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
   &__list {
     list-style: '';
     margin: 0;
@@ -263,11 +283,23 @@ const filteredList = computed(() => {
     font-size: var(--auto-suggest-item-text-font-size);
     block-size: var(--auto-suggest-list-block-size);
     inline-size: var(--auto-suggest-list-inline-size);
+    background: var(--auto-suggest-list-color-background);
+    border: var(--auto-suggest-list-border);
+    margin-top: -1px;
   }
 
   &__option {
     padding-inline: var(--auto-suggest-item-inline-padding);
     padding-block: var(--auto-suggest-item-block-padding);
+    color: var(--auto-suggest-item-color);
+    background: var(--auto-suggest-item-color-background);
+
+    &:hover, &[aria-selected="true"], &:focus-visible {
+      color: var(--auto-suggest-item-color-hover);
+      background: var(--auto-suggest-item-color-background-hover);
+      outline-color: var(--auto-suggest-item-color-focus);
+      outline-offset: -1px;
+    }
   }
 }
 </style>
