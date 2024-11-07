@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed, ref, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
-import type { GymxAutoSuggestProps, Option } from '@/components/gymx-auto-suggest/types';
-import { filter } from '@/components/gymx-auto-suggest/utils';
+import type { GymxAutoSuggestProps, Option } from './types';
+import { filter } from './utils';
 import { GymxTextField } from '@/components';
 
 const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   noResultsText: 'No results available',
   inputAttributes: () => ({
-    type: 'text',
+    type: 'search',
   }),
 });
 
-const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled)';
+const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled, .auto-suggest__no-results)';
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
@@ -158,6 +158,10 @@ const filteredList = computed(() => {
     return props.filterFunction(props.options, inputValue);
   return filter(props.options, inputValue);
 });
+
+defineExpose({
+  inputValue: text,
+});
 </script>
 
 <template>
@@ -254,7 +258,7 @@ const filteredList = computed(() => {
   --auto-suggest-list-block-size: auto;
   --auto-suggest-list-inline-size: 100%;
   --auto-suggest-list-color-background: var(--gymx-color-gray-1);
-  --auto-suggest-list-border: 1px solid currentColor;
+  --auto-suggest-list-border: none;
 
   --auto-suggest-item-text-font-size: var(--gymx-font-size-1);
   --auto-suggest-item-inline-padding: var(--input-padding-inline, var(--gymx-size-0));
@@ -264,7 +268,10 @@ const filteredList = computed(() => {
   --auto-suggest-item-color-focus: var(--gymx-color-accent-11);
 
   --auto-suggest-item-color-hover: inherit;
-  --auto-suggest-item-color-background-hover: var(--gymx-color-accent-3);
+  --auto-suggest-item-color-background-hover: var(--gymx-color-gray-2);
+
+  --auto-suggest-item-color-selected: inherit;
+  --auto-suggest-item-color-background-selected: var(--gymx-color-accent-3);
 }
 </style>
 <style lang="scss" scoped>
@@ -291,7 +298,6 @@ const filteredList = computed(() => {
     inline-size: var(--auto-suggest-list-inline-size);
     background: var(--auto-suggest-list-color-background);
     border: var(--auto-suggest-list-border);
-    margin-top: -1px;
   }
 
   &__option {
@@ -299,14 +305,19 @@ const filteredList = computed(() => {
     padding-block: var(--auto-suggest-item-block-padding);
     color: var(--auto-suggest-item-color);
     background: var(--auto-suggest-item-color-background);
+    cursor: pointer;
 
     &:hover,
-    &[aria-selected='true'],
     &:focus-visible {
       color: var(--auto-suggest-item-color-hover);
       background: var(--auto-suggest-item-color-background-hover);
       outline-color: var(--auto-suggest-item-color-focus);
       outline-offset: -1px;
+    }
+
+    &[aria-selected='true'] {
+      color: var(--auto-suggest-item-color-selected);
+      background: var(--auto-suggest-item-color-background-selected);
     }
   }
 }

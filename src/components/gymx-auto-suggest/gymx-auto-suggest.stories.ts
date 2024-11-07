@@ -86,23 +86,27 @@ export const CustomSlots: Story = {
       );
 
       const extraFilter = (options: ExtraOption[], text: string): Option[] => {
-        return options.filter((option) => option.extra.toString().includes(text));
+        return options.filter((option) => option.text.includes(text) || option.value.includes(text) || option.extra.toString().includes(text));
       };
 
       // const model = ref(options.value[2]);
       const model = ref();
+      const componentref = ref();
 
       const addOption = () => {
         const currentLength = options.value.length;
-        options.value.push({
-          text: `Text ${currentLength + 1}`,
-          value: `Value ${currentLength + 1}`,
-          extra: currentLength + 1,
+        const newItem = {
+          text: `${componentref.value.inputValue} ${currentLength + 1}`,
+          value: `${componentref.value.inputValue} Value ${currentLength + 1}`,
+          extra: currentLength + 100,
           image: 'https://picsum.photos/seed/picsum/150/50',
-        });
+        }
+        options.value.push(newItem);
+        model.value = newItem;
       };
       return {
         args,
+        componentref,
         model,
         options,
         addOption,
@@ -112,6 +116,7 @@ export const CustomSlots: Story = {
     template: `
       <gymx-auto-suggest
         v-bind="args"
+        ref="componentref"
         :options="options"
         label="Search by Amount"
         placeholder="e.g. 100"
@@ -131,13 +136,13 @@ export const CustomSlots: Story = {
       </gymx-auto-suggest>
       <p>model:</p>
       <pre>{{ model }}</pre>
-      <component is="style">
+      <component is="style" scoped>
         .demo-auto-suggest {
           --auto-suggest-list-color-background: var(--input-color-background);
           --auto-suggest-item-block-padding: var(--gymx-size-1);
           max-inline-size: 400px;
         }
-        .auto-suggest__option:nth-child(even) { background: var(--gymx-color-white-1); }
+        .demo-auto-suggest .auto-suggest__option:nth-child(even) { background: var(--gymx-color-white-1); }
         .auto-suggest__list { max-height: 300px; overflow-y: auto; }
         .fancy {
         display: grid; grid-template-columns: auto 1fr; gap: 1rem;
