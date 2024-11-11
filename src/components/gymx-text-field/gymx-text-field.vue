@@ -29,7 +29,7 @@ defineExpose({
 });
 </script>
 <template>
-  <div class="text-field">
+  <div class="text-field" :class="$attrs.class">
     <gymx-label
       :for="props.id"
       :text="props.label"

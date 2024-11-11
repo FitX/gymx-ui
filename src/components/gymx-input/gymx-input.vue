@@ -28,6 +28,7 @@ defineExpose({
   <div
     class="input"
     :class="[
+      $attrs.class,
       getModifierClasses('input', props.state),
       getModifierClasses('input', disabled ? 'disabled' : undefined),
     ]">
