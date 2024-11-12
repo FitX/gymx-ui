@@ -6,7 +6,7 @@ import {
   type GymxTextFieldProps,
   type GymxTextFieldSlots,
 } from '@/components';
-import { ref } from 'vue';
+import { ref, useAttrs, computed } from 'vue';
 // import { useSlots } from 'vue';
 
 defineSlots<GymxTextFieldSlots>();
@@ -23,13 +23,21 @@ const props = withDefaults(defineProps<GymxTextFieldProps>(), {
 const modelValue = defineModel<string | number>({ default: '' });
 
 const inputRef = ref();
+const attrs = useAttrs();
+
+const listener = computed(() => Object.keys(attrs)
+  ?.filter(
+    (attr) =>
+      attr?.startsWith('on') && typeof attrs[attr] === 'function'
+  )
+  ?.reduce((res, key) => (((res as any)[key] = attrs[key]), res), {}))
 
 defineExpose({
   inputRef,
 });
 </script>
 <template>
-  <div class="text-field" :class="$attrs.class">
+  <div class="text-field" :class="$attrs.class" v-bind="listener">
     <gymx-label
       :for="props.id"
       :text="props.label"

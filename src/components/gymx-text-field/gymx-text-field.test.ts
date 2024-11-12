@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { GymxTextField } from './index';
 
 describe('GymxTextField', () => {
@@ -74,5 +74,21 @@ describe('GymxTextField', () => {
 
     expect(input.attributes('id')).toBeDefined();
     expect(label.attributes('for')).toBe(input.attributes('id'));
+  });
+
+  it('computes correct listener', () => {
+    const foo = {
+      click: () => console.log('click'),
+    };
+    const mock = vi.spyOn(foo, 'click');
+    const wrapper = mount(GymxTextField, {
+      props: {
+        label: 'Test Label',
+        onClick: foo.click
+      },
+    });
+
+    wrapper.trigger('click');
+    expect(mock).toHaveBeenCalled()
   });
 });
