@@ -161,6 +161,7 @@ const filteredList = computed(() => {
 
 defineExpose({
   inputValue: text,
+  inputElement,
 });
 </script>
 
