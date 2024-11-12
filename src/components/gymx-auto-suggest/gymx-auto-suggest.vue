@@ -208,6 +208,13 @@ defineExpose({
           </div>
         </slot>
       </template>
+      <template #input-end>
+        <slot
+          name="input-end"
+          :isListOpen="isListOpen"
+          :value="text"
+          :filteredOptionLength="filteredList.length" />
+      </template>
     </gymx-text-field>
 
     <ul
