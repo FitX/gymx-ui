@@ -1,11 +1,14 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { default as GymxAppLayout } from './gymx-app-layout.vue';
 import { h } from 'vue';
+import { default as GymxAppLayout } from './gymx-app-layout.vue';
+import { GymxAppContent } from '@/components';
+import { default as FormExample } from '../../../docs/demo/forms-example.vue';
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/layouts/App Layout',
+  title: 'components/Layout/App Layout',
   component: GymxAppLayout,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -24,6 +27,8 @@ export const Default: Story = {
   render: (args) => ({
     components: {
       GymxAppLayout,
+      GymxAppContent,
+      FormExample,
     },
     data() {
       return {
@@ -33,7 +38,11 @@ export const Default: Story = {
     template: `
     <gymx-app-layout v-bind="args">
       <template #header><h1>Title</h1></template>
-      <template #main><h1>Main</h1><p>Lorem Ipsum Dolore...</p></template>
+      <template #main>
+        <gymx-app-content>
+          <form-example />
+        </gymx-app-content>
+      </template>
       <template #footer><small>© 2024 GymX</small></template>
     </gymx-app-layout>
     `,
