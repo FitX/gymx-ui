@@ -1,11 +1,10 @@
 
 <script lang="ts" setup>
-
 </script>
 <template>
   <div class="app-layout">
     <header class="app-layout__header">
-      <slot name="header"></slot>
+      <slot name="header" />
     </header>
     <main class="app-layout__main">
       <slot name="main" />
