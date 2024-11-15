@@ -1,10 +1,11 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAppLayout } from './gymx-app-layout.vue';
+import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/app-layout',
+  title: 'components/layouts/App Layout',
   component: GymxAppLayout,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -19,8 +20,41 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    // text: 'This is an error message',
+  },
+  render: (args) => ({
+    components: {
+      GymxAppLayout,
+    },
+    data() {
+      return {
+        args,
+      }
+    },
+    template: `
+    <gymx-app-layout v-bind="args">
+      <template #header><h1>Title</h1></template>
+      <template #main><h1>Main</h1><p>Lorem Ipsum Dolore...</p></template>
+      <template #footer><small>© 2024 GymX</small></template>
+    </gymx-app-layout>
+    `,
+  })
+};
+
+export const WithHeader: Story = {
+  args: {
+    header: h('h1', 'Title')
   },
 };
 
-  
+export const WithFooter: Story = {
+  args: {
+    footer: h('small', '© 2024 GymX')
+  },
+};
+
+export const Empty: Story = {
+  args: {
+    main: ''
+  },
+};
+
