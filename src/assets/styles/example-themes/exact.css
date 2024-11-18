@@ -156,3 +156,12 @@
     }
   }
 }
+
+/* App Layout */
+[data-theme='exact'] {
+  .app-header {
+    --app-header-gap: 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--gymx-color-accent-12);
+  }
+}
