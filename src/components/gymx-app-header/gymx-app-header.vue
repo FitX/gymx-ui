@@ -20,13 +20,26 @@ const props = defineProps<GymxAppHeaderProps>();
 <style lang="scss" scoped>
 .app-header {
   --app-header-gap: 1rem;
+  display: flex;
+  gap: var(--app-header-gap);
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+
+  &__actions {
+    display: flex;
+    justify-self: end;
+    margin-inline-start: auto;
+  }
+}
+.app-header2 {
+  --app-header-gap: 1rem;
   display: grid;
   grid-template-columns: var(--app-header-logo-size, auto) var(--app-header-title-size, auto) var(--app-header-actions-size, 1fr);
   grid-template-rows: 1fr;
   grid-template-areas: 'logo title actions';
   gap: var(--app-header-gap);
   align-items: center;
-  background: lightcoral;
 
   &__logo {
     grid-area: logo;
