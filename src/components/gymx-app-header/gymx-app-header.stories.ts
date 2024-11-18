@@ -10,10 +10,11 @@ const logo = `<svg xmlns="http://www.w3.org/2000/svg" width="41" height="36" vie
         </svg>`;
 
 const demoLogo = defineComponent({ name: 'demoLogo', template: logo });
+const demoActions = defineComponent({ name: 'demoActions', components: { GymxButton }, template: '<gymx-button>Ausloggen</gymx-button>' });
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/app-header',
+  title: 'components/Layout/App Header',
   component: GymxAppHeader,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -70,20 +71,20 @@ export const LogoWithTitle: Story = {
 export const LogoWithActions: Story = {
   args: {
     logo: () => h(demoLogo),
-    actions: 'actions'
+    actions: () => h(demoActions),
   }
 }
 
 export const TitleWithActions: Story = {
   args: {
     title: 'title',
-    actions: 'actions'
+    actions: () => h(demoActions),
   }
 }
 
 export const ActionsOnly: Story = {
   args: {
-    actions: 'actions'
+    actions: () => h(demoActions)
   }
 }
 

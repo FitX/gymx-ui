@@ -31,6 +31,12 @@ const props = defineProps<GymxAppHeaderProps>();
     justify-self: end;
     margin-inline-start: auto;
   }
+
+  &__logo:empty,
+  &__title:empty,
+  &__actions:empty {
+    display: none;
+  }
 }
 .app-header2 {
   --app-header-gap: 1rem;
