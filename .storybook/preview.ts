@@ -29,8 +29,7 @@ export const decorators = [
 
       // console.log('story only', store.globals.globals.theme === 'dark' ? themes.dark : themes.light)
     }*/
-    console.log('story only',context.globals);
-    console.log('story only',document.documentElement);
+
     handleThemeSwitch(context.globals.theme);
     return {
       setup(props) {
