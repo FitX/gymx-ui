@@ -1,7 +1,7 @@
 import { type Preview } from '@storybook/vue3';
 import { themes } from '@storybook/theming';
 import { themeDecorator } from './theme-decorator';
-import { ThemedContainer } from './docs-theme-provider';
+import { handleThemeSwitch, ThemedContainer } from './docs-theme-provider';
 import { computed } from 'vue';
 
 import './sb-theme-overwrites.css';
@@ -29,6 +29,9 @@ export const decorators = [
 
       // console.log('story only', store.globals.globals.theme === 'dark' ? themes.dark : themes.light)
     }*/
+    console.log('story only',context.globals);
+    console.log('story only',document.documentElement);
+    handleThemeSwitch(context.globals.theme);
     return {
       setup(props) {
 
