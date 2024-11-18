@@ -1,5 +1,10 @@
 
 <script lang="ts" setup>
+defineSlots<{
+  header: () => any,
+  main: () => any,
+  footer: () => any,
+}>()
 </script>
 <template>
   <div class="app-layout">
@@ -25,6 +30,9 @@
   --app-layout-grid-template-header-height: min-content;
   --app-layout-grid-template-main-height: 1fr;
   --app-layout-grid-template-footer-height: auto;
+
+  --app-layout-grid-template-header-color: inherit;
+  --app-layout-grid-template-header-color-background: inherit;
 
   display: grid;
 
@@ -62,6 +70,8 @@
     top: 0;
     z-index: 1;
     grid-area: header;
+    color: var(--app-layout-grid-template-header-color);
+    background: var(--app-layout-grid-template-header-color-background);
   }
 
   &__main {

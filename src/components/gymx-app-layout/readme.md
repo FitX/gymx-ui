@@ -1,8 +1,4 @@
-# App Shell / App Layout
-
-## Purpose:
-
-The **App Layout** component provides a standardized layout structure for applications.
+The **App Layout / App Layout** component provides a standardized layout structure for applications.
 It divides the user interface into three main sections:
 _Header_, _Main_, and _Footer_, allowing developers to populate these areas flexibly using slots.
 The component ensures a clean presentation of content using grid layouts and offers various styling options for different layout needs.
@@ -18,19 +14,19 @@ The **App Layout** consists of an HTML template with three main sections:
 ## Usage:
 
 ```vue
-    <gymx-app-layout>
-      <template #header>
-        <!-- Your header content -->
-      </template>
+<gymx-app-layout>
+  <template #header>
+    <!-- Your header content -->
+  </template>
 
-      <template #main>
-        <!-- Your main content -->
-      </template>
+  <template #main>
+    <!-- Your main content -->
+  </template>
 
-      <template #footer>
-        <!-- Your footer content -->
-      </template>
-    </gymx-app-layout>
+  <template #footer>
+    <!-- Your footer content -->
+  </template>
+</gymx-app-layout>
 ```
 
 ## Slots:
@@ -49,9 +45,9 @@ The component uses a flexible grid layout:
 
 Additionally, there is a **fixed-main** variant that makes the main window scrollable while keeping the header and footer fixed.
 
-## SCSS Variables:
+### Custom Properties:
 
-The component uses CSS variables for flexibility:
+The component uses CSS Custom Properties for flexibility:
 
 -   **--app-layout-inline-padding:** Defines horizontal padding for sections.
 -   **--app-layout-block-padding:** Defines vertical padding for sections.
