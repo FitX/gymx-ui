@@ -54,7 +54,17 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Welcome', 'Icons', 'Tests', 'Tokens', 'Examples', 'Components', 'Composables'],
+        order: [
+          'Welcome',
+          'Icons',
+          'Tests',
+          'Tokens',
+          'Examples',
+          'Components',
+          ['Layout',
+            ['App Layout'],
+            'Form'],
+          'Composables'],
       },
     },
     /* controls: {
