@@ -1,4 +1,3 @@
-
 import { test, expect } from '@playwright/test';
 import { getUrlByStorybookId } from '../../../utils/e2e-helper';
 
@@ -8,5 +7,3 @@ test('App Layout Snapshot', async ({ page }) => {
   });
   await expect(page).toHaveScreenshot();
 });
-
-  

@@ -1,9 +1,8 @@
-
 <script lang="ts" setup>
 defineSlots<{
-  header: () => any,
-  main: () => any,
-  footer: () => any,
+  header: () => any;
+  main: () => any;
+  footer: () => any;
 }>();
 </script>
 <template>
@@ -23,10 +22,7 @@ defineSlots<{
 .app-layout {
   --app-layout-inline-padding: var(--gymx-size-0);
   --app-layout-block-padding: var(--gymx-size-00);
-  --app-layout-grid-template-areas:
-    'header'
-    'content'
-    'footer';
+  --app-layout-grid-template-areas: 'header' 'content' 'footer';
   --app-layout-grid-template-header-height: min-content;
   --app-layout-grid-template-main-height: 1fr;
   --app-layout-grid-template-footer-height: auto;
@@ -46,7 +42,7 @@ defineSlots<{
 
   /* above the fold spacer */
   &::before {
-    content:'';
+    content: '';
     height: 100vh;
     grid-column: 1 / -1;
     // grid-row: 1 / span 2;

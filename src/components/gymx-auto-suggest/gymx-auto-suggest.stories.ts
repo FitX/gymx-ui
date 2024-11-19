@@ -86,7 +86,12 @@ export const CustomSlots: Story = {
       );
 
       const extraFilter = (options: ExtraOption[], text: string): Option[] => {
-        return options.filter((option) => option.text.includes(text) || option.value.includes(text) || option.extra.toString().includes(text));
+        return options.filter(
+          (option) =>
+            option.text.includes(text) ||
+            option.value.includes(text) ||
+            option.extra.toString().includes(text),
+        );
       };
 
       // const model = ref(options.value[2]);
@@ -100,7 +105,7 @@ export const CustomSlots: Story = {
           value: `${componentref.value.inputValue} Value ${currentLength + 1}`,
           extra: currentLength + 100,
           image: 'https://picsum.photos/seed/picsum/150/50',
-        }
+        };
         options.value.push(newItem);
         model.value = newItem;
       };

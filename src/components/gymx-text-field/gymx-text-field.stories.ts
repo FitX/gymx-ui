@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    onClick: () => console.log('onclick')
+    onClick: () => console.log('onclick'),
     // text: 'This is an error message',
   },
 };

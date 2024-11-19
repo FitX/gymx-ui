@@ -1,7 +1,6 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAppFooter } from './gymx-app-footer.vue';
-import pkg from '../../../package.json'
+import pkg from '../../../package.json';
 import { GymxLink } from '@/components';
 import Readme from './readme.md?raw';
 
@@ -15,9 +14,9 @@ const meta = {
     docs: {
       description: {
         component: Readme,
-      }
-    }
-  }
+      },
+    },
+  },
 } satisfies Meta<typeof GymxAppFooter>;
 
 export default meta;
@@ -28,8 +27,7 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Default: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: {
       GymxAppFooter,
@@ -39,7 +37,7 @@ export const Default: Story = {
       return {
         args,
         appVersion: pkg.version,
-      }
+      };
     },
     template: `
     <gymx-app-footer v-bind="args">
@@ -51,12 +49,11 @@ export const Default: Story = {
         <gymx-link>Data protection</gymx-link>
       </template>
     </gymx-app-footer>`,
-  })
-}
+  }),
+};
 
 export const ActionsOnly: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: {
       GymxAppFooter,
@@ -65,7 +62,7 @@ export const ActionsOnly: Story = {
     data() {
       return {
         args,
-      }
+      };
     },
     template: `
     <gymx-app-footer v-bind="args">
@@ -74,12 +71,11 @@ export const ActionsOnly: Story = {
         <gymx-link>Data protection</gymx-link>
       </template>
     </gymx-app-footer>`,
-  })
-}
+  }),
+};
 
 export const ContentOnly: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: {
       GymxAppFooter,
@@ -88,7 +84,7 @@ export const ContentOnly: Story = {
       return {
         args,
         appVersion: pkg.version,
-      }
+      };
     },
     template: `
     <gymx-app-footer v-bind="args">
@@ -96,6 +92,5 @@ export const ContentOnly: Story = {
         <p>v. {{ appVersion }}</p>
       </template>
     </gymx-app-footer>`,
-  })
-}
-
+  }),
+};

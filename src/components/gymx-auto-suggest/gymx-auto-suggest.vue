@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
   }),
 });
 
-const optionSelectableSelectorString = '.auto-suggest__option:not(.auto-suggest__option--disabled, .auto-suggest__no-results)';
+const optionSelectableSelectorString =
+  '.auto-suggest__option:not(.auto-suggest__option--disabled, .auto-suggest__no-results)';
 
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);

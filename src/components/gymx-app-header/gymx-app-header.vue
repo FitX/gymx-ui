@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxAppHeaderProps } from './types';
 
@@ -58,7 +57,10 @@ const props = defineProps<GymxAppHeaderProps>();
 .app-header2 {
   --app-header-gap: 1rem;
   display: grid;
-  grid-template-columns: var(--app-header-logo-size, auto) var(--app-header-title-size, auto) var(--app-header-actions-size, 1fr);
+  grid-template-columns: var(--app-header-logo-size, auto) var(--app-header-title-size, auto) var(
+      --app-header-actions-size,
+      1fr
+    );
   grid-template-rows: 1fr;
   grid-template-areas: 'logo title actions';
   gap: var(--app-header-gap);
@@ -85,7 +87,7 @@ const props = defineProps<GymxAppHeaderProps>();
   }
 
   & > :first-child:empty + * {
-    margin-inline-start: calc(var(--app-header-gap) * -1)
+    margin-inline-start: calc(var(--app-header-gap) * -1);
   }
 }
 </style>

@@ -84,11 +84,11 @@ describe('GymxTextField', () => {
     const wrapper = mount(GymxTextField, {
       props: {
         label: 'Test Label',
-        onClick: foo.click
+        onClick: foo.click,
       },
     });
 
     wrapper.trigger('click');
-    expect(mock).toHaveBeenCalled()
+    expect(mock).toHaveBeenCalled();
   });
 });

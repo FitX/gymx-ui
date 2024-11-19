@@ -1,9 +1,8 @@
-
 export interface GymxAppFooterProps {
-// @TODO Define your props here
+  // @TODO Define your props here
 }
 
 export interface GymxAppFooterSlots {
-  content: () => any,
-  actions: () => any,
+  content: () => any;
+  actions: () => any;
 }

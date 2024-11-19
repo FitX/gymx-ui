@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxAppContentProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
@@ -10,8 +9,7 @@ const props = withDefaults(defineProps<GymxAppContentProps>(), {
 <template>
   <div
     class="app-content"
-    :class="getModifierClasses('app-content', props.layout)"
-  >
+    :class="getModifierClasses('app-content', props.layout)">
     <div class="app-content__inner">
       <slot name="default" />
     </div>

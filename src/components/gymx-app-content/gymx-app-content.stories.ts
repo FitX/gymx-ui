@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAppContent } from './gymx-app-content.vue';
 import { default as FormExample } from '../../../docs/demo/forms-example.vue';
@@ -31,4 +30,3 @@ export const Centered: Story = {
     default: () => h(FormExample),
   },
 };
-

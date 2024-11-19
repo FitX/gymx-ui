@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxAppLayout } from './index';
@@ -9,11 +8,13 @@ describe('GymxAppLayout', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   it('slots rendered', () => {
-    const wrapper = mount(GymxAppLayout, { slots: {
-      header: '<h1>Header</h1>',
-      main: '<h1>Main</h1>',
-      footer: '<p>Footer</p>',
-      } });
+    const wrapper = mount(GymxAppLayout, {
+      slots: {
+        header: '<h1>Header</h1>',
+        main: '<h1>Main</h1>',
+        footer: '<p>Footer</p>',
+      },
+    });
     const appWrapper = wrapper.find('.app-layout');
     const header = wrapper.find('.app-layout__header');
     const main = wrapper.find('.app-layout__main');

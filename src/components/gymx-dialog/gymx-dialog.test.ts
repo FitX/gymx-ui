@@ -107,12 +107,12 @@ describe('GymxDialog', () => {
         modelValue: true,
         isModal: true,
         closeOnOutside: false,
-        title: 'Test Dialog'
+        title: 'Test Dialog',
       },
       slots: {
         default: '<div>Dialog Body</div>',
-        footer: '<div>Dialog Footer</div>'
-      }
+        footer: '<div>Dialog Footer</div>',
+      },
     });
 
     expect(wrapper.vm.isOpen).toBe(true);
@@ -154,13 +154,13 @@ describe('GymxDialog', () => {
         modelValue: true,
         isModal: true,
         closeOnOutside: false,
-        title: 'Test Dialog'
+        title: 'Test Dialog',
       },
       slots: {
         default: '<div>Dialog Body</div>',
-        footer: '<div>Dialog Footer</div>'
+        footer: '<div>Dialog Footer</div>',
       },
-      attachTo: document.body
+      attachTo: document.body,
     });
 
     expect(wrapper.vm.isOpen).toBe(true);
@@ -175,6 +175,4 @@ describe('GymxDialog', () => {
 
     wrapper.unmount();
   });
-
-
 });

@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxAppContent } from './index';
@@ -15,7 +14,7 @@ describe('GymxAppContent', () => {
   });
 
   it('centered layout class rendered', () => {
-    const wrapper = mount(GymxAppContent, { props: { layout: 'centered' }});
+    const wrapper = mount(GymxAppContent, { props: { layout: 'centered' } });
     expect(wrapper.classes()).toContain('app-content--centered');
   });
 });

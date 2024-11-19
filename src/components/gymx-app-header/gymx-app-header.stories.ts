@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAppHeader } from './gymx-app-header.vue';
 import { GymxButton } from '@/components';
@@ -10,7 +9,11 @@ const logo = `<svg xmlns="http://www.w3.org/2000/svg" width="41" height="36" vie
         </svg>`;
 
 const demoLogo = defineComponent({ name: 'demoLogo', template: logo });
-const demoActions = defineComponent({ name: 'demoActions', components: { GymxButton }, template: '<gymx-button>Ausloggen</gymx-button>' });
+const demoActions = defineComponent({
+  name: 'demoActions',
+  components: { GymxButton },
+  template: '<gymx-button>Ausloggen</gymx-button>',
+});
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -41,7 +44,7 @@ export const Default: Story = {
     data() {
       return {
         args,
-      }
+      };
     },
     template: `
     <gymx-app-header v-bind="args">
@@ -52,45 +55,44 @@ export const Default: Story = {
         <gymx-button>Ausloggen</gymx-button>
       </template>
     </gymx-app-header>`,
-  })
-}
+  }),
+};
 
 export const LogoOnly: Story = {
   args: {
     logo: () => h(demoLogo),
-  }
-}
+  },
+};
 
 export const LogoWithTitle: Story = {
   args: {
     logo: () => h(demoLogo),
-    title: 'Title'
-  }
-}
+    title: 'Title',
+  },
+};
 
 export const LogoWithActions: Story = {
   args: {
     logo: () => h(demoLogo),
     actions: () => h(demoActions),
-  }
-}
+  },
+};
 
 export const TitleWithActions: Story = {
   args: {
     title: 'title',
     actions: () => h(demoActions),
-  }
-}
+  },
+};
 
 export const ActionsOnly: Story = {
   args: {
-    actions: () => h(demoActions)
-  }
-}
+    actions: () => h(demoActions),
+  },
+};
 
 export const TitleOnly: Story = {
   args: {
-    title: 'title'
-  }
-}
-
+    title: 'title',
+  },
+};

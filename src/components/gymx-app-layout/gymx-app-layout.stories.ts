@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { h } from 'vue';
 import { default as GymxAppLayout } from './gymx-app-layout.vue';
@@ -6,7 +5,6 @@ import { GymxAppContent, GymxAppHeader, GymxAppFooter, GymxLink } from '@/compon
 import { default as FormExample } from '../../../docs/demo/forms-example.vue';
 import Readme from './readme.md?raw';
 import pkg from '../../../package.json';
-
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -18,9 +16,9 @@ const meta = {
     docs: {
       description: {
         component: Readme,
-      }
-    }
-  }
+      },
+    },
+  },
 } satisfies Meta<typeof GymxAppLayout>;
 
 export default meta;
@@ -31,8 +29,7 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Default: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: {
       GymxAppLayout,
@@ -46,7 +43,7 @@ export const Default: Story = {
       return {
         args,
         appVersion: pkg.version,
-      }
+      };
     },
     template: `
     <gymx-app-layout v-bind="args">
@@ -81,24 +78,23 @@ export const Default: Story = {
       </template>
     </gymx-app-layout>
     `,
-  })
+  }),
 };
 
 export const WithHeader: Story = {
   args: {
-    header: h('h1', 'Title')
+    header: h('h1', 'Title'),
   },
 };
 
 export const WithFooter: Story = {
   args: {
-    footer: h('small', '© 2024 GymX')
+    footer: h('small', '© 2024 GymX'),
   },
 };
 
 export const Empty: Story = {
   args: {
-    main: ''
+    main: '',
   },
 };
-

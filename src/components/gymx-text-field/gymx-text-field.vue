@@ -25,19 +25,21 @@ const modelValue = defineModel<string | number>({ default: '' });
 const inputRef = ref();
 const attrs = useAttrs();
 
-const listener = computed(() => Object.keys(attrs)
-  ?.filter(
-    (attr) =>
-      attr?.startsWith('on') && typeof attrs[attr] === 'function'
-  )
-  ?.reduce((res, key) => (((res as any)[key] = attrs[key]), res), {}))
+const listener = computed(() =>
+  Object.keys(attrs)
+    ?.filter((attr) => attr?.startsWith('on') && typeof attrs[attr] === 'function')
+    ?.reduce((res, key) => (((res as any)[key] = attrs[key]), res), {}),
+);
 
 defineExpose({
   inputRef,
 });
 </script>
 <template>
-  <div class="text-field" :class="$attrs.class" v-bind="listener">
+  <div
+    class="text-field"
+    :class="$attrs.class"
+    v-bind="listener">
     <gymx-label
       :for="props.id"
       :text="props.label"
