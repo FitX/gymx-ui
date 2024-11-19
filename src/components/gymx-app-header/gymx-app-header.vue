@@ -19,7 +19,8 @@ const props = defineProps<GymxAppHeaderProps>();
 </template>
 <style lang="scss" scoped>
 .app-header {
-  --app-header-gap: 1rem;
+  --app-header-gap: 0.2rem 1rem;
+  --app-header-actions-gap: 0.2rem 1rem;
   display: flex;
   gap: var(--app-header-gap);
   align-items: center;
@@ -28,8 +29,24 @@ const props = defineProps<GymxAppHeaderProps>();
 
   &__actions {
     display: flex;
+    flex: 0 1 auto;
     justify-self: end;
     margin-inline-start: auto;
+    flex-wrap: wrap;
+    gap: var(--app-header-actions-gap);
+
+    & > :deep(*:not(.ignore-header-styles)) {
+      font-weight: var(--gymx-font-weight-6);
+    }
+  }
+
+  &__logo {
+    flex: 0 0 var(--app-header-logo-width, var(--gymx-font-size-fluid-3));
+  }
+
+  &__title {
+    font-size: var(--gymx-font-size-fluid-3);
+    margin: 0;
   }
 
   &__logo:empty,

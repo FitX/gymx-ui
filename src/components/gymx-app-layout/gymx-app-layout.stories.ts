@@ -47,14 +47,16 @@ export const Default: Story = {
     },
     template: `
     <gymx-app-layout v-bind="args">
+      <style>.normal { font-weight: normal; }</style>
       <template #header>
         <gymx-app-header title="Example App">
           <template #logo>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99 99" fill="none" style="width: 40px; aspect-ratio: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99 99" fill="none" style="width: auto; aspect-ratio: 1;" aria-hidden="true">
               <path d="M99 0v99H64.162V59.48L36.219 87.438l-24.635-24.65 27.931-27.934H0V0h99Z" fill="var(--gymx-color-accent, #ED6A12)"/></svg>
           </template>
           <template #actions>
-            <gymx-link>Ausloggen</gymx-link>
+            <!--<gymx-link tag="button" class="ignore-header-styles">Ignore Styles</gymx-link>-->
+            <gymx-link tag="button" class="normal">Ausloggen</gymx-link>
           </template>
         </gymx-app-header>
       </template>
@@ -63,7 +65,9 @@ export const Default: Story = {
           <form-example />
         </gymx-app-content>
       </template>
-      <template #footer><small>© 2024 GymX</small></template>
+      <template #footer>
+        <small>© 2024 GymX</small>
+      </template>
     </gymx-app-layout>
     `,
   })
