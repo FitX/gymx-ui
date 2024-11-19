@@ -1,0 +1,6 @@
+/**
+ Theme Dark
+ */
+:where(html) {
+  --gymx-color-accent: color(display-p3 0.357 0.357 1);
+}

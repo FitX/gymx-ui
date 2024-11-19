@@ -1,3 +1,21 @@
 /**
-@TODO prefix????
+ * This File contains all imports from tokens and themes
  */
+@import 'normalize.css';
+/**
+ (Internal) Tokens
+ */
+@import 'tokens/index.css';
+/**
+ * Semantic Tokens
+ */
+@import 'semantic.css';
+@import 'ui/table.css';
+/**
+ * Theme specific
+ */
+@import 'theme.css';
+
+:where(html) {
+  /* --input-color-border-hover: green; */
+}

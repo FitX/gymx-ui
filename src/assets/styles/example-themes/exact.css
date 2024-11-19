@@ -1,0 +1,170 @@
+/**
+ Theme Exact
+ */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:where([data-theme='exact']) {
+}
+
+[data-theme='exact'] {
+  color-scheme: dark;
+
+  --exact-color-black-1: #000;
+
+  --exact-color-white-1: #fff;
+
+  --exact-color-gray-1: #eee;
+  --exact-color-gray-2: #ededed;
+  --exact-color-gray-3: #55595c;
+
+  --exact-color-pink: #e4097e;
+
+  --exact-color-dark: var(--exact-color-black-1);
+  --exact-color-light: var(--exact-color-white-1);
+  --exact-color-accent: var(--exact-color-pink);
+
+  --exact-font-size-1: 18px;
+  --exact-font-size-2: 24px;
+  --exact-font-size-3: 26px;
+  --exact-font-size-4: 38px;
+  --exact-font-size-5: 52px;
+
+  --exact-font-family: 'Work Sans';
+
+  /* GymX UI Theme Overwrites */
+  --gymx-font-family-sans: var(--exact-font-family);
+  --gymx-color-accent: var(--exact-color-accent);
+  --gymx-color-text: var(--exact-color-light);
+  /*
+  --gymx-font-size-1: var(--exact-font-size-1);
+  --gymx-font-size-2: var(--exact-font-size-2);
+  --gymx-font-size-3: var(--exact-font-size-3);
+  --gymx-font-size-4: var(--exact-font-size-4);
+   */
+  --gymx-config-font-size-root: 18px;
+
+  --exact-color-background: var(--exact-color-dark);
+  --storybook-background-color: var(--exact-color-background);
+
+  .input,
+  .select {
+  }
+
+  --input-color-border: var(--exact-color-accent);
+  --select-color-border: var(--exact-color-accent);
+
+  .btn {
+    --button-color-border: var(--exact-color-accent);
+    --button-color-border-hover: var(--exact-color-white-1);
+    --button-color-border-focused: var(--exact-color-white-1);
+    --button-color-border-disabled: var(--exact-color-gray-3);
+    --button-color-background: linear-gradient(
+      90deg,
+      var(--gymx-color-accent-8) 50%,
+      var(--exact-color-accent) 50%
+    );
+    --button-color-background-hover: var(--button-color-background);
+    --button-color-background-focused: var(--button-color-background);
+    --button-color-background-disabled: var(--exact-color-gray-3);
+    --button-radius: 5px;
+    --button-font-weight: 600;
+
+    background-origin: border-box;
+    background-size: 200%;
+    background-position-x: 100%;
+    transition: 0.3s ease-in-out;
+    transition-property: color, background-color, background-position, background-size, border-color,
+      box-shadow;
+    border-width: 3px;
+  }
+
+  .btn:hover,
+  .btn--hover,
+  .btn:focus-visible,
+  .btn--focused {
+    /* --button-border: 3px solid var(--exact-color-light); */
+    background-position-x: 0;
+  }
+
+  .table {
+    --gymx-table-border: 2px solid var(--exact-color-gray-3);
+
+    td,
+    th {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+
+    th {
+      border: none;
+    }
+  }
+}
+
+/* Dialog */
+[data-theme='exact'] {
+  --dialog-animation-duration: 300ms;
+  --dialog-animation-in: dialog-in-exact var(--dialog-animation-duration) ease-in-out forwards;
+  --dialog-animation-out: dialog-out-exact var(--dialog-animation-duration) ease-in-out forwards;
+  --dialog-inline-padding: var(--gymx-size-2);
+  --dialog-block-padding: var(--gymx-size-1);
+  --dialog-border-radius: var(--gymx-radius-2);
+  --_exact-dialog-shadow-spacing: 10px;
+  --_exact-dialog-shadow-offset: -2px;
+  --dialog-shadow: var(--gymx-color-accent-12) 0px 0px 0px 2px inset,
+    var(--exact-color-background) var(--_exact-dialog-shadow-spacing)
+      calc(var(--_exact-dialog-shadow-spacing) * -1) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-10) var(--_exact-dialog-shadow-spacing)
+      calc(var(--_exact-dialog-shadow-spacing) * -1),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 2)
+      calc(var(--_exact-dialog-shadow-spacing) * -2) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-8) calc(var(--_exact-dialog-shadow-spacing) * 2)
+      calc(var(--_exact-dialog-shadow-spacing) * -2),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 3)
+      calc(var(--_exact-dialog-shadow-spacing) * -3) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-6) calc(var(--_exact-dialog-shadow-spacing) * 3)
+      calc(var(--_exact-dialog-shadow-spacing) * -3),
+    var(--exact-color-background) calc(var(--_exact-dialog-shadow-spacing) * 4)
+      calc(var(--_exact-dialog-shadow-spacing) * -4) 0px var(--_exact-dialog-shadow-offset),
+    var(--gymx-color-accent-4) calc(var(--_exact-dialog-shadow-spacing) * 4)
+      calc(var(--_exact-dialog-shadow-spacing) * -4);
+
+  .dialog {
+    width: 70vw;
+  }
+
+  .dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .dialog__header {
+    border-bottom: 1px solid var(--gymx-color-gray-4);
+  }
+
+  @keyframes dialog-out-exact {
+    to {
+      scale: 0.75;
+      opacity: 0;
+    }
+  }
+
+  @keyframes dialog-in-exact {
+    from {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}
+
+/* App Layout */
+[data-theme='exact'] {
+  /* .app-layout__header {
+    border-bottom: 1px solid var(--gymx-color-accent-12);
+  } */
+  .app-header {
+    --app-header-gap: 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--gymx-color-accent-12);
+  }
+}

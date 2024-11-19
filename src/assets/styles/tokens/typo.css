@@ -1,0 +1,52 @@
+:where(html) {
+  --gymx-config-font-size-scale: 1.125; /* Major Third scale */
+  --gymx-config-font-size-root: 1rem;
+
+  --gymx-font-family-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans,
+    sans-serif;
+  --gymx-font-family-serif: ui-serif, serif;
+  --gymx-font-family-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono,
+    Monaco, Droid Sans Mono, Source Code Pro, monospace;
+
+  --gymx-font-weight-1: 100;
+  --gymx-font-weight-2: 200;
+  --gymx-font-weight-3: 300;
+  --gymx-font-weight-4: 400;
+  --gymx-font-weight-5: 500;
+  --gymx-font-weight-6: 600;
+  --gymx-font-weight-7: 700;
+  --gymx-font-weight-8: 800;
+  --gymx-font-weight-9: 900;
+
+  --gymx-font-lineheight-00: 0.95;
+  --gymx-font-lineheight-0: 1.1;
+  --gymx-font-lineheight-1: 1.25;
+  --gymx-font-lineheight-2: 1.375;
+  --gymx-font-lineheight-3: 1.5;
+  --gymx-font-lineheight-4: 1.75;
+  --gymx-font-lineheight-5: 2;
+
+  --gymx-font-letterspacing-0: -0.05em;
+  --gymx-font-letterspacing-1: 0.025em;
+  --gymx-font-letterspacing-2: 0.05em;
+  --gymx-font-letterspacing-3: 0.075em;
+  --gymx-font-letterspacing-4: 0.15em;
+  --gymx-font-letterspacing-5: 0.5em;
+  --gymx-font-letterspacing-6: 0.75em;
+  --gymx-font-letterspacing-7: 1em;
+
+  --gymx-font-size-00: calc(var(--gymx-font-size-0) / var(--gymx-config-font-size-scale));
+  --gymx-font-size-0: calc(var(--gymx-font-size-1) / var(--gymx-config-font-size-scale));
+  --gymx-font-size-1: var(--gymx-config-font-size-root, 1rem);
+  --gymx-font-size-2: calc(var(--gymx-font-size-1) * var(--gymx-config-font-size-scale));
+  --gymx-font-size-3: calc(var(--gymx-font-size-2) * var(--gymx-config-font-size-scale));
+  --gymx-font-size-4: calc(var(--gymx-font-size-3) * var(--gymx-config-font-size-scale));
+  --gymx-font-size-5: calc(var(--gymx-font-size-4) * var(--gymx-config-font-size-scale));
+  --gymx-font-size-6: calc(var(--gymx-font-size-5) * var(--gymx-config-font-size-scale));
+  --gymx-font-size-7: calc(var(--gymx-font-size-6) * var(--gymx-config-font-size-scale));
+
+  --gymx-font-size-fluid-0: clamp(var(--gymx-font-size-0), 2vw, var(--gymx-font-size-1));
+  --gymx-font-size-fluid-1: clamp(var(--gymx-font-size-1), 4vw, var(--gymx-font-size-3));
+  --gymx-font-size-fluid-2: clamp(var(--gymx-font-size-3), 6vw, var(--gymx-font-size-5));
+  --gymx-font-size-fluid-3: clamp(var(--gymx-font-size-4), 9vw, var(--gymx-font-size-7));
+}

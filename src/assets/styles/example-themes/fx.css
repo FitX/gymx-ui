@@ -1,0 +1,115 @@
+/**
+ Theme FitX Like
+ */
+:where([data-theme='fx']) {
+  color-scheme: light;
+
+  --gymx-color-accent: #ed6a12;
+  --gymx-color-accent: color(display-p3 0.8668 0.4454 0.1893);
+
+  /*
+  Colors
+  */
+  --gymx-color-primary: #ed6a12;
+  --accent-color: #ed6a12;
+
+  /**
+  Buttons
+   */
+  --button-color-border: var(--button-color-background);
+  --button-color-border-hover: var(--button-color-background-hover);
+  --button-color-border-focused: var(--button-color-background-focused);
+  --button-color-border-disabled: var(--button-color-background-disabled);
+  --button-color-background-focused: var(--button-color-background-hover);
+  --button-radius: 1rem;
+  /*
+  --button-color: #fff;
+  --button-color-background: var(--gymx-color-primary);
+  --button-color-border: var(--button-color-background);
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.2) c h);
+  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.4) c h);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+*/
+  /**
+  Links
+   */
+  /*
+  --link-color: var(--accent-color);
+  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
+
+  .btn:where(:focus-visible) {
+    --button-outline: 1px solid var(--button-color-background-focused);
+    outline-offset: 1px;
+  }
+   */
+
+  font-family: var(--gymx-font-family-default);
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
+
+  /* Input */
+  --input-color-border: #b5b5b5;
+  --input-color-border-hover: #717171;
+  --input-color-border-disabled: #b5b5b5;
+  --input-color-background-disabled: #f5f5f5;
+
+  .table {
+    --gymx-table-border: 2px solid var(--exact-color-gray-3);
+    --gymx-table-color-header: none;
+    --sort-icon-active: #000;
+
+    td,
+    th {
+      border-left: none;
+      border-right: none;
+    }
+
+    th {
+      border: none;
+    }
+  }
+
+  .table-sort {
+    justify-content: start;
+    gap: var(--gymx-size-00);
+  }
+
+  .dialog {
+    --dialog-border-radius: 1rem;
+    --dialog-block-padding: 2rem;
+    --dialog-inline-padding: 2rem;
+    --dialog-title-font-size: 1.575rem;
+    --icon-width: var(--dialog-title-font-size);
+    --icon-height: var(--dialog-title-font-size);
+    --dialog-animation-in: dialog-in-fx var(--dialog-animation-duration) ease-in-out forwards;
+    --dialog-animation-out: dialog-out-fx var(--dialog-animation-duration) ease-in-out forwards;
+    --dialog-shadow: none;
+
+    min-inline-size: min(600px, 80vw);
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .dialog__body {
+    padding-block-start: 0;
+  }
+
+  .dialog__button-close {
+    align-self: center;
+  }
+
+  @keyframes dialog-out-fx {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes dialog-in-fx {
+    from {
+      opacity: 1;
+    }
+  }
+}

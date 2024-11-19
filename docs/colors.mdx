@@ -1,0 +1,183 @@
+import { Meta, ColorItem, ColorPalette, Canvas } from '@storybook/blocks';
+import { useEffect, useState } from 'react';
+import { getCSSCustomProps } from './demo/utils/css-props';
+import * as ColorsOverview from './colors.stories';
+
+export const grayColors = []; //getCSSCustomProps('--gymx-color-black');
+
+export const generateItems = (propName) => {
+  const [items, setItems] = useState(getCSSCustomProps(propName));
+
+  const updateItems = () => {
+    const newItems = getCSSCustomProps(propName);
+    setItems(newItems);
+  };
+
+  useEffect(() => {
+    // updateItems();
+
+    const handleThemeChange = () => {
+      updateItems();
+      console.log('items', propName, items)
+    };
+
+    document.addEventListener('theme-css-loaded', handleThemeChange);
+
+    updateItems();
+
+    return () => {
+      document.removeEventListener('theme-css-loaded', handleThemeChange);
+    };
+  }, [propName]);
+
+  return (
+    <>
+  {
+    items
+      .map(([name, value], index) => <ColorItem key={`${document.documentElement.dataset.theme}${index}}`} title={name}
+                                                subtitle={document.documentElement.dataset.theme}
+                                                colors={{[name]: value}}/>)
+  }
+    </>)
+};
+
+export const AccentColorItems = () => generateItems('--gymx-color-accent');
+export const GrayColorItems = () => generateItems('--gymx-color-black');
+export const SuccessColorItems = () => generateItems('--gymx-color-success');
+export const WarningColorItems = () => generateItems('--gymx-color-warning');
+export const ErrorColorItems = () => generateItems('--gymx-color-error');
+
+<Meta title="Tokens/Colors" />
+
+# Colors
+
+### @TODO
+- Contrast Ratios / Accessibility
+
+This component library uses a flexible and scalable accent color palette based on CSS variables. The palette provides light and dark variations of the accent color and dynamically adjusts to light and dark modes. By defining variables for different UI states (such as hover, active, borders), a consistent design is ensured.
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Accent Color Concept](#accent-color-concept)
+3. [Using the Color Steps](#using-color-steps)
+4. [Accent Color Configuration](#accent-color-configuration)
+5. [Dynamic Color Adjustment for Light/Dark Mode](#dynamic-color-adjustment)
+6. [Usage Example](#usage-example)
+7. [License](#license)
+
+<Canvas of={ColorsOverview.Default} />
+
+## Success
+<SuccessColorItems />
+
+## Warning
+<WarningColorItems />
+
+## Error
+<ErrorColorItems />
+
+Introduction
+------------
+
+This library implements a customizable color system for components.
+The color steps are managed through CSS variables and provide a flexible way to define colors for various UI states and interactions.
+
+The accent color palette consists of:
+
+- Light and dark shades of the accent color
+- Dynamically adjusting to light and dark design modes (Light/Dark Mode)
+
+Accent Color Concept
+--------------------
+
+The color system is based on a central accent color, represented in various shades of lightness and darkness.
+These color shades can be used for different UI components such as backgrounds, borders, buttons, and highlights.
+
+The accent color palette includes 12 levels:
+
+- **Step 1-9:** Light shades of the accent color
+- **Step 10-12:** Dark shades of the accent color
+
+### Structure of Color Steps
+
+- **Step 1-2:** Main background colors
+- **Step 3-5:** Colors for UI components (Default, Hover, Active)
+- **Step 6-8:** Colors for borders
+- **Step 9-10:** Colors for backgrounds and highlights
+- **Step 11-12:** Contrast colors for text on dark backgrounds
+
+Using the Color Steps
+---------------------
+
+### CSS Variables Overview
+
+The accent color variables are categorized as follows:
+
+1. **Accent Light Palette:**
+    - `--gymx-color-accent-light-1` to `--gymx-color-accent-light-12`
+2. **Accent Dark Palette:**
+    - `--gymx-color-accent-dark-1` to `--gymx-color-accent-dark-12`
+3. **Automatic Accent Colors:**
+    - `--gymx-color-accent-1` to `--gymx-color-accent-12` (dynamically based on Light/Dark Mode)
+
+### Example of Variable Usage:
+
+```css
+.my-button {
+  background-color: var(--gymx-color-accent-3); /* Default background */
+  border: 1px solid var(--gymx-color-accent-6); /* Border color */
+}
+
+.my-button:hover {
+  background-color: var(--gymx-color-accent-4); /* Hover background */
+}
+
+.my-button:active {
+  background-color: var(--gymx-color-accent-5); /* Active background */
+}
+```
+
+Accent Color Configuration
+--------------------------
+
+You can easily adjust the **base accent color** (`--_gymx-color-accent`) by overriding it in your stylesheet:
+
+```css
+:root {
+  --gymx-color-accent: color(display-p3 0.7 0.2 0.4); /* Example: Another hue */
+}
+```
+
+The palette will automatically update to reflect this new accent color.
+
+### Dynamic Color Mixing
+
+The colors are generated using the CSS function `color-mix()` based on the accent color and a lighter or darker color.
+This creates the various lightness and darkness levels of the accent color.
+
+Dynamic Color Adjustment for Light/Dark Mode
+--------------------------------------------
+
+The color system is dynamic and uses the `light-dark()` function to automatically switch between light and dark versions of the accent colors, depending on whether the user is in light or dark mode.
+
+Example:
+
+```css
+.my-component {
+  background-color: var(--gymx-color-accent-1); /* Automatically switches based on light/dark */
+}
+```
+
+### Additional Resources
+- [MDN: color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix)
+
+## Color Palettes
+
+<ColorPalette>
+  <AccentColorItems />
+</ColorPalette>
+
+<ColorPalette>
+  <GrayColorItems />
+</ColorPalette>

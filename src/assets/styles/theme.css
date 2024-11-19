@@ -1,0 +1,66 @@
+/**
+ Theme <3 Gymx Ui
+ */
+:where(html) {
+  color-scheme: dark light;
+  font-family: var(--gymx-font-family-default), sans-serif;
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
+}
+:where(html) {
+  color-scheme: light;
+  /*
+  Colors
+  */
+  --gymx-color-primary: var(--gymx-color-accent); /* #00328a; */
+  --gymx-color-text: #222;
+  --accent-color: var(--gymx-color-accent); /* #00328a; */
+
+  /**
+  Buttons
+   */
+  --button-color: #fff;
+  --button-color-background: var(--gymx-color-primary);
+  --button-color-border: var(--button-color-background);
+  --button-color-background-hover: oklch(from var(--button-color-background) calc(l * 1.2) c h);
+  --button-color-background-focused: oklch(from var(--button-color-background) calc(l * 1.3) c h);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+
+  .btn:where(:focus-visible) {
+    --button-outline: 1px solid var(--button-color-background-focused);
+    outline-offset: 1px;
+  }
+
+  /**
+  Links
+   */
+  --link-color: var(--accent-color);
+  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
+}
+
+:where([data-theme='dark']) {
+  color-scheme: dark;
+
+  /* --gymx-color-accent: color(display-p3 0.01096 0.00423 0.32979); */
+
+  --input-color-disabled: var(--gymx-color-white-6);
+  --input-color-border: var(--gymx-color-white-6);
+  --input-color-border-hover: var(--gymx-color-white-7);
+  --input-color-border-disabled: var(--gymx-color-white-2);
+  --input-color-background-disabled: var(--gymx-color-white-1);
+
+  --select-color-disabled: var(--gymx-color-white-6);
+  --select-color-border: var(--gymx-color-white-6);
+  --select-color-border-hover: var(--gymx-color-white-7);
+  --select-color-border-disabled: var(--gymx-color-white-2);
+  --select-color-background-disabled: var(--gymx-color-white-1);
+
+  --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
+  --gymx-color-text: #fefefe;
+  --accent-color: #9eb1ff;
+  --link-color: var(--accent-color);
+
+  --link-color-hover: oklch(from var(--link-color) calc(l * 1.1) c h);
+  --link-color-focused: oklch(from var(--link-color) calc(l * 1.2) c h);
+}

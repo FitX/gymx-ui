@@ -1,0 +1,63 @@
+/**
+ Theme SG Like
+ */
+:where([data-theme='sg']) {
+  color-scheme: light;
+
+  --gymx-color-accent: #009ee3;
+
+  --sg-color-link: #282372;
+  --sg-color-primary: #009ee3;
+  --sg-color-on-primary: #fff;
+  --sg-font-family: system-ui;
+
+  --button-color: var(--sg-color-link);
+  --button-color-background: var(--sg-color-on-primary);
+  --button-color-border: var(--sg-color-primary);
+
+  --button-color-hover: var(--sg-color-on-primary);
+  --button-color-background-hover: var(--sg-color-primary);
+  --button-color-border-hover: var(--sg-color-primary);
+
+  --button-color-focused: var(--sg-color-link);
+  --button-color-background-focused: var(--sg-color-on-primary);
+  --button-color-border-focused: var(--sg-color-link);
+
+  --button-color-disabled: #222;
+  --button-color-background-disabled: #efefef;
+  --button-color-border-disabled: var(--button-color-disabled);
+
+  --gymx-font-family-default: var(--sg-font-family);
+
+  --link-color: var(--sg-color-primary);
+  --link-color-hover: var(--sg-color-link);
+
+  /*
+  --button-color-background-hover: var(--sg-color-primary);
+  --button-color-background-focused: var(--button-color-background);
+  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+   */
+
+  .table {
+    --sort-icon-active: var(--gymx-color-accent);
+    --gymx-table-color-header: var(--gymx-color-gray-1);
+  }
+
+  .dialog {
+    min-inline-size: min(400px, 70vw);
+  }
+  .dialog__header {
+    background: var(--gymx-color-gray-2);
+  }
+  .dialog__button-close {
+    --icon-fill: var(--gymx-color-accent);
+    align-self: center;
+  }
+}
+
+/* App Layout */
+[data-theme='sg'] {
+  .app-layout__header {
+    box-shadow: var(--gymx-color-gray-3) 0 25px 20px -20px;
+  }
+}
