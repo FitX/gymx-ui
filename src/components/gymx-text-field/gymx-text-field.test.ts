@@ -4,7 +4,7 @@ import { GymxTextField } from './index';
 
 describe('GymxTextField', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxTextField);
+    const wrapper = mount(GymxTextField, { props: { label: 'Test Label' } });
     expect(wrapper.exists()).toBeTruthy();
   });
 

@@ -4,7 +4,7 @@ import { GymxSelect } from './index';
 
 describe('GymxSelect', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxSelect);
+    const wrapper = mount(GymxSelect, { props: { options: [] } });
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -41,6 +41,7 @@ describe('GymxSelect', () => {
       props: {
         // @ts-expect-error
         state: 'active',
+        options: [],
         selectAttributes: {},
       },
       attrs: {
@@ -57,6 +58,7 @@ describe('GymxSelect', () => {
       props: {
         // @ts-expect-error
         state: 'active',
+        options: [],
         selectAttributes: {},
       },
     });
@@ -67,6 +69,9 @@ describe('GymxSelect', () => {
 
   it('should render slot content', () => {
     const wrapper = mount(GymxSelect, {
+      props: {
+        options: [],
+      },
       slots: {
         'select-end': 'Hi from Slot',
         option: '',

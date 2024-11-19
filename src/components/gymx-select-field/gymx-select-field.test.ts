@@ -4,7 +4,7 @@ import { GymxSelectField } from './index';
 
 describe('GymxSelectField', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxSelectField);
+    const wrapper = mount(GymxSelectField, { props: { label: 'Test Label', options: [] } });
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -29,6 +29,10 @@ describe('GymxSelectField', () => {
 
   it('should render slot content', () => {
     const wrapper = mount(GymxSelectField, {
+      props: {
+        label: 'Test Label',
+        options: [],
+      },
       slots: {
         'select-end': 'Hi from Slot',
       },
