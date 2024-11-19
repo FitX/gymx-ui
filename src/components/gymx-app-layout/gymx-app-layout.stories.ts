@@ -55,8 +55,8 @@ export const Default: Story = {
               <path d="M99 0v99H64.162V59.48L36.219 87.438l-24.635-24.65 27.931-27.934H0V0h99Z" fill="var(--gymx-color-accent, #ED6A12)"/></svg>
           </template>
           <template #actions>
-            <!--<gymx-link tag="button" class="ignore-header-styles">Ignore Styles</gymx-link>-->
-            <gymx-link tag="button" class="normal">Ausloggen</gymx-link>
+            <!--<gymx-link tag="button" class="ignore-default-styles">Ignore Styles</gymx-link>-->
+            <gymx-link tag="button" class="normal">Logout</gymx-link>
           </template>
         </gymx-app-header>
       </template>

@@ -4,7 +4,7 @@ defineSlots<{
   header: () => any,
   main: () => any,
   footer: () => any,
-}>()
+}>();
 </script>
 <template>
   <div class="app-layout">

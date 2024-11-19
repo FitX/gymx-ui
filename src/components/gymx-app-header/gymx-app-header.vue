@@ -35,7 +35,7 @@ const props = defineProps<GymxAppHeaderProps>();
     flex-wrap: wrap;
     gap: var(--app-header-actions-gap);
 
-    & > :deep(*:not(.ignore-header-styles)) {
+    & > :deep(*:not(.ignore-default-styles)) {
       font-weight: var(--gymx-font-weight-6);
     }
   }
