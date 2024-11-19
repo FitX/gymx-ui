@@ -166,9 +166,8 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
   /* --_gymx-color-accent: light-dark(var(--gymx-color-accent, color(display-p3 0.357 0.357 0.81)), color(display-p3 0.357 0.357 1)); */
   --_gymx-color-accent: var(
     --gymx-color-accent,
-    light-dark(
-      color(display-p3 0.01096 0.00423 0.32979),
-      color(display-p3 0.357 0.357 1)));
+    light-dark(color(display-p3 0.01096 0.00423 0.32979), color(display-p3 0.357 0.357 1))
+  );
 
   --_gymx-color-accent-dark-mix: var(--gymx-color-accent-dark-mix, color(display-p3 0 0 0));
   --_gymx-color-accent-light-mix: var(--gymx-color-accent-light-mix, color(display-p3 1 1 1));
