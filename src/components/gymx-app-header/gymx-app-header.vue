@@ -20,6 +20,9 @@ const props = defineProps<GymxAppHeaderProps>();
 .app-header {
   --app-header-gap: 0.2rem 1rem;
   --app-header-actions-gap: 0.2rem 1rem;
+  --app-header-title-font-size: var(--gymx-font-size-fluid-3);
+  --app-header-title-font-weight: var(--gymx-font-weight-3);
+
   display: flex;
   gap: var(--app-header-gap);
   align-items: center;
@@ -44,7 +47,8 @@ const props = defineProps<GymxAppHeaderProps>();
   }
 
   &__title {
-    font-size: var(--gymx-font-size-fluid-3);
+    font-size: var(--app-header-title-font-size);
+    font-weight: var(--app-header-title-font-weight);
     margin: 0;
   }
 
