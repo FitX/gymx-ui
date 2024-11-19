@@ -1,6 +1,7 @@
 export * from './gymx-app-layout';
 export * from './gymx-app-header';
 export * from './gymx-app-content';
+export * from './gymx-app-footer';
 export * from './gymx-auto-suggest';
 export * from './gymx-error-message';
 export * from './gymx-label';

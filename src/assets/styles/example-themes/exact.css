@@ -159,6 +159,9 @@
 
 /* App Layout */
 [data-theme='exact'] {
+  /* .app-layout__header {
+    border-bottom: 1px solid var(--gymx-color-accent-12);
+  } */
   .app-header {
     --app-header-gap: 2rem;
     position: relative;

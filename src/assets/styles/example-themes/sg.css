@@ -54,3 +54,10 @@
     align-self: center;
   }
 }
+
+/* App Layout */
+[data-theme='sg'] {
+  .app-layout__header {
+    box-shadow: var(--gymx-color-gray-3) 0 25px 20px -20px;
+  }
+}

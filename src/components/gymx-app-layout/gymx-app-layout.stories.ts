@@ -2,9 +2,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { h } from 'vue';
 import { default as GymxAppLayout } from './gymx-app-layout.vue';
-import { GymxAppContent, GymxAppHeader, GymxLink } from '@/components';
+import { GymxAppContent, GymxAppHeader, GymxAppFooter, GymxLink } from '@/components';
 import { default as FormExample } from '../../../docs/demo/forms-example.vue';
 import Readme from './readme.md?raw';
+import pkg from '../../../package.json';
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -37,12 +38,14 @@ export const Default: Story = {
       GymxAppLayout,
       GymxAppHeader,
       GymxAppContent,
+      GymxAppFooter,
       GymxLink,
       FormExample,
     },
     data() {
       return {
         args,
+        appVersion: pkg.version,
       }
     },
     template: `
@@ -66,7 +69,15 @@ export const Default: Story = {
         </gymx-app-content>
       </template>
       <template #footer>
-        <small>© 2024 GymX</small>
+        <gymx-app-footer>
+          <template #content>
+            <p>v. {{ appVersion }}</p>
+          </template>
+          <template #actions>
+            <gymx-link>Imprint</gymx-link>
+            <gymx-link>Data protection</gymx-link>
+          </template>
+        </gymx-app-footer>
       </template>
     </gymx-app-layout>
     `,
