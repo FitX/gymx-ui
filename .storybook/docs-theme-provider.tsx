@@ -27,7 +27,7 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
    * When switching to the Doc Pages, the data-theme attribute is only sporadically updated.
    * Therefore, the manual update here in the Theme Provider
    */
-  const theme = (props.context as any).store.globals.globals.theme;
+  const theme = (props.context as any).store.userGlobals.globals.theme;
   handleThemeSwitch(theme);
 
   const darkThemeList = ['dark', 'exact'];

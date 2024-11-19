@@ -17,7 +17,6 @@ const config: StorybookConfig = {
   stories: ['../docs/**/*.mdx', '../docs/**/*.stories.ts', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   staticDirs,
   addons: [
-    '@storybook/addon-onboarding',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
@@ -30,6 +29,9 @@ const config: StorybookConfig = {
     options: {
       // docgen: 'vue-component-meta',
     },
+  },
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
   },
 };
 export default config;
