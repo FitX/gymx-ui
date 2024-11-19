@@ -7,7 +7,7 @@ const linkStates: GymxLinkProps['state'] = uiStates.filter((type) => type !== 'd
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Link',
+  title: 'Components/Link',
   component: GymxLink,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

@@ -14,7 +14,7 @@ const demoActions = defineComponent({ name: 'demoActions', components: { GymxBut
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Layout/App Header',
+  title: 'Components/Layout/App Header',
   component: GymxAppHeader,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

@@ -5,7 +5,7 @@ import { default as DialogExampleCode } from './demo/dialog-examples.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'examples/Dialog',
+  title: 'Examples/Dialog',
   component: DialogExample,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['!dev', '!autodocs'],

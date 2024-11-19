@@ -10,7 +10,7 @@ import pkg from '../../../package.json';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Layout/App Layout',
+  title: 'Components/Layout/App Layout',
   component: GymxAppLayout,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

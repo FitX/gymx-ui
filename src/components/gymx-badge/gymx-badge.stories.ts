@@ -3,7 +3,7 @@ import { default as GymxBadge } from './gymx-badge.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Badge',
+  title: 'Components/Badge',
   component: GymxBadge,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

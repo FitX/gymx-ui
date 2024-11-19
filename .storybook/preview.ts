@@ -52,6 +52,11 @@ const preview: Preview = {
       container: ThemedContainer,
       inline: false,
     },
+    options: {
+      storySort: {
+        order: ['Welcome', 'Icons', 'Tests', 'Tokens', 'Examples', 'Components', 'Composables'],
+      },
+    },
     /* controls: {
       matchers: {
         color: /(background|color)$/i,

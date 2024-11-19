@@ -4,7 +4,7 @@ import { default as ColorsOverview } from './demo/colors-overview.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'examples/Colors',
+  title: 'Examples/Colors',
   component: ColorsOverview,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['!dev', '!autodocs'],

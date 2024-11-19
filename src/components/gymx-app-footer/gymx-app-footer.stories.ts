@@ -7,7 +7,7 @@ import Readme from './readme.md?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Layout/App Footer',
+  title: 'Components/Layout/App Footer',
   component: GymxAppFooter,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

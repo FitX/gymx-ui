@@ -6,7 +6,7 @@ import { default as FormExampleTextFieldsCode } from './demo/forms-example-text-
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'examples/Formulare',
+  title: 'Examples/Formulare',
   component: FormExample,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['!dev', '!autodocs'],

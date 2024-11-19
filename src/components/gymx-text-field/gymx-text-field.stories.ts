@@ -3,7 +3,7 @@ import { default as GymxTextField } from './gymx-text-field.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Form/Text Field',
+  title: 'Components/Form/Text Field',
   component: GymxTextField,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],

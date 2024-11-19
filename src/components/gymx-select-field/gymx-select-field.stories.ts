@@ -12,7 +12,7 @@ type DemoValue = { text: string; value: number };
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Form/Select Field',
+  title: 'Components/Form/Select Field',
   component: GymxSelectField,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
