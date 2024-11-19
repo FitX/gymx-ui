@@ -28,7 +28,7 @@ export const Default: Story = {
 export const Centered: Story = {
   args: {
     layout: 'centered',
-    default: h(FormExample),
+    default: () => h(FormExample),
   },
 };
 
