@@ -100,4 +100,81 @@ describe('GymxDialog', () => {
     expect(dialogEl.close).not.toHaveBeenCalled();
     expect(wrapper.emitted().closed).toBeFalsy();
   });
+
+  it('should close when the dialog is closed', async () => {
+    const wrapper = mount(GymxDialog, {
+      props: {
+        modelValue: true,
+        isModal: true,
+        closeOnOutside: false,
+        title: 'Test Dialog'
+      },
+      slots: {
+        default: '<div>Dialog Body</div>',
+        footer: '<div>Dialog Footer</div>'
+      }
+    });
+
+    expect(wrapper.vm.isOpen).toBe(true);
+
+    await wrapper.find('dialog').trigger('close');
+
+    expect(wrapper.emitted('closed')).toBeTruthy();
+    expect(wrapper.vm.isOpen).toBe(false);
+  });
+
+  /* it('should close when clicking outside the dialog', async () => {
+    const wrapper = mount(GymxDialog, {
+      props: {
+        modelValue: true,
+        isModal: true,
+        closeOnOutside: true,
+        title: 'Test Dialog'
+      },
+      slots: {
+        default: '<div>Dialog Body</div>',
+        footer: '<div>Dialog Footer</div>'
+      },
+      attachTo: document.body
+    });
+
+    expect(wrapper.vm.isOpen).toBe(true);
+
+    await document.body.click();
+
+    expect(wrapper.emitted('closed')).toBeTruthy();
+    expect(wrapper.vm.isOpen).toBe(false);
+
+    wrapper.unmount();
+  }); */
+
+  it('should close when the close button is clicked', async () => {
+    const wrapper = mount(GymxDialog, {
+      props: {
+        modelValue: true,
+        isModal: true,
+        closeOnOutside: false,
+        title: 'Test Dialog'
+      },
+      slots: {
+        default: '<div>Dialog Body</div>',
+        footer: '<div>Dialog Footer</div>'
+      },
+      attachTo: document.body
+    });
+
+    expect(wrapper.vm.isOpen).toBe(true);
+
+    const closeButton = wrapper.find('.dialog__button-close');
+    expect(closeButton.exists()).toBe(true);
+
+    await closeButton.trigger('click');
+
+    expect(wrapper.emitted('closed')).toBeTruthy();
+    expect(wrapper.vm.isOpen).toBe(false);
+
+    wrapper.unmount();
+  });
+
+
 });
