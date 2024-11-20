@@ -46,7 +46,7 @@ defineSlots<{
     height: 100vh;
     grid-column: 1 / -1;
     // grid-row: 1 / span 2;
-    grid-row: header / content;
+    grid-row: header / footer;
     // background: red;
     z-index: 1;
     pointer-events: none;
