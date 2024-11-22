@@ -4,6 +4,7 @@ import { default as GymxAppLayout } from './gymx-app-layout.vue';
 import { GymxAppContent, GymxAppHeader, GymxAppFooter, GymxLink } from '@/components';
 import { default as FormExample } from '../../../docs/demo/forms-example.vue';
 import Readme from './readme.md?raw';
+import DemoHTMLContent from '../../../docs/demo/demo-html-content.html?raw';
 import pkg from '../../../package.json';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -61,7 +62,7 @@ export const Default: Story = {
         </gymx-app-header>
       </template>
       <template #main>
-        <gymx-app-content>
+        <gymx-app-content layout="centered">
           <form-example />
         </gymx-app-content>
       </template>
@@ -83,18 +84,20 @@ export const Default: Story = {
 
 export const WithHeader: Story = {
   args: {
-    header: h('h1', 'Title'),
+    header: () => h('h1', 'Title'),
+    main: () => h('p', 'Main content'),
   },
 };
 
 export const WithFooter: Story = {
   args: {
-    footer: h('small', '© 2024 GymX'),
+    main: () => h('p', 'Main content'),
+    footer: () => h('small', '© 2024 GymX'),
   },
 };
 
-export const Empty: Story = {
+export const ContentOnly: Story = {
   args: {
-    main: '',
+    main: () => h({ name: 'DemoHTMLContent', components: { GymxAppContent }, setup: () => ({ DemoHTMLContent }), template: `<gymx-app-content><div v-html="DemoHTMLContent" /></gymx-app-content>`})
   },
 };

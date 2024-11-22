@@ -50,7 +50,8 @@ const submit = () => {
 
 <style lang="scss" scoped>
 form {
-  max-inline-size: 60ch
+  // max-inline-size: 60ch;
+  width: min(60ch, 90%);
 }
 
 .item {

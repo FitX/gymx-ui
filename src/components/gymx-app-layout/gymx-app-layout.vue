@@ -72,6 +72,7 @@ defineSlots<{
 
   &__main {
     grid-area: content;
+    background: red;
   }
 
   &__footer {
@@ -94,5 +95,22 @@ defineSlots<{
       overflow-y: scroll;
     }
   }
+}
+</style>
+
+<style lang="scss">/*
+.app-layout > *, .app-layout__main > *, .app-content > *, .app-content__inner {
+  display: grid;
+  grid: subgrid / subgrid;
+}*/
+</style>
+
+<style lang="scss" scoped>
+.app-layout > *,
+.app-layout__main > :slotted(*),
+:deep(.app-content > *),
+:deep(.app-content__inner) {
+  display: grid;
+  grid: subgrid / subgrid;
 }
 </style>

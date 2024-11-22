@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAppContent } from './gymx-app-content.vue';
 import { default as FormExample } from '../../../docs/demo/forms-example.vue';
+import DemoHTMLContent from '../../../docs/demo/demo-html-content.html?raw';
 import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -28,5 +29,13 @@ export const Centered: Story = {
   args: {
     layout: 'centered',
     default: () => h(FormExample),
+  },
+};
+
+export const ContentExample: Story = {
+  args: {
+    default: () => h('div', {
+      innerHTML: DemoHTMLContent,
+    })
   },
 };

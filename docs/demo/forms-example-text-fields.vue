@@ -45,7 +45,7 @@ const submit = () => {
 </template>
 
 <style lang="scss" scoped>
-form { max-inline-size: 60ch }
+form { width: min(60ch, 90%); }
 .item {
   display: flex;
   flex-direction: column;
