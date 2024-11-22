@@ -72,7 +72,6 @@ defineSlots<{
 
   &__main {
     grid-area: content;
-    background: red;
   }
 
   &__footer {
@@ -96,13 +95,6 @@ defineSlots<{
     }
   }
 }
-</style>
-
-<style lang="scss">/*
-.app-layout > *, .app-layout__main > *, .app-content > *, .app-content__inner {
-  display: grid;
-  grid: subgrid / subgrid;
-}*/
 </style>
 
 <style lang="scss" scoped>

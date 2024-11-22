@@ -10,6 +10,12 @@ const meta = {
   component: GymxAppContent,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
+  argTypes: {
+    layout: {
+      options: ['default', 'centered'],
+      control: { type: 'radio' },
+    },
+  },
 } satisfies Meta<typeof GymxAppContent>;
 
 export default meta;
@@ -21,7 +27,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    default: 'main area',
+    default: () => h('span', { innerText: 'Main Content' }),
   },
 };
 
