@@ -20,9 +20,9 @@
   /**
   Links
    */
-  --link-color: var(--gymx-color-accent);
-  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
-  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
+  --gymx-link-color: var(--gymx-color-accent);
+  --gymx-link-color-hover: oklch(from var(--gymx-link-color) calc(l * 0.8) c h);
+  --gymx-link-color-focused: oklch(from var(--gymx-link-color) calc(l * 0.6) c h);
 }
 
 :where([data-theme='dark']) {
@@ -45,8 +45,8 @@
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
   --gymx-color-text: #fefefe;
   --gymx-color-accent: #9eb1ff;
-  --link-color: var(--gymx-color-accent);
+  --gymx-link-color: var(--gymx-color-accent);
 
-  --link-color-hover: oklch(from var(--link-color) calc(l * 1.1) c h);
-  --link-color-focused: oklch(from var(--link-color) calc(l * 1.2) c h);
+  --gymx-link-color-hover: oklch(from var(--gymx-link-color) calc(l * 1.1) c h);
+  --gymx-link-color-focused: oklch(from var(--gymx-link-color) calc(l * 1.2) c h);
 }

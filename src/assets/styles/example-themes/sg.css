@@ -13,9 +13,6 @@
 
   --gymx-font-family-default: var(--sg-font-family);
 
-  --link-color: var(--sg-color-primary);
-  --link-color-hover: var(--sg-color-link);
-
   /*
   --gymx-button-color-background-hover: var(--sg-color-primary);
   --gymx-button-color-background-focused: var(--gymx-button-color-background);
@@ -65,4 +62,12 @@
   --gymx-button-color-disabled: #222;
   --gymx-button-color-background-disabled: #efefef;
   --gymx-button-color-border-disabled: var(--gymx-button-color-disabled);
+}
+
+/*
+ * Links
+*/
+[data-theme='sg'] {
+  --gymx-link-color: var(--sg-color-primary);
+  --gymx-link-color-hover: var(--sg-color-link);
 }

@@ -33,11 +33,11 @@ export const ExampleStyles: Story = {
       </div>
       <component is="style">
         .badges-demo { display: flex; gap: 1rem; }
-        .badge-1 { --badge-color-background: #0090FF; --badge-color-text: #fff; }
-        .badge-2 { --badge-color-background: #E93D82; --badge-color-text: #fff; }
-        .badge-3 { --badge-color-background: #FFE629; --badge-color-text: #121212; }
-        .badge-4 { --badge-color-background: #ECEEED; --badge-color-text: #121212; }
-        .badge-5 { --badge-padding-inline: 2rem; --badge-radius: 2rem; &:hover { --badge-radius: 0; } }
+        .badge-1 { --gymx-badge-color-background: #0090FF; --gymx-badge-color-text: #fff; }
+        .badge-2 { --gymx-badge-color-background: #E93D82; --gymx-badge-color-text: #fff; }
+        .badge-3 { --gymx-badge-color-background: #FFE629; --gymx-badge-color-text: #121212; }
+        .badge-4 { --gymx-badge-color-background: #ECEEED; --gymx-badge-color-text: #121212; }
+        .badge-5 { --gymx-badge-padding-inline: 2rem; --gymx-badge-radius: 2rem; &:hover { --gymx-badge-radius: 0; } }
       </component>
     `,
   }),

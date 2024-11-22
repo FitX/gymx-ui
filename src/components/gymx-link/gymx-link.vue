@@ -36,48 +36,46 @@ defineSlots<GymxLinkSlots>();
 </template>
 
 <style lang="scss" scoped>
-.link {
-  $self: &;
+:where(.link) {
+  --_link-color: var(--gymx-link-color, var(--gymx-color-accent));
+  --_link-color-background: var(--gymx-link-color-background);
+  --_link-color-border: var(--gymx-link-color-border, var(--gymx-link-color-background));
 
-  --_link-color: var(--link-color, var(--gymx-color-accent));
-  --_link-color-background: var(--link-color-background);
-  --_link-color-border: var(--link-color-border, var(--link-color-background));
+  --_link-color-hover: var(--gymx-link-color-hover, var(--gymx-link-color));
+  --_link-color-background-hover: var(--gymx-link-color-background-hover, var(--gymx-link-color-background));
+  --_link-color-border-hover: var(--gymx-link-color-border-hover, var(--gymx-link-border-background));
 
-  --_link-color-hover: var(--link-color-hover, var(--link-color));
-  --_link-color-background-hover: var(--link-color-background-hover, var(--link-color-background));
-  --_link-color-border-hover: var(--link-color-border-hover, var(--link-border-background));
-
-  --_link-color-focused: var(--link-color-focused, var(--link-color));
+  --_link-color-focused: var(--gymx-link-color-focused, var(--gymx-link-color));
   --_link-color-background-focused: var(
-    --link-color-background-focused,
-    var(--link-color-background)
+    --gymx-link-color-background-focused,
+    var(--gymx-link-color-background)
   );
-  --_link-color-border-focused: var(--link-color-border-focused, var(--link-border-background));
+  --_link-color-border-focused: var(--gymx-link-color-border-focused, var(--gymx-link-border-background));
 
-  --_link-color-disabled: var(--link-color-disabled, var(--link-color));
+  --_link-color-disabled: var(--gymx-link-color-disabled, var(--gymx-link-color));
   --_link-color-background-disabled: var(
-    --link-color-background-disabled,
-    var(--link-color-background)
+    --gymx-link-color-background-disabled,
+    var(--gymx-link-color-background)
   );
-  --_link-color-border-disabled: var(--link-color-border-disabled, var(--link-border-background));
+  --_link-color-border-disabled: var(--gymx-link-color-border-disabled, var(--gymx-link-border-background));
 
-  --_link-font-weight: var(--link-font-weight, var(--gymx-font-weight-regular));
-  --_link-font-family: var(--link-font-family, var(--gymx-font-family-default), inherit);
-  --_link-font-size: var(--link-font-size, var(--gymx-font-family-default), inherit);
-  --_link-line-height: var(--link-font-size, 1.15);
+  --_link-font-weight: var(--gymx-link-font-weight, var(--gymx-font-weight-regular));
+  --_link-font-family: var(--gymx-link-font-family, var(--gymx-font-family-default), inherit);
+  --_link-font-size: var(--gymx-link-font-size, var(--gymx-font-family-default), inherit);
+  --_link-line-height: var(--gymx-link-font-size, 1.15);
 
-  --_link-padding-inline: var(--link-padding-inline, 0);
-  --_link-padding-block: var(--link-padding-block, 0);
-  --_link-icon-size-start: var(--link-icon-size-start, auto);
-  --_link-icon-size-end: var(--link-icon-size-end, auto);
-  --_link-gap: var(--link-gap, 0.5rem);
+  --_link-padding-inline: var(--gymx-link-padding-inline, 0);
+  --_link-padding-block: var(--gymx-link-padding-block, 0);
+  --_link-icon-size-start: var(--gymx-link-icon-size-start, auto);
+  --_link-icon-size-end: var(--gymx-link-icon-size-end, auto);
+  --_link-gap: var(--gymx-link-gap, 0.5rem);
 
-  --_link-border: var(--link-border, 1px solid var(--_link-color-border));
-  --_link-outline: var(--link-outline, 0);
-  --_link-radius: var(--link-radius, 0);
-  --_link-transition: var(--link-transition, 200ms ease background-color);
-  --_link-text-decoration: var(--link-text-decoration, underline);
-  --_link-box-shadow: var(--link-box-shadow);
+  --_link-border: var(--gymx-link-border, 1px solid var(--_link-color-border));
+  --_link-outline: var(--gymx-link-outline, 0);
+  --_link-radius: var(--gymx-link-radius, 0);
+  --_link-transition: var(--gymx-link-transition, 200ms ease background-color);
+  --_link-text-decoration: var(--gymx-link-text-decoration, underline);
+  --_link-box-shadow: var(--gymx-link-box-shadow);
 
   /**
   Button Reset
@@ -104,11 +102,11 @@ defineSlots<GymxLinkSlots>();
   display: inline-grid;
   grid: 'start content end' 1fr / var(--_link-icon-size-start) 1fr var(--_link-icon-size-end);
 
-  &__content {
+  .link__content {
     text-decoration: var(--_link-text-decoration);
   }
 
-  &__start {
+  .link__start {
     grid-area: start;
     align-self: center;
 
@@ -117,7 +115,7 @@ defineSlots<GymxLinkSlots>();
     }
   }
 
-  &__end {
+  .link__end {
     grid-area: end;
     align-self: center;
     &:not(:empty) {
@@ -125,13 +123,13 @@ defineSlots<GymxLinkSlots>();
     }
   }
 
-  &:where(:hover, &--hover) {
+  &:where(:hover, .link--hover) {
     --_link-color: var(--_link-color-hover);
     --_link-color-background: var(--_link-color-background-hover);
     --_link-color-border: var(--_link-color-border-hover);
   }
 
-  &:where(:focus, &--focused) {
+  &:where(:focus, .link--focused) {
     --_link-color: var(--_link-color-focused);
     --_link-color-background: var(--_link-color-background-focused);
     --_link-color-border: var(--_link-color-border-focused);

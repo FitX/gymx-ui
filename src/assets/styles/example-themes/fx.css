@@ -20,19 +20,6 @@
   --gymx-button-color-background-focused: oklch(from var(--gymx-button-color-background) calc(l * 1.4) c h);
   --gymx-button-color-background-disabled: oklch(from var(--gymx-button-color-background) l calc(c * 0.1) h);
 */
-  /**
-  Links
-   */
-  /*
-  --link-color: var(--gymx-color-accent);
-  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
-  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
-
-  .btn:where(:focus-visible) {
-    --gymx-button-outline: 1px solid var(--gymx-button-color-background-focused);
-    outline-offset: 1px;
-  }
-   */
 
   font-family: var(--gymx-font-family-default);
   font-size: var(--gymx-font-size-default);
