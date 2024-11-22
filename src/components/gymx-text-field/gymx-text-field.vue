@@ -88,6 +88,10 @@ defineExpose({
     justify-content: space-between;
     align-items: center;
     grid-template-columns: auto auto;
+
+    &:empty {
+      display: none;
+    }
   }
 }
 </style>

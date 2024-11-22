@@ -84,6 +84,9 @@ defineExpose({
   --_input-padding-block: var(--input-padding-block, var(--gymx-size-00));
   --_input-gap: var(--input-gap, var(--_input-padding-inline));
 
+  --input-webkit-autofill: background-color 600000s 0s, color 600000s 0s;
+  --input-data-autocompleted: transparent !important;
+
   display: flex;
   flex-wrap: nowrap;
   place-content: stretch;
@@ -119,6 +122,12 @@ defineExpose({
     padding: 0;
     margin: 0;
     outline: 0;
+    &:-webkit-autofill {
+      transition: var(--input-webkit-autofill);
+    }
+    &[data-autocompleted] {
+      background-color: var(--input-data-autocompleted);
+    }
   }
 
   &--hover,
