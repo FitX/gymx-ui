@@ -11,31 +11,15 @@
   --sg-color-on-primary: #fff;
   --sg-font-family: system-ui;
 
-  --button-color: var(--sg-color-link);
-  --button-color-background: var(--sg-color-on-primary);
-  --button-color-border: var(--sg-color-primary);
-
-  --button-color-hover: var(--sg-color-on-primary);
-  --button-color-background-hover: var(--sg-color-primary);
-  --button-color-border-hover: var(--sg-color-primary);
-
-  --button-color-focused: var(--sg-color-link);
-  --button-color-background-focused: var(--sg-color-on-primary);
-  --button-color-border-focused: var(--sg-color-link);
-
-  --button-color-disabled: #222;
-  --button-color-background-disabled: #efefef;
-  --button-color-border-disabled: var(--button-color-disabled);
-
   --gymx-font-family-default: var(--sg-font-family);
 
   --link-color: var(--sg-color-primary);
   --link-color-hover: var(--sg-color-link);
 
   /*
-  --button-color-background-hover: var(--sg-color-primary);
-  --button-color-background-focused: var(--button-color-background);
-  --button-color-background-disabled: oklch(from var(--button-color-background) l calc(c * 0.1) h);
+  --gymx-button-color-background-hover: var(--sg-color-primary);
+  --gymx-button-color-background-focused: var(--gymx-button-color-background);
+  --gymx-button-color-background-disabled: oklch(from var(--gymx-button-color-background) l calc(c * 0.1) h);
    */
 
   .table {
@@ -60,4 +44,25 @@
   .app-layout__header {
     box-shadow: var(--gymx-color-gray-3) 0 25px 20px -20px;
   }
+}
+
+/*
+ * Buttons
+*/
+[data-theme='sg'] {
+  --gymx-button-color: var(--sg-color-link);
+  --gymx-button-color-background: var(--sg-color-on-primary);
+  --gymx-button-color-border: var(--sg-color-primary);
+
+  --gymx-button-color-hover: var(--sg-color-on-primary);
+  --gymx-button-color-background-hover: var(--sg-color-primary);
+  --gymx-button-color-border-hover: var(--sg-color-primary);
+
+  --gymx-button-color-focused: var(--sg-color-link);
+  --gymx-button-color-background-focused: var(--sg-color-on-primary);
+  --gymx-button-color-border-focused: var(--sg-color-link);
+
+  --gymx-button-color-disabled: #222;
+  --gymx-button-color-background-disabled: #efefef;
+  --gymx-button-color-border-disabled: var(--gymx-button-color-disabled);
 }

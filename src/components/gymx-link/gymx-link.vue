@@ -39,7 +39,7 @@ defineSlots<GymxLinkSlots>();
 .link {
   $self: &;
 
-  --_link-color: var(--link-color, var(--accent-color));
+  --_link-color: var(--link-color, var(--gymx-color-accent));
   --_link-color-background: var(--link-color-background);
   --_link-color-border: var(--link-color-border, var(--link-color-background));
 

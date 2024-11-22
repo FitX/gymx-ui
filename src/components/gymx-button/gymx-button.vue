@@ -43,58 +43,71 @@ defineSlots<GymxButtonSlots>();
     </span>
   </component>
 </template>
+<style lang="scss">
+:root {
+  --gymx-button-color: var(--gymx-color-on-primary);
+  --gymx-button-color-background: var(--gymx-color-primary);
+  --gymx-button-color-border: var(--gymx-button-color-background);
+  --gymx-button-color-background-hover: oklch(from var(--gymx-button-color-background) calc(l * 1.2) c h);
+  --gymx-button-color-background-focused: oklch(from var(--gymx-button-color-background) calc(l * 1.3) c h);
+  --gymx-button-color-background-disabled: oklch(from var(--gymx-button-color-background) l calc(c * 0.1) h);
+
+  .btn:where(:focus-visible) {
+    --gymx-button-outline: 1px solid var(--gymx-button-color-background-focused);
+    outline-offset: 1px;
+  }
+}
+</style>
 <style lang="scss" scoped>
-.btn {
-  $self: &;
+:where(.btn) {
+  --_button-color: var(--gymx-button-color);
+  --_button-color-background: var(--gymx-button-color-background);
+  --_button-color-border: var(--gymx-button-color-border);
 
-  --_button-color: var(--button-color);
-  --_button-color-background: var(--button-color-background);
-  --_button-color-border: var(--button-color-border, var(--button-color-background));
-
-  --_button-color-hover: var(--button-color-hover, var(--button-color));
+  --_button-color-hover: var(--gymx-button-color-hover, var(--gymx-button-color));
   --_button-color-background-hover: var(
-    --button-color-background-hover,
-    var(--button-color-background)
+    --gymx-button-color-background-hover,
+    var(--gymx-button-color-background)
   );
   --_button-color-border-hover: var(
-    --button-color-border-hover,
+    --gymx-button-color-border-hover,
     var(--_button-color-background-hover)
   );
 
-  --_button-color-focused: var(--button-color-focused, var(--button-color));
+  --_button-color-focused: var(--gymx-button-color-focused, var(--gymx-button-color));
   --_button-color-background-focused: var(
-    --button-color-background-focused,
-    var(--button-color-background)
+    --gymx-button-color-background-focused,
+    var(--gymx-button-color-background)
   );
   --_button-color-border-focused: var(
-    --button-color-border-focused,
+    --gymx-button-color-border-focused,
     var(--_button-color-background-focused)
   );
 
-  --_button-color-disabled: var(--button-color-disabled, var(--button-color));
+  --_button-color-disabled: var(--gymx-button-color-disabled, var(--gymx-button-color));
   --_button-color-background-disabled: var(
-    --button-color-background-disabled,
-    var(--button-color-background)
+    --gymx-button-color-background-disabled,
+    var(--gymx-button-color-background)
   );
   --_button-color-border-disabled: var(
-    --button-color-border-disabled,
+    --gymx-button-color-border-disabled,
     var(--_button-color-background-disabled)
   );
 
-  --_button-font-size: var(--button-font-size, var(--gymx-font-size-1));
-  --_button-font-weight: var(--button-font-weight, var(--gymx-font-weight-regular));
-  --_button-font-family: var(--button-font-family, var(--gymx-font-family-default));
+  --_button-font-size: var(--gymx-button-font-size, var(--gymx-font-size-1));
+  --_button-font-weight: var(--gymx-button-font-weight, var(--gymx-font-weight-regular));
+  --_button-font-family: var(--gymx-button-font-family, var(--gymx-font-family-default));
 
-  --_button-padding-inline: var(--button-padding-inline, 1rem);
-  --_button-padding-block: var(--button-padding-block, calc(var(--_button-padding-inline) / 2));
-  --_button-icon-size-start: var(--button-icon-size-start, auto);
-  --_button-icon-size-end: var(--button-icon-size-end, auto);
-  --_button-gap: var(--button-gap, 0.5rem);
+  --_button-padding-inline: var(--gymx-button-padding-inline, 1rem);
+  --_button-padding-block: var(--gymx-button-padding-block, calc(var(--_button-padding-inline) / 2));
+  --_button-icon-size-start: var(--gymx-button-icon-size-start, auto);
+  --_button-icon-size-end: var(--gymx-button-icon-size-end, auto);
+  --_button-gap: var(--gymx-button-gap, 0.5rem);
 
-  --_button-border: var(--button-border, 1px solid var(--_button-color-border));
-  --_button-outline: var(--button-outline, 0);
-  --_button-radius: var(--button-radius, 0);
-  --_button-transition: var(--button-transition, 200ms ease background-color);
+  --_button-border: var(--gymx-button-border, 1px solid var(--_button-color-border));
+  --_button-outline: var(--gymx-button-outline, 0);
+  --_button-radius: var(--gymx-button-radius, 0);
+  --_button-transition: var(--gymx-button-transition, 200ms ease background-color);
 
   font-size: var(--_button-font-size);
   font-weight: var(--_button-font-weight);
@@ -107,13 +120,13 @@ defineSlots<GymxButtonSlots>();
   border-radius: var(--_button-radius);
   color: var(--_button-color);
   background: var(--_button-color-background);
-  box-shadow: var(--button-box-shadow);
+  box-shadow: var(--gymx-button-box-shadow);
   transition: var(--_button-transition);
 
   display: inline-grid;
   grid: 'start content end' 1fr / var(--_button-icon-size-start) 1fr var(--_button-icon-size-end);
 
-  &__start {
+  :where(.btn__start) {
     grid-area: start;
 
     &:not(:empty) {
@@ -121,26 +134,26 @@ defineSlots<GymxButtonSlots>();
     }
   }
 
-  &__end {
+  :where(.btn__end) {
     grid-area: end;
     &:not(:empty) {
       margin-inline-start: var(--_button-gap);
     }
   }
 
-  &:where(:hover, &--hover) {
+  &:where(:hover, .btn--hover) {
     --_button-color: var(--_button-color-hover);
     --_button-color-background: var(--_button-color-background-hover);
     --_button-color-border: var(--_button-color-border-hover);
   }
 
-  &:where(:focus, &--focused) {
+  &:where(:focus, .btn--focused) {
     --_button-color: var(--_button-color-focused);
     --_button-color-background: var(--_button-color-background-focused);
     --_button-color-border: var(--_button-color-border-focused);
   }
 
-  &:where(:disabled, &--disabled) {
+  &:where(:disabled, .btn--disabled) {
     --_button-color: var(--_button-color-disabled);
     --_button-color-background: var(--_button-color-background-disabled);
     --_button-color-border: var(--_button-color-border-disabled);

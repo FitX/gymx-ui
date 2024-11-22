@@ -53,39 +53,6 @@
   --input-color-border: var(--exact-color-accent);
   --select-color-border: var(--exact-color-accent);
 
-  .btn {
-    --button-color-border: var(--exact-color-accent);
-    --button-color-border-hover: var(--exact-color-white-1);
-    --button-color-border-focused: var(--exact-color-white-1);
-    --button-color-border-disabled: var(--exact-color-gray-3);
-    --button-color-background: linear-gradient(
-      90deg,
-      var(--gymx-color-accent-8) 50%,
-      var(--exact-color-accent) 50%
-    );
-    --button-color-background-hover: var(--button-color-background);
-    --button-color-background-focused: var(--button-color-background);
-    --button-color-background-disabled: var(--exact-color-gray-3);
-    --button-radius: 5px;
-    --button-font-weight: 600;
-
-    background-origin: border-box;
-    background-size: 200%;
-    background-position-x: 100%;
-    transition: 0.3s ease-in-out;
-    transition-property: color, background-color, background-position, background-size, border-color,
-      box-shadow;
-    border-width: 3px;
-  }
-
-  .btn:hover,
-  .btn--hover,
-  .btn:focus-visible,
-  .btn--focused {
-    /* --button-border: 3px solid var(--exact-color-light); */
-    background-position-x: 0;
-  }
-
   .table {
     --gymx-table-border: 2px solid var(--exact-color-gray-3);
 
@@ -167,4 +134,46 @@
     position: relative;
     border-bottom: 1px solid var(--gymx-color-accent-12);
   }
+}
+
+
+/* Button */
+[data-theme='exact'] {
+  --gymx-button-color-border: var(--exact-color-accent);
+  --gymx-button-color-border-hover: var(--exact-color-white-1);
+  --gymx-button-color-border-focused: var(--exact-color-white-1);
+  --gymx-button-color-border-disabled: var(--exact-color-gray-3);
+  --gymx-button-color-background: linear-gradient(
+    90deg,
+    var(--gymx-color-accent-8) 50%,
+    var(--exact-color-accent) 50%
+  );
+  --gymx-button-color-background-hover: var(--gymx-button-color-background);
+  --gymx-button-color-background-focused: var(--gymx-button-color-background);
+  --gymx-button-color-background-disabled: var(--exact-color-gray-3);
+  --gymx-button-radius: 5px;
+  --gymx-button-font-weight: 600;
+}
+
+.btn {
+  background-origin: border-box;
+  background-size: 200%;
+  background-position-x: 100%;
+  transition: 0.3s ease-in-out;
+  transition-property:
+    color,
+    background-color,
+    background-position,
+    background-size,
+    border-color,
+    box-shadow;
+  border-width: 3px;
+}
+
+.btn:hover,
+.btn--hover,
+.btn:focus-visible,
+.btn--focused {
+  /* --gymx-button-border: 3px solid var(--exact-color-light); */
+  background-position-x: 0;
 }
