@@ -99,7 +99,7 @@ defineSlots<{
 
 <style lang="scss" scoped>
 .app-layout > *,
-.app-layout__main > :slotted(*),
+.app-layout__main > :deep(*), // maybe :slotted
 :deep(.app-content > *),
 :deep(.app-content__inner) {
   display: grid;
