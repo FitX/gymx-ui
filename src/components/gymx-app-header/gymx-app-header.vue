@@ -34,6 +34,7 @@ const props = defineProps<GymxAppHeaderProps>();
     flex: 0 1 auto;
     justify-self: end;
     margin-inline-start: auto;
+    align-items: center;
     flex-wrap: wrap;
     gap: var(--app-header-actions-gap);
 
