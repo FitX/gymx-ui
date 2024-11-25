@@ -15,22 +15,24 @@ defineSlots<GymxAppFooterSlots>();
 </template>
 <style lang="scss" scoped>
 .app-footer {
-  --app-footer-gap: var(--gymx-size-fluid-1) var(--gymx-size-fluid-2);
-  --app-footer-actions-gap: var(--gymx-size-fluid-0) var(--gymx-size-fluid-2);
-  --app-footer-actions-font-size: var(--gymx-font-size-fluid-0);
-  --app-footer-content-font-size: var(--gymx-font-size-fluid-00);
-  --app-footer-color: var(--gymx-color-gray-9);
+  :where(&) {
+    --gymx-app-footer-gap: var(--gymx-size-fluid-1) var(--gymx-size-fluid-2);
+    --gymx-app-footer-actions-gap: var(--gymx-size-fluid-0) var(--gymx-size-fluid-2);
+    --gymx-app-footer-actions-font-size: var(--gymx-font-size-fluid-0);
+    --gymx-app-footer-content-font-size: var(--gymx-font-size-fluid-00);
+    --gymx-app-footer-color: var(--gymx-color-gray-9);
+  }
   display: flex;
-  gap: var(--app-footer-gap);
+  gap: var(--gymx-app-footer-gap);
   align-items: center;
   justify-content: start;
   flex-wrap: wrap;
-  font-size: var(--app-footer-font-size);
-  color: var(--app-footer-color);
+  font-size: var(--gymx-app-footer-font-size);
+  color: var(--gymx-app-footer-color);
 
   &__content {
     margin-inline-end: auto;
-    font-size: var(--app-footer-content-font-size);
+    font-size: var(--gymx-app-footer-content-font-size);
   }
 
   &__actions {
@@ -38,7 +40,7 @@ defineSlots<GymxAppFooterSlots>();
     flex: 0 1 auto;
     justify-self: end;
     flex-wrap: wrap;
-    gap: var(--app-footer-actions-gap);
+    gap: var(--gymx-app-footer-actions-gap);
   }
 
   &__content:empty,

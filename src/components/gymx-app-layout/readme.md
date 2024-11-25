@@ -49,9 +49,9 @@ Additionally, there is a **fixed-main** variant that makes the main window scrol
 
 The component uses CSS Custom Properties for flexibility:
 
-- **--app-layout-inline-padding:** Defines horizontal padding for sections.
-- **--app-layout-block-padding:** Defines vertical padding for sections.
-- **--app-layout-grid-template-areas:** Defines the layout of sections in the grid.
+- **--gymx-app-layout-inline-padding:** Defines horizontal padding for sections.
+- **--gymx-app-layout-block-padding:** Defines vertical padding for sections.
+- **--gymx-app-layout-grid-template-areas:** Defines the layout of sections in the grid.
 
 ## Additional Features:
 
