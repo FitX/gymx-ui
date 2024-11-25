@@ -17,5 +17,5 @@
 @import 'theme.css';
 
 :where(html) {
-  /* --input-color-border-hover: green; */
+  /* --gymx-input-color-border-hover: green; */
 }

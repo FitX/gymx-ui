@@ -50,7 +50,7 @@
   .select {
   }
 
-  --input-color-border: var(--exact-color-accent);
+  --gymx-input-color-border: var(--exact-color-accent);
   --select-color-border: var(--exact-color-accent);
 
   .table {

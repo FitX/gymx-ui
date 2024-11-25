@@ -52,63 +52,65 @@ defineExpose({
 .input {
   $self: &;
 
-  --_input-font-family: var(--input-font-family, var(--gymx-font-family-default));
-  --_input-font-size: var(--input-font-size, var(--gymx-font-size-2));
-  --_input-font-weight: var(--input-font-letter-spacing, inherit);
+  :where(&) {
+    --_gymx-input-font-family: var(--gymx-input-font-family, var(--gymx-font-family-default));
+    --_gymx-input-font-size: var(--gymx-input-font-size, var(--gymx-font-size-2));
+    --_gymx-input-font-weight: var(--gymx-input-font-letter-spacing, inherit);
 
-  /* State defaults */
-  --_input-color: var(--input-color, var(--gymx-color-text));
-  --_input-color-background: var(--input-color-background, transparent);
-  --_input-color-border: var(--input-color-border, currentColor);
+    /* State defaults */
+    --_gymx-input-color: var(--gymx-input-color, var(--gymx-color-text));
+    --_gymx-input-color-background: var(--gymx-input-color-background, transparent);
+    --_gymx-input-color-border: var(--gymx-input-color-border, currentColor);
 
-  --_input-color-hover: var(--input-color-hover, inherit);
-  --_input-color-background-hover: var(--input-color-background-hover, initial);
-  --_input-color-border-hover: var(--input-color-border-hover, initial);
+    --_gymx-input-color-hover: var(--gymx-input-color-hover, inherit);
+    --_gymx-input-color-background-hover: var(--gymx-input-color-background-hover, initial);
+    --_gymx-input-color-border-hover: var(--gymx-input-color-border-hover, initial);
 
-  --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
-  --_input-color-background-disabled: var(
-    --input-color-background-disabled,
-    var(--gymx-color-black-1)
-  );
-  --_input-color-border-disabled: var(--input-color-border-disabled, var(--gymx-color-black-2));
+    --_gymx-input-color-disabled: var(--gymx-input-color-disabled, var(--gymx-color-text));
+    --_gymx-input-color-background-disabled: var(
+      --gymx-input-color-background-disabled,
+      var(--gymx-color-black-1)
+    );
+    --_gymx-input-color-border-disabled: var(--gymx-input-color-border-disabled, var(--gymx-color-black-2));
 
-  /* Other */
-  --_input-radius: var(--input-radius, 0);
-  --_input-border: var(
-    --input-border,
-    var(--gymx-border-size-1, 1px) solid var(--_input-color-border)
-  );
-  --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
+    /* Other */
+    --_gymx-input-radius: var(--gymx-input-radius, 0);
+    --_gymx-input-border: var(
+      --gymx-input-border,
+      var(--gymx-border-size-1, 1px) solid var(--_gymx-input-color-border)
+    );
+    --_gymx-input-outline: var(--gymx-input-outline, var(--_gymx-input-border)); // maybe not
 
-  --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));
-  --_input-padding-block: var(--input-padding-block, var(--gymx-size-00));
-  --_input-gap: var(--input-gap, var(--_input-padding-inline));
+    --_gymx-input-padding-inline: var(--gymx-input-padding-inline, var(--gymx-size-0));
+    --_gymx-input-padding-block: var(--gymx-input-padding-block, var(--gymx-size-00));
+    --_gymx-input-gap: var(--gymx-input-gap, var(--_gymx-input-padding-inline));
 
-  --input-webkit-autofill: background-color 600000s 0s, color 600000s 0s;
-  --input-data-autocompleted: transparent !important;
+    --gymx-input-webkit-autofill: background-color 600000s 0s, color 600000s 0s;
+    --gymx-input-data-autocompleted: transparent !important;
+  }
 
   display: flex;
   flex-wrap: nowrap;
   place-content: stretch;
-  font-family: var(--_input-font-family);
-  font-size: var(--_input-font-size);
-  font-weight: var(--_input-font-weight);
+  font-family: var(--_gymx-input-font-family);
+  font-size: var(--_gymx-input-font-size);
+  font-weight: var(--_gymx-input-font-weight);
 
-  color: var(--_input-color);
-  background: var(--_input-color-background);
-  border: var(--_input-border);
-  padding-inline: var(--_input-padding-inline);
-  padding-block: var(--_input-padding-block);
-  border-radius: var(--_input-radius);
+  color: var(--_gymx-input-color);
+  background: var(--_gymx-input-color-background);
+  border: var(--_gymx-input-border);
+  padding-inline: var(--_gymx-input-padding-inline);
+  padding-block: var(--_gymx-input-padding-block);
+  border-radius: var(--_gymx-input-radius);
 
   outline-offset: 1px;
 
   &__start:not(:empty) {
-    margin-inline-end: var(--_input-gap);
+    margin-inline-end: var(--_gymx-input-gap);
   }
 
   &__end:not(:empty) {
-    margin-inline-start: var(--_input-gap);
+    margin-inline-start: var(--_gymx-input-gap);
   }
 
   &__input {
@@ -123,29 +125,29 @@ defineExpose({
     margin: 0;
     outline: 0;
     &:-webkit-autofill {
-      transition: var(--input-webkit-autofill);
+      transition: var(--gymx-input-webkit-autofill);
     }
     &[data-autocompleted] {
-      background-color: var(--input-data-autocompleted);
+      background-color: var(--gymx-input-data-autocompleted);
     }
   }
 
   &--hover,
   &:hover {
-    color: var(--_input-color-hover);
-    background: var(--_input-color-background-hover);
-    border-color: var(--_input-color-border-hover);
+    color: var(--_gymx-input-color-hover);
+    background: var(--_gymx-input-color-background-hover);
+    border-color: var(--_gymx-input-color-border-hover);
   }
 
   &:has(#{$self}__input:focus-visible),
   &--focused {
-    outline: var(--_input-border);
+    outline: var(--_gymx-input-border);
   }
 
   &:is(&--disabled, [disabled]) {
-    color: var(--_input-color-disabled);
-    background: var(--_input-color-background-disabled);
-    border-color: var(--_input-color-border-disabled);
+    color: var(--_gymx-input-color-disabled);
+    background: var(--_gymx-input-color-background-disabled);
+    border-color: var(--_gymx-input-color-border-disabled);
   }
 }
 </style>

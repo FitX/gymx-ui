@@ -26,10 +26,10 @@
   font-weight: var(--gymx-font-weight-default);
 
   /* Input */
-  --input-color-border: #b5b5b5;
-  --input-color-border-hover: #717171;
-  --input-color-border-disabled: #b5b5b5;
-  --input-color-background-disabled: #f5f5f5;
+  --gymx-input-color-border: #b5b5b5;
+  --gymx-input-color-border-hover: #717171;
+  --gymx-input-color-border-disabled: #b5b5b5;
+  --gymx-input-color-background-disabled: #f5f5f5;
 
   .table {
     --gymx-table-border: 2px solid var(--exact-color-gray-3);
