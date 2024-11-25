@@ -43,31 +43,16 @@ defineSlots<GymxButtonSlots>();
     </span>
   </component>
 </template>
-<style lang="scss">
-:root {
-  --gymx-button-color: var(--gymx-color-on-primary);
-  --gymx-button-color-background: var(--gymx-color-primary);
-  --gymx-button-color-border: var(--gymx-button-color-background);
-  --gymx-button-color-background-hover: oklch(from var(--gymx-button-color-background) calc(l * 1.2) c h);
-  --gymx-button-color-background-focused: oklch(from var(--gymx-button-color-background) calc(l * 1.3) c h);
-  --gymx-button-color-background-disabled: oklch(from var(--gymx-button-color-background) l calc(c * 0.1) h);
-
-  .btn:where(:focus-visible) {
-    --gymx-button-outline: 1px solid var(--gymx-button-color-background-focused);
-    outline-offset: 1px;
-  }
-}
-</style>
 <style lang="scss" scoped>
 :where(.btn) {
-  --_button-color: var(--gymx-button-color);
-  --_button-color-background: var(--gymx-button-color-background);
+  --_button-color: var(--gymx-button-color, var(--gymx-color-on-primary));
+  --_button-color-background: var(--gymx-button-color-background, var(--gymx-color-primary));
   --_button-color-border: var(--gymx-button-color-border);
 
   --_button-color-hover: var(--gymx-button-color-hover, var(--gymx-button-color));
   --_button-color-background-hover: var(
     --gymx-button-color-background-hover,
-    var(--gymx-button-color-background)
+      oklch(from var(--gymx-button-color-background) calc(l * 1.2) c h)
   );
   --_button-color-border-hover: var(
     --gymx-button-color-border-hover,
@@ -77,7 +62,7 @@ defineSlots<GymxButtonSlots>();
   --_button-color-focused: var(--gymx-button-color-focused, var(--gymx-button-color));
   --_button-color-background-focused: var(
     --gymx-button-color-background-focused,
-    var(--gymx-button-color-background)
+      oklch(from var(--gymx-button-color-background) calc(l * 1.3) c h)
   );
   --_button-color-border-focused: var(
     --gymx-button-color-border-focused,
@@ -87,7 +72,7 @@ defineSlots<GymxButtonSlots>();
   --_button-color-disabled: var(--gymx-button-color-disabled, var(--gymx-button-color));
   --_button-color-background-disabled: var(
     --gymx-button-color-background-disabled,
-    var(--gymx-button-color-background)
+      oklch(from var(--gymx-button-color-background) l calc(c * 0.1) h)
   );
   --_button-color-border-disabled: var(
     --gymx-button-color-border-disabled,
@@ -151,6 +136,11 @@ defineSlots<GymxButtonSlots>();
     --_button-color: var(--_button-color-focused);
     --_button-color-background: var(--_button-color-background-focused);
     --_button-color-border: var(--_button-color-border-focused);
+  }
+
+  &:where(:focus-visible) {
+    --gymx-button-outline: 1px solid var(--gymx-button-color-background-focused);
+    outline-offset: 1px;
   }
 
   &:where(:disabled, .btn--disabled) {
