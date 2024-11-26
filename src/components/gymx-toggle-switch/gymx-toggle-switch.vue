@@ -58,7 +58,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
       )
     );
   --_gymx-toggle-switch-track-inline-size: var(--gymx-toggle-switch-track-inline-size, var(--gymx-size-3));
-  --_gymx-toggle-switch-track-block-size: var(--gymx-toggle-switch-track-block-size, auto);
+  --_gymx-toggle-switch-track-block-size: var(--gymx-toggle-switch-track-block-size, var(--gymx-size-1));
   --_gymx-toggle-switch-track-padding-inline: var(--gymx-toggle-switch-track-padding-inline, var(--gymx-size-0000));
   --_gymx-toggle-switch-track-padding-block: var(--gymx-toggle-switch-track-padding-block, var(--gymx-size-0000));
   --_gymx-toggle-switch-track-border: var(--gymx-toggle-switch-track-border, var(--gymx-border-size-1) solid var(--gymx-color-gray-8));
@@ -66,7 +66,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
 
   --_gymx-toggle-switch-thumb-color-background-inactive: var(--gymx-color-gray-5);
   --_gymx-toggle-switch-thumb-color-background-active: var(--gymx-color-success-5);
-  --_gymx-toggle-switch-thumb-size: var(--gymx-toggle-switch-thumb-size, var(--gymx-size-1));
+  --_gymx-toggle-switch-thumb-size: var(--gymx-toggle-switch-thumb-size, var(--gymx-size-0));
   --_gymx-toggle-switch-thumb-radius: var(--gymx-toggle-switch-thumb-radius, var(--gymx-radius-round));
   --_gymx-toggle-switch-thumb-color-background:
     var(--gymx-toggle-switch-thumb-state-color-background,
@@ -94,6 +94,8 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
 
   &__track {
     display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
     background: var(--_gymx-toggle-switch-track-color-background, var(--_gymx-toggle-switch-track-color-background-inactive));
     inline-size: var(--_gymx-toggle-switch-track-inline-size);
     block-size: var(--_gymx-toggle-switch-track-block-size);
@@ -104,6 +106,9 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   }
 
   &__thumb {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
     inline-size: var(--_gymx-toggle-switch-thumb-size);
     aspect-ratio: 1;
     border-radius: var(--_gymx-toggle-switch-thumb-radius);
