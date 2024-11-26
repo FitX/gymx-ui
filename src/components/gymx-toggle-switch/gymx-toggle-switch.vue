@@ -1,15 +1,21 @@
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import type { GymxToggleSwitchProps } from './types.ts';
 import { getModifierClasses } from '@/utils/css-modifier.ts';
 
+
 const props = defineProps<GymxToggleSwitchProps>();
 const modelValue = defineModel<boolean>();
+const componentClasses = computed(() => getModifierClasses('toggle-switch', [
+  modelValue.value ? 'on' : 'off',
+  props.state
+]))
 </script>
 <template>
   <label
     class="toggle-switch"
-    :class="getModifierClasses('toggle-switch', modelValue ? 'on' : 'off')">
+    :class="componentClasses">
     <span class="toggle-switch__label">{{ props.label }}</span>
     <input
       class="toggle-switch__input"
@@ -55,6 +61,7 @@ const modelValue = defineModel<boolean>();
   --_gymx-toggle-switch-track-block-size: var(--gymx-toggle-switch-track-block-size, auto);
   --_gymx-toggle-switch-track-padding-inline: var(--gymx-toggle-switch-track-padding-inline, var(--gymx-size-0000));
   --_gymx-toggle-switch-track-padding-block: var(--gymx-toggle-switch-track-padding-block, var(--gymx-size-0000));
+  --_gymx-toggle-switch-track-border: var(--gymx-toggle-switch-track-border, var(--gymx-border-size-1) solid var(--gymx-color-gray-8));
   --_gymx-toggle-switch-track-radius: var(--gymx-toggle-switch-track-radius, var(--gymx-radius-round));
 
   --_gymx-toggle-switch-thumb-color-background-inactive: var(--gymx-color-gray-5);
@@ -67,9 +74,9 @@ const modelValue = defineModel<boolean>();
         var(--gymx-toggle-switch-thumb-color-background)
       )
     );
-  --_gymx-toggle-switch-thumb-animation: var(--gymx-toggle-switch-thumb-animation, 300ms ease all);
+  --_gymx-toggle-switch-thumb-animation: var(--gymx-toggle-switch-thumb-animation, 300ms ease margin-inline-start);
 
-  interpolate-size: allow-keywords;
+  // interpolate-size: allow-keywords;
   display: inline-flex;
   align-items: center;
 
@@ -82,6 +89,7 @@ const modelValue = defineModel<boolean>();
 
   &__input {
     opacity: 0;
+    // position: absolute;
   }
 
   &__track {
@@ -91,6 +99,7 @@ const modelValue = defineModel<boolean>();
     block-size: var(--_gymx-toggle-switch-track-block-size);
     padding-inline: var(--_gymx-toggle-switch-track-padding-inline);
     padding-block: var(--_gymx-toggle-switch-track-padding-block);
+    border: var(--_gymx-toggle-switch-track-border);
     border-radius: var(--_gymx-toggle-switch-track-radius);
   }
 
