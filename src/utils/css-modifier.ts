@@ -1,5 +1,6 @@
-const getModifierClass = (block: string, modifier: string) => `${block}--${modifier}`;
-export const getModifierClasses = (block: string, modifiers?: string | (string | undefined)[]) => {
+type Modifier = string | undefined;
+const getModifierClass = (block: string, modifier: Modifier) => `${block}--${modifier}`;
+export const getModifierClasses = (block: string, modifiers?: Modifier[] | Modifier) => {
   if (!modifiers) {
     return [];
   }

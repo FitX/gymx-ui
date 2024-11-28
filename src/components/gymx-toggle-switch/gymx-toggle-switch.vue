@@ -1,8 +1,8 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import type { GymxToggleSwitchProps } from './types.ts';
-import { getModifierClasses } from '@/utils/css-modifier.ts';
+import type { GymxToggleSwitchProps } from './types';
+import { getModifierClasses } from '@/utils/css-modifier';
 import { GymxLabel } from '@/components';
 
 
