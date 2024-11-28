@@ -1,8 +1,9 @@
-import { type DocsContextProps, DocsContainer, Story } from '@storybook/blocks';
+import { type DocsContextProps, DocsContainer } from '@storybook/blocks';
 import { themes } from '@storybook/theming';
 import { type PropsWithChildren } from 'react';
 import * as React from 'react';
 import { switchCSS } from './switch-theme';
+import PackageJson from '../package.json';
 
 export const handleThemeSwitch = (themeName?: string) => {
   const themeMaybeUndefinedOrEmpty = themeName;
@@ -10,13 +11,14 @@ export const handleThemeSwitch = (themeName?: string) => {
   document.documentElement.setAttribute('data-theme', theme);
   if (theme) {
     const isProd = import.meta.env.MODE === 'production';
+    const componentsVersion = PackageJson.version;
     /**
      * Handle different paths between prod and preview
      * We cant map src/assets/styles to staticDirs because we loose HMR
      * @see .storybook/main.ts
      */
     const themePath = isProd ? '/example-themes' : '../src/assets/styles/example-themes';
-    switchCSS(`${themePath}/${theme}.css`);
+    switchCSS(`${themePath}/${theme}.css?v=${componentsVersion}`);
   }
 }
 
