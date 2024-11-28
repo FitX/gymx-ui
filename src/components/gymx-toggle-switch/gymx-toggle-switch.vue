@@ -98,7 +98,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   --_gymx-toggle-switch-thumb-radius: var(--gymx-toggle-switch-thumb-radius, var(--gymx-radius-round));
   // animations
   --_gymx-toggle-switch-thumb-animation: var(--gymx-toggle-switch-thumb-animation, margin-inline-start 300ms ease, box-shadow 400ms ease-out);
-  --_gymx-toggle-switch-track-animation: var(--gymx-toggle-switch-track-animation, all 300ms ease all 200ms);
+  --_gymx-toggle-switch-track-animation: var(--gymx-toggle-switch-track-animation, all 300ms ease 200ms);
 
   // interpolate-size: allow-keywords;
   display: inline-flex;
@@ -139,6 +139,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
+    align-content: center;
     background: var(--_gymx-toggle-switch-track-color-background, var(--_gymx-toggle-switch-track-color-background-inactive));
     inline-size: var(--_gymx-toggle-switch-track-inline-size);
     block-size: var(--_gymx-toggle-switch-track-block-size);
@@ -152,7 +153,8 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   &__thumb {
     display: inline-flex;
     flex-wrap: nowrap;
-    align-items: center;
+    place-items: center;
+    place-content: center;
     inline-size: var(--_gymx-toggle-switch-thumb-size);
     aspect-ratio: 1;
     border-radius: var(--_gymx-toggle-switch-thumb-radius);

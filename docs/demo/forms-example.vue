@@ -31,9 +31,11 @@ const submit = () => {
       <gymx-select :options="selectOptions" v-model="selectedOption" id="count"/>
     </div>
     <div class="item">
-      <gymx-label for="firstname">Firstname *</gymx-label>
-      <gymx-input id="firstname" v-model="firstName" />
-      <gymx-error-message v-if="errors.firstName" text="Please enter your Firstname" />
+      <gymx-label for="firstname">Firstname <span aria-hidden="true">*</span></gymx-label>
+      <gymx-input id="firstname" v-model="firstName" :input-attributes="{ 'aria-required': true, 'aria-describedby': 'firstname-error' }" />
+      <span :aria-live="errors.firstName ? 'assertive' : 'off'" id="firstname-error" role="alert">
+        <gymx-error-message v-if="errors.firstName" text="Please enter your Firstname"  />
+      </span>
     </div>
     <div class="item">
       <gymx-label for="lastname">Lastname</gymx-label>

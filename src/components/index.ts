@@ -11,6 +11,7 @@ export * from './gymx-input';
 export * from './gymx-text-field';
 export * from './gymx-badge';
 export * from './gymx-toast';
+export * from './gymx-toggle-switch';
 export * from './gymx-select';
 export * from './gymx-select-field';
 export * from './gymx-dialog';
