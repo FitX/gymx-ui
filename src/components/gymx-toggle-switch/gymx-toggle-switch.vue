@@ -3,6 +3,7 @@
 import { computed } from 'vue';
 import type { GymxToggleSwitchProps } from './types.ts';
 import { getModifierClasses } from '@/utils/css-modifier.ts';
+import { GymxLabel } from '@/components';
 
 
 const props = defineProps<GymxToggleSwitchProps>();
@@ -16,7 +17,11 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   <label
     class="toggle-switch"
     :class="componentClasses">
-    <span class="toggle-switch__label">{{ props.label }}</span>
+    <!--<span class="toggle-switch__label">{{ props.label }}</span>-->
+    <gymx-label
+      class="toggle-switch__label"
+      tag="span"
+      :state="props.state">{{ props.label }}</gymx-label>
     <input
       class="toggle-switch__input"
       :disabled="props.state === 'disabled'"
@@ -62,6 +67,10 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   --_gymx-toggle-switch-track-color-background-hover-inactive:
     var(--gymx-toggle-switch-track-color-background-hover-inactive, var(--gymx-color-gray-5));
   --_gymx-toggle-switch-track-color-background-hover-active: var(--gymx-toggle-switch-track-color-background-hover-active, var(--gymx-color-accent-9));
+  // track colors disabled
+  --_gymx-toggle-switch-track-color-background-disabled-inactive:
+    var(--gymx-toggle-switch-track-color-background-disabled-inactive, var(--gymx-color-gray-1));
+  --_gymx-toggle-switch-track-color-background-disabled-active: var(--gymx-toggle-switch-track-color-background-disabled-active, var(--gymx-color-accent-1));
 
   --_gymx-toggle-switch-track-color-background:
     var(--gymx-toggle-switch-track-state-color-background,
@@ -106,9 +115,11 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   user-select: none;
   cursor: pointer;
 
-  &:focus-within:not(:active) {
-    outline: var(--gymx-toggle-outline-offset, 1px solid -webkit-focus-ring-color);
-    outline-offset: var(--gymx-toggle-outline-offset, 4px);
+  &:focus-within:not(:active):has(:focus-visible) {
+    // outline: var(--gymx-toggle-outline, 1px solid -webkit-focus-ring-color);
+    --gymx-toggle-outline-fallback: var(--gymx-border-size-1) solid -webkit-focus-ring-color;
+    outline: var(--gymx-toggle-outline, var(--gymx-border-size-1) solid currentColor);
+    outline-offset: var(--gymx-toggle-outline-offset, 1px);
   }
 
   &__input {
@@ -148,7 +159,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
     background: var(--_gymx-toggle-switch-thumb-color-background, var(--_gymx-toggle-switch-thumb-color-background-inactive));
     transition: var(--_gymx-toggle-switch-thumb-animation);
 
-    #{$self}--off &:hover {
+    #{$self}--off:not(#{$self}--disabled) &:hover {
       box-shadow: 0 0 2px 3px color-mix(in srgb, var(--gymx-color-gray-10), transparent 80%);
     }
   }
@@ -170,10 +181,15 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
     --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-hover-inactive);
   }
 
-  :where(&--disabled) {
-    opacity: 0.65;
-    filter: grayscale(1);
+  &--disabled {
+    --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-disabled-inactive);
+    // opacity: 0.65;
+    // filter: grayscale(1);
     cursor: not-allowed;
+    &:is(#{$self}--on) {
+      --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-disabled-active);
+    }
   }
+
 }
 </style>
