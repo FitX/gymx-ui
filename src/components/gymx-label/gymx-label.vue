@@ -3,24 +3,25 @@ import { getModifierClasses } from '@/utils/css-modifier';
 import type { GymxLabelProps } from '@/components';
 
 const props = withDefaults(defineProps<GymxLabelProps>(), {
-  for: crypto.randomUUID(),
+  for: () => crypto.randomUUID(),
+  tag: 'label'
 });
 </script>
 <template>
-  <label
+  <component :is="props.tag"
     class="label"
     :class="[
       getModifierClasses('label', props.state),
       getModifierClasses('label', props.error ? 'error' : undefined),
     ]"
-    :for="props.for">
+    :for="props.tag === 'label' ? props.for : undefined">
     <!--
     @slot props.text alternative
     -->
     <slot name="default">
       {{ props.text }}
     </slot>
-  </label>
+  </component>
 </template>
 <style lang="scss" scoped>
 .label {
