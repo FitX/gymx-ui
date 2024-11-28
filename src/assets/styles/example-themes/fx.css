@@ -113,3 +113,37 @@
     }
   }
 }
+
+/* Toggle Switch */
+[data-theme='fx'] {
+  --gymx-toggle-switch-track-color-background-inactive: var(--gymx-color-gray-4);
+  --gymx-toggle-switch-track-color-background-hover-inactive: var(--gymx-color-gray-9);
+  --gymx-toggle-switch-track-color-background-active: var(--gymx-color-success-9);
+  --gymx-toggle-switch-track-color-background-hover-active: var(--gymx-color-success-9);
+
+  --gymx-toggle-switch-track-color-background-disabled-inactive: var(--gymx-color-gray-1);
+  --gymx-toggle-switch-track-color-background-disabled-active: var(--gymx-color-gray-2);
+
+  --gymx-toggle-switch-track-animation: background-color var(--switch-toggle-animation-duration) ease 10ms;
+  --icon-fill: var(--gymx-color-success-10);
+
+  --switch-icon-opacity: 1;
+  --switch-icon-inactive-scale: 1;
+
+  .toggle-switch--off {
+    --switch-icon-opacity: 0;
+    --switch-icon-inactive-scale: 0;
+  }
+
+  .toggle-switch svg {
+    opacity: var(--switch-icon-opacity);
+    scale: var(--switch-icon-inactive-scale);
+    transform-origin: center;
+    transition:
+      opacity 10ms ease-in-out,
+      scale var(--switch-toggle-animation-duration) ease var(--switch-toggle-animation-duration);
+  }
+  .toggle-switch__track {
+    border: none;
+  }
+}

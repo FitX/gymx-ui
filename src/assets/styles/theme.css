@@ -64,3 +64,10 @@
   --link-color-hover: oklch(from var(--link-color) calc(l * 1.1) c h);
   --link-color-focused: oklch(from var(--link-color) calc(l * 1.2) c h);
 }
+
+:where(html) {
+  /* --gymx-toggle-switch-track-color-background-active: var(--gymx-color-accent-7);
+  --gymx-toggle-switch-track-color-background-inactive: var(--gymx-color-accent-12);
+  --gymx-toggle-switch-thumb-color-background-active: var(--gymx-color-accent-2);
+  --gymx-toggle-switch-thumb-color-background-inactive: var(--gymx-color-accent-2); */
+}

@@ -168,3 +168,43 @@
     border-bottom: 1px solid var(--gymx-color-accent-12);
   }
 }
+
+/* Toggle Switch */
+[data-theme='exact'] {
+  --gymx-toggle-switch-track-radius: 0;
+  --gymx-toggle-switch-thumb-radius: 0;
+  --gymx-toggle-switch-track-inline-size: 4rem;
+  --gymx-toggle-switch-track-block-size: 1rem;
+  --gymx-toggle-switch-track-color-background-inactive: transparent;
+  --gymx-toggle-switch-track-color-background-hover-inactive: transparent;
+  --gymx-toggle-switch-thumb-animation: all 300ms ease-in-out;
+  --gymx-toggle-switch-thumb-size: 40%;
+  --exact-toggle-switch-icon-opacity: 0;
+  --exact-toggle-switch-border: 1px solid var(--exact-color-accent);
+
+  .toggle-switch--on {
+    --exact-toggle-switch-icon-opacity: 1;
+  }
+
+  .toggle-switch__track {
+    border: var(--exact-toggle-switch-border);
+  }
+
+  .toggle-switch:hover:not(.toggle-switch--disabled) {
+    --gymx-toggle-switch-thumb-radius: 50%;
+    --gymx-toggle-switch-thumb-size: 20%;
+    --switch-icon-inactive-scale: 0.5;
+  }
+
+  .toggle-switch svg {
+    opacity: var(--exact-toggle-switch-icon-opacity);
+    scale: var(--switch-icon-inactive-scale, 1.8);
+    transform-origin: center;
+    transition:
+      scale 300ms ease;
+  }
+
+  .toggle-switch--off {
+    --switch-icon-inactive-scale: 0;
+  }
+}
