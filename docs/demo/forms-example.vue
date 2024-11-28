@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage, GymxSelect } from '../../src/components';
+import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage, GymxSelect, GymxToggleSwitch } from '../../src/components';
 import { ref } from 'vue';
 
 type DemoSelectOption = {
@@ -12,6 +12,7 @@ const lastName = ref<string>();
 const dateOfBirth = ref<string>();
 const selectOptions: DemoSelectOption[] = [1, 2, 3].map((count) => ({ text: count.toString() , count, }));
 const selectedOption = ref();
+const activated = ref(false);
 
 const errors = ref({
   firstName: false,
@@ -43,7 +44,10 @@ const submit = () => {
       <gymx-input id="dateOfBirth" type="date" v-model="dateOfBirth" />
     </div>
     <div class="item">
-      <gymx-button class="button">Speichern</gymx-button>
+      <gymx-toggle-switch v-model="activated" label="Need Feedback?" />
+    </div>
+    <div class="item">
+      <gymx-button class="button">Save</gymx-button>
     </div>
   </form>
 </template>
