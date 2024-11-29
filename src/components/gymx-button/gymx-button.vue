@@ -31,7 +31,7 @@ defineSlots<GymxButtonSlots>();
       ),
     ]">
     <span class="btn__start">
-      <template v-if="props.isLoading">
+      <template v-if="props.isLoading && !$slots['loading-end']">
         <!--
           @slot loading-start - Optional Slot
         -->
@@ -52,9 +52,13 @@ defineSlots<GymxButtonSlots>();
     </span>
     <span class="btn__end">
       <!--
+          @slot loading-end - Optional Slot
+        -->
+        <slot name="loading-end" v-if="props.isLoading" />
+      <!--
      @slot icon-end - Optional Slot
      -->
-      <slot name="icon-end" />
+      <slot name="icon-end" v-else />
     </span>
   </component>
 </template>
@@ -114,7 +118,7 @@ defineSlots<GymxButtonSlots>();
   --_button-internal-loading-indicator-animation-delay: 1.8s;
   --_button-loading-indicator-size: var(--button-loading-indicator-size, 1.2rem);
   --_button-loading-indicator-animation: var(--button-loading-indicator-animation, loading var(--_button-internal-loading-indicator-animation-delay) linear infinite);
-
+  --_button-loading-indicator-color: var(--button-loading-indicator-color, currentColor);
 
   font-size: var(--_button-font-size);
   font-weight: var(--_button-font-weight);
@@ -146,6 +150,9 @@ defineSlots<GymxButtonSlots>();
 
   &__end {
     grid-area: end;
+    display: inline-flex;
+    place-content: center;
+
     &:not(:empty) {
       margin-inline-start: var(--_button-gap);
     }
@@ -182,7 +189,7 @@ defineSlots<GymxButtonSlots>();
   &::before {
     content: '';
     border-radius: 50%;
-    background: var(--gymx-color-white-11);
+    background: var(--_button-loading-indicator-color);
     position: absolute;
     inset: 0;
     opacity: 0;

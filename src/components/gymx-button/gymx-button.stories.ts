@@ -81,29 +81,21 @@ export const LoadingStart: Story = {
   },
 };
 
-export const LoadingEnd: Story = {
-  args: {
-    default: 'Hello Loading',
-    isLoading: true,
-  },
-};
-
 export const LoadingStartCustomIcon: Story = {
   args: {
     default: 'Hello Loading',
     'loading-start': () => h('span', { class: 'demo-icon'}, [
       h('style', `
       .demo-icon {
-      --icon-width: 0.5rem;
-      --icon-height: 0.5rem;
       display: inline-flex;
       place-content: center;
       place-items: center;
       aspect-ratio: 1;
       align-self: center;
-      height: 10px;
       }
-      .demo-icon svg {
+      .foo {
+      --icon-width: 0.5rem;
+      --icon-height: 0.5rem;
       --icon-fill: currentColor;
         animation: 1s linear 1s infinite alternate rotateAnimation;
        }
@@ -123,5 +115,6 @@ export const LoadingEndCustomIcon: Story = {
   args: {
     default: 'Hello Loading',
     isLoading: true,
+    'loading-end': () => h(IconDonutSmall, { class: 'foo' }),
   },
 };
