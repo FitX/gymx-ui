@@ -29,4 +29,65 @@ describe('GymxButton', () => {
     });
     expect(wrapper.element.tagName.toLowerCase()).toBe('a');
   });
+
+  it('should display loading indicator when isLoading is true', () => {
+    const wrapper = mount(GymxButton, {
+      props: {
+        isLoading: true,
+      },
+      slots: {
+        default: 'Hallo',
+      },
+    });
+
+    expect(wrapper.classes()).toContain('btn--is-loading');
+
+    const loadingIndicator = wrapper.find('.loading-indicator');
+    expect(loadingIndicator.exists()).toBe(true);
+  });
+
+  it('should not display loading indicator when isLoading is false', () => {
+    const wrapper = mount(GymxButton, {
+      props: {
+        isLoading: false,
+      },
+      slots: {
+        default: 'Hallo',
+      },
+    });
+
+    expect(wrapper.classes()).not.toContain('btn--is-loading');
+
+    const loadingIndicator = wrapper.find('.loading-indicator');
+
+    expect(loadingIndicator.exists()).toBe(false);
+    expect(wrapper.text()).toContain('Hallo');
+  });
+
+  it('should set aria-disabled and aria-label attributes when isLoading is true', () => {
+    const wrapper = mount(GymxButton, {
+      props: {
+        isLoading: true,
+        loadingText: 'Please wait',
+      },
+    });
+
+    expect(wrapper.attributes('aria-disabled')).toBe('true');
+    expect(wrapper.attributes('aria-label')).toBe('Please wait');
+  });
+
+  it('should render loading-end slot when isLoading is true', () => {
+    const wrapper = mount(GymxButton, {
+      props: {
+        isLoading: true,
+      },
+      slots: {
+        'loading-end': '<span class="custom-loading-end">Loading...</span>',
+      },
+    });
+
+    const customLoadingEnd = wrapper.find('.custom-loading-end');
+    expect(customLoadingEnd.exists()).toBe(true);
+    expect(customLoadingEnd.text()).toBe('Loading...');
+  });
 });
