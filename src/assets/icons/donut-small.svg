@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="width: var(--icon-width, 18px); height: var(--icon-height, 18px);" viewBox="0 0 18 18">
+  <g clip-path="url(#a)">
+    <path fill="var(--icon-fill, #181D1E)" d="M8.25 6.725V.75a8.39 8.39 0 0 0-7.5 7.5h5.975A2.543 2.543 0 0 1 8.25 6.725Zm1.5 4.55v5.975a8.39 8.39 0 0 0 7.5-7.5h-5.975a2.543 2.543 0 0 1-1.525 1.525Z"/>
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="var(--icon-clip-fill, #fff)" d="M0 0h18v18H0z"/>
+    </clipPath>
+  </defs>
+</svg>

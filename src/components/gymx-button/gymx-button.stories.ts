@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { GymxButton } from './index';
 import { uiStates } from '@/types';
+import { IconDonutSmall } from '@/components';
+import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -69,5 +71,35 @@ export const OptionalIcons: Story = {
     'icon-start': '🚀',
     default: 'Hello Icons',
     'icon-end': '🐨',
+  },
+};
+
+export const LoadingStart: Story = {
+  args: {
+    default: 'Hello Loading',
+    isLoading: true,
+  },
+};
+
+export const LoadingEnd: Story = {
+  args: {
+    default: 'Hello Loading',
+    isLoading: true,
+  },
+};
+
+export const LoadingStartCustomIcon: Story = {
+  args: {
+    default: 'Hello Loading',
+    'loading-start': () => h(IconDonutSmall),
+    'icon-start': '🐨',
+    isLoading: true,
+  },
+};
+
+export const LoadingEndCustomIcon: Story = {
+  args: {
+    default: 'Hello Loading',
+    isLoading: true,
   },
 };

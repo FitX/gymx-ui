@@ -7,6 +7,7 @@ type DemoSelectOption = {
   count: number;
 }
 
+const formSubmitInProgress = ref(false);
 const firstName = ref<string>();
 const lastName = ref<string>();
 const dateOfBirth = ref<string>();
@@ -21,7 +22,16 @@ const errors = ref({
 const mayBeError = (value?: string) => !value || value?.length <= 0;
 
 const submit = () => {
-  errors.value.firstName = mayBeError(firstName.value);
+  const fistNameError = mayBeError(firstName.value);
+  if (fistNameError) {
+    errors.value.firstName = fistNameError;
+  } else {
+    errors.value.firstName = false;
+    formSubmitInProgress.value = true;
+    setTimeout(() => {
+      formSubmitInProgress.value = false;
+    }, 5000)
+  }
 };
 </script>
 <template>
@@ -49,7 +59,7 @@ const submit = () => {
       <gymx-toggle-switch v-model="activated" label="Need Feedback?" />
     </div>
     <div class="item">
-      <gymx-button class="button">Save</gymx-button>
+      <gymx-button class="button" :is-loading="formSubmitInProgress">Save</gymx-button>
     </div>
   </form>
 </template>

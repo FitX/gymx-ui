@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { GymxButtonProps, GymxButtonSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
+import { computed } from 'vue';
 // import type { UIState } from '@/types';
 
 const props = withDefaults(defineProps<GymxButtonProps>(), {
@@ -8,14 +9,20 @@ const props = withDefaults(defineProps<GymxButtonProps>(), {
   // state: undefined as UIState | undefined,
 });
 
+const loadingText = computed(() => props.loadingText ?? 'Loading');
+
 defineSlots<GymxButtonSlots>();
 </script>
 <template>
   <component
     :is="props.tag"
     class="btn"
+    :aria-disabled="props.isLoading"
+    :aria-label="props.isLoading ? loadingText : undefined"
     :class="[
       getModifierClasses('btn', props.state),
+      getModifierClasses('btn', props.isLoading ? 'is-loading' : undefined),
+      getModifierClasses('btn', props.isLoading ? 'disabled' : undefined),
       getModifierClasses('btn', $slots['icon-start'] ? 'has-icon-start' : undefined),
       getModifierClasses('btn', $slots['icon-end'] ? 'has-icon-end' : undefined),
       getModifierClasses(
@@ -24,10 +31,18 @@ defineSlots<GymxButtonSlots>();
       ),
     ]">
     <span class="btn__start">
+      <template v-if="props.isLoading">
+        <!--
+          @slot loading-start - Optional Slot
+        -->
+        <slot name="loading-start">
+          <span class="loading-indicator" />
+        </slot>
+      </template>
       <!--
-     @slot icon-start - Optional Slot
-     -->
-      <slot name="icon-start" />
+      @slot icon-start - Optional Slot
+      -->
+      <slot name="icon-start" v-else />
     </span>
     <span class="btn__content">
       <!--
@@ -94,7 +109,12 @@ defineSlots<GymxButtonSlots>();
   --_button-border: var(--button-border, 1px solid var(--_button-color-border));
   --_button-outline: var(--button-outline, 0);
   --_button-radius: var(--button-radius, 0);
-  --_button-transition: var(--button-transition, 200ms ease background-color);
+  --_button-transition: var(--button-transition, background-color 200ms ease);
+
+  --_button-internal-loading-indicator-animation-delay: 1.8s;
+  --_button-loading-indicator-size: var(--button-loading-indicator-size, 1.2rem);
+  --_button-loading-indicator-animation: var(--button-loading-indicator-animation, loading var(--_button-internal-loading-indicator-animation-delay) linear infinite);
+
 
   font-size: var(--_button-font-size);
   font-weight: var(--_button-font-weight);
@@ -112,9 +132,12 @@ defineSlots<GymxButtonSlots>();
 
   display: inline-grid;
   grid: 'start content end' 1fr / var(--_button-icon-size-start) 1fr var(--_button-icon-size-end);
+  align-items: center;
 
   &__start {
     grid-area: start;
+    display: inline-flex;
+    place-content: center;
 
     &:not(:empty) {
       margin-inline-end: var(--_button-gap);
@@ -146,4 +169,49 @@ defineSlots<GymxButtonSlots>();
     --_button-color-border: var(--_button-color-border-disabled);
   }
 }
+
+
+.loading-indicator {
+    inline-size: var(--_button-loading-indicator-size);
+    aspect-ratio: 1;
+    display: inline-flex;
+    position: relative;
+    transition: all 1s ease;
+
+  &::after,
+  &::before {
+    content: '';
+    border-radius: 50%;
+    background: var(--gymx-color-white-11);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: var(--_button-loading-indicator-animation);
+  }
+  &::after {
+    animation-delay: calc(var(--_button-internal-loading-indicator-animation-delay) / 2);
+  }
+}
+</style>
+
+<style>
+@keyframes loading {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/*
+interpolate-size: allow-keywords;
+    transition: all 2s ease;
+    */
 </style>
