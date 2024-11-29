@@ -39,9 +39,9 @@ defineSlots<GymxButtonSlots>();
           <span class="loading-indicator" />
         </slot>
       </template>
-      <!--
-      @slot icon-start - Optional Slot
-      -->
+        <!--
+        @slot icon-start - Optional Slot
+        -->
       <slot name="icon-start" v-else />
     </span>
     <span class="btn__content">
@@ -142,6 +142,7 @@ defineSlots<GymxButtonSlots>();
     grid-area: start;
     display: inline-flex;
     place-content: center;
+    transition: all 200ms ease;
 
     &:not(:empty) {
       margin-inline-end: var(--_button-gap);
@@ -201,7 +202,7 @@ defineSlots<GymxButtonSlots>();
 }
 </style>
 
-<style>
+<style lang="scss">
 @keyframes loading {
   0% {
     opacity: 0;
@@ -216,9 +217,4 @@ defineSlots<GymxButtonSlots>();
     opacity: 0;
   }
 }
-
-/*
-interpolate-size: allow-keywords;
-    transition: all 2s ease;
-    */
 </style>
