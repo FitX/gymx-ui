@@ -91,7 +91,29 @@ export const LoadingEnd: Story = {
 export const LoadingStartCustomIcon: Story = {
   args: {
     default: 'Hello Loading',
-    'loading-start': () => h(IconDonutSmall),
+    'loading-start': () => h('span', { class: 'demo-icon'}, [
+      h('style', `
+      .demo-icon {
+      --icon-width: 0.5rem;
+      --icon-height: 0.5rem;
+      display: inline-flex;
+      place-content: center;
+      place-items: center;
+      aspect-ratio: 1;
+      align-self: center;
+      height: 10px;
+      }
+      .demo-icon svg {
+      --icon-fill: currentColor;
+        animation: 1s linear 1s infinite alternate rotateAnimation;
+       }
+       @keyframes rotateAnimation {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      `),
+      h(IconDonutSmall, { class: 'foo' })
+    ]),
     'icon-start': '🐨',
     isLoading: true,
   },
