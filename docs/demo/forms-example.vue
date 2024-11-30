@@ -35,7 +35,7 @@ const submit = () => {
 };
 </script>
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" novalidate>
     <div class="item">
       <gymx-label for="count">Count</gymx-label>
       <gymx-select :options="selectOptions" v-model="selectedOption" id="count"/>
