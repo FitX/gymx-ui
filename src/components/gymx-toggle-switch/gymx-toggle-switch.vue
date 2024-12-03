@@ -36,6 +36,7 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   </label>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/styles/component-utils/components.scss";
 .toggle-switch {
   $self: &;
 
@@ -44,18 +45,13 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   // component colors default
   --_gymx-toggle-switch-color-background-inactive: var(--gymx-toggle-switch-color-background-inactive, none);
   --_gymx-toggle-switch-color-background-active: var(--gymx-toggle-switch-color-background-active, none); // maybe 5
-  --_gymx-toggle-switch-color-background:
-    var(--gymx-toggle-switch-state-color-background,
-      var(--gymx-toggle-switch-modifier-color-background,
-        var(--gymx-toggle-switch-color-background)
-      )
-    );
-  --_gymx-toggle-switch-color:
-    var(--gymx-toggle-switch-state-color-background,
-      var(--gymx-toggle-switch-modifier-color-background,
-        var(--gymx-toggle-switch-color-background, currentColor)
-      )
-    );
+
+  @include components.define-component-variable('gymx-toggle-switch', 'color-background', transparent);
+  @include components.define-component-variable('gymx-toggle-switch', 'color', currentColor);
+  @include components.define-component-variable('gymx-toggle-switch', 'track-color-background', inherit);
+  @include components.define-component-variable('gymx-toggle-switch', 'thumb-color-background', inherit);
+
+
   --_gymx-toggle-switch-padding-inline: var(--gymx-toggle-switch-padding-inline, 0);
   --_gymx-toggle-switch-padding-block: var(--gymx-toggle-switch-padding-block, var(--gymx-size-0));
   --_gymx-toggle-switch-inline-size: var(--gymx-toggle-switch-inline-size, auto);
@@ -72,12 +68,6 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
     var(--gymx-toggle-switch-track-color-background-disabled-inactive, var(--gymx-color-gray-1));
   --_gymx-toggle-switch-track-color-background-disabled-active: var(--gymx-toggle-switch-track-color-background-disabled-active, var(--gymx-color-accent-1));
 
-  --_gymx-toggle-switch-track-color-background:
-    var(--gymx-toggle-switch-track-state-color-background,
-      var(--gymx-toggle-switch-track-modifier-color-background,
-        var(--gymx-toggle-switch-track-color-background)
-      )
-    );
   --_gymx-toggle-switch-track-inline-size: var(--gymx-toggle-switch-track-inline-size, var(--gymx-size-3));
   --_gymx-toggle-switch-track-block-size: var(--gymx-toggle-switch-track-block-size, var(--gymx-size-1));
   --_gymx-toggle-switch-track-padding-inline: var(--gymx-toggle-switch-track-padding-inline, var(--gymx-size-0000));
@@ -88,12 +78,6 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   // thumb colors default
   --_gymx-toggle-switch-thumb-color-background-inactive: var(--gymx-color-white-12);
   --_gymx-toggle-switch-thumb-color-background-active: var(--gymx-color-white-12);
-  --_gymx-toggle-switch-thumb-color-background:
-    var(--gymx-toggle-switch-thumb-state-color-background,
-      var(--gymx-toggle-switch-thumb-modifier-color-background,
-        var(--gymx-toggle-switch-thumb-color-background)
-      )
-    );
   --_gymx-toggle-switch-thumb-size: var(--gymx-toggle-switch-thumb-size, var(--gymx-size-0));
   --_gymx-toggle-switch-thumb-radius: var(--gymx-toggle-switch-thumb-radius, var(--gymx-radius-round));
   // animations
@@ -167,9 +151,11 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   }
 
   &--on {
-    --gymx-toggle-switch-state-color-background: var(--_gymx-toggle-switch-color-background-active);
-    --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-active);
-    --gymx-toggle-switch-thumb-state-color-background: var(--_gymx-toggle-switch-thumb-color-background-active);
+    @include components.override-state('gymx-toggle-switch', 'color-background', var(--_gymx-toggle-switch-color-background-active));
+    @include components.override-state('gymx-toggle-switch', 'track-color-background', var(--_gymx-toggle-switch-track-color-background-active));
+    @include components.override-state('gymx-toggle-switch', 'thumb-color-background', var(--_gymx-toggle-switch-thumb-color-background-active));
+
+
     #{$self}__thumb {
       margin-inline-start: calc((var(--_gymx-toggle-switch-track-inline-size) - var(--_gymx-toggle-switch-thumb-size)) - (2 * var(--_gymx-toggle-switch-track-padding-inline)))
       // inline-size: 80px;
@@ -177,19 +163,20 @@ const componentClasses = computed(() => getModifierClasses('toggle-switch', [
   }
 
   &--on:is(#{$self}--hover, &:hover):not(#{$self}--disabled) {
-    --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-hover-active);
+    @include components.override-state('gymx-toggle-switch', 'track-color-background', var(--_gymx-toggle-switch-track-color-background-hover-active));
+
   }
   &--off:is(#{$self}--hover, &:hover):not(#{$self}--disabled) {
-    --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-hover-inactive);
+    @include components.override-state('gymx-toggle-switch', 'track-color-background', var(--_gymx-toggle-switch-track-color-background-hover-inactive));
   }
 
   &--disabled {
-    --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-disabled-inactive);
+    @include components.override-state('gymx-toggle-switch', 'track-color-background', var(--_gymx-toggle-switch-track-color-background-disabled-inactive));
     // opacity: 0.65;
     // filter: grayscale(1);
     cursor: not-allowed;
     &:is(#{$self}--on) {
-      --gymx-toggle-switch-track-state-color-background: var(--_gymx-toggle-switch-track-color-background-disabled-active);
+      @include components.override-state('gymx-toggle-switch', 'track-color-background', var(--_gymx-toggle-switch-track-color-background-disabled-active));
     }
   }
 

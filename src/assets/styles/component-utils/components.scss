@@ -1,0 +1,59 @@
+/// Define a CSS variable with state and modifier fallbacks.
+///
+/// This mixin generates a CSS variable with a fallback structure that first checks for a state-specific variable,
+/// then a modifier-specific variable, and finally falls back to a default variable or value provided by the user.
+///
+/// @param {String} $component - The name of the component (e.g., 'toast', 'button', 'card'). This defines the prefix for the generated variable.
+/// @param {String} $name - The specific color or style property name (e.g., 'color-background', 'color-border'). This is the key part of the variable name.
+/// @param {String} $fallback - The default fallback value for the variable. If no component-specific variables are defined, this value will be used.
+///
+/// @example scss
+/// // Defining a color variable for a toast component's background with a fallback to 'var(--gymx-color-gray-2)'
+/// @include define-component-variable('toast', 'color-background', 'var(--gymx-color-gray-2)');
+///
+/// // The generated CSS will look like this:
+/// // --_toast-color-background: var(--toast-state-color-background,
+/// //    var(--toast-modifier-color-background,
+/// //        var(--toast-color-background, var(--gymx-color-gray-2))
+/// //    )
+/// // );
+///
+/// // Defining a border color for a toast component with a fallback to 'var(--gymx-color-gray-1)'
+/// @include define-component-variable('toast', 'color-border', 'var(--gymx-color-gray-1)');
+///
+/// // The generated CSS will look like this:
+/// // --_toast-color-border: var(--toast-state-color-border,
+/// //    var(--toast-modifier-color-border,
+/// //        var(--toast-color-border, var(--gymx-color-gray-1))
+/// //    )
+/// // );
+@mixin define-component-variable($component, $name, $fallback) {
+  --_#{$component}-#{$name}: var(--#{$component}-state-#{$name},
+    var(--#{$component}-modifier-#{$name},
+      var(--#{$component}-#{$name}, #{$fallback})
+    )
+  );
+}
+
+
+/// Override component state or modifier variables.
+///
+/// This mixin allows you to override state or modifier variables for a specific component.
+/// It updates the CSS variables used for the component's styles based on the provided state or modifier name.
+///
+/// @param {String} $component - The name of the component (e.g., 'toast', 'button').
+/// @param {String} $name - The specific style property name (e.g., 'color-background') to override.
+/// @param {String} $newValuda - new (custom) property
+///
+/// @example scss
+/// // Override the colors for a toast component in the success state
+/// @include override-state('toast', 'color-background', var(--toast-color-background-success));
+/// @include override-state('toast', 'color', red);
+///
+/// // The generated CSS will look like this:
+/// // --toast-state-color-background: var(--toast-color-background-success);
+/// // --toast-state-color:red;
+///
+@mixin override-state($component, $name, $newValue) {
+  --#{$component}-state-#{$name}: #{$newValue};
+}
