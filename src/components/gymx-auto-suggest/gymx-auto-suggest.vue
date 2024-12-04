@@ -152,7 +152,7 @@ const selectOption = (optionElement: HTMLLIElement) => {
 
 onClickOutside(wrapperElement, () => hideList(false));
 
-const filteredList = computed(() => {
+const filteredList = computed<T[]>(() => {
   const inputValue = text.value?.toString()?.trim()?.toLowerCase();
   if (inputValue === '') return props.options;
   if (typeof props.filterFunction === 'function')
@@ -167,18 +167,9 @@ defineExpose({
 </script>
 
 <template>
-  <div
-    class="auto-suggest"
-    ref="wrapperElement"
-    :data-expanded="isListOpen">
-    <gymx-text-field
-      :ref="(el) => (inputElement = (el as any)?.inputRef)"
-      :label="props.label"
-      v-model="text"
-      :id="props.id"
-      :name="props.name"
-      :error-message="props.errorMessage"
-      :inputAttributes="{
+  <div class="auto-suggest" ref="wrapperElement" :data-expanded="isListOpen">
+    <gymx-text-field :ref="(el) => (inputElement = (el as any)?.inputRef)" :label="props.label" v-model="text"
+      :id="props.id" :name="props.name" :error-message="props.errorMessage" :inputAttributes="{
         type: 'text',
         autocapitalize: 'none',
         autocomplete: 'off',
@@ -195,62 +186,29 @@ defineExpose({
         onKeyup: onInputKeyup,
         onKeydown: onInputKeydown,
         onMousedown: onInputClick,
-      }"
-      class="auto-suggest__input">
+      }" class="auto-suggest__input">
       <template #input-hint>
-        <slot
-          name="aria-status"
-          :isListOpen="isListOpen"
-          :filteredOptionLength="filteredList.length">
-          <div
-            class="visually-hidden auto-suggest__status"
-            role="status"
-            aria-live="polite">
+        <slot name="aria-status" :isListOpen="isListOpen" :filteredOptionLength="filteredList.length">
+          <div class="visually-hidden auto-suggest__status" role="status" aria-live="polite">
             {{ filteredList.length }} results available.
           </div>
         </slot>
       </template>
       <template #input-end>
-        <slot
-          name="input-end"
-          :isListOpen="isListOpen"
-          :value="text"
-          :filteredOptionLength="filteredList.length" />
+        <slot name="input-end" :isListOpen="isListOpen" :value="text" :filteredOptionLength="filteredList.length" />
       </template>
     </gymx-text-field>
 
-    <ul
-      ref="listElement"
-      role="listbox"
-      :aria-label="props.label"
-      :hidden="!isListOpen"
-      @click="handleOptionClick"
-      @keydown="handleListKeyDown"
-      class="auto-suggest__list">
-      <li
-        v-for="(option, index) in filteredList"
-        :key="index"
-        class="auto-suggest__option"
-        :class="{ 'auto-suggest__option--disabled': option.disabled }"
-        role="option"
-        :tabindex="option.disabled === true ? undefined : '-1'"
-        :data-text="option.text"
-        :data-value="option.value"
-        :aria-selected="selectedOption?.value === option.value"
-        :aria-disabled="option.disabled">
-        <slot
-          name="option"
-          :option="option"
-          >{{ option.text }}</slot
-        >
+    <ul ref="listElement" role="listbox" :aria-label="props.label" :hidden="!isListOpen" @click="handleOptionClick"
+      @keydown="handleListKeyDown" class="auto-suggest__list">
+      <li v-for="(option, index) in filteredList" :key="index" class="auto-suggest__option"
+        :class="{ 'auto-suggest__option--disabled': option.disabled }" role="option"
+        :tabindex="option.disabled === true ? undefined : '-1'" :data-text="option.text" :data-value="option.value"
+        :aria-selected="selectedOption?.value === option.value" :aria-disabled="option.disabled">
+        <slot name="option" :option="option">{{ option.text }}</slot>
       </li>
-      <li
-        v-if="filteredList.length === 0"
-        class="auto-suggest__option auto-suggest__no-results">
-        <slot
-          name="no-results"
-          :isListOpen="isListOpen"
-          :filteredOptionLength="filteredList.length">
+      <li v-if="filteredList.length === 0" class="auto-suggest__option auto-suggest__no-results">
+        <slot name="no-results" :isListOpen="isListOpen" :filteredOptionLength="filteredList.length">
           {{ props.noResultsText }}
         </slot>
       </li>
