@@ -6,19 +6,19 @@ export interface Option {
   disabled?: boolean;
 }
 
-export interface GymxAutoSuggestProps {
+export interface GymxAutoSuggestProps <T extends Option>{
   disabled?: boolean;
   errorMessage?: string;
   expanded?: boolean;
   id?: string;
   label: string;
   name: string;
-  options: Option[];
+  options: T[];
   placeholder?: string;
   readonly?: boolean;
   required?: boolean;
   noResultsText?: string;
-  filterFunction?: (options?: Option[], text?: string) => Option[];
+  filterFunction?: (options?: T[], text?: string) => T[];
   inputAttributes?: InputHTMLAttributes;
 }
 

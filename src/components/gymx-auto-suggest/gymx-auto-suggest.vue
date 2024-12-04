@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends Option">
 import { computed, ref, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import type { GymxAutoSuggestProps, Option } from './types';
 import { filter } from './utils';
 import { GymxTextField } from '@/components';
 
-const props = withDefaults(defineProps<GymxAutoSuggestProps>(), {
+const props = withDefaults(defineProps<GymxAutoSuggestProps<T>>(), {
   noResultsText: 'No results available',
   inputAttributes: () => ({
     type: 'search',
@@ -19,7 +19,7 @@ const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
 const isListOpen = ref(props.expanded || false);
-const selectedOption = defineModel<Option | null>();
+const selectedOption = defineModel<Option>();
 
 const text = ref<string | number>(selectedOption.value?.text || '');
 
