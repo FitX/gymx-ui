@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Option">
-import { computed, ref, nextTick } from 'vue';
+import { computed, ref, nextTick, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import type { GymxAutoSuggestProps, Option } from './types';
 import { filter } from './utils';
@@ -143,7 +143,7 @@ const hideList = (withFocus = true) => {
 };
 
 const selectOption = (optionElement: HTMLLIElement) => {
-  text.value = optionElement.dataset.text as string;
+  // text.value = optionElement.dataset.text as string;
   selectedOption.value = {
     text: optionElement.dataset.text!,
     value: optionElement.dataset.value!,
@@ -159,6 +159,12 @@ const filteredList = computed<T[]>(() => {
     return props.filterFunction(props.options, inputValue);
   return filter(props.options, inputValue);
 });
+
+watch(selectedOption, (val) => {
+  if (val?.text) {
+    text.value = val.text;
+  }
+}, { immediate: true });
 
 defineExpose({
   inputValue: text,
