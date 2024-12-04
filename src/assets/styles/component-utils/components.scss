@@ -44,6 +44,7 @@
 /// @param {String} $component - The name of the component (e.g., 'toast', 'button').
 /// @param {String} $name - The specific style property name (e.g., 'color-background') to override.
 /// @param {String} $newValuda - new (custom) property
+/// @param {state | modifier} type [state] - type
 ///
 /// @example scss
 /// // Override the colors for a toast component in the success state
@@ -54,6 +55,12 @@
 /// // --toast-state-color-background: var(--toast-color-background-success);
 /// // --toast-state-color:red;
 ///
-@mixin override-state($component, $name, $newValue) {
-  --#{$component}-state-#{$name}: #{$newValue};
+@mixin override-state($component, $name, $newValue, $type: "state") {
+  @if not $component or not $name or not $newValue {
+    @error "\$component, \$name, \$newValue are required."
+  }
+  @if $type != "state" and $type != "modifier" {
+    @error "the \$type param must be 'state' or 'modifer'"
+  }
+  --#{$component}-#{$type}-#{$name}: #{$newValue};
 }

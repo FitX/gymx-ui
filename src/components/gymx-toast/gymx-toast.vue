@@ -95,18 +95,18 @@ onMounted(() => {
   justify-content: space-between;
 
   &--success {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-success));
+    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-success), 'modifier');
     @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-success));
   }
 
   &--warning {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-warning));
+    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-warning), 'modifier');
     @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-warning));
   }
 
   &--error {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-error));
-    @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-error));
+    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-error), 'modifier');
+    @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-error), 'modifier');
   }
 
   &__icon {
