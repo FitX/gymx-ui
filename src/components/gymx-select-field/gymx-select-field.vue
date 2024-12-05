@@ -50,12 +50,12 @@ const [modelValue] = defineModel<SelectItem | SelectItem[]>();
 <style lang="scss" scoped>
 .select-field {
   display: grid;
-  gap: var(--text-field-gap, var(--gymx-size-00));
-  font-size: var(--text-field-additional, var(--gymx-font-size-00));
+  gap: var(--gymx-text-field-gap, var(--gymx-size-00));
+  font-size: var(--gymx-text-field-additional, var(--gymx-font-size-00));
 
   &__additional {
     display: grid;
-    gap: var(--text-field-gap, var(--gymx-size-00));
+    gap: var(--gymx-text-field-gap, var(--gymx-size-00));
     justify-content: space-between;
     align-items: center;
     grid-template-columns: auto auto;

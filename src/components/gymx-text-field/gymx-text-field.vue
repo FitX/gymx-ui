@@ -44,22 +44,24 @@ defineExpose({
       :for="props.id"
       :text="props.label"
       class="text-field__label" />
-    <gymx-input
-      :ref="(el) => (inputRef = (el as any)?.inputRef)"
-      :id="props.id"
-      :input-attributes="props.inputAttributes"
-      :state="props.state"
-      class="text-field__input"
-      v-model="modelValue">
-      <!--<template v-for="slot in $slots" #[slot]>
-        <slot :name="slot"></slot>
-      </template>-->
-      <!--<template v-for="(slotFn, slotName) in $slots" v-slot:[slotName]="slotProps">
-        <slot :name="slotName" v-bind="slotProps"></slot>
-      </template>-->
-      <template #input-start><slot name="input-start"></slot></template>
-      <template #input-end><slot name="input-end"></slot></template>
-    </gymx-input>
+    <slot name="input">
+      <gymx-input
+        :ref="(el) => (inputRef = (el as any)?.inputRef)"
+        :id="props.id"
+        :input-attributes="props.inputAttributes"
+        :state="props.state"
+        class="text-field__input"
+        v-model="modelValue">
+        <!--<template v-for="slot in $slots" #[slot]>
+          <slot :name="slot"></slot>
+        </template>-->
+        <!--<template v-for="(slotFn, slotName) in $slots" v-slot:[slotName]="slotProps">
+          <slot :name="slotName" v-bind="slotProps"></slot>
+        </template>-->
+        <template #input-start><slot name="input-start"></slot></template>
+        <template #input-end><slot name="input-end"></slot></template>
+      </gymx-input>
+    </slot>
     <div class="text-field__additional">
       <slot name="input-error-message">
         <gymx-error-message
@@ -79,12 +81,12 @@ defineExpose({
 <style lang="scss" scoped>
 .text-field {
   display: grid;
-  gap: var(--text-field-gap, var(--gymx-size-00));
-  font-size: var(--text-field-additional, var(--gymx-font-size-00));
+  gap: var(--gymx-text-field-gap, var(--gymx-size-00));
+  font-size: var(--gymx-text-field-additional, var(--gymx-font-size-00));
 
   &__additional {
     display: grid;
-    gap: var(--text-field-gap, var(--gymx-size-00));
+    gap: var(--gymx-text-field-gap, var(--gymx-size-00));
     justify-content: space-between;
     align-items: center;
     grid-template-columns: auto auto;
