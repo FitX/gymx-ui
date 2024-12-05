@@ -143,8 +143,8 @@ export const CustomSlots: Story = {
       <pre>{{ model }}</pre>
       <component is="style" scoped>
         .demo-auto-suggest {
-          --auto-suggest-list-color-background: var(--input-color-background);
-          --auto-suggest-item-block-padding: var(--gymx-size-1);
+          --gymx-auto-suggest-list-color-background: var(--input-color-background);
+          --gymx-auto-suggest-item-block-padding: var(--gymx-size-1);
           max-inline-size: 400px;
         }
         .demo-auto-suggest .auto-suggest__option:nth-child(even) { background: var(--gymx-color-white-1); }

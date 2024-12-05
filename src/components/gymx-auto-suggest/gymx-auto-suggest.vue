@@ -223,28 +223,28 @@ defineExpose({
 </template>
 <style lang="scss">
 :root {
-  --auto-suggest-border-radius: 0;
-  --auto-suggest-border: 1px solid var(--gymx-color-gray-2);
-  --auto-suggest-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px,
+  --gymx-auto-suggest-border-radius: 0;
+  --gymx-auto-suggest-border: 1px solid var(--gymx-color-gray-2);
+  --gymx-auto-suggest-shadow: var(--gymx-color-gray-6) 0px 10px 36px 0px,
     var(--gymx-color-gray-5) 0px 0px 0px 1px;
 
-  --auto-suggest-list-block-size: auto;
-  --auto-suggest-list-inline-size: 100%;
-  --auto-suggest-list-color-background: var(--gymx-color-gray-1);
-  --auto-suggest-list-border: none;
+  --gymx-auto-suggest-list-block-size: auto;
+  --gymx-auto-suggest-list-inline-size: 100%;
+  --gymx-auto-suggest-list-color-background: var(--gymx-color-gray-1);
+  --gymx-auto-suggest-list-border: none;
 
-  --auto-suggest-item-text-font-size: var(--gymx-font-size-1);
-  --auto-suggest-item-inline-padding: var(--input-padding-inline, var(--gymx-size-0));
-  --auto-suggest-item-block-padding: var(--gymx-size-00);
-  --auto-suggest-item-color: inherit;
-  --auto-suggest-item-color-background: none;
-  --auto-suggest-item-color-focus: var(--gymx-color-accent-11);
+  --gymx-auto-suggest-item-text-font-size: var(--gymx-font-size-1);
+  --gymx-auto-suggest-item-inline-padding: var(--input-padding-inline, var(--gymx-size-0));
+  --gymx-auto-suggest-item-block-padding: var(--gymx-size-00);
+  --gymx-auto-suggest-item-color: inherit;
+  --gymx-auto-suggest-item-color-background: none;
+  --gymx-auto-suggest-item-color-focus: var(--gymx-color-accent-11);
 
-  --auto-suggest-item-color-hover: inherit;
-  --auto-suggest-item-color-background-hover: var(--gymx-color-gray-2);
+  --gymx-auto-suggest-item-color-hover: inherit;
+  --gymx-auto-suggest-item-color-background-hover: var(--gymx-color-gray-2);
 
-  --auto-suggest-item-color-selected: inherit;
-  --auto-suggest-item-color-background-selected: var(--gymx-color-accent-3);
+  --gymx-auto-suggest-item-color-selected: inherit;
+  --gymx-auto-suggest-item-color-background-selected: var(--gymx-color-accent-3);
 }
 </style>
 <style lang="scss" scoped>
@@ -266,31 +266,31 @@ defineExpose({
     list-style: '';
     margin: 0;
     padding: 0;
-    font-size: var(--auto-suggest-item-text-font-size);
-    block-size: var(--auto-suggest-list-block-size);
-    inline-size: var(--auto-suggest-list-inline-size);
-    background: var(--auto-suggest-list-color-background);
-    border: var(--auto-suggest-list-border);
+    font-size: var(--gymx-auto-suggest-item-text-font-size);
+    block-size: var(--gymx-auto-suggest-list-block-size);
+    inline-size: var(--gymx-auto-suggest-list-inline-size);
+    background: var(--gymx-auto-suggest-list-color-background);
+    border: var(--gymx-auto-suggest-list-border);
   }
 
   &__option {
-    padding-inline: var(--auto-suggest-item-inline-padding);
-    padding-block: var(--auto-suggest-item-block-padding);
-    color: var(--auto-suggest-item-color);
-    background: var(--auto-suggest-item-color-background);
+    padding-inline: var(--gymx-auto-suggest-item-inline-padding);
+    padding-block: var(--gymx-auto-suggest-item-block-padding);
+    color: var(--gymx-auto-suggest-item-color);
+    background: var(--gymx-auto-suggest-item-color-background);
     cursor: pointer;
 
     &:hover,
     &:focus-visible {
-      color: var(--auto-suggest-item-color-hover);
-      background: var(--auto-suggest-item-color-background-hover);
-      outline-color: var(--auto-suggest-item-color-focus);
+      color: var(--gymx-auto-suggest-item-color-hover);
+      background: var(--gymx-auto-suggest-item-color-background-hover);
+      outline-color: var(--gymx-auto-suggest-item-color-focus);
       outline-offset: -1px;
     }
 
     &[aria-selected='true'] {
-      color: var(--auto-suggest-item-color-selected);
-      background: var(--auto-suggest-item-color-background-selected);
+      color: var(--gymx-auto-suggest-item-color-selected);
+      background: var(--gymx-auto-suggest-item-color-background-selected);
     }
   }
 }
