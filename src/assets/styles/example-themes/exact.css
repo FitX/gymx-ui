@@ -51,7 +51,7 @@
   }
 
   --input-color-border: var(--exact-color-accent);
-  --select-color-border: var(--exact-color-accent);
+  --gymx-select-color-border: var(--exact-color-accent);
 
   .btn {
     --button-color-border: var(--exact-color-accent);

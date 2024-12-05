@@ -50,11 +50,11 @@
   --input-color-border-disabled: var(--gymx-color-white-2);
   --input-color-background-disabled: var(--gymx-color-white-1);
 
-  --select-color-disabled: var(--gymx-color-white-6);
-  --select-color-border: var(--gymx-color-white-6);
-  --select-color-border-hover: var(--gymx-color-white-7);
-  --select-color-border-disabled: var(--gymx-color-white-2);
-  --select-color-background-disabled: var(--gymx-color-white-1);
+  --gymx-select-color-disabled: var(--gymx-color-white-6);
+  --gymx-select-color-border: var(--gymx-color-white-6);
+  --gymx-select-color-border-hover: var(--gymx-color-white-7);
+  --gymx-select-color-border-disabled: var(--gymx-color-white-2);
+  --gymx-select-color-background-disabled: var(--gymx-color-white-1);
 
   --gymx-color-error-text: var(--gymx-color-error-text-on-dark);
   --gymx-color-text: #fefefe;
