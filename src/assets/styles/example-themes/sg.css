@@ -29,8 +29,8 @@
 
   --gymx-font-family-default: var(--sg-font-family);
 
-  --link-color: var(--sg-color-primary);
-  --link-color-hover: var(--sg-color-link);
+  --gymx-link-color: var(--sg-color-primary);
+  --gymx-link-color-hover: var(--sg-color-link);
 
   /*
   --button-color-background-hover: var(--sg-color-primary);

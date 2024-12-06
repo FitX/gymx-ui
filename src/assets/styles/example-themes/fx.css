@@ -34,9 +34,9 @@
   Links
    */
   /*
-  --link-color: var(--accent-color);
-  --link-color-hover: oklch(from var(--link-color) calc(l * 0.8) c h);
-  --link-color-focused: oklch(from var(--link-color) calc(l * 0.6) c h);
+  --gymx-link-color: var(--accent-color);
+  --gymx-link-color-hover: oklch(from var(--gymx-link-color) calc(l * 0.8) c h);
+  --gymx-link-color-focused: oklch(from var(--gymx-link-color) calc(l * 0.6) c h);
 
   .btn:where(:focus-visible) {
     --button-outline: 1px solid var(--button-color-background-focused);
