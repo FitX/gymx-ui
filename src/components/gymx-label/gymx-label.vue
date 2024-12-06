@@ -25,16 +25,16 @@ const props = withDefaults(defineProps<GymxLabelProps>(), {
 </template>
 <style lang="scss" scoped>
 .label {
-  font-size: var(--label-font-size, var(--gymx-font-size-1));
-  font-weight: var(--label-font-size, var(--gymx-font-weight-regular));
-  font-family: var(--label-font-family, var(--gymx-font-family-default)), sans-serif;
-  padding-inline: var(--label-padding-inline);
-  padding-block: var(--label-padding-block);
-  border: var(--label-border, 0);
-  color: var(--label-color);
+  font-size: var(--gymx-label-font-size, var(--gymx-font-size-1));
+  font-weight: var(--gymx-label-font-size, var(--gymx-font-weight-regular));
+  font-family: var(--gymx-label-font-family, var(--gymx-font-family-default)), sans-serif;
+  padding-inline: var(--gymx-label-padding-inline);
+  padding-block: var(--gymx-label-padding-block);
+  border: var(--gymx-label-border, 0);
+  color: var(--gymx-label-color);
 
   &:where(:hover, &--hover) {
-    --label-color: var(--label-color-hover);
+    --gymx-label-color: var(--gymx-label-color-hover);
   }
 }
 </style>
