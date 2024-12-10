@@ -18,13 +18,13 @@ const props = defineProps<GymxAppHeaderProps>();
 </template>
 <style lang="scss" scoped>
 .app-header {
-  --app-header-gap: 0.2rem 1rem;
-  --app-header-actions-gap: 0.2rem 1rem;
-  --app-header-title-font-size: var(--gymx-font-size-fluid-3);
-  --app-header-title-font-weight: var(--gymx-font-weight-3);
+  --gymx-app-header-gap: 0.2rem 1rem;
+  --gymx-app-header-actions-gap: 0.2rem 1rem;
+  --gymx-app-header-title-font-size: var(--gymx-font-size-fluid-3);
+  --gymx-app-header-title-font-weight: var(--gymx-font-weight-3);
 
   display: flex;
-  gap: var(--app-header-gap);
+  gap: var(--gymx-app-header-gap);
   align-items: center;
   justify-content: start;
   flex-wrap: wrap;
@@ -36,7 +36,7 @@ const props = defineProps<GymxAppHeaderProps>();
     margin-inline-start: auto;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--app-header-actions-gap);
+    gap: var(--gymx-app-header-actions-gap);
 
     & > :deep(*:not(.ignore-default-styles)) {
       font-weight: var(--gymx-font-weight-6);
@@ -44,12 +44,12 @@ const props = defineProps<GymxAppHeaderProps>();
   }
 
   &__logo {
-    flex: 0 0 var(--app-header-logo-width, var(--gymx-font-size-fluid-3));
+    flex: 0 0 var(--gymx-app-header-logo-width, var(--gymx-font-size-fluid-3));
   }
 
   &__title {
-    font-size: var(--app-header-title-font-size);
-    font-weight: var(--app-header-title-font-weight);
+    font-size: var(--gymx-app-header-title-font-size);
+    font-weight: var(--gymx-app-header-title-font-weight);
     margin: 0;
   }
 
@@ -60,15 +60,15 @@ const props = defineProps<GymxAppHeaderProps>();
   }
 }
 .app-header2 {
-  --app-header-gap: 1rem;
+  --gymx-app-header-gap: 1rem;
   display: grid;
-  grid-template-columns: var(--app-header-logo-size, auto) var(--app-header-title-size, auto) var(
-      --app-header-actions-size,
+  grid-template-columns: var(--gymx-app-header-logo-size, auto) var(--gymx-app-header-title-size, auto) var(
+      --gymx-app-header-actions-size,
       1fr
     );
   grid-template-rows: 1fr;
   grid-template-areas: 'logo title actions';
-  gap: var(--app-header-gap);
+  gap: var(--gymx-app-header-gap);
   align-items: center;
 
   &__logo {
@@ -92,7 +92,7 @@ const props = defineProps<GymxAppHeaderProps>();
   }
 
   & > :first-child:empty + * {
-    margin-inline-start: calc(var(--app-header-gap) * -1);
+    margin-inline-start: calc(var(--gymx-app-header-gap) * -1);
   }
 }
 </style>

@@ -20,25 +20,25 @@ defineSlots<{
 </template>
 <style lang="scss" scoped>
 .app-layout {
-  --app-layout-inline-padding: var(--gymx-size-0);
-  --app-layout-block-padding: var(--gymx-size-00);
-  --app-layout-grid-template-areas: 'header' 'content' 'footer';
-  --app-layout-grid-template-header-height: min-content;
-  --app-layout-grid-template-main-height: 1fr;
-  --app-layout-grid-template-footer-height: auto;
+  --gymx-app-layout-inline-padding: var(--gymx-size-0);
+  --gymx-app-layout-block-padding: var(--gymx-size-00);
+  --gymx-app-layout-grid-template-areas: 'header' 'content' 'footer';
+  --gymx-app-layout-grid-template-header-height: min-content;
+  --gymx-app-layout-grid-template-main-height: 1fr;
+  --gymx-app-layout-grid-template-footer-height: auto;
 
-  --app-layout-grid-template-header-color: inherit;
-  --app-layout-grid-template-header-color-background: inherit;
+  --gymx-app-layout-grid-template-header-color: inherit;
+  --gymx-app-layout-grid-template-header-color-background: inherit;
 
   display: grid;
 
-  grid-template-areas: var(--app-layout-grid-template-areas);
+  grid-template-areas: var(--gymx-app-layout-grid-template-areas);
 
   grid-template-columns: 1fr;
   grid-template-rows:
-    var(--app-layout-grid-template-header-height)
-    var(--app-layout-grid-template-main-height)
-    var(--app-layout-grid-template-footer-height);
+    var(--gymx-app-layout-grid-template-header-height)
+    var(--gymx-app-layout-grid-template-main-height)
+    var(--gymx-app-layout-grid-template-footer-height);
 
   /* above the fold spacer */
   &::before {
@@ -56,8 +56,8 @@ defineSlots<{
   &__main,
   &__footer {
     &:not(:empty) {
-      padding-inline: var(--app-layout-inline-padding);
-      padding-block: var(--app-layout-block-padding);
+      padding-inline: var(--gymx-app-layout-inline-padding);
+      padding-block: var(--gymx-app-layout-block-padding);
     }
   }
 
@@ -66,8 +66,8 @@ defineSlots<{
     top: 0;
     z-index: 1;
     grid-area: header;
-    color: var(--app-layout-grid-template-header-color);
-    background: var(--app-layout-grid-template-header-color-background);
+    color: var(--gymx-app-layout-grid-template-header-color);
+    background: var(--gymx-app-layout-grid-template-header-color-background);
   }
 
   &__main {

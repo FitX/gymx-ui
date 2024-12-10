@@ -87,6 +87,9 @@ export const ContentOnly: Story = {
       };
     },
     template: `
+      <component is="style">
+        :root { --gymx-app-footer-color-background: red }
+      </component>
     <gymx-app-footer v-bind="args">
       <template #content>
         <p>v. {{ appVersion }}</p>

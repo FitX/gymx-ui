@@ -163,7 +163,7 @@
     border-bottom: 1px solid var(--gymx-color-accent-12);
   } */
   .app-header {
-    --app-header-gap: 2rem;
+    --gymx-app-header-gap: 2rem;
     position: relative;
     border-bottom: 1px solid var(--gymx-color-accent-12);
   }
