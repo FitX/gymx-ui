@@ -20,25 +20,25 @@ defineSlots<{
 </template>
 <style lang="scss" scoped>
 .app-layout {
-  --gymx-app-layout-inline-padding: var(--gymx-size-0);
-  --gymx-app-layout-block-padding: var(--gymx-size-00);
-  --gymx-app-layout-grid-template-areas: 'header' 'content' 'footer';
-  --gymx-app-layout-grid-template-header-height: min-content;
-  --gymx-app-layout-grid-template-main-height: 1fr;
-  --gymx-app-layout-grid-template-footer-height: auto;
+  --_gymx-app-layout-inline-padding: var(--gymx-app-layout-inline-padding, var(--gymx-size-0));
+  --_gymx-app-layout-block-padding: var(--gymx-app-layout-block-padding, var(--gymx-size-00));
+  --_gymx-app-layout-grid-template-areas: var(--gymx-app-layout-grid-template-areas, 'header' 'content' 'footer');
+  --_gymx-app-layout-grid-template-header-height: var(--gymx-app-layout-grid-template-header-height, min-content);
+  --_gymx-app-layout-grid-template-main-height: var(--gymx-app-layout-grid-template-main-height, 1fr);
+  --_gymx-app-layout-grid-template-footer-height: var(--gymx-app-layout-grid-template-footer-height, auto);
 
-  --gymx-app-layout-grid-template-header-color: inherit;
-  --gymx-app-layout-grid-template-header-color-background: inherit;
+  --_gymx-app-layout-grid-template-header-color: var(--gymx-app-layout-grid-template-header-color, inherit);
+  --_gymx-app-layout-grid-template-header-color-background: var(--gymx-app-layout-grid-template-header-color-background, inherit);
 
   display: grid;
 
-  grid-template-areas: var(--gymx-app-layout-grid-template-areas);
+  grid-template-areas: var(--_gymx-app-layout-grid-template-areas);
 
   grid-template-columns: 1fr;
   grid-template-rows:
-    var(--gymx-app-layout-grid-template-header-height)
-    var(--gymx-app-layout-grid-template-main-height)
-    var(--gymx-app-layout-grid-template-footer-height);
+    var(--_gymx-app-layout-grid-template-header-height)
+    var(--_gymx-app-layout-grid-template-main-height)
+    var(--_gymx-app-layout-grid-template-footer-height);
 
   /* above the fold spacer */
   &::before {
@@ -56,8 +56,8 @@ defineSlots<{
   &__main,
   &__footer {
     &:not(:empty) {
-      padding-inline: var(--gymx-app-layout-inline-padding);
-      padding-block: var(--gymx-app-layout-block-padding);
+      padding-inline: var(--_gymx-app-layout-inline-padding);
+      padding-block: var(--_gymx-app-layout-block-padding);
     }
   }
 
@@ -66,8 +66,8 @@ defineSlots<{
     top: 0;
     z-index: 1;
     grid-area: header;
-    color: var(--gymx-app-layout-grid-template-header-color);
-    background: var(--gymx-app-layout-grid-template-header-color-background);
+    color: var(--_gymx-app-layout-grid-template-header-color);
+    background: var(--_gymx-app-layout-grid-template-header-color-background);
   }
 
   &__main {
