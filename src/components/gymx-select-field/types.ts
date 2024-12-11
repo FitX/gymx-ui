@@ -1,8 +1,8 @@
 import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from '@/components';
 
-export interface GymxSelectFieldOption<T = object> extends GymxSelectOption {}
+export type GymxSelectFieldOption<T> = GymxSelectOption<T>;
 
-export interface GymxSelectFieldProps extends GymxSelectProps {
+export interface GymxSelectFieldProps<T> extends GymxSelectProps<T> {
   label: string;
   errorMessage?: string;
   hint?: string;

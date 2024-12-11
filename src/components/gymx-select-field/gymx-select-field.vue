@@ -1,5 +1,5 @@
-<script lang="ts" setup generic="SelectItem extends GymxSelectFieldOption<SelectItem>">
-import type { GymxSelectFieldOption, GymxSelectFieldProps, GymxSelectFieldSlots } from './types';
+<script lang="ts" setup generic="SelectItem extends object">
+import type { GymxSelectFieldProps, GymxSelectFieldSlots } from './types';
 import { GymxErrorMessage, GymxLabel, GymxSelect } from '@/components';
 
 defineEmits<{
@@ -7,7 +7,7 @@ defineEmits<{
 }>();
 defineSlots<GymxSelectFieldSlots>();
 
-const props = withDefaults(defineProps<GymxSelectFieldProps>(), {
+const props = withDefaults(defineProps<GymxSelectFieldProps<SelectItem>>(), {
   id: crypto.randomUUID(),
 });
 

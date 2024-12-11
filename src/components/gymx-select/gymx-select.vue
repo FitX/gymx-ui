@@ -1,5 +1,5 @@
-<script lang="ts" setup generic="SelectItem extends GymxSelectOption<SelectItem>">
-import type { GymxSelectOption, GymxSelectProps, GymxSelectSlots } from './types';
+<script lang="ts" setup generic="SelectItem extends object">
+import type { GymxSelectProps, GymxSelectSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed } from 'vue';
 
@@ -8,7 +8,7 @@ defineEmits<{
 }>();
 defineSlots<GymxSelectSlots>();
 
-const props = withDefaults(defineProps<GymxSelectProps>(), {
+const props = withDefaults(defineProps<GymxSelectProps<SelectItem>>(), {
   id: crypto.randomUUID(),
 });
 

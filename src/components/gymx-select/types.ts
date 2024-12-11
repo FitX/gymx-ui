@@ -1,17 +1,17 @@
 import type { UIState } from '@/types';
 import type { SelectHTMLAttributes } from 'vue';
 
-export type GymxSelectOption<T extends object = {}> = {
+export type GymxSelectOption<T> = {
   [Property in keyof T]: T[Property];
 } & {
   text: string;
 };
 
-export interface GymxSelectProps {
+export interface GymxSelectProps<T> {
   state?: UIState;
   id?: string;
   inputAttributes?: SelectHTMLAttributes;
-  options: GymxSelectOption<object>[];
+  options: GymxSelectOption<T>[];
   placeholder?: string;
 }
 
