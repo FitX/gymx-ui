@@ -27,8 +27,11 @@ defineSlots<{
   --_gymx-app-layout-grid-template-main-height: var(--gymx-app-layout-grid-template-main-height, 1fr);
   --_gymx-app-layout-grid-template-footer-height: var(--gymx-app-layout-grid-template-footer-height, auto);
 
-  --_gymx-app-layout-grid-template-header-color: var(--gymx-app-layout-grid-template-header-color, inherit);
-  --_gymx-app-layout-grid-template-header-color-background: var(--gymx-app-layout-grid-template-header-color-background, inherit);
+  --_gymx-app-layout-header-color: var(--gymx-app-layout-header-color, inherit);
+  --_gymx-app-layout-header-color-background: var(--gymx-app-layout-header-color-background, transparent);
+
+  --_gymx-app-layout-footer-color: var(--gymx-app-layout-footer-color, inherit);
+  --_gymx-app-layout-footer-color-background: var(--gymx-app-layout-footer-color-background, transparent);
 
   display: grid;
 
@@ -66,8 +69,8 @@ defineSlots<{
     top: 0;
     z-index: 1;
     grid-area: header;
-    color: var(--_gymx-app-layout-grid-template-header-color);
-    background: var(--_gymx-app-layout-grid-template-header-color-background);
+    color: var(--_gymx-app-layout-header-color);
+    background: var(--_gymx-app-layout-header-color-background);
   }
 
   &__main {
@@ -79,6 +82,8 @@ defineSlots<{
     bottom: 0;
     z-index: 1;
     grid-area: footer;
+    color: var(--_gymx-app-layout-footer-color);
+    background: var(--_gymx-app-layout-footer-color-background);
   }
 }
 
