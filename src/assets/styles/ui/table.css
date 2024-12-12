@@ -1,4 +1,4 @@
-.table {
+:where(.table) {
   --_gymx-table-cell-spacing-inline: var(--gymx-table-cell-spacing-inline, 1rem);
   --_gymx-table-cell-spacing-block: var(--gymx-table-cell-spacing-block, calc(var(--gymx-table-cell-spacing-inline, 1rem) / 2));
 
