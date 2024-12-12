@@ -1,9 +1,9 @@
 .table {
-  --gymx-table-cell-spacing-inline: 1rem;
-  --gymx-table-cell-spacing-block: calc(var(--gymx-table-cell-spacing-inline) / 2);
+  --_gymx-table-cell-spacing-inline: var(--gymx-table-cell-spacing-inline, 1rem);
+  --_gymx-table-cell-spacing-block: var(--gymx-table-cell-spacing-block, calc(var(--gymx-table-cell-spacing-inline, 1rem) / 2));
 
-  --sort-icon-asc: var(--gymx-color-gray-5);
-  --sort-icon-desc: var(--gymx-color-gray-5);
+  --sort-icon-asc: var(--sort-icon-inactive, var(--gymx-color-gray-5));
+  --sort-icon-desc: var(--sort-icon-inactive, var(--gymx-color-gray-5));
 
   border-collapse: collapse;
   font-size: var(--gymx-table-font-size, var(--gymx-font-size-0));
@@ -12,8 +12,8 @@
 
   td,
   th {
-    padding-block: var(--gymx-table-cell-spacing-block);
-    padding-inline: var(--gymx-table-cell-spacing-inline);
+    padding-block: var(--_gymx-table-cell-spacing-block);
+    padding-inline: var(--_gymx-table-cell-spacing-inline);
     border: var(--gymx-table-border, 1px solid var(--gymx-color-gray-4));
   }
 
@@ -42,8 +42,8 @@
 }
 
 .table-sort {
-  padding-block: var(--gymx-table-cell-spacing-block);
-  padding-inline: var(--gymx-table-cell-spacing-inline);
+  padding-block: var(--_gymx-table-cell-spacing-block);
+  padding-inline: var(--_gymx-table-cell-spacing-inline);
   display: flex;
   gap: 1rem;
   background: none;
