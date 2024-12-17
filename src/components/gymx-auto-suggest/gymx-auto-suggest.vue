@@ -67,13 +67,15 @@ const onInputKeydown = (event: KeyboardEvent) => {
 };
 
 const onInputClick = (event: MouseEvent) => {
-  showList();
-  listElement.value
-    // ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
-    ?.querySelector<HTMLLIElement>(
-      `[role="option"][data-text="${(event?.target as HTMLInputElement)?.value}"]`,
-    )
-    ?.scrollIntoView();
+  if (!isListOpen.value) {
+    showList();
+    listElement.value
+      // ?.querySelector<HTMLLIElement>(`[role="option"][data-value="${model.value}"]`)
+      ?.querySelector<HTMLLIElement>(
+        `[role="option"][data-text="${(event?.target as HTMLInputElement)?.value}"]`,
+      )
+      ?.scrollIntoView();
+  }
 };
 
 const handleOptionClick = (event: MouseEvent) => {
