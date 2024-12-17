@@ -256,9 +256,14 @@ defineExpose({
   /* display: grid;
   grid-template-rows: auto 1fr; */
 
+  :deep(.text-field__additional) {
+    position: absolute;
+    top: calc(100% + var(--gymx-text-field-gap, var(--gymx-size-00)));
+  }
+
   &[data-expanded='true'] {
     :deep(.text-field__additional) {
-      position: absolute;
+      // position: absolute;
       opacity: 0;
       pointer-events: none;
     }
