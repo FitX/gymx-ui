@@ -191,4 +191,74 @@ describe('useSearch', () => {
       { name: 'Owner', job: '' },
     ]);
   });
+
+  it('should return an empty array if initialData is undefined', () => {
+    // @ts-expect-error undefined
+    const { filtered } = useSearch({ initialData: undefined });
+
+    expect(filtered.value).toEqual([]);
+  });
+
+  it('should return initialData if provided as a ref', () => {
+    const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
+    // @ts-expect-error undefined
+    const { filtered } = useSearch({ initialData: initialDataRef });
+
+    expect(filtered.value).toEqual([{ name: 'Item 1' }, { name: 'Item 2' }]);
+  });
+
+  it('should return initialData if provided as a raw array', () => {
+    const initialData = [{ name: 'Item 1' }, { name: 'Item 2' }];
+    // @ts-expect-error undefined
+    const { filtered } = useSearch({ initialData });
+
+    expect(filtered.value).toEqual(initialData);
+  });
+
+  it('should return an empty array if searchOptions is undefined', () => {
+    const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
+    // @ts-expect-error undefined
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: undefined,
+    });
+
+    expect(filtered.value).toEqual([{ name: 'Item 1' }, { name: 'Item 2' }]);
+  });
+
+  it('should return searchOptions if provided as a ref', () => {
+    const initialDataRef = ref([{ name: 'Item 1' }]);
+    const searchOptionsRef = ref([
+      {
+        key: 'name',
+        value: 'Item 1',
+        predicate: (a: any, b: any) => a.includes(b),
+      },
+    ]);
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      // @ts-expect-error undefined
+      searchOptions: searchOptionsRef,
+    });
+
+    expect(filtered.value).toEqual([{ name: 'Item 1' }]);
+  });
+
+  it('should return searchOptions if provided as a raw array', () => {
+    const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
+    const searchOptions = [
+      {
+        key: 'name',
+        value: 'Item 1',
+        predicate: (a: any, b: any) => a.includes(b),
+      },
+    ];
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      // @ts-expect-error undefined
+      searchOptions,
+    });
+
+    expect(filtered.value).toEqual([{ name: 'Item 1' }]);
+  });
 });
