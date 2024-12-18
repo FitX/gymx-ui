@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ref, toValue } from 'vue';
+import { computed, ref, toValue } from 'vue';
 import { type FilterOption, useSearch, defaultSearch } from './index';
 
 interface Item {
@@ -11,6 +11,13 @@ const data: Item[] = [
   { name: 'Jessica', job: 'product owner' },
   { name: 'Frank', job: 'developer' },
   { name: 'Micha', job: 'developer' },
+  { name: 'Owner', job: '' },
+];
+
+const dataSorted: Item[] = [
+  { name: 'Frank', job: 'developer' },
+  { name: 'Micha', job: 'developer' },
+  { name: 'Jessica', job: 'product owner' },
   { name: 'Owner', job: '' },
 ];
 
@@ -63,6 +70,102 @@ describe('useSearch', () => {
     });
 
     expect(filtered.value).toEqual(data);
+  });
+
+  it('filtered should return updated data, searchOptions as computed', () => {
+    /* const searchOptionsRef = ref<FilterOption<Item>[]>([
+      {
+        key: 'job',
+        value: '',
+        predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+      },
+    ]); */
+    const searchOptionsRef = computed<FilterOption<Item>[]>(() => ([
+      {
+        key: 'job',
+        value: '',
+        predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+      },
+    ]));
+    const initialDataRef = ref(data);
+
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: searchOptionsRef,
+    });
+
+    expect(filtered.value).toEqual(data);
+
+    initialDataRef.value = dataSorted;
+
+    expect(filtered.value).toEqual([
+      { name: 'Frank', job: 'developer' },
+      { name: 'Micha', job: 'developer' },
+      { name: 'Jessica', job: 'product owner' },
+      { name: 'Owner', job: '' },
+    ]);
+
+
+  });
+
+  it('filtered should return updated data, searchOptions as ref', () => {
+    const searchOptionsRef = ref<FilterOption<Item>[]>([
+      {
+        key: 'job',
+        value: '',
+        predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+      },
+    ]);
+    const initialDataRef = ref(data);
+
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: searchOptionsRef,
+    });
+
+    expect(filtered.value).toEqual(data);
+
+    initialDataRef.value = dataSorted;
+
+    expect(filtered.value).toEqual([
+      { name: 'Frank', job: 'developer' },
+      { name: 'Micha', job: 'developer' },
+      { name: 'Jessica', job: 'product owner' },
+      { name: 'Owner', job: '' },
+    ]);
+
+
+  });
+
+  it('filtered should return updated data, initialData as computed', () => {
+    const searchOptionsRef = ref<FilterOption<Item>[]>([
+      {
+        key: 'job',
+        value: '',
+        predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
+      },
+    ]);
+    const justATest = ref(true);
+    const initialDataRef = computed(() => {
+      if (justATest.value) return data;
+      return dataSorted;
+    });
+
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: searchOptionsRef,
+    });
+
+    expect(filtered.value).toEqual(data);
+
+    justATest.value = false;
+
+    expect(filtered.value).toEqual([
+      { name: 'Frank', job: 'developer' },
+      { name: 'Micha', job: 'developer' },
+      { name: 'Jessica', job: 'product owner' },
+      { name: 'Owner', job: '' },
+    ]);
   });
 
   it('should use customSearch function when provided', () => {

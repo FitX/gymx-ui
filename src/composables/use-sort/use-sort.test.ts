@@ -131,4 +131,25 @@ describe('useSort', () => {
     expect(sorted.value).toEqual(data.value);
     expect(warnSpy).toHaveBeenCalledWith('No sort options provided. Returning original data.');
   });
+
+
+  it('should sort data in descending order, but initial Data undefined', () => {
+    const data = ref<Item[]>();
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'id', order: 'desc' }]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions });
+
+    data.value = [
+      { id: 1, name: 'A' },
+      { id: 3, name: 'C' },
+      { id: 2, name: 'B' },
+    ]
+
+    expect(sorted.value).toEqual([
+      { id: 3, name: 'C' },
+      { id: 2, name: 'B' },
+      { id: 1, name: 'A' },
+    ]);
+  });
 });
