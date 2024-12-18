@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { computed, ref, toValue } from 'vue';
+import { computed, nextTick, ref, toValue } from 'vue';
 import { type FilterOption, useSearch, defaultSearch } from './index';
 
 interface Item {
@@ -168,12 +168,12 @@ describe('useSearch', () => {
     ]);
   });
 
-  it('should use customSearch function when provided', () => {
+  it('should use customSearch function when provided', async () => {
     const initialDataRef = ref(data);
     const searchTerm = ref('Owne');
-    const keysToSearch = ['name', 'job'];
+    const keysToSearch = ['name', 'job'] as const;
     const customSearch = (items: Item[]) =>
-      items.filter((item) =>
+      items?.filter((item) =>
         keysToSearch.some((key) =>
           String(item[key])
             .toLowerCase()
@@ -183,7 +183,7 @@ describe('useSearch', () => {
 
     const { filtered } = useSearch({
       initialData: initialDataRef,
-      customSearch,
+      customSearch: () => customSearch,
     });
 
     expect(filtered.value).toEqual([
