@@ -26,7 +26,7 @@ const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
     console.warn('No sort options provided. Returning original data.');
     return data;
   }
-  return data.sort((a, b) => {
+  return data?.sort((a, b) => {
     for (const { key, order } of sortOptions) {
       const compare = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
       if (compare !== 0) {
