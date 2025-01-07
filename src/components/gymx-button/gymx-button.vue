@@ -134,28 +134,27 @@ defineSlots<GymxButtonSlots>();
   box-shadow: var(--button-box-shadow);
   transition: var(--_button-transition);
 
-  display: inline-grid;
-  grid: 'start content end' 1fr / var(--_button-icon-size-start) 1fr var(--_button-icon-size-end);
+  display: inline-flex;
   align-items: center;
 
   &__start {
-    grid-area: start;
+    inline-size: var(--_button-icon-size-start);
     display: inline-flex;
     place-content: center;
     transition: all 200ms ease;
 
     &:not(:empty) {
-      margin-inline-end: var(--_button-gap);
+      padding-inline-end: var(--_button-gap);
     }
   }
 
   &__end {
-    grid-area: end;
+    inline-size: var(--_button-icon-size-end);
     display: inline-flex;
     place-content: center;
 
     &:not(:empty) {
-      margin-inline-start: var(--_button-gap);
+      padding-inline-start: var(--_button-gap);
     }
   }
 
@@ -180,11 +179,11 @@ defineSlots<GymxButtonSlots>();
 
 
 .loading-indicator {
-    inline-size: var(--_button-loading-indicator-size);
-    aspect-ratio: 1;
-    display: inline-flex;
-    position: relative;
-    transition: all 1s ease;
+  inline-size: var(--_button-loading-indicator-size);
+  aspect-ratio: 1;
+  display: inline-flex;
+  position: relative;
+  transition: all 1s ease;
 
   &::after,
   &::before {
