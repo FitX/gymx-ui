@@ -63,6 +63,7 @@ defineSlots<GymxButtonSlots>();
   </component>
 </template>
 <style lang="scss" scoped>
+@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
 .btn {
   $self: &;
 
@@ -183,45 +184,12 @@ defineSlots<GymxButtonSlots>();
   }
 }
 
-
-.loading-indicator {
-  inline-size: var(--_button-loading-indicator-size);
-  aspect-ratio: 1;
-  display: inline-flex;
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  transition: all 1s ease;
-
-  &::after,
-  &::before {
-    content: '';
-    border-radius: 50%;
-    background: var(--_button-loading-indicator-color);
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    animation: var(--_button-loading-indicator-animation);
-  }
-  &::after {
-    animation-delay: calc(var(--_button-internal-loading-indicator-animation-delay) / 2);
-  }
-}
+// reuse loading indicator
+@include buttons.loading-indicator();
 </style>
 
 <style lang="scss">
-@keyframes loading {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(0.7);
-  }
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
+@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
+// reuse loading indicator animation
+@include buttons.loading-animation();
 </style>

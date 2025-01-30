@@ -1,0 +1,45 @@
+/**
+  * Reusable Loading Indicator Mixins
+ */
+@mixin loading-indicator () {
+  .loading-indicator {
+    inline-size: var(--_button-loading-indicator-size);
+    aspect-ratio: 1;
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    transition: all 1s ease;
+
+    &::after,
+    &::before {
+      content: '';
+      border-radius: 50%;
+      background: var(--_button-loading-indicator-color);
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      animation: var(--_button-loading-indicator-animation);
+    }
+    &::after {
+      animation-delay: calc(var(--_button-internal-loading-indicator-animation-delay) / 2);
+    }
+  }
+}
+
+@mixin loading-animation () {
+  @keyframes loading {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(0.7);
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+}
