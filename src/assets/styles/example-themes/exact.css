@@ -86,6 +86,32 @@
     background-position-x: 0;
   }
 
+  .icon-btn {
+    --gymx-icon-btn-color-background: linear-gradient(
+      90deg,
+      var(--gymx-color-accent-8) 50%,
+      var(--exact-color-accent) 50%
+    );
+    --gymx-icon-btn-color-background-hover: var(--gymx-icon-btn-color-background);
+    --gymx-icon-btn-color-background-focused: var(--gymx-icon-btn-color-background);
+
+    background-origin: border-box;
+    background-size: 200%;
+    background-position-x: 100%;
+    transition: 0.3s ease-in-out;
+    transition-property: color, background-color, background-position, background-size, border-color,
+    box-shadow;
+    border: 3px solid var(--gymx-icon-btn-color-background);
+  }
+
+  .icon-btn:hover,
+  .icon-btn--hover,
+  .icon-btn:focus-visible,
+  .icon-btn--focused {
+    /* --button-border: 3px solid var(--exact-color-light); */
+    background-position-x: 0;
+  }
+
   .table {
     --gymx-table-border: 2px solid var(--exact-color-gray-3);
 
