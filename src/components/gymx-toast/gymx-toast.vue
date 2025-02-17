@@ -65,6 +65,7 @@ onMounted(() => {
   --_gymx-toast-radius: var(--gymx-toast-radius, var(--gymx-radius-0));
   --_gymx-toast-icon-fill: var(--gymx-toast-icon-fill, currentColor);
   --_gymx-toast-icon-gap: var(--gymx-toast-icon-gap, var(--gymx-size-0));
+  --_gymx-toast-close-button-safe-area: var(--gymx-toast-close-button-safe-area, var(--gymx-size-0));
 
   // State defaults
   --_gymx-toast-color-success: var(--gymx-toast-color-success, var(--gymx-color-black-12));
@@ -118,7 +119,11 @@ onMounted(() => {
   }
 
   &__btn-close {
+    --icon-fill: currentColor;
+    position: relative;
     justify-self: end;
+    align-self: stretch;
+    align-items: center;
     appearance: none;
     background: none;
     color: currentColor;
@@ -126,8 +131,19 @@ onMounted(() => {
     padding: 0;
     display: inline-flex;
     outline-offset: 3px;
+    flex: 0 1 1rem;
 
-    --icon-fill: currentColor;
+    svg {
+      align-self: start;
+      margin: auto;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      inset: calc(var(--_gymx-toast-padding-block) * -1) calc(var(--_gymx-toast-padding-inline) * -1);
+      padding: var(--_gymx-toast-close-button-safe-area);
+    }
   }
 }
 </style>
