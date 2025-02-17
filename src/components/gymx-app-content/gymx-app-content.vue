@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<GymxAppContentProps>(), {
   // grid-area: content;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 
   &--centered &__inner {
     place-items: center;
