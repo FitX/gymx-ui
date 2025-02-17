@@ -62,7 +62,6 @@ export const WithIcon: Story = {
 };
 
 export const Usage: Story = {
-  args: {},
   render: (args) => ({
     components: {
       GymxToast,
@@ -72,10 +71,9 @@ export const Usage: Story = {
 
       const demoId = ref(0); // only for screen-reader content testing
 
-      const add = (type?: string) => {
+      const add = (type?: 'error' | 'success' | 'info' | 'warning') => {
         demoId.value += 1;
         addToast({
-          id: demoId.value,
           msg: type ? `${type} ${demoId.value}` : `Default ${demoId.value}`,
           type,
         });
