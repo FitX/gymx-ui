@@ -234,3 +234,29 @@
     --switch-icon-inactive-scale: 0;
   }
 }
+
+/* Rating */
+[data-theme='exact'] {
+  .rating {
+    .animation {
+      g {
+        fill: var(--gymx-rating-icon-fill-active);
+      }
+
+      circle ~ * {
+        fill: white
+      }
+    }
+    .satellite span:nth-child(even) {
+      background: white;
+    }
+    .satellite {
+      animation: blubb 2s;
+    }
+  }
+}
+
+@keyframes blubb {
+  0% { rotate: 0deg }
+  100% { rotate: 360deg }
+}

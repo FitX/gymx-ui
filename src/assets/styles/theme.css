@@ -71,3 +71,10 @@
   --gymx-toggle-switch-thumb-color-background-active: var(--gymx-color-accent-2);
   --gymx-toggle-switch-thumb-color-background-inactive: var(--gymx-color-accent-2); */
 }
+
+:where(.rating) {
+  --gymx-rating-icon-fill-active: var(--gymx-link-color);
+  &:has(.animation) {
+    --gymx-rating-icon-fill: var(--gymx-color-gray-7);
+  }
+}

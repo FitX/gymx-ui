@@ -8,6 +8,7 @@ export * from './gymx-icon-button';
 export * from './gymx-label';
 export * from './gymx-button';
 export * from './gymx-link';
+export * from './gymx-rating';
 export * from './gymx-input';
 export * from './gymx-text-field';
 export * from './gymx-badge';

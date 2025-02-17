@@ -1,0 +1,10 @@
+<svg
+style="width: var(--icon-width, 18px); height: var(--icon-height, 18px);"
+viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(2 2)" fill="none" fill-rule="evenodd">
+  <circle stroke="var(--icon-fill, #181D1E)" stroke-width="3" cx="18" cy="18" r="18"/>
+  <circle fill="var(--icon-fill, #181D1E)" cx="11.25" cy="14.25" r="2.25"/>
+  <circle fill="var(--icon-fill, #181D1E)" cx="24.75" cy="14.25" r="2.25"/>
+  <path fill="var(--icon-fill, #181D1E)" d="M11.25 24.948h13.5a1.125 1.125 0 0 0 0-2.25h-13.5a1.125 1.125 0 0 0 0 2.25Z" />
+</g>
+</svg>
