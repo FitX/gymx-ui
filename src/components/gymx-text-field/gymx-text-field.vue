@@ -16,7 +16,7 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<GymxTextFieldProps>(), {
-  id: crypto.randomUUID(),
+  id: () => crypto.randomUUID(),
 });
 
 // const slots = useSlots();

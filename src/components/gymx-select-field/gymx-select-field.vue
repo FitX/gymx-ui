@@ -8,7 +8,7 @@ defineEmits<{
 defineSlots<GymxSelectFieldSlots>();
 
 const props = withDefaults(defineProps<GymxSelectFieldProps<SelectItem>>(), {
-  id: crypto.randomUUID(),
+  id: () => crypto.randomUUID(),
 });
 
 const [modelValue] = defineModel<SelectItem | SelectItem[]>();

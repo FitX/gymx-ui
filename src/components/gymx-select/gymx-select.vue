@@ -9,7 +9,7 @@ defineEmits<{
 defineSlots<GymxSelectSlots>();
 
 const props = withDefaults(defineProps<GymxSelectProps<SelectItem>>(), {
-  id: crypto.randomUUID(),
+  id: () => crypto.randomUUID(),
 });
 
 const disabled = computed(

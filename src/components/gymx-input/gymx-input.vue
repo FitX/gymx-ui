@@ -9,7 +9,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<GymxInputProps>(), {
   type: 'text',
-  id: crypto.randomUUID(),
+  id: () => crypto.randomUUID(),
 });
 
 const disabled = computed(
