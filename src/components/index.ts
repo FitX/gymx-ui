@@ -12,6 +12,7 @@ export * from './gymx-rating';
 export * from './gymx-input';
 export * from './gymx-text-field';
 export * from './gymx-badge';
+export * from './gymx-textarea';
 export * from './gymx-toast';
 export * from './gymx-toggle-switch';
 export * from './gymx-select';
