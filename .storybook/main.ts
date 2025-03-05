@@ -16,6 +16,7 @@ if (isProd) {
 const config: StorybookConfig = {
   stories: ['../docs/**/*.mdx', '../docs/**/*.stories.ts', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   staticDirs,
+
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -24,14 +25,20 @@ const config: StorybookConfig = {
     '@storybook/addon-themes',
     '@storybook/addon-a11y'
   ],
+
   framework: {
     name: '@storybook/vue3-vite',
     options: {
       // docgen: 'vue-component-meta',
     },
   },
+
   core: {
     disableTelemetry: true, // 👈 Disables telemetry
   },
+
+  docs: {
+    // autodocs: true
+  }
 };
 export default config;
