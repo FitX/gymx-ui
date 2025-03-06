@@ -75,3 +75,43 @@ export const WithAttributes: Story = {
     },
   },
 };
+
+export const DateInput: Story = {
+  args: {
+    // modelValue: '2025-08-11',
+    type: 'date',
+    'onUpdate:modelValue': (e) => console.log('update date', e),
+  },
+};
+
+export const TimeInput: Story = {
+  args: {
+    modelValue: '',
+    id: 'date-time',
+    type: 'time',
+    'onUpdate:modelValue': (e) => console.log('update time', e),
+  },
+};
+
+export const DateTimeInput: Story = {
+  args: {
+    modelValue: '',
+    id: 'date-time',
+    type: 'datetime-local',
+    'onUpdate:modelValue': (e) => console.log('update time', e),
+  },
+};
+
+export const fuIos: Story = {
+  decorators: (args) => ({
+    setup(args) {
+      return {
+        args,
+      };
+    },
+    components: {
+      GymxInput,
+    },
+    template: '<div style="display: flex; gap: 1rem; align-items: start; align-content: start;  border: 1px solid blue"><gymx-input v-bind="args" type="datetime-local" /> <gymx-input v-bind="args" type="text" /></div>'
+  })
+}
