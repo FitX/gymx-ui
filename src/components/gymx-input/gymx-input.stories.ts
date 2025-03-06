@@ -112,6 +112,6 @@ export const fuIos: Story = {
     components: {
       GymxInput,
     },
-    template: '<div style="display: flex; gap: 1rem; align-items: start; align-content: start;  border: 1px solid blue"><gymx-input v-bind="args" type="datetime-local" /> <gymx-input v-bind="args" type="text" /></div>'
+    template: '<gymx-input v-bind="args" type="datetime-local" /> <gymx-input v-bind="args" type="text" />'
   })
 }
