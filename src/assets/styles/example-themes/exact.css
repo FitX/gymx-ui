@@ -262,3 +262,22 @@
   0% { rotate: 0deg }
   100% { rotate: 360deg }
 }
+
+/* Banner */
+[data-theme='exact'] {
+  --gymx-banner-color-background-error: var(--gymx-color-error-9);
+  --gymx-banner-color-error: #fff;
+
+  --gymx-banner-color-background-warning: var(--gymx-color-warning-9);
+  --gymx-banner-color-warning: #000;
+
+  --gymx-banner-color-background-success: var(--gymx-color-success-10);
+  --gymx-banner-color-success: #000;
+
+  --gymx-banner-padding-block: 1rem;
+  --gymx-banner-padding-inline: 1.5rem;
+
+  .banner {
+    font-size: 1.2rem;
+  }
+}

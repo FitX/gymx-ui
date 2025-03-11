@@ -1,16 +1,18 @@
 <script lang="ts" setup>
   import type { GymxBannerProps } from './types';
   import { getModifierClasses } from '@/utils/css-modifier';
-
-  const hideIcon = true;
+  import { computed } from 'vue';
 
   const props = defineProps<GymxBannerProps>();
+
+  const hideIcon = computed(() => props.type === 'no-icon' || props.type?.includes('no-icon'));
 </script>
 
 <template>
   <div
+    class="banner"
     :class="getModifierClasses('banner', props.type)"
-    class="banner">
+    >
     <div class="banner__content">
       <span
         v-if="!hideIcon"
@@ -39,62 +41,73 @@
 
 .banner {
   $self: &;
-  --base-banner-spacing-h: 1.7rem;
-  --base-banner-spacing-v: 1.4rem;
-  --base-banner-icon-size: 1.8rem;
-  --base-banner-icon-fill: var(--brand-color-anthracite);
-  --base-banner-background: none;
-  //border: 1px solid black;
-  border: var(--_gymx-toast-color-border);
-  border-radius: var(--_gymx-toast-radius);
-  --base-banner-color: var(--brand-color-anthracite);
-  background: var(--base-banner-background);
-  color: var(--base-banner-color);
-  font-size: 1.6rem;
-  font-weight: 300;
-  line-height: 2.1rem;
-  padding: var(--base-banner-spacing-v) var(--base-banner-spacing-h);
-  display: grid;
+
+  --_gymx-banner-icon-fill: var(--gymx-banner-icon-fill, currentColor);
+  --_gymx-banner-color: var(--gymx-banner-color, currentColor);
+  --_gymx-banner-color-background: var(--gymx-banner-color-background, var(--gymx-color-gray-2));
+  --_gymx-banner-radius: var(--gymx-banner-radius, var(--gymx-color-gray-2));
+  --_gymx-banner-padding-inline: var(--gymx-banner-padding-inline, var(--gymx-size-0));
+  --_gymx-banner-padding-block: var(--gymx-banner-padding-block, var(--gymx-size-00));
+  --_gymx-banner-gap: var(--gymx-banner-padding-inline, var(--gymx-size-0));
+
+  border-radius: var(--gymx-banner-radius, var(--gymx-radius-0));
+  background: var(--_gymx-banner-color-background);
+  color: var(--_gymx-banner-color);
+  padding-inline: var(--_gymx-banner-padding-inline);
+  padding-block: var(--_gymx-banner-padding-block);
+
+  /* display: grid;
   grid-template-columns: 1fr;
-  place-items: center;
-
-  &--left {
-    justify-items: start;
-  }
-
-  &--right {
-    justify-items: end;
-  }
-
-  &--attention {
-    --base-banner-background: var(--gymx-color-warning);
-    --base-banner-icon-fill: var(--brand-color-orange);
-  }
-
-  &--success {
-    --base-banner-background: var(--_gymx-color-success);
-    --base-banner-icon-fill: var(--brand-color-orange);
-  }
-
-  &--error {
-    --base-banner-background: var(--_gymx-color-error);
-    --base-banner-icon-fill: var(--brand-color-orange);
-  }
+  place-items: center; */
 
   &__content {
     display: flex;
     flex-wrap: nowrap;
-    gap: var(--base-banner-spacing-h);
+    align-content: stretch;
+    align-items: stretch;
+    gap: var(--_gymx-banner-gap);
+  }
+
+  &--start {
+    justify-items: start;
+  }
+
+  &--end {
+    justify-items: end;
+    #{$self}__icon {
+      order: 2;
+    }
   }
 
   &__icon {
-    --icon-fill: var(--base-banner-icon-fill);
-    --icon-width: var(--base-banner-icon-size);
-    --icon-height: var(--base-banner-icon-size);
+    --icon-fill: var(--_gymx-banner-icon-fill);
+    --icon-width: var(--gymx-banner-icon-size);
+    --icon-height: var(--_gymx-banner-icon-size);
+    display: inline-flex;
+    align-items: center;
 
     &:empty {
       display: none;
     }
+  }
+
+  &--warning {
+    --_gymx-banner-color-background: var(--gymx-banner-color-background-warning, var(--gymx-color-warning-5));
+    --_gymx-banner-color: var(--gymx-banner-color-warning, currentColor);
+  }
+
+  &--success {
+    --_gymx-banner-color-background: var(--gymx-banner-color-background-success, var(--gymx-color-success-5));
+    --_gymx-banner-color: var(--gymx-banner-color-success, currentColor);
+  }
+
+  &--error {
+    --_gymx-banner-color-background: var(--gymx-banner-color-background-error, var(--gymx-color-error-5));
+    --_gymx-banner-color: var(--gymx-banner-color-error, currentColor);
+
+    // alternative use for more contrast
+    // --_gymx-banner-color-background: var(--gymx-banner-color-background-error, var(--gymx-color-error-10));
+    // --_gymx-banner-color: var(--gymx-banner-color-error, var(--gymx-color-error-1));
   }
 }
 </style>

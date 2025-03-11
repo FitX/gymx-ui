@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxBanner } from './gymx-banner.vue';
+import { IconError } from '@/components';
+import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -22,10 +24,10 @@ export const Default: Story = {
   },
 };
 
-export const Attention: Story = {
+export const Warning: Story = {
   args: {
-    content: 'Attention 1 banner',
-    type: 'attention',
+    content: 'Warning 1 banner',
+    type: 'warning',
   },
 };
 
@@ -43,9 +45,21 @@ export const ErrorBanner: Story = {
   },
 };
 
-export const WithoutIcon: Story = {
+export const WithIcon: Story = {
   args: {
-    content: 'No Icon banner',
+    content: 'Icon banner',
+    icon: () => h(IconError),
+    type: 'error',
+    style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
+  },
+};
+
+export const End: Story = {
+  args: {
+    content: 'content end',
+    icon: () => h(IconError),
+    type: ['error', 'end'],
+    style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
   },
 };
 
