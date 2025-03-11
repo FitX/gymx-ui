@@ -86,7 +86,6 @@ describe('GymxInput', () => {
   it('should not set disabled when neither props.state nor $attrs.disabled are true', () => {
     const wrapper = mount(GymxInput, {
       props: {
-        state: 'active',
         inputAttributes: {},
       },
     });

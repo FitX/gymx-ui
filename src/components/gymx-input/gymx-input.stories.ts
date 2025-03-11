@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 // import { fn } from '@storybook/test';
 import { default as GymxInput } from './gymx-input.vue';
+import { computed, ref, toValue } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -102,16 +103,30 @@ export const DateTimeInput: Story = {
   },
 };
 
-export const fuIos: Story = {
-  decorators: (args) => ({
+export const DateDemos: Story = {
+  decorators: () => ({
     setup(args) {
+      const dateTime = ref();
+      const dateOnly = ref();
+      const timeOnly = ref();
+      const dateTimeUi = computed(() => toValue(dateTime) ? new Date(toValue(dateTime))?.toISOString() : null);
       return {
         args,
+        timeOnly,
+        dateOnly,
+        dateTime,
+        dateTimeUi,
       };
     },
     components: {
       GymxInput,
     },
-    template: '<gymx-input v-bind="args" type="datetime-local" /> <gymx-input v-bind="args" type="text" />'
+    template: '<div style="display: flex; flex-direction: column; gap: 1rem;">' +
+      '<gymx-input v-bind="args" v-model="dateTime" type="datetime-local" />' +
+      '<gymx-input v-bind="args" v-model="dateOnly" type="date" />' +
+      '<gymx-input v-bind="args" v-model="timeOnly" type="time" /></div>' +
+      '<pre>date-time: {{ dateTime }} date-time to iso: {{ dateTimeUi}}</pre>' +
+      '<pre>date only: {{ dateOnly }}</pre>' +
+      '<pre>time only: {{ timeOnly }}</pre>'
   })
 }

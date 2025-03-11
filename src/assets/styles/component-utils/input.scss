@@ -31,9 +31,8 @@ This Files contains input specific styles
     );
     --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
 
-    --_input-padding-inline: var(--input-padding-inline, var(--gymx-size-0));
-    --_input-padding-block: var(--input-padding-block, var(--gymx-size-00));
-    --_input-gap: var(--input-gap, var(--_input-padding-inline));
+    --_input-block-size: var(--input-block-size, var(--gymx-size-4));
+    --_input-gap: var(--input-gap, var(--gymx-size-0));
 
     --input-webkit-autofill: background-color 600000s 0s, color 600000s 0s;
     --input-data-autocompleted: transparent !important;
@@ -41,6 +40,7 @@ This Files contains input specific styles
     display: flex;
     flex-wrap: nowrap;
     place-content: stretch;
+    align-items: center;
     font-family: var(--_input-font-family);
     font-size: var(--_input-font-size);
     font-weight: var(--_input-font-weight);
@@ -48,18 +48,17 @@ This Files contains input specific styles
     color: var(--_input-color);
     background: var(--_input-color-background);
     border: var(--_input-border);
-    padding-inline: var(--_input-padding-inline);
-    padding-block: var(--_input-padding-block);
+    padding: 0;
     border-radius: var(--_input-radius);
 
     outline-offset: 1px;
 
     &__start:not(:empty) {
-      margin-inline-end: var(--_input-gap);
+      margin-inline-start: var(--_input-gap);
     }
 
     &__end:not(:empty) {
-      margin-inline-start: var(--_input-gap);
+      margin-inline-end: var(--_input-gap);
     }
 
     &__input {
@@ -70,7 +69,10 @@ This Files contains input specific styles
       color: inherit;
       border: none;
       background: transparent;
-      padding: 0;
+      block-size: var(--_input-block-size);
+      padding-block: 0;
+      padding-inline: var(--_input-gap);
+      line-height: 1;
       margin: 0;
       outline: 0;
       &:-webkit-autofill {
