@@ -51,6 +51,8 @@
   }
 
   --input-color-border: var(--exact-color-accent);
+  --input-block-size: 3.4rem;
+  --input-font-size: 22px;
   --gymx-select-color-border: var(--exact-color-accent);
 
   .btn {

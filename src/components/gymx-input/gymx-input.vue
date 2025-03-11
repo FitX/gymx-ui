@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { GymxInputProps } from '@/components/gymx-input/types';
 import { getModifierClasses } from '@/utils/css-modifier';
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 defineOptions({
   inheritAttrs: false,
@@ -23,10 +23,6 @@ const inputRef = ref<HTMLInputElement>();
 defineExpose({
   inputRef,
 });
-
-onMounted(() => {
-  console.log(window.getComputedStyle(inputRef.value, '-webkit-datetime-edit').backgroundColor)
-})
 </script>
 <template>
   <div
@@ -57,41 +53,8 @@ onMounted(() => {
 
 @include input.input-styles('input');
 
-.input {
-  width: 300px;
-  display: inline-flex;
-}
-
-/*
-Cross Browser overwrites for date / time / month / datetime-local inputs
-*/
-.input__input {
-  align-self: center;
-  display: grid; // flex works on ios, block on chrome, grid on both
-  // align-content: center;
-  // align-items: center;
-  /**
-    prevents shrinking input bug on ios
-    srgb only doesnt work on mobile, because 0.01 is visible,
-    so its only a fallback if color mix is not supported
-   */
-  background: rgba(0, 0, 0, 0.01);
-  background: color-mix(
-    in oklab,
-  rgba(0, 0, 0, 0.01),
-    transparent 99.999%
-  );
-  border: 0;
-  padding: 0;
-  border-radius: 0;
-
-  // prevent cutting minuscule descender
-  block-size: 1.2em;
-  text-box: trim-both cap text;
-}
-
 .input__input::-webkit-date-and-time-value {
   text-align: left;
-  line-height: 1;
+  // line-height: 1;
 }
 </style>
