@@ -113,8 +113,6 @@ const listener = computed(() =>
   min-block-size: var(--gymx-input-min-block-size, auto);
 
   &__input {
-    // padding-block: var(--_gymx-text-area-input-padding-block);
-    // block-size: 100%;
     line-height: var(--_gymx-text-area-input-line-height);
     padding-block: var(--_gymx-text-area-input-padding-block);
     block-size: 100%;
@@ -123,13 +121,10 @@ const listener = computed(() =>
   &--auto-grow {
     display: inline-grid;
     grid: 'input' minmax(0, 1fr) / auto;
-    // block-size: 100%;
 
     #{$self}__input {
       grid-area: input;
       resize: none;
-      // min-block-size: var(--_input-block-size);
-      // block-size: 100%;
 
       @supports (field-sizing: content) {
         field-sizing: content;
@@ -154,7 +149,6 @@ const listener = computed(() =>
 
         line-height: var(--_gymx-text-area-input-line-height);
         padding-block: var(--_gymx-text-area-input-padding-block);
-        // padding-block: var(--_gymx-text-area-input-padding-block);
       }
     }
   }
