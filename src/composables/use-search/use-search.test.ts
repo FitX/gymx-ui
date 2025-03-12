@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { computed, nextTick, ref, toValue } from 'vue';
+import { computed, ref, toValue } from 'vue';
 import { type FilterOption, useSearch, defaultSearch } from './index';
 
 interface Item {
   name: string;
-  job: number;
+  job: string;
 }
 
 const data: Item[] = [
