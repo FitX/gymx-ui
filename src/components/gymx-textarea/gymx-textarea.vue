@@ -107,15 +107,30 @@ const listener = computed(() =>
 
 .text-area-input {
   $self: &;
+
+  --_gymx-text-area-input-padding-block: var(--gymx-text-area-input-padding-block, calc(var(--_input-font-size) / 2));
+  --_gymx-text-area-input-line-height: 1.2;
   min-block-size: var(--gymx-input-min-block-size, auto);
 
+  &__input {
+    // padding-block: var(--_gymx-text-area-input-padding-block);
+    // block-size: 100%;
+    line-height: var(--_gymx-text-area-input-line-height);
+    padding-block: var(--_gymx-text-area-input-padding-block);
+    block-size: 100%;
+  }
+
   &--auto-grow {
-    display: grid;
+    display: inline-grid;
     grid: 'input' minmax(0, 1fr) / auto;
+    // block-size: 100%;
 
     #{$self}__input {
       grid-area: input;
       resize: none;
+      // min-block-size: var(--_input-block-size);
+      // block-size: 100%;
+
       @supports (field-sizing: content) {
         field-sizing: content;
       }
@@ -136,8 +151,10 @@ const listener = computed(() =>
         white-space: pre-wrap;
         /* Hidden from view, clicks, and screen readers */
         visibility: hidden;
-        color: red;
-        opacity: 0.5;
+
+        line-height: var(--_gymx-text-area-input-line-height);
+        padding-block: var(--_gymx-text-area-input-padding-block);
+        // padding-block: var(--_gymx-text-area-input-padding-block);
       }
     }
   }

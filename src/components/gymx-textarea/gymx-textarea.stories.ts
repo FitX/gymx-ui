@@ -109,7 +109,7 @@ export const ExampleCharacterCount: Story = {
   render: (args) => ({
     components: { GymxTextarea },
     setup() {
-      const modelValue = ref('Lorem');
+      const modelValue = ref(longContent);
       const count = computed(() => toValue(modelValue)?.length);
       const errorMessage = computed(() => toValue(count) > args.inputAttributes?.maxLength ? 'to long' : undefined)
       return {
