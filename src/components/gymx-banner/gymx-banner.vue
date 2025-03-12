@@ -1,11 +1,8 @@
 <script lang="ts" setup>
   import type { GymxBannerProps } from './types';
   import { getModifierClasses } from '@/utils/css-modifier';
-  import { computed } from 'vue';
 
   const props = defineProps<GymxBannerProps>();
-
-  const hideIcon = computed(() => props.type === 'no-icon' || props.type?.includes('no-icon'));
 </script>
 
 <template>
@@ -15,13 +12,12 @@
     >
     <div class="banner__content">
       <span
-        v-if="!hideIcon"
+        v-if="$slots?.icon"
         class="banner__icon">
         <!--
           @slot Icon Slot
         -->
         <slot name="icon">
-          <!--<icon-info v-if="showAttentionIcon" />-->
         </slot>
       </span>
       <span>
@@ -49,6 +45,7 @@
   --_gymx-banner-padding-inline: var(--gymx-banner-padding-inline, var(--gymx-size-0));
   --_gymx-banner-padding-block: var(--gymx-banner-padding-block, var(--gymx-size-00));
   --_gymx-banner-gap: var(--gymx-banner-padding-inline, var(--gymx-size-0));
+  --_gymx-banner-icon-size: var(--gymx-banner-icon-size, 1em);
 
   border-radius: var(--gymx-banner-radius, var(--gymx-radius-0));
   background: var(--_gymx-banner-color-background);
@@ -64,7 +61,7 @@
     display: flex;
     flex-wrap: nowrap;
     align-content: stretch;
-    align-items: stretch;
+    align-items: center;
     gap: var(--_gymx-banner-gap);
   }
 
@@ -81,8 +78,9 @@
 
   &__icon {
     --icon-fill: var(--_gymx-banner-icon-fill);
-    --icon-width: var(--gymx-banner-icon-size);
+    --icon-width: var(--_gymx-banner-icon-size);
     --icon-height: var(--_gymx-banner-icon-size);
+
     display: inline-flex;
     align-items: center;
 

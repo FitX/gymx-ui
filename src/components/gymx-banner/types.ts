@@ -1,5 +1,4 @@
 export const modifier = [
-  'no-icon',
   'warning',
   'start',
   'end',

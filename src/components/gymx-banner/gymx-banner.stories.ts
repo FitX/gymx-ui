@@ -24,31 +24,31 @@ export const Default: Story = {
   },
 };
 
-export const Warning: Story = {
+export const SuccessBanner: Story = {
   args: {
-    content: 'Warning 1 banner',
-    type: 'warning',
+    content: 'This Banner indicates a positive situation or a successful completion.',
+    type: 'success',
   },
 };
 
-export const SuccessBanner: Story = {
+export const Warning: Story = {
   args: {
-    content: 'Success banner',
-    type: 'success',
+    content: 'This Banner indicates a warning.',
+    type: 'warning',
   },
 };
 
 export const ErrorBanner: Story = {
   args: {
-    content: 'Error banner',
+    content: 'This Banner indicates a error.',
     type: 'error',
   },
 };
 
 export const WithIcon: Story = {
   args: {
-    content: 'Icon banner',
-    icon: () => h(IconError),
+    content: 'This Banner contains a optional Icon.',
+    icon: () => h(IconError, { 'aria-hidden': true }),
     type: 'error',
     style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
   },
@@ -56,8 +56,8 @@ export const WithIcon: Story = {
 
 export const End: Story = {
   args: {
-    content: 'content end',
-    icon: () => h(IconError),
+    content: 'This Banner contains end-aligned Content.',
+    icon: () => h(IconError, { 'aria-hidden': true }),
     type: ['error', 'end'],
     style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
   },
