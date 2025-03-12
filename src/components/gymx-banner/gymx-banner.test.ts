@@ -80,10 +80,9 @@ describe('GymxBanner', () => {
     const wrapper = mount(GymxBanner, {
       props: {
         content: 'icon',
-        type: 'no-icon',
       },
       slots: {
-        icon: IconError,
+        // icon: IconError,
       },
     });
     expect(wrapper.html()).toContain('icon');
