@@ -44,6 +44,7 @@ export const generateItems = (propName) => {
 export const AccentColorItems = () => generateItems('--gymx-color-accent');
 export const GrayColorItems = () => generateItems('--gymx-color-black');
 export const SuccessColorItems = () => generateItems('--gymx-color-success');
+export const InfoColorItems = () => generateItems('--gymx-color-info');
 export const WarningColorItems = () => generateItems('--gymx-color-warning');
 export const ErrorColorItems = () => generateItems('--gymx-color-error');
 
@@ -70,6 +71,9 @@ This component library uses a flexible and scalable accent color palette based o
 
 ## Success
 <SuccessColorItems />
+
+## Info
+<InfoColorItems />
 
 ## Warning
 <WarningColorItems />
@@ -180,4 +184,8 @@ Example:
 
 <ColorPalette>
   <GrayColorItems />
+</ColorPalette>
+
+<ColorPalette>
+  <InfoColorItems />
 </ColorPalette>

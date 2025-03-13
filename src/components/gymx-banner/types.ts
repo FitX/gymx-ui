@@ -3,7 +3,8 @@ export const modifier = [
   'start',
   'end',
   'error',
-  'success'
+  'success',
+  'info',
 ] as const;
 
 export interface GymxBannerProps {

@@ -42,6 +42,16 @@ const defaultColors = [{
     scheme: 'dark',
   },
   {
+    name: 'Info on Light',
+    key: 'info',
+    scheme: 'light',
+  },
+  {
+    name: 'Info on Dark',
+    key: 'info',
+    scheme: 'dark',
+  },
+  {
     name: 'Warning on Light',
     key: 'warning',
     scheme: 'light',

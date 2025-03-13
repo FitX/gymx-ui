@@ -24,10 +24,17 @@ export const Default: Story = {
   },
 };
 
-export const SuccessBanner: Story = {
+export const Success: Story = {
   args: {
     content: 'This Banner indicates a positive situation or a successful completion.',
     type: 'success',
+  },
+};
+
+export const Info: Story = {
+  args: {
+    content: 'This Banner indicates a info message.',
+    type: 'info',
   },
 };
 
@@ -38,7 +45,7 @@ export const Warning: Story = {
   },
 };
 
-export const ErrorBanner: Story = {
+export const Error: Story = {
   args: {
     content: 'This Banner indicates a error.',
     type: 'error',

@@ -99,6 +99,11 @@
     --_gymx-banner-color: var(--gymx-banner-color-success, currentColor);
   }
 
+  &--info {
+    --_gymx-banner-color-background: var(--gymx-banner-color-background-info, var(--gymx-color-info-5));
+    --_gymx-banner-color: var(--gymx-banner-color-info, currentColor);
+  }
+
   &--error {
     --_gymx-banner-color-background: var(--gymx-banner-color-background-error, var(--gymx-color-error-5));
     --_gymx-banner-color: var(--gymx-banner-color-error, currentColor);

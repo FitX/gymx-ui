@@ -893,4 +893,158 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
     var(--gymx-color-error-light-12),
     var(--gymx-color-error-dark-12)
   );
+
+  /*
+  Info Config
+  */
+  --_gymx-color-info: var(--gymx-color-info, #0f62fe);
+
+  --_gymx-color-info-dark-mix: var(--gymx-color-info-dark-mix, color(display-p3 0 0 0));
+  --_gymx-color-info-light-mix: var(--gymx-color-info-light-mix, color(display-p3 1 1 1));
+
+  /* info Light Color Palette */
+  --gymx-color-info-light-1: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 95%,
+    var(--_gymx-color-info) 5%
+  );
+  --gymx-color-info-light-2: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 80%,
+    var(--_gymx-color-info) 10%
+  );
+  --gymx-color-info-light-3: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 60%,
+    var(--_gymx-color-info) 20%
+  );
+  --gymx-color-info-light-4: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 50%,
+    var(--_gymx-color-info) 25%
+  );
+  --gymx-color-info-light-5: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 40%,
+    var(--_gymx-color-info) 35%
+  );
+  --gymx-color-info-light-6: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 30%,
+    var(--_gymx-color-info) 45%
+  );
+  --gymx-color-info-light-7: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 20%,
+    var(--_gymx-color-info) 55%
+  );
+  --gymx-color-info-light-8: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 10%,
+    var(--_gymx-color-info) 70%
+  );
+  --gymx-color-info-light-9: var(--_gymx-color-info);
+
+  /* darken */
+  --gymx-color-info-light-10: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 10%,
+    var(--_gymx-color-info) 90%
+  );
+  --gymx-color-info-light-11: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 30%,
+    var(--_gymx-color-info) 90%
+  );
+  --gymx-color-info-light-12: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix),
+    var(--_gymx-color-info) 40%
+  );
+
+  /* info Dark Color Palette */
+  --gymx-color-info-dark-1: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 85%,
+    var(--_gymx-color-info) 15%
+  );
+  --gymx-color-info-dark-2: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 75%,
+    var(--_gymx-color-info) 25%
+  );
+  --gymx-color-info-dark-3: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 65%,
+    var(--_gymx-color-info) 35%
+  );
+  --gymx-color-info-dark-4: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 55%,
+    var(--_gymx-color-info) 45%
+  );
+  --gymx-color-info-dark-5: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 45%,
+    var(--_gymx-color-info) 55%
+  );
+  --gymx-color-info-dark-6: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 35%,
+    var(--_gymx-color-info) 65%
+  );
+  --gymx-color-info-dark-7: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 25%,
+    var(--_gymx-color-info) 75%
+  );
+  --gymx-color-info-dark-8: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-dark-mix) 15%,
+    var(--_gymx-color-info) 85%
+  );
+
+  --gymx-color-info-dark-9: var(--_gymx-color-info);
+
+  /* lighten */
+  --gymx-color-info-dark-10: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 15%,
+    var(--_gymx-color-info) 90%
+  );
+  --gymx-color-info-dark-11: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 35%,
+    var(--_gymx-color-info) 65%
+  );
+  --gymx-color-info-dark-12: color-mix(
+    in display-p3,
+    var(--_gymx-color-info-light-mix) 90%,
+    var(--_gymx-color-info) 35%
+  );
+
+  /*
+  info Auto Color Palette
+  */
+  --gymx-color-info-1: light-dark(var(--gymx-color-info-light-1), var(--gymx-color-info-dark-1));
+  --gymx-color-info-2: light-dark(var(--gymx-color-info-light-2), var(--gymx-color-info-dark-2));
+  --gymx-color-info-3: light-dark(var(--gymx-color-info-light-3), var(--gymx-color-info-dark-3));
+  --gymx-color-info-4: light-dark(var(--gymx-color-info-light-4), var(--gymx-color-info-dark-4));
+  --gymx-color-info-5: light-dark(var(--gymx-color-info-light-5), var(--gymx-color-info-dark-5));
+  --gymx-color-info-6: light-dark(var(--gymx-color-info-light-6), var(--gymx-color-info-dark-6));
+  --gymx-color-info-7: light-dark(var(--gymx-color-info-light-7), var(--gymx-color-info-dark-7));
+  --gymx-color-info-8: light-dark(var(--gymx-color-info-light-8), var(--gymx-color-info-dark-8));
+  --gymx-color-info-9: light-dark(var(--gymx-color-info-light-9), var(--gymx-color-info-dark-9));
+  --gymx-color-info-10: light-dark(
+    var(--gymx-color-info-light-10),
+    var(--gymx-color-info-dark-10)
+  );
+  --gymx-color-info-11: light-dark(
+    var(--gymx-color-info-light-11),
+    var(--gymx-color-info-dark-11)
+  );
+  --gymx-color-info-12: light-dark(
+    var(--gymx-color-info-light-12),
+    var(--gymx-color-info-dark-12)
+  );
 }
