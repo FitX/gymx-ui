@@ -1,4 +1,4 @@
 
 <script lang="ts" setup></script>
-<template>gymx-segmented-button</template>
+<template>gymx-tabs</template>
 <style lang="scss" scoped></style>
