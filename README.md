@@ -78,16 +78,41 @@ you can run the following scripts:
 - `npm run lint`: Lints the codebase using ESLint.
 - `npm run format`: Formats the code using Prettier.
 - `npm run storybook`: Starts the Storybook server for local component development.
+- `npm run storybookSsl`: Starts the Storybook server for local component development with ssl. [Info](#ssl)
 
-To start developing new components or working on the library,
-[use Storybook as dev server](#storybook):
+## Storybook
+
+GymX UI is integrated with Storybook for UI component development and documentation.
+To start the Storybook server locally, run:
+
+```
+npm run storybook
+```
+
+Access the live Storybook documentation at [Storybook on GymX UI](https://gymx-ui-dev.fitx.de).
 
 ```sh
 npm install
 npm run storybook
 ```
+
 This will start a local storybook server.
 You can now work on your components in the `src/` directory and see the changes live.
+
+#### SSL
+To avoid Storybook errors with self.crypto.randomUUID(); on the development server,
+Storybook can also be started via SSL, as SSL is required for UUID functionality.
+
+```sh
+openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout localhost.key -out localhost.crt
+npm run storybookSsl
+```
+
+To build the Storybook static files and generate Unit Tests documentation, run:
+
+```
+npm run build
+```
 
 ### Create a new component
 
@@ -138,23 +163,6 @@ npm run test:e2e -- tests/example.spec.ts
 # Runs the tests in debug mode
 npm run test:e2e -- --debug
 ```
-
-## Storybook
-
-GymX UI is integrated with Storybook for UI component development and documentation.
-To start the Storybook server locally, run:
-
-```
-npm run storybook
-```
-
-To build the Storybook static files and generate Unit Tests documentation, run:
-
-```
-npm run build
-```
-
-Access the live Storybook documentation at [Storybook on GymX UI](https://gymx-ui-dev.fitx.de).
 
 ## Contributing
 

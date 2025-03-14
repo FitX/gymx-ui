@@ -30,7 +30,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "storybookSave": "storybook dev -p 6006 --https --ssl-cert ./localhost.crt --ssl-key ./localhost.key",
+    "storybookSsl": "storybook dev -p 6006 --https --ssl-cert ./localhost.crt --ssl-key ./localhost.key",
     "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html"
   },
   "dependencies": {
