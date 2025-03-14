@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    content: 'This is a banner',
+    content: 'This is a Banner',
   },
 };
 
@@ -33,7 +33,7 @@ export const Success: Story = {
 
 export const Info: Story = {
   args: {
-    content: 'This Banner indicates a info message.',
+    content: 'This Banner indicates an info message.',
     type: 'info',
   },
 };
@@ -47,14 +47,14 @@ export const Warning: Story = {
 
 export const Error: Story = {
   args: {
-    content: 'This Banner indicates a error.',
+    content: 'This Banner indicates an error.',
     type: 'error',
   },
 };
 
 export const WithIcon: Story = {
   args: {
-    content: 'This Banner contains a optional Icon.',
+    content: 'This Banner contains an optional Icon.',
     icon: () => h(IconError, { 'aria-hidden': true }),
     type: 'error',
     style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
