@@ -26,7 +26,7 @@ export const Default: Story = {
 
 export const Success: Story = {
   args: {
-    content: 'This banner indicates a positive situation or an successful completion.',
+    content: 'This banner indicates a positive situation or a successful completion.',
     type: 'success',
   },
 };
