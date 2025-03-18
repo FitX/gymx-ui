@@ -123,11 +123,12 @@ watch(() => props.selectedTab, (val, oldVal) => {
   --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-gray-2));
   --_gymx-tabs-nav-color: var(--gymx-tabs-nav-color, inherit);
   --_gymx-tabs-content-color: var(--_gymx-tabs-nav-color);
-  --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--gymx-color-white-12));
+  --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--gymx-color-accent-5));
   --_gymx-tabs-border-radius: var(--gymx-tabs-border-radius, var(--gymx-radius-2));
   --_gymx-tabs-nav-outer-spacing: var(--gymx-tabs-nav-outer-spacing, var(--gymx-size-000));
   --_gymx-tabs-nav-gap: var(--gymx-tabs-nav-gap, var(--gymx-size-00));
   --_gymx-tabs-item-count: var(--gymx-tabs-item-count, 2);
+  --_gymx-tabs-panel-outer-spacing: var(--gymx-tabs-panel-outer-spacing, var(--_gymx-tabs-nav-outer-spacing));
 
   &__nav {
     position: relative; // for slider
@@ -156,7 +157,6 @@ watch(() => props.selectedTab, (val, oldVal) => {
     font-size: 1rem;
     border-radius: var(--_gymx-tabs-border-radius);
     z-index: 2;
-    color: red;
 
     place-content: center;
     // background: var(--_tabs-trigger-active-color-background);
@@ -178,6 +178,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
 
   &__panel {
     color: var(--_gymx-tabs-content-color);
+    padding: var(--_gymx-tabs-panel-outer-spacing);
 
     &--is-hidden {
       display: none;
@@ -189,41 +190,29 @@ watch(() => props.selectedTab, (val, oldVal) => {
   grid-column: 1 / -1;
   background: var(--_gymx-tabs-trigger-active-color-background);
   border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
-  /* width: calc(
-      (100% / var(--_gymx-tabs-item-count))
-      - (2 * var(--_gymx-tabs-nav-outer-spacing))
-      - ((var(--_gymx-tabs-item-count) - 2) * var(--_gymx-tabs-nav-gap))
-  ); */
   inline-size: calc(
     (100%
     - (2 * var(--_gymx-tabs-nav-outer-spacing))
     - ((var(--_gymx-tabs-item-count) - 1) * var(--_gymx-tabs-nav-gap))
     ) / var(--_gymx-tabs-item-count)
   );
-  translate:
+  // Nope. ty safari (1)
+  /* translate:
     calc(
       (var(--_gymx-tabs-current-index) * 100%)
       + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap)))
-    ) 0 0;
-  /* transform: translate3d(
-    calc(
-      (var(--_gymx-tabs-current-index) * 100%)
-+ (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap)))
-), 0, 0); */
-  // transition: transform 300ms ease-in-out;
-  transition: translate 300ms ease-in-out;
-  transition-duration: 5s;
+    ) 0 0;*/
+  // (1) safari render bug: prevents safari from not respecting the z-index of the background.
+  transform:
+    translate3d(
+      calc(
+        (var(--_gymx-tabs-current-index) * 100%)
+        + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap))
+        )
+    ), 0, 0);
+  transition: transform 300ms ease-in-out;
   position: absolute;
-  // transform-style: preserve-3d;
   z-index: 1;
-  // opacity: 0.9;
-  // color: blue;
-  // top: var(--_gymx-tabs-nav-outer-spacing);
-  // left: var(--_gymx-tabs-nav-outer-spacing);
-  // height: calc(100% - (2 * var(--_gymx-tabs-nav-outer-spacing)));
   inset: var(--_gymx-tabs-nav-outer-spacing);
-  // margin: var(--_gymx-tabs-nav-outer-spacing);
 }
-
-
 </style>
