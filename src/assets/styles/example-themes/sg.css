@@ -61,3 +61,13 @@
     box-shadow: var(--gymx-color-gray-3) 0 25px 20px -20px;
   }
 }
+
+
+/* Tabs */
+[data-theme='sg'] {
+  --gymx-tabs-nav-color-background: var(--gymx-color-gray-2);
+  --gymx-tabs-trigger-active-color-background: var(--sg-color-primary);
+  --gymx-tabs-nav-color-active: var(--sg-color-on-primary);
+  --gymx-tabs-nav-transition: none;
+  --gymx-tabs-nav-transition-duration: 0;
+}

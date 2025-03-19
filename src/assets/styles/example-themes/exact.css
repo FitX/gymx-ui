@@ -282,3 +282,17 @@
     font-size: 1rem;
   }
 }
+
+/* Tabs */
+[data-theme='exact'] {
+  /* --gymx-tabs-nav-color-background: var(--gymx-color-gray-2);
+  --gymx-tabs-trigger-active-color-background: var(--gymx-color-white-12);
+  --gymx-tabs-nav-color-active: currentColor; */
+  --gymx-tabs-trigger-active-color-background: transparent;
+  --exact-tabs-border-color: transparent;
+  --gymx-tabs-nav-transition: all 300ms ease;
+
+  .tabs__slider {
+    border: 1px solid var(--gymx-color-primary);
+  }
+}
