@@ -33,7 +33,7 @@ const generateId = (index) => {
 const tabs = computed(() => props.tabs.map((tab, index) => ({ id: generateId(index), ...tab })));
 const selectedTabIndex = ref(props.selectedTab || 0);
 
-const selectTabIndex = (index) => {
+const selectTabIndex = (index: number) => {
   const fallbackToStart = toValue(tabs).length <= index;
   const fallbackToEnd = index < 0;
   let newIndex = index;
@@ -48,7 +48,6 @@ const selectTabIndex = (index) => {
   const el = resultElements[newIndex];
   // eslint-disable-next-line no-unused-expressions
   el?.focus();
-  console.log('elllll', el);
   emit('selected', newIndex);
 };
 
@@ -69,7 +68,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
       class="tabs__nav"
       ref="tabsEl"
       role="tablist"
-      :aria-labelledby="`${componentId}`">
+      :aria-label="props.label">
       <button
         v-for="(tab, index) in tabs"
         :key="tab.id"
@@ -94,7 +93,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
           <span>{{ tab.title }}</span>
         </slot>
       </button>
-      <div class="slider"></div>
+      <div class="tabs__slider"></div>
     </div>
 
     <div
@@ -104,7 +103,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
       role="tabpanel"
       class="tabs__panel"
       :class="{ 'tabs__panel--is-hidden' : selectedTabIndex !== index}"
-      :tabindex="selectedTabIndex === index ? 0 : -1"
+      tabindex="0"
       :aria-labelledby="tab.id"
       >
       <!--
@@ -120,15 +119,21 @@ watch(() => props.selectedTab, (val, oldVal) => {
 
 <style lang="scss" scoped>
 .tabs {
-  --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-gray-2));
-  --_gymx-tabs-nav-color: var(--gymx-tabs-nav-color, inherit);
-  --_gymx-tabs-content-color: var(--_gymx-tabs-nav-color);
-  --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--gymx-color-accent-5));
+  --_gymx-tabs-nav-color: var(--gymx-tabs-nav-color, var(--gymx-color-gray-12));
+  --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-accent-1));
+
+  --_gymx-tabs-nav-color-active: var(--gymx-tabs-nav-color-active, var(--gymx-color-white-12));
+  --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--button-color-background));
+
+  --_gymx-tabs-content-color: var(--gymx-tabs-content-color, inherit);
+
   --_gymx-tabs-border-radius: var(--gymx-tabs-border-radius, var(--gymx-radius-2));
   --_gymx-tabs-nav-outer-spacing: var(--gymx-tabs-nav-outer-spacing, var(--gymx-size-000));
   --_gymx-tabs-nav-gap: var(--gymx-tabs-nav-gap, var(--gymx-size-00));
   --_gymx-tabs-item-count: var(--gymx-tabs-item-count, 2);
   --_gymx-tabs-panel-outer-spacing: var(--gymx-tabs-panel-outer-spacing, var(--_gymx-tabs-nav-outer-spacing));
+  --_gymx-tabs-nav-transition-duration: var(--gymx-tabs-nav-transition-duration, 300ms);
+  --_gymx-tabs-nav-transition: var(--gymx-tabs-nav-transition, transform var(--_gymx-tabs-nav-transition-duration) ease-in-out);
 
   &__nav {
     position: relative; // for slider
@@ -138,7 +143,6 @@ watch(() => props.selectedTab, (val, oldVal) => {
     // grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     background: var(--_gymx-tabs-nav-color-background);
-    color: var(--_gymx-tabs-nav-color);
     border-radius: var(--_gymx-tabs-border-radius);
     padding: 2px;
     align-items: center;
@@ -157,6 +161,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
     font-size: 1rem;
     border-radius: var(--_gymx-tabs-border-radius);
     z-index: 2;
+    color: var(--_gymx-tabs-nav-color);
 
     place-content: center;
     // background: var(--_tabs-trigger-active-color-background);
@@ -172,6 +177,8 @@ watch(() => props.selectedTab, (val, oldVal) => {
     }
 
     &--is-active {
+      --_gymx-tabs-nav-color:  var(--_gymx-tabs-nav-color-active);
+      transition: color 100ms ease calc(var(--_gymx-tabs-nav-transition-duration) - 100ms);
       // --_tabs-trigger-active-color-background: var(--_gymx-tabs-trigger-active-color-background);
     }
   }
@@ -184,35 +191,37 @@ watch(() => props.selectedTab, (val, oldVal) => {
       display: none;
     }
   }
-}
 
-.slider {
-  grid-column: 1 / -1;
-  background: var(--_gymx-tabs-trigger-active-color-background);
-  border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
-  inline-size: calc(
-    (100%
-    - (2 * var(--_gymx-tabs-nav-outer-spacing))
-    - ((var(--_gymx-tabs-item-count) - 1) * var(--_gymx-tabs-nav-gap))
-    ) / var(--_gymx-tabs-item-count)
-  );
-  // Nope. ty safari (1)
-  /* translate:
-    calc(
-      (var(--_gymx-tabs-current-index) * 100%)
-      + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap)))
-    ) 0 0;*/
-  // (1) safari render bug: prevents safari from not respecting the z-index of the background.
-  transform:
-    translate3d(
+
+
+  &__slider {
+    grid-column: 1 / -1;
+    background: var(--_gymx-tabs-trigger-active-color-background);
+    border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
+    inline-size: calc(
+      (100%
+      - (2 * var(--_gymx-tabs-nav-outer-spacing))
+      - ((var(--_gymx-tabs-item-count) - 1) * var(--_gymx-tabs-nav-gap))
+      ) / var(--_gymx-tabs-item-count)
+    );
+    // Nope. ty safari (1)
+    /* translate:
       calc(
         (var(--_gymx-tabs-current-index) * 100%)
-        + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap))
-        )
-    ), 0, 0);
-  transition: transform 300ms ease-in-out;
-  position: absolute;
-  z-index: 1;
-  inset: var(--_gymx-tabs-nav-outer-spacing);
+        + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap)))
+      ) 0 0;*/
+    // (1) safari render bug: prevents safari from not respecting the z-index of the background.
+    transform:
+      translate3d(
+          calc(
+            (var(--_gymx-tabs-current-index) * 100%)
+            + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap))
+            )
+          ), 0, 0);
+    transition: var(--_gymx-tabs-nav-transition);
+    position: absolute;
+    z-index: 1;
+    inset: var(--_gymx-tabs-nav-outer-spacing);
+  }
 }
 </style>
