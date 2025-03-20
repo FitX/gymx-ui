@@ -2,6 +2,7 @@
 import { type Meta, type StoryObj } from '@storybook/vue3';
 import { default as GymxTabs } from './gymx-tabs.vue';
 import { h } from 'vue';
+import ReadmeMarkdown from './readme.md?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -9,6 +10,13 @@ const meta = {
   component: GymxTabs,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: ReadmeMarkdown,
+      },
+    },
+  },
 } satisfies Meta<typeof GymxTabs>;
 
 export default meta;
@@ -31,4 +39,3 @@ export const Default: Story = {
     'tabpanel': ({ tab }) => h('p',  `Content from ${ tab.title }`),
   },
 };
-

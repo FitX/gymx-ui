@@ -133,7 +133,6 @@ watch(() => props.selectedTab, (val, oldVal) => {
 
   --_gymx-tabs-border-radius: var(--gymx-tabs-border-radius, var(--gymx-radius-2));
   --_gymx-tabs-nav-outer-spacing: var(--gymx-tabs-nav-outer-spacing, var(--gymx-size-000));
-  --_gymx-tabs-nav-gap: var(--gymx-tabs-nav-gap, var(--gymx-size-00));
   --_gymx-tabs-item-count: var(--gymx-tabs-item-count, 2);
   --_gymx-tabs-panel-outer-spacing: var(--gymx-tabs-panel-outer-spacing, var(--_gymx-tabs-nav-outer-spacing));
   --_gymx-tabs-nav-transition-duration: var(--gymx-tabs-nav-transition-duration, 300ms);
@@ -143,14 +142,11 @@ watch(() => props.selectedTab, (val, oldVal) => {
     position: relative; // for slider
     overflow: hidden;
     display: grid;
-    // gap: var(--_gymx-tabs-nav-gap);
     gap: 0;
     padding: var(--_gymx-tabs-nav-outer-spacing);
-    // grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     background: var(--_gymx-tabs-nav-color-background);
     border-radius: var(--_gymx-tabs-border-radius);
-    // padding: 2px;
     align-items: center;
   }
 
@@ -161,18 +157,17 @@ watch(() => props.selectedTab, (val, oldVal) => {
     border: none;
     background: none;
     display: inline-flex;
-    // outline: none;
+
+    // #(2) outline usage in slider
+    outline: none;
 
     padding: 8px;
     font-size: 1rem;
-    // border-radius: var(--_gymx-tabs-border-radius);
     border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
     z-index: 2;
     color: var(--_gymx-tabs-nav-color);
-
     place-content: center;
 
-    // background: var(--_tabs-trigger-active-color-background);
     span {
       display: inline-block;
       max-width: 100%;
@@ -187,8 +182,6 @@ watch(() => props.selectedTab, (val, oldVal) => {
     &--is-active {
       --_gymx-tabs-nav-color:  var(--_gymx-tabs-nav-color-active);
       transition: color 100ms ease calc(var(--_gymx-tabs-nav-transition-duration) - 100ms);
-      // --_tabs-trigger-active-color-background: var(--_gymx-tabs-trigger-active-color-background);
-      // mix-blend-mode: difference;
     }
   }
 
@@ -202,34 +195,21 @@ watch(() => props.selectedTab, (val, oldVal) => {
   }
 
   &__slider {
-    // grid-column: 1 / -1;
     background: var(--_gymx-tabs-trigger-active-color-background);
     border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
-    inline-size: calc(
-      (100%
-      - (2 * var(--_gymx-tabs-nav-outer-spacing))
-      - ((var(--_gymx-tabs-item-count) - 1) * var(--_gymx-tabs-nav-gap))
-      ) / var(--_gymx-tabs-item-count)
-    );
     inline-size: calc((100% / var(--_gymx-tabs-item-count)) - (var(--_gymx-tabs-nav-outer-spacing) / 2));
-    // Nope. ty safari (1)
-    /* translate:
-      calc(
-        (var(--_gymx-tabs-current-index) * 100%)
-        + (var(--_gymx-tabs-current-index) * (var(--_gymx-tabs-nav-gap)))
-      ) 0 0;*/
-    // (1) safari render bug: prevents safari from not respecting the z-index of the background.
+    // safari render bug by using translate
+    // thats why use transform: prevents safari from not respecting the z-index of the background.
     transform: translateX(calc(100% * var(--_gymx-tabs-current-index)));
     transition: var(--_gymx-tabs-nav-transition);
     position: absolute;
     z-index: 1;
-    // inset: var(--_gymx-tabs-nav-outer-spacing);
-    // inset: var(--_gymx-tabs-nav-outer-spacing);
     left: var(--_gymx-tabs-nav-outer-spacing);
     block-size: calc(100% - (2 * var(--_gymx-tabs-nav-outer-spacing)));
-    :focus-within & {
-      // outline: 1px solid dodgerblue;
-      // outline-offset: 1px;
+    // (2) fake outline for better ui experience
+    .tabs__trigger:is(:focus-visible) ~ & {
+      outline: 1px solid var(--_gymx-tabs-nav-color-active);
+      outline-offset: -3px;
     }
   }
 }
