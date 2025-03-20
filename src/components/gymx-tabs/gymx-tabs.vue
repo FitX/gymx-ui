@@ -24,7 +24,7 @@ const DEFAULT_ID_NAME = 'gymx-tab';
 const tabsContainerEl = useTemplateRef('tabsEl');
 const componentId = computed(() => attrs?.id || DEFAULT_ID_NAME);
 
-const generateId = (index) => {
+const generateId = (index: number) => {
   const { id } = attrs;
   if (id) return `${id}-${index}`;
   return `${toValue(componentId)}-${index}`;
@@ -44,15 +44,19 @@ const selectTabIndex = (index: number) => {
     newIndex = (toValue(tabs).length - 1);
   }
   selectedTabIndex.value = newIndex;
-  const resultElements = [...toValue(tabsContainerEl).childNodes].filter((node) => node?.role === 'tab');
-  const el = resultElements[newIndex];
+  // const resultElements = [...toValue(tabsContainerEl).childNodes].filter((node) => node?.role === 'tab');
+  const container = toValue(tabsContainerEl);
+  const resultElements = container
+    ? Array.from(container.childNodes).filter((node) => node instanceof HTMLElement && node.role === 'tab')
+    : [];
+  const el = resultElements[newIndex] as HTMLElement;
   // eslint-disable-next-line no-unused-expressions
   el?.focus();
   emit('selected', newIndex);
 };
 
 watch(() => props.selectedTab, (val, oldVal) => {
-  if (val !== oldVal) {
+  if (val && val !== oldVal) {
     selectedTabIndex.value = val;
   }
 }, {
@@ -72,7 +76,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
       <button
         v-for="(tab, index) in tabs"
         :key="tab.id"
-        :id="tab.id"
+        :id="tab.id.toString()"
         :data-tab-trigger-index="index"
         type="button"
         role="tab"
@@ -104,7 +108,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
       class="tabs__panel"
       :class="{ 'tabs__panel--is-hidden' : selectedTabIndex !== index}"
       tabindex="0"
-      :aria-labelledby="tab.id"
+      :aria-labelledby="tab.id.toString()"
       >
       <!--
        @slot tabpanel Slot
@@ -180,6 +184,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
       --_gymx-tabs-nav-color:  var(--_gymx-tabs-nav-color-active);
       transition: color 100ms ease calc(var(--_gymx-tabs-nav-transition-duration) - 100ms);
       // --_tabs-trigger-active-color-background: var(--_gymx-tabs-trigger-active-color-background);
+      // mix-blend-mode: difference;
     }
   }
 

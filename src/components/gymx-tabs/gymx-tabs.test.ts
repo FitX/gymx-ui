@@ -36,7 +36,6 @@ describe('TabList.vue', () => {
   it.skip('should move focus to the next tabpanel when Tab is pressed', async () => {
     expect(typeof window).not.toBe('undefined')
     const wrapper = mount(GymxTabs, { props: tabsConfig, attachTo: 'body' });
-    const tabs = wrapper.findAll('[role="tab"]');
     const activeTab = wrapper.find('[aria-selected="true"]');
 
     activeTab.element.focus();
@@ -52,6 +51,7 @@ describe('TabList.vue', () => {
     // expect(document.activeElement.textContent).toBe('Content 2');
   });
 
+  /* native tab key doesnt work
   it.skip('should move focus to the tabpanel when Tab is pressed', async () => {
     const wrapper = mount(GymxTabs, { props: tabsConfig });
     const activeTab = wrapper.find('[aria-selected="true"]');
@@ -65,25 +65,7 @@ describe('TabList.vue', () => {
     await wrapper.vm.$nextTick();
 
     // expect(document.activeElement).toBe(tabPanel.element);
-    console.log('d', document.activeElement)
-  });
-
-  it.skip('should move focus to the next button when Tab is pressed', () => {
-    document.body.innerHTML = `
-    <button id="button1">Button 1</button>
-    <button id="button2">Button 2</button>
-  `;
-
-    const button1 = document.getElementById('button1');
-    const button2 = document.getElementById('button2');
-
-    button1.focus();
-    expect(document.activeElement).toBe(button1);
-
-    const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
-    document.dispatchEvent(tabEvent);
-  });
-
+  });*/
 
   it('should move focus to the next tab click tab', async () => {
     const wrapper = mount(GymxTabs, { props: tabsConfig, attachTo: 'body' });

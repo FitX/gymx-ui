@@ -1,7 +1,7 @@
 
-import { type Meta, setup, type StoryObj } from '@storybook/vue3';
+import { type Meta, type StoryObj } from '@storybook/vue3';
 import { default as GymxTabs } from './gymx-tabs.vue';
-import { defineComponent, h } from 'vue';
+import { h } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -14,10 +14,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const demoComponent = defineComponent({
-  template: '<p>Content 5</p>'
-});
-
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
  * See https://storybook.js.org/docs/api/csf
@@ -28,7 +24,7 @@ export const Default: Story = {
     tabs: [
       { id: 'a', title: 'Title 1' },
       { id: 'b', title: 'Title 2' },
-      { id: 'c', title: 'Title 3 Mega langer Content weil testet ja sonst keiner', content: 'hallo welt' },
+      { id: 'c', title: 'Title 3 - Long Content for testing purpose only.' },
     ],
     selectedTab: 1,
     label: 'Example Tabs',
