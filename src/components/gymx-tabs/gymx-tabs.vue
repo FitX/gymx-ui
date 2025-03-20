@@ -197,8 +197,6 @@ watch(() => props.selectedTab, (val, oldVal) => {
     }
   }
 
-
-
   &__slider {
     grid-column: 1 / -1;
     background: var(--_gymx-tabs-trigger-active-color-background);
@@ -227,6 +225,10 @@ watch(() => props.selectedTab, (val, oldVal) => {
     position: absolute;
     z-index: 1;
     inset: var(--_gymx-tabs-nav-outer-spacing);
+    :focus-within & {
+      outline: 1px solid dodgerblue;
+      outline-offset: 1px;
+    }
   }
 }
 </style>
