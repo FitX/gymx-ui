@@ -124,7 +124,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
 <style lang="scss" scoped>
 .tabs {
   --_gymx-tabs-nav-color: var(--gymx-tabs-nav-color, var(--gymx-color-gray-12));
-  --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-accent-1));
+  --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-gray-2));
 
   --_gymx-tabs-nav-color-active: var(--gymx-tabs-nav-color-active, var(--gymx-color-white-12));
   --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--button-color-background));
