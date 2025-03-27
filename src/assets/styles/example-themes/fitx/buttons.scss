@@ -1,0 +1,67 @@
+:root {
+  /**
+  Buttons
+   */
+  --button-color: var(--brand-color-white-0);
+  --button-color-background: var(--primary-brand-color-orange);
+
+  --button-color-border: var(--button-color-background);
+
+  --button-color-border-hover: var(--color-scale-orange-1);
+  --button-color-border-focused: var(--button-color-border-hover);
+
+  --button-color-border-disabled: light-dark(
+    var(--brand-color-gray-chalk),
+    var(--brand-color-anthracite-3)
+  );
+  --button-color-background-focused: var(--color-scale-orange-1);
+  --button-radius: 1rem;
+
+  --button-color-background-disabled: light-dark(
+    var(--brand-color-gray-chalk),
+    var(--brand-color-anthracite-3)
+  );
+  --button-color-disabled: light-dark(
+    var(--brand-color-anthracite-0),
+    var(--brand-color-gray-cement)
+  );
+}
+
+.btn--secondary {
+  --button-color: var(--app-color);
+  --button-color-background: transparent;
+
+  --button-color-border: currentColor;
+
+  --button-color-border-focused: currentColor;
+  --button-color-border-hover: currentColor;
+  --button-color-background-focused: transparent;
+  --button-color-background-hover: color-mix(
+    in srgb,
+    var(--app-color-background),
+    light-dark(white, black) 70%
+  );
+  --button-radius: 1rem;
+}
+
+.btn--tertiary {
+  --button-color: var(--app-color);
+  --button-color-background: transparent;
+
+  --button-color-border: transparent;
+
+  --button-color-border-focused: transparent;
+  --button-color-border-hover: transparent;
+  --button-color-background-focused: var(--gymx-color-gray-3);
+  --button-color-background-hover: var(--gymx-color-gray-3);
+  --button-radius: 1rem;
+
+  transition: background-color 300ms ease;
+}
+
+.btn--small {
+  --button-font-size: var(--gymx-font-size-00);
+  --button-padding-inline: var(--gymx-size-0);
+  --button-padding-block: var(--gymx-size-000);
+  --button-radius: 0.8rem;
+}

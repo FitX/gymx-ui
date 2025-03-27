@@ -1,0 +1,9 @@
+/*
+ Tabs
+*/
+
+:root {
+  --gymx-tabs-nav-color-background: var(--gymx-color-gray-2);
+  --gymx-tabs-trigger-active-color-background: var(--gymx-color-white-12);
+  --gymx-tabs-nav-color-active: light-dark(currentColor, var(--gymx-color-gray-1));
+}

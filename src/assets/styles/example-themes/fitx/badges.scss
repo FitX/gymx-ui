@@ -1,0 +1,12 @@
+/*
+ Badges
+*/
+
+:root {
+  .error-badge {
+    --badge-color-background: var(--gymx-color-error-9);
+    --badge-color-text: var(--brand-color-white-0);
+    --badge-radius: 8px;
+    --badge-font-size: 0.8em;
+  }
+}

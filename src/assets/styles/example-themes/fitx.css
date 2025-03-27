@@ -1,0 +1,6 @@
+/**
+ Theme FitX
+ */
+/* @import "./fitx/index.scss"; */
+@import url("./fitx-light.css");
+@import url("./fitx-dark.css");

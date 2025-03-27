@@ -1,0 +1,38 @@
+:root {
+  /**
+  Forms
+   */
+  // shared globals
+  --shared-input-color: light-dark(var(--brand-color-anthracite-0), var(--brand-color-white-0));
+  --shared-input-color-border: light-dark(var(--brand-color-gray-stone), var(--brand-color-gray-graphite));
+  --shared-input-color-border-hover: light-dark(
+    var(--brand-color-gray-graphite),
+    var(--brand-color-gray-stone)
+  );
+  --shared-input-color-border-disabled: light-dark(
+    var(--brand-color-gray-stone),
+    var(--brand-color-gray-graphite)
+  );
+  --shared-input-color-background-disabled: light-dark(
+    var(--brand-color-gray-chalk),
+    var(--brand-color-anthracite-3)
+  );
+  --shared-input-radius: 8px;
+
+
+  // inputs
+  --input-color: var(--shared-input-color);
+  --input-color-border: var(--shared-input-color-border);
+  --input-color-border-hover: var(--shared-input-color-border-hover);
+  --input-color-border-disabled: var(--shared-input-color-border-disabled);
+  --input-color-background-disabled: var(--shared-input-color-background-disabled);
+  --input-radius: var(--shared-input-radius);
+
+  // inputs
+  --gymx-select-color: var(--shared-input-color);
+  --gymx-select-color-border: var(--shared-input-color-border);
+  --gymx-select-color-border-hover: var(--shared-input-color-border-hover);
+  --gymx-select-color-border-disabled: var(--shared-input-color-border-disabled);
+  --gymx-select-color-background-disabled: var(--shared-input-color-background-disabled);
+  --gymx-select-radius: var(--shared-input-radius);
+}

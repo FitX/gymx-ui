@@ -1,0 +1,24 @@
+:root {
+  --gymx-table-cell-spacing-inline: 1rem;
+  --gymx-table-border: 2px solid var(--gymx-color-gray-3);
+  --gymx-table-color-header: none;
+  --sort-icon-inactive: var(--gymx-color-gray-4);
+  --sort-icon-active: var(--gymx-color-gray-12);
+}
+
+.table {
+  td,
+  th {
+    border-left: none;
+    border-right: none;
+  }
+
+  th {
+    border: none;
+  }
+}
+
+.table-sort {
+  justify-content: start;
+  gap: var(--gymx-size-00);
+}

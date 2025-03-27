@@ -74,7 +74,7 @@
     justify-content: start;
     gap: var(--gymx-size-00);
   }
-
+/*
   .dialog {
     --dialog-border-radius: 1rem;
     --dialog-block-padding: 2rem;
@@ -113,7 +113,7 @@
     }
   }
 }
-
+*/
 /* Toggle Switch */
 [data-theme='fx'] {
   --gymx-toggle-switch-track-color-background-inactive: var(--gymx-color-gray-4);
