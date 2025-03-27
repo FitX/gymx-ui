@@ -6,7 +6,7 @@ Storybook specific theming
   --storybook-color: #262626;
 }
 
-[data-theme=dark], [data-theme=exact] {
+[data-theme=dark], [data-theme=exact], [data-theme='fitx-dark'] {
   --storybook-background-color: #111113;
   --storybook-color: #fff;
 }

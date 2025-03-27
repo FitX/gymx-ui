@@ -32,7 +32,7 @@ export function ThemedContainer(props: PropsWithChildren<{ context: DocsContextP
   const theme = (props.context as any).store.userGlobals.globals.theme;
   handleThemeSwitch(theme);
 
-  const darkThemeList = ['dark', 'exact'];
+  const darkThemeList = ['dark', 'exact', 'fitx-dark'];
 
   const isDark = darkThemeList.includes(theme)
 
