@@ -3,19 +3,19 @@
   Forms
    */
   // shared globals
-  --shared-input-color: light-dark(var(--brand-color-anthracite-0), var(--brand-color-white-0));
-  --shared-input-color-border: light-dark(var(--brand-color-gray-stone), var(--brand-color-gray-graphite));
+  --shared-input-color: light-dark(var(--color-brand-anthracite-0), var(--color-brand-white-0));
+  --shared-input-color-border: light-dark(var(--color-brand-gray-stone), var(--color-brand-gray-graphite));
   --shared-input-color-border-hover: light-dark(
-    var(--brand-color-gray-graphite),
-    var(--brand-color-gray-stone)
+    var(--color-brand-gray-graphite),
+    var(--color-brand-gray-stone)
   );
   --shared-input-color-border-disabled: light-dark(
-    var(--brand-color-gray-stone),
-    var(--brand-color-gray-graphite)
+    var(--color-brand-gray-stone),
+    var(--color-brand-gray-graphite)
   );
   --shared-input-color-background-disabled: light-dark(
-    var(--brand-color-gray-chalk),
-    var(--brand-color-anthracite-3)
+    var(--color-brand-gray-chalk),
+    var(--color-brand-anthracite-3)
   );
   --shared-input-radius: 8px;
 

@@ -2,8 +2,8 @@
   /**
   Buttons
    */
-  --button-color: var(--brand-color-white-0);
-  --button-color-background: var(--primary-brand-color-orange);
+  --button-color: var(--color-brand-white-0);
+  --button-color-background: var(--color-primary-brand-orange);
 
   --button-color-border: var(--button-color-background);
 
@@ -11,19 +11,19 @@
   --button-color-border-focused: var(--button-color-border-hover);
 
   --button-color-border-disabled: light-dark(
-    var(--brand-color-gray-chalk),
-    var(--brand-color-anthracite-3)
+    var(--color-brand-gray-chalk),
+    var(--color-brand-anthracite-3)
   );
   --button-color-background-focused: var(--color-scale-orange-1);
   --button-radius: 1rem;
 
   --button-color-background-disabled: light-dark(
-    var(--brand-color-gray-chalk),
-    var(--brand-color-anthracite-3)
+    var(--color-brand-gray-chalk),
+    var(--color-brand-anthracite-3)
   );
   --button-color-disabled: light-dark(
-    var(--brand-color-anthracite-0),
-    var(--brand-color-gray-cement)
+    var(--color-brand-anthracite-0),
+    var(--color-brand-gray-cement)
   );
 }
 

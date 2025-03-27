@@ -21,12 +21,12 @@
 
 [data-theme='fitx-light'],
 [data-theme='fitx-dark'] {
-  --gymx-color-accent: var(--primary-brand-color-orange);
+  --gymx-color-accent: var(--color-primary-brand-orange);
   --gymx-color-primary: var(--gymx-color-accent);
-  --gymx-color-text: light-dark(var(--brand-color-anthracite-0), var(--brand-color-white-0));
+  --gymx-color-text: light-dark(var(--color-brand-anthracite-0), var(--color-brand-white-0));
   --gymx-font-family-default: var(--fitx-font-stack-normal);
 
-  --app-color-background: light-dark(var(--brand-color-white-0), var(--brand-color-anthracite-0));
+  --app-color-background: light-dark(var(--color-brand-white-0), var(--color-brand-anthracite-0));
   --app-color: var(--gymx-color-text);
   --app-font-size: var(--gymx-font-size-default);
   --app-font-weight: var(--gymx-font-weight-default);
