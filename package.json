@@ -34,6 +34,7 @@
     "temp-fix-copy-storybook": "cp ./coverage/index.html ./storybook-static/coverage/index.html"
   },
   "dependencies": {
+    "@fitx/design-tokens": "^0.1.0",
     "@volar/language-server": "2.4.10",
     "@vue/language-server": "2.1.10",
     "@vueuse/core": "^11.2.0",
