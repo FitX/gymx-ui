@@ -14,8 +14,6 @@ import '../src/assets/styles/tokens/colors.css';
 import '../src/assets/styles/tokens/borders.css';
 import '@/assets/styles/theme.css'; */
 import '@/assets/styles/index.css';
-/* import '@/assets/styles/example-themes/fx.css';
-import '@/assets/styles/example-themes/sg.css'; */
 
 export const decorators = [
   themeDecorator,
@@ -54,6 +52,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+        method: 'alphabetical',
         order: [
           'Welcome',
           'Icons',
@@ -61,9 +60,11 @@ const preview: Preview = {
           'Tokens',
           'Examples',
           'Components',
-          ['Layout',
-            ['App Layout'],
-            'Form'],
+          [
+            'Layout', ['App Layout', '*'],
+            'Form',
+            '*',
+          ],
           'Composables'],
       },
     },
