@@ -2,5 +2,7 @@
  Theme FitX
  */
 /* @import "./fitx/index.scss"; */
-@import url("./fitx-light.css");
-@import url("./fitx-dark.css");
+@import url("./fitx/index.scss");
+
+:where([data-theme='fitx-light']) {}
+:where([data-theme='fitx-dark']) {}

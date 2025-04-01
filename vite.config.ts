@@ -37,7 +37,7 @@ export default defineConfig({
         'styles/ui/table': fileURLToPath(new URL('./src/assets/styles/ui/table.css', import.meta.url)),
 
         'styles/styles': fileURLToPath(new URL('./src/assets/styles/index.css', import.meta.url)),
-        'styles/themes/fitx': fileURLToPath(new URL('./src/assets/styles/example-themes/fitx/index.scss', import.meta.url)),
+        'styles/themes/fitx': fileURLToPath(new URL('./src/assets/styles/example-themes/fitx.css', import.meta.url)),
       },
       formats: ['es'],
       name: '@fitx/gymx-ui', // @fitx/gymx-ui

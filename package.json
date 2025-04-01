@@ -19,10 +19,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run test:unit -- run --coverage && npm run build:storybook",
+    "build": "npm run test:unit -- run --coverage && npm run build:lib && npm run build:storybook && npm run copy-fitx-theme-to-sb",
     "build:lib": "rm -rf ./dist && vite build && vue-tsc --emitDeclarationOnly --project tsconfig.build-lib.json && tsc-alias -p tsconfig.build-lib.json",
     "build:storybook": "storybook build && npm run temp-fix-copy-storybook",
     "preview": "vite preview",
+    "copy-fitx-theme-to-sb": "cp ./dist/styles/themes/fitx.css ./storybook-static/example-themes/fitx.css",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "build-only": "vite build",

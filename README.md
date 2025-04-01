@@ -71,7 +71,7 @@ import { IconClose } from '@fitx/gymx-ui';
 
 you can run the following scripts:
 
-- `npm run build`: Builds the Storybook documentation and runs unit tests.
+- `npm run build`: Builds Components, the Storybook documentation and runs unit tests.
 - `npm run build:lib`: Builds the component library.
 - `npm run test:unit`: Runs unit tests with Vitest.
 - `npm run test:e2e`: Runs end-to-end tests using Playwright.
@@ -79,6 +79,8 @@ you can run the following scripts:
 - `npm run format`: Formats the code using Prettier.
 - `npm run storybook`: Starts the Storybook server for local component development.
 - `npm run storybookSsl`: Starts the Storybook server for local component development with ssl. [Info](#ssl)
+- `npm run copy-fitx-theme-to-sb`: Copy the fitx theme styles artefact to storybook static folder
+- `npm run temp-fix-copy-storybook`: Copy the Coverage Report to storybook static folder
 
 ## Storybook
 

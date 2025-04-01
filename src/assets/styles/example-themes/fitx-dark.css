@@ -1,8 +1,0 @@
-/**
- Theme FitX
- */
-/* @import "./fitx/index.scss"; */
-@import url("./fitx/index.scss");
-
-:where([data-theme='fitx-dark']) {
-}

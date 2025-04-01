@@ -5,6 +5,12 @@ import * as React from 'react';
 import { switchCSS } from './switch-theme';
 import PackageJson from '../package.json';
 
+/**
+ * FitX Theme contains dark and light mode
+ * so we have just a single style file
+ */
+const getThemeAssetName = (themeName: string) => ['fitx-light', 'fitx-dark'].includes(themeName) ? 'fitx' : themeName;
+
 export const handleThemeSwitch = (themeName?: string) => {
   const themeMaybeUndefinedOrEmpty = themeName;
   const theme = themeMaybeUndefinedOrEmpty && themeMaybeUndefinedOrEmpty?.length > 0 ? themeMaybeUndefinedOrEmpty : 'light';
@@ -18,7 +24,7 @@ export const handleThemeSwitch = (themeName?: string) => {
      * @see .storybook/main.ts
      */
     const themePath = isProd ? '/example-themes' : '../src/assets/styles/example-themes';
-    switchCSS(`${themePath}/${theme}.css?v=${componentsVersion}`);
+    switchCSS(`${themePath}/${getThemeAssetName(theme)}.css?v=${componentsVersion}`);
   }
 }
 
