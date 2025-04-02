@@ -68,6 +68,8 @@ const [modelValue] = defineModel<SelectItem | SelectItem[]>();
   --_gymx-select-color-background-hover: var(--gymx-select-color-background-hover, initial);
   --_gymx-select-color-border-hover: var(--gymx-select-color-border-hover, initial);
 
+  --_gymx-select-color-option: var(--gymx-select-color-option, var(--gymx-color-app-background));
+
   --_gymx-select-color-disabled: var(--gymx-select-color-disabled, var(--gymx-color-text));
   --_gymx-select-color-background-disabled: var(
     --gymx-select-color-background-disabled,
@@ -129,6 +131,10 @@ const [modelValue] = defineModel<SelectItem | SelectItem[]>();
     padding: 0;
     margin: 0;
     outline: 0;
+
+    option {
+      background: var(--_gymx-select-color-option);
+    }
   }
 
   &--hover,

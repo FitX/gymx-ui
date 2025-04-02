@@ -1047,4 +1047,6 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
     var(--gymx-color-info-light-12),
     var(--gymx-color-info-dark-12)
   );
+
+  --gymx-color-app-background: light-dark(var(--gymx-color-white-12), var(--gymx-color-black-12));
 }
