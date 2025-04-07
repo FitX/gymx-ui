@@ -4,7 +4,7 @@ import { useSort, type SortOption } from './index';
 
 interface Item {
   id: number;
-  name: string;
+  name?: string;
 }
 
 describe('useSort', () => {
@@ -90,7 +90,7 @@ describe('useSort', () => {
       { id: 3, name: 'C' },
     ]);
 
-    const customSort = (dataToSort) => dataToSort.reverse();
+    const customSort = (dataToSort: Item[]) => dataToSort.reverse();
 
     const { sorted } = useSort({ initialData: data, customSort });
 
@@ -151,5 +151,41 @@ describe('useSort', () => {
       { id: 2, name: 'B' },
       { id: 1, name: 'A' },
     ]);
+  });
+
+  it('does not call customSort.value if customSort is not a Ref', () => {
+    const sortFn = vi.fn();
+    const data = ref([{ id: 2 }, { id: 1 }]);
+
+    const { sorted } = useSort({
+      initialData: data,
+      customSort: sortFn,
+    });
+
+    sorted.value;
+
+    // because it's not a Ref, it shouldn't call .value
+    expect(sortFn).toHaveBeenCalledOnce();
+  });
+
+  it('customSort as Ref<Function> - calls customSort.value when customSort is a Ref to a function', () => {
+    const data = ref<Item[]>([{ id: 2 }, { id: 1 }]);
+
+    const sortFn = vi.fn((items: Item[]) => {
+      return [...items].sort((a, b) => a.id - b.id);
+    });
+
+    const customSort = ref(sortFn);
+
+    const { sorted } = useSort<Item>({
+      initialData: data,
+      customSort,
+    });
+
+    // Access the computed to trigger it
+    sorted.value;
+
+    expect(sortFn).toHaveBeenCalledOnce();
+    expect(sortFn).toHaveBeenCalledWith([{ id: 2 }, { id: 1 }]);
   });
 });
