@@ -9,6 +9,7 @@ import {
   watch, toValue, useTemplateRef,
 } from 'vue';
 import type { GymxTabsProps } from './types.ts';
+import { getResultElements } from './utils';
 
 const props = defineProps<GymxTabsProps>();
 
@@ -46,9 +47,7 @@ const selectTabIndex = (index: number) => {
   selectedTabIndex.value = newIndex;
   // const resultElements = [...toValue(tabsContainerEl).childNodes].filter((node) => node?.role === 'tab');
   const container = toValue(tabsContainerEl);
-  const resultElements = container
-    ? Array.from(container.childNodes).filter((node) => node instanceof HTMLElement && node.role === 'tab')
-    : [];
+  const resultElements = getResultElements(container);
   const el = resultElements[newIndex] as HTMLElement;
   // eslint-disable-next-line no-unused-expressions
   el?.focus();

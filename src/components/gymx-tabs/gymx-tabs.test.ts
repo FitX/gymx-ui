@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxTabs } from './index';
 import { builtinEnvironments } from 'vitest/environments';
+import { getResultElements } from './utils';
 
 describe('TabList.vue', () => {
   const tabsConfig = {
@@ -174,5 +175,45 @@ describe('TabList.vue', () => {
     expect(tabs[0].id).toBe('gymx-tab-0');
     expect(tabs[1].id).toBe('gymx-tab-1');
     expect(tabs[2].id).toBe('gymx-tab-2');
+  });
+});
+
+describe('getResultElements', () => {
+  it('should return an empty array when the container is null', () => {
+    const result = getResultElements(null);
+    expect(result).toEqual([]);
+  });
+
+  it('should return an empty array when the container has no "tab" role elements', () => {
+    const container = document.createElement('div');
+    const div1 = document.createElement('div');
+    const div2 = document.createElement('div');
+    container.appendChild(div1);
+    container.appendChild(div2);
+
+    const result = getResultElements(container);
+    expect(result).toEqual([]);
+  });
+
+  it('should return only elements with role "tab"', () => {
+    const container = document.createElement('div');
+    const div1 = document.createElement('div');
+    div1.setAttribute('role', 'tab');
+    const div2 = document.createElement('div');
+    div2.setAttribute('role', 'tab');
+    const div3 = document.createElement('div');
+    div3.setAttribute('role', 'button'); // no tub
+    container.appendChild(div1);
+    container.appendChild(div2);
+    container.appendChild(div3);
+
+    const result = getResultElements(container);
+    expect(result).toEqual([div1, div2]);
+  });
+
+  it('should return an empty array when the container has no child nodes', () => {
+    const container = document.createElement('div');
+    const result = getResultElements(container);
+    expect(result).toEqual([]);
   });
 });
