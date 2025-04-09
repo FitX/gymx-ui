@@ -21,7 +21,7 @@
     border-bottom: none;
   }
 
-  tr:hover {
+  tr:is(:hover, :focus-within) {
     background: var(--gymx-table-color-row-hover, var(--gymx-color-gray-1));
   }
 
