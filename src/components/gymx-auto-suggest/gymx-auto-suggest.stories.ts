@@ -98,6 +98,7 @@ export const CustomSlots: Story = {
       const model = ref();
       const componentref = ref();
       const isExpanded = ref(true);
+      const searchValue = ref('');
 
       const addOption = () => {
         const currentLength = options.value.length;
@@ -117,6 +118,7 @@ export const CustomSlots: Story = {
         model,
         isExpanded,
         options,
+        searchValue,
         addOption,
         extraFilter,
       };
@@ -129,7 +131,8 @@ export const CustomSlots: Story = {
         :options="options"
         label="Search by Amount"
         placeholder="e.g. 100"
-        v-model:model="model"
+        v-model="model"
+        v-model:text="searchValue"
         class="demo-auto-suggest"
         :expanded="isExpanded"
         :filter-function="extraFilter">
@@ -145,6 +148,7 @@ export const CustomSlots: Story = {
       </gymx-auto-suggest>
       <p>model:</p>
       <pre>{{ model }}</pre>
+      <p>searchValue: {{ searchValue }}</p>
       <pre>{{ args }}</pre>
       </div>
       <component is="style" scoped>

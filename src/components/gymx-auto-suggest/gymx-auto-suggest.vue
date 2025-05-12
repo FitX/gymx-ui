@@ -21,7 +21,7 @@ const inputElement = ref<HTMLInputElement | null>(null);
 const isListOpen = defineModel<boolean>('expanded');
 const selectedOption = defineModel<Option>();
 
-const text = ref<string | number>(selectedOption.value?.text || '');
+const text = defineModel<string | number>('text', { default: '' });
 
 const onInputKeyup = async (event: KeyboardEvent) => {
   switch (event.key) {
