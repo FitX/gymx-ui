@@ -18,7 +18,7 @@ const optionSelectableSelectorString =
 const listElement = ref<HTMLUListElement | null>(null);
 const wrapperElement = ref<HTMLDivElement | null>(null);
 const inputElement = ref<HTMLInputElement | null>(null);
-const isListOpen = ref(props.expanded || false);
+const isListOpen = defineModel<boolean>('expanded');
 const selectedOption = defineModel<Option>();
 
 const text = ref<string | number>(selectedOption.value?.text || '');
@@ -152,6 +152,9 @@ const selectOption = (optionElement: HTMLLIElement) => {
   };
 };
 
+/**
+ * our blur functionality
+ */
 onClickOutside(wrapperElement, () => hideList(false));
 
 const filteredList = computed<T[]>(() => {

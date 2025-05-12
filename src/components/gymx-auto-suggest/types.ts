@@ -9,7 +9,6 @@ export interface Option {
 export interface GymxAutoSuggestProps <T extends Option>{
   disabled?: boolean;
   errorMessage?: string;
-  expanded?: boolean;
   id?: string;
   label: string;
   name: string;

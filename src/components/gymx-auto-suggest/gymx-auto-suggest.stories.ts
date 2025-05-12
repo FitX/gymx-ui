@@ -97,6 +97,7 @@ export const CustomSlots: Story = {
       // const model = ref(options.value[2]);
       const model = ref();
       const componentref = ref();
+      const isExpanded = ref(true);
 
       const addOption = () => {
         const currentLength = options.value.length;
@@ -109,25 +110,28 @@ export const CustomSlots: Story = {
         options.value.push(newItem);
         model.value = newItem;
       };
+
       return {
         args,
         componentref,
         model,
+        isExpanded,
         options,
         addOption,
         extraFilter,
       };
     },
     template: `
+      <div class="wrapper" style="min-height: 600px;">
       <gymx-auto-suggest
         v-bind="args"
         ref="componentref"
         :options="options"
         label="Search by Amount"
         placeholder="e.g. 100"
-        v-model="model"
+        v-model:model="model"
         class="demo-auto-suggest"
-        :expanded="true"
+        :expanded="isExpanded"
         :filter-function="extraFilter">
         <template #option="{ option }">
           <div class="fancy">
@@ -141,6 +145,8 @@ export const CustomSlots: Story = {
       </gymx-auto-suggest>
       <p>model:</p>
       <pre>{{ model }}</pre>
+      <pre>{{ args }}</pre>
+      </div>
       <component is="style" scoped>
         .demo-auto-suggest {
           --gymx-auto-suggest-list-color-background: var(--input-color-background);
