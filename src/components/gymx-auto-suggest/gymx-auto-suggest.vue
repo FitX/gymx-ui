@@ -1,9 +1,30 @@
 <script setup lang="ts" generic="T extends Option">
-import { computed, ref, nextTick, watch } from 'vue';
+import { type InputHTMLAttributes, computed, ref, nextTick, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
-import type { GymxAutoSuggestProps, Option } from './types';
 import { filter } from './utils';
 import { GymxTextField } from '@/components';
+
+export type Option = {
+  text: string;
+  value: string | number;
+  disabled?: boolean;
+}
+
+// export interface GymxAutoSuggestProps <T extends Option>{
+export type GymxAutoSuggestProps<T> = {
+  disabled?: boolean;
+  errorMessage?: string;
+  id?: string;
+  label: string;
+  name: string;
+  options: T[];
+  placeholder?: string;
+  readonly?: boolean;
+  required?: boolean;
+  noResultsText?: string;
+  filterFunction?: (options?: T[], text?: string) => T[];
+  inputAttributes?: InputHTMLAttributes;
+}
 
 const props = withDefaults(defineProps<GymxAutoSuggestProps<T>>(), {
   noResultsText: 'No results available',
