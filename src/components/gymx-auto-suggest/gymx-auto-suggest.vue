@@ -10,8 +10,7 @@ export type Option = {
   disabled?: boolean;
 }
 
-// export interface GymxAutoSuggestProps <T extends Option>{
-export type GymxAutoSuggestProps<T> = {
+const props = withDefaults(defineProps<{
   disabled?: boolean;
   errorMessage?: string;
   id?: string;
@@ -24,9 +23,7 @@ export type GymxAutoSuggestProps<T> = {
   noResultsText?: string;
   filterFunction?: (options?: T[], text?: string) => T[];
   inputAttributes?: InputHTMLAttributes;
-}
-
-const props = withDefaults(defineProps<GymxAutoSuggestProps<T>>(), {
+}>(), {
   noResultsText: 'No results available',
   inputAttributes: () => ({
     type: 'search',
