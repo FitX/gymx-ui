@@ -6,6 +6,8 @@ export interface GymxInputProps {
   state?: UIState;
   id?: string;
   inputAttributes?: InputHTMLAttributes;
+  showPasswordText?: string;
+  resetTimeShowPassword?: number;
 }
 
 export interface GymxInputSlots {

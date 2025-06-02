@@ -129,4 +129,49 @@ export const DateDemos: Story = {
       '<pre>date only: {{ dateOnly }}</pre>' +
       '<pre>time only: {{ timeOnly }}</pre>'
   })
-}
+};
+
+export const PasswordInput: Story = {
+  args: {
+    modelValue: '',
+    id: 'password',
+    type: 'password',
+  },
+};
+
+export const PasswordInputWithOptions: Story = {
+  decorators: () => ({
+    setup(args) {
+      const modelValue = ref();
+      const showPassword = ref(false);
+
+      return {
+        args,
+        showPassword,
+        modelValue,
+      };
+    },
+    components: {
+      GymxInput,
+    },
+    template: `<form style="display: flex; flex-direction: column; gap: 1rem;" @submit.prevent>
+      <gymx-input v-bind="args" v-model="modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
+        <template #input-show-password="{ toggleShowPassword }">
+          <button @click="toggleShowPassword">
+            {{ !showPassword ? 'Passwort anzeigen' : 'Passwort verstecken' }}
+          </button>
+        </template>
+      </gymx-input>
+    </form>`
+  })
+};
+
+export const PasswordInputWithoutToggle: Story = {
+  args: {
+    modelValue: '',
+    id: 'password',
+    inputAttributes: {
+      type: 'password',
+    },
+  },
+};
