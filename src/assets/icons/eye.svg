@@ -1,0 +1,7 @@
+<svg
+  viewBox="0 0 18 18"
+  fill="none"
+  style="width: var(--icon-width, 18px); height: var(--icon-height, 18px);"
+  xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 3C3 3 .75 9 .75 9S3 15 9 15s8.25-6 8.25-6S15 3 9 3Zm0 1.5c3.957 0 5.958 3.2 6.606 4.497C14.958 10.285 12.941 13.5 9 13.5c-3.957 0-5.958-3.2-6.606-4.497C3.043 7.715 5.059 4.5 9 4.5ZM9 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 1.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+        fill="var(--icon-fill, currentColor)" /></svg>

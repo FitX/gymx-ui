@@ -8,6 +8,8 @@ import IconVote2 from '@/assets/icons/vote-2.svg';
 import IconVote3 from '@/assets/icons/vote-3.svg';
 import IconVote4 from '@/assets/icons/vote-4.svg';
 import IconVote5 from '@/assets/icons/vote-5.svg';
+import IconEye from '@/assets/icons/eye.svg';
+import IconEyeClosed from '@/assets/icons/eye-closed.svg';
 export {
   FancyIcon, IconError, IconClose, IconCheckmark, IconDonutSmall,
   IconVote1,
@@ -15,4 +17,6 @@ export {
   IconVote3,
   IconVote4,
   IconVote5,
+  IconEye,
+  IconEyeClosed,
 };
