@@ -13,4 +13,5 @@ export interface GymxInputProps {
 export interface GymxInputSlots {
   'input-start': () => any;
   'input-end': () => any;
+  'input-show-password': () => any;
 }
