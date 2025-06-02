@@ -11,7 +11,7 @@ const props = defineProps<GymxErrorMessageProps>();
       Alternate slot for icon, to add gap add class error-message__icon
       -->
     <slot name="icon-start">
-      <icon-error class="error-message__icon" />
+      <icon-error aria-hidden="true" class="error-message__icon" />
     </slot>
     <span>
       <!--
