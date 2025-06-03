@@ -208,6 +208,7 @@ export const PasswordInputWithSlot: Story = {
       </gymx-input>
     </form>`
   }),
+  render: () => ({}),
   parameters: {
     docs: {
       description: {

@@ -103,6 +103,7 @@ defineExpose({
   align-items: center;
   align-content: center;
   text-align: center;
+  padding: 0 var(--_input-gap);
 
   &:is(:hover, :focus-visible) {
     --icon-fill: var(--_input-color-show-password-hover);

@@ -57,7 +57,7 @@ This Files contains input specific styles
       margin-inline-start: var(--_input-gap);
     }
 
-    &__end:not(:empty) {
+    &__end:not(:empty, :has(.toggle-show-password)) {
       margin-inline-end: var(--_input-gap);
     }
 
