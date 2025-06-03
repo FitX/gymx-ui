@@ -104,20 +104,20 @@ export const PasswordInput: Story = {
 export const PasswordInputWithOptions: Story = {
   decorators: () => ({
     setup(args) {
-      const modelValue = ref();
+      const pass = ref('');
       const showPassword = ref(false);
 
       return {
         args,
         showPassword,
-        modelValue,
+        pass,
       };
     },
     components: {
       GymxTextField,
     },
     template: `<form style="display: flex; flex-direction: column; gap: 1rem;" @submit.prevent>
-      <gymx-text-field v-bind="args" label="Password" v-model="modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
+      <gymx-text-field label="Password" v-model="pass" v-model:show-password="showPassword" id="custom-password" type="password">
         <template #input-show-password="{ toggleShowPassword }">
           <button @click="toggleShowPassword">
             {{ !showPassword ? 'Passwort anzeigen' : 'Passwort verstecken' }}
@@ -132,7 +132,7 @@ export const PasswordInputWithoutToggle: Story = {
   args: {
     label: 'Password',
     modelValue: '',
-    id: 'password',
+    id: 'password-via-input-attributes',
     inputAttributes: {
       type: 'password',
     },

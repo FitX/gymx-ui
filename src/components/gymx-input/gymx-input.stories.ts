@@ -183,23 +183,22 @@ providing enhanced usability and accessibility for password fields.
 };
 
 export const PasswordInputWithSlot: Story = {
-  args: {
-    modelValue: '',
-  },
-  decorators: () => ({
+  render: () => ({
     setup(args) {
       const showPassword = ref(false);
+      const pass = ref('');
 
       return {
         args,
         showPassword,
+        pass,
       };
     },
     components: {
       GymxInput,
     },
     template: `<form style="display: flex; flex-direction: column; gap: 1rem;" @submit.prevent>
-      <gymx-input v-bind="args" v-model="args.modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
+      <gymx-input v-bind="args" v-model="pass" v-model:show-password="showPassword" id="custom-password" type="password">
         <template #input-show-password="{ toggleShowPassword }">
           <button @click="toggleShowPassword">
             {{ !showPassword ? 'Passwort anzeigen' : 'Passwort verstecken' }}
@@ -208,7 +207,6 @@ export const PasswordInputWithSlot: Story = {
       </gymx-input>
     </form>`
   }),
-  render: () => ({}),
   parameters: {
     docs: {
       description: {
