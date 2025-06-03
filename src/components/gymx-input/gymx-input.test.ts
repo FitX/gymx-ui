@@ -1,8 +1,16 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { GymxInput } from './index';
+import { nextTick } from 'vue';
 
 describe('GymxInput', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('is a Vue instance', () => {
     const wrapper = mount(GymxInput);
     expect(wrapper.exists()).toBeTruthy();
@@ -90,5 +98,30 @@ describe('GymxInput', () => {
 
     const input = wrapper.find('input');
     expect(input.attributes('disabled')).toBeUndefined();
+  });
+
+  it('should display password toggle button if type is password', async () => {
+    const wrapper = mount(GymxInput, {
+      props: {
+        type: 'password',
+      },
+    });
+
+    const input = wrapper.find('input');
+    const toggleButton = wrapper.find('button[aria-pressed]');
+    const svg1 = wrapper.find('button[aria-pressed] svg');
+    expect(input.attributes('type')).toBe('password');
+    expect(toggleButton.attributes('aria-pressed')).toBe('false');
+
+    await toggleButton.trigger('click');
+    expect(toggleButton.attributes('aria-pressed')).toBe('true');
+    expect(svg1).not.equal(wrapper.find('button[aria-pressed] svg'));
+    expect(input.attributes('type')).toBe('text');
+
+    vi.advanceTimersByTime(8000);
+    await nextTick()
+    expect(toggleButton.attributes('aria-pressed')).toBe('false');
+    expect(svg1.text()).equal(wrapper.find('button[aria-pressed] svg').text());
+    expect(input.attributes('type')).toBe('password');
   });
 });

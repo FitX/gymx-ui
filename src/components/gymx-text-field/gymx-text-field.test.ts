@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { GymxTextField } from './index';
+import { nextTick } from 'vue';
 
 describe('GymxTextField', () => {
   it('is a Vue instance', () => {
@@ -90,5 +91,24 @@ describe('GymxTextField', () => {
 
     wrapper.trigger('click');
     expect(mock).toHaveBeenCalled();
+  });
+
+  it('renders password slot', async () => {
+    const wrapper = mount(GymxTextField, {
+      props: {
+        label: 'Test Label',
+        type: 'password',
+        showPassword: true,
+      },
+    });
+
+    const toggleButton = wrapper.find('.input__end button[aria-pressed]');
+    expect(toggleButton.exists()).toBe(true);
+
+    // await wrapper.setValue(false, 'showPassword');
+    await toggleButton.trigger('click');
+    await nextTick()
+
+    expect(toggleButton.attributes('aria-pressed')).toBe('false');
   });
 });

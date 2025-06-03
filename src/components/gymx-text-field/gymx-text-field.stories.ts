@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxTextField } from './gymx-text-field.vue';
+import { ref } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -86,5 +87,54 @@ export const WithErrorAndHint: Story = {
     modelValue: '',
     hint: 'The part of your name before your last name',
     errorMessage: 'Please enter your name',
+  },
+};
+
+
+export const PasswordInput: Story = {
+  args: {
+    label: 'Password jojo',
+    modelValue: '',
+    showPasswordText: 'password visibility toggle',
+    id: 'password-example',
+    type: 'password',
+  },
+};
+
+export const PasswordInputWithOptions: Story = {
+  decorators: () => ({
+    setup(args) {
+      const modelValue = ref();
+      const showPassword = ref(false);
+
+      return {
+        args,
+        showPassword,
+        modelValue,
+      };
+    },
+    components: {
+      GymxTextField,
+    },
+    template: `<form style="display: flex; flex-direction: column; gap: 1rem;" @submit.prevent>
+      <gymx-text-field v-bind="args" label="Password" v-model="modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
+        <template #input-show-password="{ toggleShowPassword }">
+          <button @click="toggleShowPassword">
+            {{ !showPassword ? 'Passwort anzeigen' : 'Passwort verstecken' }}
+          </button>
+        </template>
+      </gymx-text-field>
+    </form>`
+  })
+};
+
+export const PasswordInputWithoutToggle: Story = {
+  args: {
+    label: 'Password',
+    modelValue: '',
+    id: 'password',
+    inputAttributes: {
+      type: 'password',
+    },
   },
 };

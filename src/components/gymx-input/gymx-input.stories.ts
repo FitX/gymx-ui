@@ -137,25 +137,69 @@ export const PasswordInput: Story = {
     id: 'password',
     type: 'password',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+## 🔐 Password Visibility – Feature Overview
+
+This input component includes built-in support for toggling password visibility,
+providing enhanced usability and accessibility for password fields.
+
+### 🧩 Props Related to Password Functionality
+- **type** (HTMLInputElement['type'])
+  When set to 'password', the component enables password visibility toggling.
+
+- **showPasswordText** (string, default: 'show password')
+  Defines the accessible label (aria-label) for the toggle button used to show/hide the password.
+
+- **resetTimeShowPassword** (number, default: 8000)
+  Optional. If set, the password will automatically be hidden again after the
+  specified time in milliseconds to reducing the risk of exposure.
+
+- **show-password** (v-model, boolean)
+  A two-way bound value indicating whether the password is currently visible.
+
+### 🧷 Slots Related to Password
+
+- **input-show-password**
+  Allows injection of a custom password toggle button.
+  Receives { toggleShowPassword } as a slot prop.
+
+- **input-start / input-end**
+  Used to place custom elements (e.g. icons or labels) before or after the input field.
+  Note: The password toggle is rendered inside input-end by default.
+
+### ✅ Accessibility
+
+- The toggle button includes:
+  - aria-label from showPasswordText
+  - aria-pressed reflecting the current visibility state
+- Icon changes visually indicate the password's visibility status (IconEye / IconEyeClosed).
+        `,
+      }
+    },
+  },
 };
 
-export const PasswordInputWithOptions: Story = {
+export const PasswordInputWithSlot: Story = {
+  args: {
+    modelValue: '',
+  },
   decorators: () => ({
     setup(args) {
-      const modelValue = ref();
       const showPassword = ref(false);
 
       return {
         args,
         showPassword,
-        modelValue,
       };
     },
     components: {
       GymxInput,
     },
     template: `<form style="display: flex; flex-direction: column; gap: 1rem;" @submit.prevent>
-      <gymx-input v-bind="args" v-model="modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
+      <gymx-input v-bind="args" v-model="args.modelValue" v-model:show-password="showPassword" id="custom-password" type="password">
         <template #input-show-password="{ toggleShowPassword }">
           <button @click="toggleShowPassword">
             {{ !showPassword ? 'Passwort anzeigen' : 'Passwort verstecken' }}
@@ -163,10 +207,17 @@ export const PasswordInputWithOptions: Story = {
         </template>
       </gymx-input>
     </form>`
-  })
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `Alternatively, you can use the **input-show-password slot** to inject a custom toggle button.`,
+      },
+    },
+  }
 };
 
-export const PasswordInputWithoutToggle: Story = {
+export const PasswordInputSimple: Story = {
   args: {
     modelValue: '',
     id: 'password',
@@ -174,4 +225,12 @@ export const PasswordInputWithoutToggle: Story = {
       type: 'password',
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        story: `### Alternative: Password Input without Toggle Button
+By using the **input-attributes** prop, you can set the input's type to 'password' and omit the toggle button.`,
+      },
+    },
+  }
 };
