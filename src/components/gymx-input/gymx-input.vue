@@ -31,7 +31,7 @@ const inputType = computed(() => {
 
 const inputRef = ref<HTMLInputElement>();
 
-let timeOutShowPassword: NodeJS.Timeout;
+let timeOutShowPassword: ReturnType<typeof setTimeout>;
 
 const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;

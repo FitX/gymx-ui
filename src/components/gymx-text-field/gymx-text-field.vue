@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<GymxTextFieldProps>(), {
 
 // const slots = useSlots();
 const modelValue = defineModel<string | number>({ default: '' });
+const showPassword = defineModel<boolean>('show-password');
 
 const inputRef = ref();
 const attrs = useAttrs();
@@ -48,7 +49,11 @@ defineExpose({
       <gymx-input
         :ref="(el) => (inputRef = (el as any)?.inputRef)"
         :id="props.id"
+        :type="props.type"
         :input-attributes="props.inputAttributes"
+        v-model:show-password="showPassword"
+        :reset-time-show-password="props.resetTimeShowPassword"
+        :show-password-text="props.showPasswordText"
         :state="props.state"
         class="text-field__input"
         v-model="modelValue">
@@ -60,6 +65,10 @@ defineExpose({
         </template>-->
         <template #input-start><slot name="input-start"></slot></template>
         <template #input-end><slot name="input-end"></slot></template>
+        <template
+          v-if="props.type === 'password'"
+          #input-show-password="{ toggleShowPassword }">
+          <slot name="input-show-password" v-bind="{ toggleShowPassword }"></slot></template>
       </gymx-input>
     </slot>
     <div class="text-field__additional">
