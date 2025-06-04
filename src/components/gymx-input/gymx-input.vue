@@ -93,6 +93,10 @@ defineExpose({
   // line-height: 1;
 }
 
+.input:has(.toggle-show-password) ::-ms-reveal {
+  display: none;
+}
+
 .toggle-show-password {
   --_input-color-show-password: var(--input-color-show-password, var(--gymx-color-gray-9));
   --_input-color-show-password-hover: var(--input-color-show-password-hover, var(--gymx-color-gray-12));
