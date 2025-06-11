@@ -40,12 +40,21 @@ const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
     console.warn('No sort options provided. Returning original data.');
     return data;
   }
-  return data?.sort((a, b) => {
+
+  return [...data].sort((a, b) => {
     for (const { key, order } of sortOptions) {
-      const compare = a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
-      if (compare !== 0) {
-        return order === 'asc' ? compare : -compare;
-      }
+      const aValue = a[key];
+      const bValue = b[key];
+
+      const aIsNullish = aValue === null || aValue === undefined;
+      const bIsNullish = bValue === null || bValue === undefined;
+
+      if (aIsNullish && bIsNullish) return 0;
+      if (aIsNullish) return 1; // null/undefined to the end
+      if (bIsNullish) return -1;
+
+      if (aValue < bValue) return order === 'asc' ? -1 : 1;
+      if (aValue > bValue) return order === 'asc' ? 1 : -1;
     }
     return 0;
   });

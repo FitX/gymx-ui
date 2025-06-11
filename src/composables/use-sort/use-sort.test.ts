@@ -4,7 +4,7 @@ import { useSort, type SortOption } from './index';
 
 interface Item {
   id: number;
-  name?: string;
+  name?: string | null;
 }
 
 describe('useSort', () => {
@@ -41,6 +41,28 @@ describe('useSort', () => {
       { id: 3, name: 'C' },
       { id: 2, name: 'B' },
       { id: 1, name: 'A' },
+    ]);
+  });
+
+  it('should sort data in descending order including IsNullish undefined / null', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'A' },
+      { id: 2, name: null },
+      { id: 3, name: 'C' },
+      { id: 4, name: undefined },
+      { id: 5, name: 'B' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions });
+
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'A' },
+      { id: 5, name: 'B' },
+      { id: 3, name: 'C' },
+      { id: 2, name: null },
+      { id: 4, name: undefined },
     ]);
   });
 
