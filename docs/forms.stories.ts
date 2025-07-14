@@ -2,6 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as FormExample } from './demo/forms-example.vue';
 import { default as FormExampleCode } from './demo/forms-example.vue?raw';
+import { default as FormExampleTextField } from './demo/forms-example-text-fields.vue';
 import { default as FormExampleTextFieldsCode } from './demo/forms-example-text-fields.vue?raw';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -41,6 +42,7 @@ export const TextFields: Story = {
     // text: 'This is an error message',
   },
   parameters: {
+    component: FormExampleTextField,
     docs: {
       source: {
         type: 'code',
@@ -48,5 +50,14 @@ export const TextFields: Story = {
       },
     },
   },
+  render() {
+    return {
+      components: {
+        FormExampleTextField,
+      },
+      template: `
+      <form-example-text-field />`,
+    };
+  }
 };
 
