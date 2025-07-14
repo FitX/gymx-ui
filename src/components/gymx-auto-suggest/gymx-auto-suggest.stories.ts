@@ -43,6 +43,29 @@ export const Default: Story = {
   },
 };
 
+export const OverlayMode: Story = {
+  parameters: {
+    docs: {
+      story: {
+        height: '400px',
+      },
+    },
+  },
+  args: {
+    label: 'Demo',
+    name: 'demo-with-overlay',
+    id: 'demo-with-overlay',
+    placeholder: 'Demo...',
+    options: Array.from({ length: 10 }, (_, i) => ({
+      text: `Text ${i + 1}`,
+      value: `Value ${i + 1}`,
+    })),
+    isOverlay: true,
+    modelValue: undefined,
+    // text: 'This is an error message',
+  },
+};
+
 export const HasError: Story = {
   args: {
     label: 'Demo',

@@ -19,6 +19,10 @@ export interface GymxAutoSuggestProps <T extends Option>{
   noResultsText?: string;
   filterFunction?: (options?: T[], text?: string) => T[];
   inputAttributes?: InputHTMLAttributes;
+  /*
+  Results List as Overlay
+   */
+  isOverlay?: boolean
 }
 
 export interface GymxAutoSuggestEmits {}

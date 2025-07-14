@@ -10,4 +10,5 @@ export interface GymxTextFieldSlots extends GymxInputSlots {
   'input': () => any;
   'input-hint': () => any;
   'input-error-message': () => any;
+  'additional-input': () => any;
 }

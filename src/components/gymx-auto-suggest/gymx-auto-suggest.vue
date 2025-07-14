@@ -178,7 +178,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="auto-suggest" ref="wrapperElement" :data-expanded="isListOpen">
+  <div class="auto-suggest" :class="{ 'auto-suggest--is-overlay' : props.isOverlay }" ref="wrapperElement" :data-expanded="isListOpen">
     <gymx-text-field :ref="(el) => (inputElement = (el as any)?.inputRef)" :label="props.label" v-model="text"
       :id="props.id" :name="props.name" :error-message="props.errorMessage" :inputAttributes="{
         type: 'text',
@@ -208,22 +208,23 @@ defineExpose({
       <template #input-end>
         <slot name="input-end" :isListOpen="isListOpen" :value="text" :filteredOptionLength="filteredList.length" />
       </template>
+      <template #additional-input>
+        <ul ref="listElement" role="listbox" :aria-label="props.label" :hidden="!isListOpen" @click="handleOptionClick"
+            @keydown="handleListKeyDown" class="auto-suggest__list">
+          <li v-for="(option, index) in filteredList" :key="index" class="auto-suggest__option"
+              :class="{ 'auto-suggest__option--disabled': option.disabled }" role="option"
+              :tabindex="option.disabled === true ? undefined : '-1'" :data-text="option.text" :data-value="option.value"
+              :aria-selected="selectedOption?.value === option.value" :aria-disabled="option.disabled">
+            <slot name="option" :option="option">{{ option.text }}</slot>
+          </li>
+          <li v-if="filteredList.length === 0" class="auto-suggest__option auto-suggest__no-results">
+            <slot name="no-results" :isListOpen="isListOpen" :filteredOptionLength="filteredList.length">
+              {{ props.noResultsText }}
+            </slot>
+          </li>
+        </ul>
+      </template>
     </gymx-text-field>
-
-    <ul ref="listElement" role="listbox" :aria-label="props.label" :hidden="!isListOpen" @click="handleOptionClick"
-      @keydown="handleListKeyDown" class="auto-suggest__list">
-      <li v-for="(option, index) in filteredList" :key="index" class="auto-suggest__option"
-        :class="{ 'auto-suggest__option--disabled': option.disabled }" role="option"
-        :tabindex="option.disabled === true ? undefined : '-1'" :data-text="option.text" :data-value="option.value"
-        :aria-selected="selectedOption?.value === option.value" :aria-disabled="option.disabled">
-        <slot name="option" :option="option">{{ option.text }}</slot>
-      </li>
-      <li v-if="filteredList.length === 0" class="auto-suggest__option auto-suggest__no-results">
-        <slot name="no-results" :isListOpen="isListOpen" :filteredOptionLength="filteredList.length">
-          {{ props.noResultsText }}
-        </slot>
-      </li>
-    </ul>
   </div>
 </template>
 <style lang="scss">
@@ -265,7 +266,7 @@ defineExpose({
   }
 
   &[data-expanded='true'] {
-    :deep(.text-field__additional) {
+    &:not(#{$self}--is-overlay) :deep(.text-field__additional) {
       position: absolute;
       opacity: 0;
       pointer-events: none;
@@ -281,6 +282,15 @@ defineExpose({
     inline-size: var(--gymx-auto-suggest-list-inline-size);
     background: var(--gymx-auto-suggest-list-color-background);
     border: var(--gymx-auto-suggest-list-border);
+
+    #{$self}--is-overlay & {
+      overflow-y: auto;
+      max-block-size: var(--gymx-auto-suggest-list-max-block-size, 20rem);
+      position: absolute;
+      top: 100%;
+      z-index: 10; // maybe
+      // margin-top: calc(-1 * var(--gymx-text-field-gap, var(--gymx-size-00)));
+    }
   }
 
   &__option {
