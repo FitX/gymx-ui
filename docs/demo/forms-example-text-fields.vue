@@ -92,12 +92,11 @@ form { width: min(60ch, 90%); }
   /* display: grid;
   grid-template-columns: repeat(2, 1fr); */
   display: flex;
+  gap: 1rem;
 
-  > * {
+  & > * {
     flex: 1;
   }
-
-  gap: 1rem;
 }
 
 .visually-hidden {
