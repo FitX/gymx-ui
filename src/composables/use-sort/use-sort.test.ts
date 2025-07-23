@@ -162,6 +162,43 @@ describe('useSort', () => {
 
     const { sorted } = useSort({ initialData: data, sortOptions });
 
+    expect(sorted.value).toEqual(undefined);
+
+    data.value = [
+      { id: 1, name: 'A' },
+      { id: 3, name: 'C' },
+      { id: 2, name: 'B' },
+    ]
+
+    expect(sorted.value).toEqual([
+      { id: 3, name: 'C' },
+      { id: 2, name: 'B' },
+      { id: 1, name: 'A' },
+    ]);
+  });
+
+  it('should return original data if null/undefined', () => {
+    const data = ref<Item[] | null>();
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'id', order: 'desc' }]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions });
+    expect(sorted.value).toEqual(undefined);
+
+    data.value = null;
+    expect(sorted.value).toEqual(null);
+
+    const withoutReactiveUndefined = undefined;
+    const { sorted: sortedWithoutReactiveUndefined } = useSort({
+      initialData: withoutReactiveUndefined, sortOptions });
+
+    expect(sortedWithoutReactiveUndefined.value).toEqual(withoutReactiveUndefined);
+
+    const withoutReactiveNull = null;
+    const { sorted: sortedWithoutReactiveNull } = useSort({
+      initialData: withoutReactiveNull, sortOptions });
+    expect(sortedWithoutReactiveNull.value).toEqual(withoutReactiveNull);
+
     data.value = [
       { id: 1, name: 'A' },
       { id: 3, name: 'C' },

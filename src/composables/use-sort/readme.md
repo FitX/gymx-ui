@@ -78,6 +78,7 @@ In this case, the custom sort function will be used and `sortOptions` will be ig
 #### Returns:
 
 - **`sorted`**: A sorted list of the data based on the `sortOptions` or `customSort` function.
+  if `toValue(initialData)` is `null` or `undefined`, it returns initialData itself.
 
 ### Warnings and Errors
 

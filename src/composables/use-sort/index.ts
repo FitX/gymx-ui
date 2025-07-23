@@ -11,7 +11,7 @@ type MaybeFunction<T> = ((data: T[]) => T[]) | undefined;
 type MaybeFunctionRef<T> = MaybeRefOrGetter<MaybeFunction<T>>;
 
 export type UseSortOptions<T> = {
-  initialData?: MaybeRefOrGetter<T[]>;
+  initialData?: MaybeRefOrGetter<T[] | null | undefined>;
   customSort?: MaybeFunction<T> | MaybeFunctionRef<T>;
   sortOptions?: MaybeRefOrGetter<SortOption<T>[]>;
 }
@@ -42,18 +42,20 @@ const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
 };
 
 export const useSort = <T>({
-  initialData = [],
+  initialData,
   sortOptions = [],
   customSort,
 }: UseSortOptions<T>) => {
   const sorted = computed(() => {
+    const _data = toValue(initialData);
+    if (!_data) return _data;
     if (typeof customSort === 'function') {
-      customSort(toValue(initialData));
+      customSort(_data);
     }
     if (isRef(customSort) && typeof customSort.value === 'function') {
-      customSort.value(toValue(initialData));
+      customSort.value(_data);
     }
-    return defaultSort(toValue(initialData), toValue(sortOptions));
+    return defaultSort(_data, toValue(sortOptions));
   });
 
   return {
