@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxTabs } from './index';
-import { builtinEnvironments } from 'vitest/environments';
 import { getResultElements } from './utils';
 
 describe('TabList.vue', () => {
@@ -33,40 +32,6 @@ describe('TabList.vue', () => {
     expect(document.activeElement).toBe(activeTab.element);
     expect(document.activeElement.textContent).toBe('Title 2');
   });
-
-  it.skip('should move focus to the next tabpanel when Tab is pressed', async () => {
-    expect(typeof window).not.toBe('undefined')
-    const wrapper = mount(GymxTabs, { props: tabsConfig, attachTo: 'body' });
-    const activeTab = wrapper.find('[aria-selected="true"]');
-
-    activeTab.element.focus();
-    await wrapper.trigger('keydown', { key: 'Tab' });
-    const tabPanel = wrapper.find('[role="tabpanel"]');
-    // tabPanel.element.focus();
-    // expect(document.activeElement).toBe(tabPanel.element);
-
-    console.log(builtinEnvironments)
-    console.log('panel', tabPanel.element.textContent);
-    console.log('document.activeElement', document.activeElement.textContent);
-
-    // expect(document.activeElement.textContent).toBe('Content 2');
-  });
-
-  /* native tab key doesnt work
-  it.skip('should move focus to the tabpanel when Tab is pressed', async () => {
-    const wrapper = mount(GymxTabs, { props: tabsConfig });
-    const activeTab = wrapper.find('[aria-selected="true"]');
-    const tabPanel = wrapper.find('[role="tabpanel"]');
-
-    activeTab.element.focus();
-    await wrapper.vm.$nextTick();
-    // expect(document.activeElement).toBe(activeTab.element);
-
-    await wrapper.trigger('keydown', { key: 'Tab' });
-    await wrapper.vm.$nextTick();
-
-    // expect(document.activeElement).toBe(tabPanel.element);
-  });*/
 
   it('should move focus to the next tab click tab', async () => {
     const wrapper = mount(GymxTabs, { props: tabsConfig, attachTo: 'body' });
