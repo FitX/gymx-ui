@@ -26,6 +26,7 @@
     "copy-fitx-theme-to-sb": "cp ./dist/styles/themes/fitx.css ./storybook-static/example-themes/fitx.css",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
+    "test": "vitest run --coverage",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
