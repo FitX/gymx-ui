@@ -84,8 +84,11 @@ export const LoadingStart: Story = {
 export const LoadingStartCustomIcon: Story = {
   args: {
     default: 'Hello Loading',
-    'loading-start': () => h('span', { class: 'demo-icon'}, [
-      h('style', `
+    'loading-start': () =>
+      h('span', { class: 'demo-icon' }, [
+        h(
+          'style',
+          `
       .demo-icon {
       display: inline-flex;
       place-content: center;
@@ -103,9 +106,10 @@ export const LoadingStartCustomIcon: Story = {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      `),
-      h(IconDonutSmall, { class: 'foo' })
-    ]),
+      `,
+        ),
+        h(IconDonutSmall, { class: 'foo' }),
+      ]),
     'icon-start': '🐨',
     isLoading: true,
   },

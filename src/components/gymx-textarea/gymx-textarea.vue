@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import { GymxErrorMessage, GymxLabel } from '@/components';
 import type { GymxTextareaProps, GymxTextareaSlots } from '@/components/gymx-textarea/types';
@@ -9,7 +8,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-defineSlots<GymxTextareaSlots>()
+defineSlots<GymxTextareaSlots>();
 
 const DEFAULT_ATTRIBUTES = {
   rows: 4,
@@ -27,7 +26,7 @@ const disabled = computed(
   () => props.state === 'disabled' || Boolean(props.inputAttributes?.disabled),
 );
 
-const textareaAttributes = computed(() => ({...DEFAULT_ATTRIBUTES, ...props.inputAttributes}))
+const textareaAttributes = computed(() => ({ ...DEFAULT_ATTRIBUTES, ...props.inputAttributes }));
 
 const additionalClasses = computed(() => {
   const classes: string[] = [];
@@ -45,7 +44,6 @@ const listener = computed(() =>
     ?.filter((attr) => attr?.startsWith('on') && typeof attrs[attr] === 'function')
     ?.reduce((res, key) => (((res as any)[key] = attrs[key]), res), {}),
 );
-
 </script>
 <template>
   <div
@@ -62,8 +60,13 @@ const listener = computed(() =>
       :class="[
         getModifierClasses('text-area-input', props.autoGrow ? 'auto-grow' : ''),
         getModifierClasses('text-area-input', props.state),
-        getModifierClasses('text-area-input', disabled ? 'disabled' : undefined)]">
-      <textarea class="text-area-input__input" v-bind="textareaAttributes" v-model="modelValue" :id="props.id" />
+        getModifierClasses('text-area-input', disabled ? 'disabled' : undefined),
+      ]">
+      <textarea
+        class="text-area-input__input"
+        v-bind="textareaAttributes"
+        v-model="modelValue"
+        :id="props.id" />
     </div>
 
     <div class="text-area__additional">
@@ -76,7 +79,7 @@ const listener = computed(() =>
         <span
           v-if="props.hint"
           class="text-area__hint"
-        >{{ props.hint }}</span
+          >{{ props.hint }}</span
         >
       </slot>
     </div>
@@ -108,7 +111,10 @@ const listener = computed(() =>
 .text-area-input {
   $self: &;
 
-  --_gymx-text-area-input-padding-block: var(--gymx-text-area-input-padding-block, calc(var(--_input-font-size) / 2));
+  --_gymx-text-area-input-padding-block: var(
+    --gymx-text-area-input-padding-block,
+    calc(var(--_input-font-size) / 2)
+  );
   --_gymx-text-area-input-line-height: 1.2;
   min-block-size: var(--gymx-input-min-block-size, auto);
 

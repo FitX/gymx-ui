@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import type { GymxIconButtonProps, GymxIconButtonSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
@@ -28,20 +27,22 @@ defineSlots<GymxIconButtonSlots>();
         @slot loading - Optional Slot
       -->
       <slot name="loading">
-        <span class="loading-indicator" data-loading-indicator />
+        <span
+          class="loading-indicator"
+          data-loading-indicator />
       </slot>
     </template>
     <span class="icon-btn__content">
       <!--
     @slot default - Icon Slot
     -->
-    <slot name="default" />
+      <slot name="default" />
     </span>
   </component>
 </template>
 <style lang="scss" scoped>
-@use "@/assets/styles/component-utils/components.scss";
-@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
+@use '@/assets/styles/component-utils/components.scss';
+@use '@/assets/styles/component-utils/_buttons.scss' as buttons;
 
 .icon-btn {
   $self: &;
@@ -51,15 +52,30 @@ defineSlots<GymxIconButtonSlots>();
   @include components.define-component-variable('gymx-icon-btn', 'color-background', transparent);
   @include components.define-component-variable('gymx-icon-btn', 'color', inherit);
   @include components.define-component-variable('gymx-icon-btn', 'padding', var(--gymx-size-000));
-  @include components.define-component-variable('gymx-icon-btn', 'radius', var(--gymx-radius-round));
-  @include components.define-component-variable('gymx-icon-btn', 'transition', 'background-color 0.3s, box-shadow 0.3s');
+  @include components.define-component-variable(
+    'gymx-icon-btn',
+    'radius',
+    var(--gymx-radius-round)
+  );
+  @include components.define-component-variable(
+    'gymx-icon-btn',
+    'transition',
+    'background-color 0.3s, box-shadow 0.3s'
+  );
   @include components.define-component-variable('gymx-icon-btn', 'box-shadow', none);
 
-  @include components.define-component-variable('gymx-icon-btn', 'loading-indicator-size', var(--gymx-size-1));
+  @include components.define-component-variable(
+    'gymx-icon-btn',
+    'loading-indicator-size',
+    var(--gymx-size-1)
+  );
 
   --_button-internal-loading-indicator-animation-delay: 1.8s;
   --_button-loading-indicator-size: var(--_gymx-icon-btn-loading-indicator-size);
-  --_button-loading-indicator-animation: var(--button-loading-indicator-animation, loading var(--_button-internal-loading-indicator-animation-delay) linear infinite);
+  --_button-loading-indicator-animation: var(
+    --button-loading-indicator-animation,
+    loading var(--_button-internal-loading-indicator-animation-delay) linear infinite
+  );
   --_button-loading-indicator-color: var(--button-loading-indicator-color, currentColor);
 
   display: inline-flex;
@@ -83,9 +99,15 @@ defineSlots<GymxIconButtonSlots>();
     place-content: center;
   }
 
-  &:hover, &--hover,
-  &:focus-visible, &--focused {
-    @include components.override-state('gymx-icon-btn', 'color-background', var(--gymx-icon-btn-color-background-hover, var(--gymx-color-gray-3)));
+  &:hover,
+  &--hover,
+  &:focus-visible,
+  &--focused {
+    @include components.override-state(
+      'gymx-icon-btn',
+      'color-background',
+      var(--gymx-icon-btn-color-background-hover, var(--gymx-color-gray-3))
+    );
   }
 
   &--is-loading &__content {
@@ -104,7 +126,7 @@ defineSlots<GymxIconButtonSlots>();
 </style>
 
 <style lang="scss">
-@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
+@use '@/assets/styles/component-utils/_buttons.scss' as buttons;
 // reuse loading indicator animation
 @include buttons.loading-animation();
 </style>

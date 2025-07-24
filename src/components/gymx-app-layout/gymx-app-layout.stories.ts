@@ -98,6 +98,12 @@ export const WithFooter: Story = {
 
 export const ContentOnly: Story = {
   args: {
-    main: () => h({ name: 'DemoHTMLContent', components: { GymxAppContent }, setup: () => ({ DemoHTMLContent }), template: `<gymx-app-content><div v-html="DemoHTMLContent" /></gymx-app-content>`})
+    main: () =>
+      h({
+        name: 'DemoHTMLContent',
+        components: { GymxAppContent },
+        setup: () => ({ DemoHTMLContent }),
+        template: `<gymx-app-content><div v-html="DemoHTMLContent" /></gymx-app-content>`,
+      }),
   },
 };

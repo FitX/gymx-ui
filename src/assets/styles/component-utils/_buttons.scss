@@ -1,7 +1,7 @@
 /**
   * Reusable Loading Indicator Mixins
  */
-@mixin loading-indicator () {
+@mixin loading-indicator() {
   .loading-indicator {
     inline-size: var(--_button-loading-indicator-size);
     aspect-ratio: 1;
@@ -27,7 +27,7 @@
   }
 }
 
-@mixin loading-animation () {
+@mixin loading-animation() {
   @keyframes loading {
     0% {
       opacity: 0;

@@ -11,7 +11,11 @@ import IconVote5 from '@/assets/icons/vote-5.svg';
 import IconEye from '@/assets/icons/eye.svg';
 import IconEyeClosed from '@/assets/icons/eye-closed.svg';
 export {
-  FancyIcon, IconError, IconClose, IconCheckmark, IconDonutSmall,
+  FancyIcon,
+  IconError,
+  IconClose,
+  IconCheckmark,
+  IconDonutSmall,
   IconVote1,
   IconVote2,
   IconVote3,

@@ -102,7 +102,7 @@
     background-position-x: 100%;
     transition: 0.3s ease-in-out;
     transition-property: color, background-color, background-position, background-size, border-color,
-    box-shadow;
+      box-shadow;
     border: 3px solid var(--gymx-icon-btn-color-background);
   }
 
@@ -228,8 +228,7 @@
     opacity: var(--exact-toggle-switch-icon-opacity);
     scale: var(--switch-icon-inactive-scale, 1.8);
     transform-origin: center;
-    transition:
-      scale 300ms ease;
+    transition: scale 300ms ease;
   }
 
   .toggle-switch--off {
@@ -246,7 +245,7 @@
       }
 
       circle ~ * {
-        fill: white
+        fill: white;
       }
     }
     .satellite span:nth-child(even) {
@@ -259,8 +258,12 @@
 }
 
 @keyframes blubb {
-  0% { rotate: 0deg }
-  100% { rotate: 360deg }
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
 
 /* Banner */

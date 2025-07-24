@@ -63,7 +63,10 @@ defineExpose({
           <template
             v-if="props.type === 'password'"
             #input-show-password="{ toggleShowPassword }">
-            <slot name="input-show-password" v-bind="{ toggleShowPassword }"></slot></template>
+            <slot
+              name="input-show-password"
+              v-bind="{ toggleShowPassword }"></slot
+          ></template>
         </gymx-input>
       </slot>
       <slot name="additional-input" />

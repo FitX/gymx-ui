@@ -69,15 +69,22 @@ defineExpose({
       class="input__input" />
     <span class="input__end">
       <slot name="input-end"></slot>
-      <slot name="input-show-password" v-if="props.type === 'password'" v-bind="{ toggleShowPassword }">
+      <slot
+        name="input-show-password"
+        v-if="props.type === 'password'"
+        v-bind="{ toggleShowPassword }">
         <button
           type="button"
           class="toggle-show-password"
           :aria-pressed="showPassword"
           :aria-label="props.showPasswordText"
           @click="toggleShowPassword">
-          <icon-eye aria-hidden="true" v-if="!showPassword" />
-          <icon-eye-closed aria-hidden="true" v-else />
+          <icon-eye
+            aria-hidden="true"
+            v-if="!showPassword" />
+          <icon-eye-closed
+            aria-hidden="true"
+            v-else />
         </button>
       </slot>
     </span>
@@ -99,7 +106,10 @@ defineExpose({
 
 .toggle-show-password {
   --_input-color-show-password: var(--input-color-show-password, var(--gymx-color-gray-9));
-  --_input-color-show-password-hover: var(--input-color-show-password-hover, var(--gymx-color-gray-12));
+  --_input-color-show-password-hover: var(
+    --input-color-show-password-hover,
+    var(--gymx-color-gray-12)
+  );
   --icon-fill: var(--_input-color-show-password);
   background: none;
   border: 1px solid transparent;

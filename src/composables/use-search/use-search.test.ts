@@ -86,13 +86,13 @@ describe('useSearch', () => {
         predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
       },
     ]); */
-    const searchOptionsRef = computed<FilterOption<Item>[]>(() => ([
+    const searchOptionsRef = computed<FilterOption<Item>[]>(() => [
       {
         key: 'job',
         value: '',
         predicate: (a, b) => a.toLowerCase().includes(b.toLowerCase()),
       },
-    ]));
+    ]);
     const initialDataRef = ref(data);
 
     const { filtered } = useSearch({
@@ -137,8 +137,6 @@ describe('useSearch', () => {
       { name: 'Jessica', job: 'product owner' },
       { name: 'Owner', job: '' },
     ]);
-
-
   });
 
   it('filtered should return updated data, initialData as computed', () => {
@@ -200,7 +198,7 @@ describe('useSearch', () => {
     const initialDataRef = ref<Item[] | undefined | null>();
     const { filtered } = useSearch({
       initialData: initialDataRef,
-      searchOptions: []
+      searchOptions: [],
     });
     expect(filtered.value).toEqual(undefined);
 

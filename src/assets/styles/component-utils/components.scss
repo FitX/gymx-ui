@@ -28,13 +28,11 @@
 /// //    )
 /// // );
 @mixin define-component-variable($component, $name, $fallback) {
-  --_#{$component}-#{$name}: var(--#{$component}-state-#{$name},
-    var(--#{$component}-modifier-#{$name},
-      var(--#{$component}-#{$name}, #{$fallback})
-    )
+  --_#{$component}-#{$name}: var(
+    --#{$component}-state-#{$name},
+    var(--#{$component}-modifier-#{$name}, var(--#{$component}-#{$name}, #{$fallback}))
   );
 }
-
 
 /// Override component state or modifier variables.
 ///
@@ -55,12 +53,12 @@
 /// // --toast-state-color-background: var(--toast-color-background-success);
 /// // --toast-state-color:red;
 ///
-@mixin override-state($component, $name, $newValue, $type: "state") {
+@mixin override-state($component, $name, $newValue, $type: 'state') {
   @if not $component or not $name or not $newValue {
-    @error "\$component, \$name, \$newValue are required."
+    @error "\$component, \$name, \$newValue are required.";
   }
-  @if $type != "state" and $type != "modifier" {
-    @error "the \$type param must be 'state' or 'modifer'"
+  @if $type != 'state' and $type != 'modifier' {
+    @error "the \$type param must be 'state' or 'modifer'";
   }
   --#{$component}-#{$type}-#{$name}: #{$newValue};
 }

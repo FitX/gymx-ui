@@ -39,10 +39,12 @@ defineSlots<GymxButtonSlots>();
           <span class="loading-indicator" />
         </slot>
       </template>
-        <!--
+      <!--
         @slot icon-start - Optional Slot
         -->
-      <slot name="icon-start" v-else />
+      <slot
+        name="icon-start"
+        v-else />
     </span>
     <span class="btn__content">
       <!--
@@ -54,16 +56,20 @@ defineSlots<GymxButtonSlots>();
       <!--
           @slot loading-end - Optional Slot
         -->
-        <slot name="loading-end" v-if="props.isLoading" />
+      <slot
+        name="loading-end"
+        v-if="props.isLoading" />
       <!--
      @slot icon-end - Optional Slot
      -->
-      <slot name="icon-end" v-else />
+      <slot
+        name="icon-end"
+        v-else />
     </span>
   </component>
 </template>
 <style lang="scss" scoped>
-@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
+@use '@/assets/styles/component-utils/_buttons.scss' as buttons;
 .btn {
   $self: &;
 
@@ -118,7 +124,10 @@ defineSlots<GymxButtonSlots>();
 
   --_button-internal-loading-indicator-animation-delay: 1.8s;
   --_button-loading-indicator-size: var(--button-loading-indicator-size, 1.2rem);
-  --_button-loading-indicator-animation: var(--button-loading-indicator-animation, loading var(--_button-internal-loading-indicator-animation-delay) linear infinite);
+  --_button-loading-indicator-animation: var(
+    --button-loading-indicator-animation,
+    loading var(--_button-internal-loading-indicator-animation-delay) linear infinite
+  );
   --_button-loading-indicator-color: var(--button-loading-indicator-color, currentColor);
 
   font-size: var(--_button-font-size);
@@ -189,7 +198,7 @@ defineSlots<GymxButtonSlots>();
 </style>
 
 <style lang="scss">
-@use "@/assets/styles/component-utils/_buttons.scss" as buttons;
+@use '@/assets/styles/component-utils/_buttons.scss' as buttons;
 // reuse loading indicator animation
 @include buttons.loading-animation();
 </style>

@@ -20,9 +20,15 @@ const props = defineProps<GymxAppHeaderProps>();
 .app-header {
   --_gymx-app-header-gap: var(--gymx-app-header-gap, 0.2rem 1rem);
   --_gymx-app-header-actions-gap: var(--gymx-app-header-actions-gap, 0.2rem 1rem);
-  --_gymx-app-header-title-font-size: var(--gymx-app-header-title-font-size, var(--gymx-font-size-fluid-3));
-  --_gymx-app-header-title-font-weight: var(--gymx-app-header-title-font-weight, var(--gymx-font-weight-3));
-  --_gymx-app-header-logo-width : var(--gymx-app-header-logo-width, var(--gymx-font-size-fluid-3));
+  --_gymx-app-header-title-font-size: var(
+    --gymx-app-header-title-font-size,
+    var(--gymx-font-size-fluid-3)
+  );
+  --_gymx-app-header-title-font-weight: var(
+    --gymx-app-header-title-font-weight,
+    var(--gymx-font-weight-3)
+  );
+  --_gymx-app-header-logo-width: var(--gymx-app-header-logo-width, var(--gymx-font-size-fluid-3));
 
   display: flex;
   gap: var(--_gymx-app-header-gap);
@@ -63,10 +69,10 @@ const props = defineProps<GymxAppHeaderProps>();
 .app-header2 {
   --_gymx-app-header-gap: 1rem;
   display: grid;
-  grid-template-columns: var(--_gymx-app-header-logo-size, auto) var(--_gymx-app-header-title-size, auto) var(
-      --_gymx-app-header-actions-size,
-      1fr
-    );
+  grid-template-columns: var(--_gymx-app-header-logo-size, auto) var(
+      --_gymx-app-header-title-size,
+      auto
+    ) var(--_gymx-app-header-actions-size, 1fr);
   grid-template-rows: 1fr;
   grid-template-areas: 'logo title actions';
   gap: var(--_gymx-app-header-gap);

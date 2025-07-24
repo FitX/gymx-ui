@@ -154,7 +154,6 @@ describe('useSort', () => {
     expect(warnSpy).toHaveBeenCalledWith('No sort options provided. Returning original data.');
   });
 
-
   it('should sort data in descending order, but initial Data undefined', () => {
     const data = ref<Item[]>();
 
@@ -168,7 +167,7 @@ describe('useSort', () => {
       { id: 1, name: 'A' },
       { id: 3, name: 'C' },
       { id: 2, name: 'B' },
-    ]
+    ];
 
     expect(sorted.value).toEqual([
       { id: 3, name: 'C' },
@@ -190,20 +189,24 @@ describe('useSort', () => {
 
     const withoutReactiveUndefined = undefined;
     const { sorted: sortedWithoutReactiveUndefined } = useSort({
-      initialData: withoutReactiveUndefined, sortOptions });
+      initialData: withoutReactiveUndefined,
+      sortOptions,
+    });
 
     expect(sortedWithoutReactiveUndefined.value).toEqual(withoutReactiveUndefined);
 
     const withoutReactiveNull = null;
     const { sorted: sortedWithoutReactiveNull } = useSort({
-      initialData: withoutReactiveNull, sortOptions });
+      initialData: withoutReactiveNull,
+      sortOptions,
+    });
     expect(sortedWithoutReactiveNull.value).toEqual(withoutReactiveNull);
 
     data.value = [
       { id: 1, name: 'A' },
       { id: 3, name: 'C' },
       { id: 2, name: 'B' },
-    ]
+    ];
 
     expect(sorted.value).toEqual([
       { id: 3, name: 'C' },

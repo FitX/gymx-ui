@@ -109,7 +109,9 @@ export const DateDemos: Story = {
       const dateTime = ref();
       const dateOnly = ref();
       const timeOnly = ref();
-      const dateTimeUi = computed(() => toValue(dateTime) ? new Date(toValue(dateTime))?.toISOString() : null);
+      const dateTimeUi = computed(() =>
+        toValue(dateTime) ? new Date(toValue(dateTime))?.toISOString() : null,
+      );
       return {
         args,
         timeOnly,
@@ -121,14 +123,15 @@ export const DateDemos: Story = {
     components: {
       GymxInput,
     },
-    template: '<div style="display: flex; flex-direction: column; gap: 1rem;">' +
+    template:
+      '<div style="display: flex; flex-direction: column; gap: 1rem;">' +
       '<gymx-input v-bind="args" v-model="dateTime" type="datetime-local" />' +
       '<gymx-input v-bind="args" v-model="dateOnly" type="date" />' +
       '<gymx-input v-bind="args" v-model="timeOnly" type="time" /></div>' +
       '<pre>date-time: {{ dateTime }} date-time to iso: {{ dateTimeUi}}</pre>' +
       '<pre>date only: {{ dateOnly }}</pre>' +
-      '<pre>time only: {{ timeOnly }}</pre>'
-  })
+      '<pre>time only: {{ timeOnly }}</pre>',
+  }),
 };
 
 export const PasswordInput: Story = {
@@ -177,7 +180,7 @@ providing enhanced usability and accessibility for password fields.
   - aria-pressed reflecting the current visibility state
 - Icon changes visually indicate the password's visibility status (IconEye / IconEyeClosed).
         `,
-      }
+      },
     },
   },
 };
@@ -205,7 +208,7 @@ export const PasswordInputWithSlot: Story = {
           </button>
         </template>
       </gymx-input>
-    </form>`
+    </form>`,
   }),
   parameters: {
     docs: {
@@ -213,7 +216,7 @@ export const PasswordInputWithSlot: Story = {
         story: `Alternatively, you can use the **input-show-password slot** to inject a custom toggle button.`,
       },
     },
-  }
+  },
 };
 
 export const PasswordInputSimple: Story = {
@@ -231,5 +234,5 @@ export const PasswordInputSimple: Story = {
 By using the **input-attributes** prop, you can set the input's type to 'password' and omit the toggle button.`,
       },
     },
-  }
+  },
 };

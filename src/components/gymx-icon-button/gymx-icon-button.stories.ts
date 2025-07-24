@@ -29,7 +29,7 @@ export const Default: Story = {
   args: {
     // default: '🚀',
     default: () => h(IconCheckmark),
-    text: 'Demo Icon Button with Checkmark Icon'
+    text: 'Demo Icon Button with Checkmark Icon',
   },
 };
 
@@ -37,7 +37,7 @@ export const Hover: Story = {
   args: {
     default: '🚀',
     state: 'hover',
-    text: 'Demo Icon Button with Hover State'
+    text: 'Demo Icon Button with Hover State',
   },
 };
 
@@ -45,7 +45,7 @@ export const Focused: Story = {
   args: {
     default: '🚀',
     state: 'focused',
-    text: 'Demo Icon Button with Focused State'
+    text: 'Demo Icon Button with Focused State',
   },
 };
 
@@ -53,7 +53,7 @@ export const Disabled: Story = {
   args: {
     default: '🚀',
     state: 'disabled',
-    text: 'Demo disabled Icon Button'
+    text: 'Demo disabled Icon Button',
   },
 };
 
@@ -61,7 +61,7 @@ export const Loading: Story = {
   args: {
     default: '🚀',
     isLoading: true,
-    text: 'Demo Button with Loading State'
+    text: 'Demo Button with Loading State',
   },
 };
 
@@ -69,8 +69,11 @@ export const LoadingCustomIcon: Story = {
   args: {
     default: '🐨',
     text: 'Demo Icon Button with Custom Icon',
-    'loading': () => h('span', { class: 'demo-icon'}, [
-      h('style', `
+    loading: () =>
+      h('span', { class: 'demo-icon' }, [
+        h(
+          'style',
+          `
       .demo-icon {
       display: inline-flex;
       place-content: center;
@@ -88,9 +91,10 @@ export const LoadingCustomIcon: Story = {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      `),
-      h(IconDonutSmall, { class: 'foo' })
-    ]),
+      `,
+        ),
+        h(IconDonutSmall, { class: 'foo' }),
+      ]),
     isLoading: true,
   },
 };

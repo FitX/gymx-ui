@@ -11,7 +11,7 @@ export const defaultSearch = <T>(data: T[], filterOptions?: FilterOption<T>[]): 
   return data?.filter((item) =>
     _filterOptions?.every(({ key, value, predicate }) => predicate(item[key], value)),
   );
-}
+};
 
 export interface UseSearchOptionsShared<T> {
   initialData?: MaybeRefOrGetter<T[] | null | undefined>;
@@ -32,11 +32,7 @@ export type UseSearchOptions<T> =
   | UseSearchOptionsWithSearchOptions<T>
   | UseSearchOptionsWithCustomSearchFunction<T>;
 
-export const useSearch = <T>({
-   initialData,
-   searchOptions,
-   customSearch,
- }: UseSearchOptions<T>) => {
+export const useSearch = <T>({ initialData, searchOptions, customSearch }: UseSearchOptions<T>) => {
   const filtered = computed(() => {
     const resolvedCustomSearch = toValue(customSearch);
     const resolvedInitialData = toValue(initialData);

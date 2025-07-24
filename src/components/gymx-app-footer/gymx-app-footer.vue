@@ -15,10 +15,22 @@ defineSlots<GymxAppFooterSlots>();
 </template>
 <style lang="scss" scoped>
 .app-footer {
-  --_gymx-app-footer-gap: var(--_ymx-app-footer-gap, var(--gymx-size-fluid-1) var(--gymx-size-fluid-2));
-  --_gymx-app-footer-actions-gap: var(--gymx-app-footer-actions-gap, var(--gymx-size-fluid-0) var(--gymx-size-fluid-2));
-  --_gymx-app-footer-actions-font-size: var(--gymx-app-footer-actions-font-size, var(--gymx-font-size-fluid-0));
-  --_gymx-app-footer-content-font-size: var(--gymx-app-footer-content-font-size, var(--gymx-font-size-fluid-00));
+  --_gymx-app-footer-gap: var(
+    --_ymx-app-footer-gap,
+    var(--gymx-size-fluid-1) var(--gymx-size-fluid-2)
+  );
+  --_gymx-app-footer-actions-gap: var(
+    --gymx-app-footer-actions-gap,
+    var(--gymx-size-fluid-0) var(--gymx-size-fluid-2)
+  );
+  --_gymx-app-footer-actions-font-size: var(
+    --gymx-app-footer-actions-font-size,
+    var(--gymx-font-size-fluid-0)
+  );
+  --_gymx-app-footer-content-font-size: var(
+    --gymx-app-footer-content-font-size,
+    var(--gymx-font-size-fluid-00)
+  );
   --_gymx-app-footer-color: var(--gymx-app-footer-color, var(--gymx-color-gray-9));
   --_gymx-app-footer-color-background: var(--gymx-app-footer-color-background, transparent);
   display: flex;

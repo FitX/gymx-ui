@@ -22,16 +22,34 @@ defineSlots<{
 .app-layout {
   --_gymx-app-layout-inline-padding: var(--gymx-app-layout-inline-padding, var(--gymx-size-0));
   --_gymx-app-layout-block-padding: var(--gymx-app-layout-block-padding, var(--gymx-size-00));
-  --_gymx-app-layout-grid-template-areas: var(--gymx-app-layout-grid-template-areas, 'header' 'content' 'footer');
-  --_gymx-app-layout-grid-template-header-height: var(--gymx-app-layout-grid-template-header-height, min-content);
-  --_gymx-app-layout-grid-template-main-height: var(--gymx-app-layout-grid-template-main-height, 1fr);
-  --_gymx-app-layout-grid-template-footer-height: var(--gymx-app-layout-grid-template-footer-height, auto);
+  --_gymx-app-layout-grid-template-areas: var(
+    --gymx-app-layout-grid-template-areas,
+    'header' 'content' 'footer'
+  );
+  --_gymx-app-layout-grid-template-header-height: var(
+    --gymx-app-layout-grid-template-header-height,
+    min-content
+  );
+  --_gymx-app-layout-grid-template-main-height: var(
+    --gymx-app-layout-grid-template-main-height,
+    1fr
+  );
+  --_gymx-app-layout-grid-template-footer-height: var(
+    --gymx-app-layout-grid-template-footer-height,
+    auto
+  );
 
   --_gymx-app-layout-header-color: var(--gymx-app-layout-header-color, inherit);
-  --_gymx-app-layout-header-color-background: var(--gymx-app-layout-header-color-background, transparent);
+  --_gymx-app-layout-header-color-background: var(
+    --gymx-app-layout-header-color-background,
+    transparent
+  );
 
   --_gymx-app-layout-footer-color: var(--gymx-app-layout-footer-color, inherit);
-  --_gymx-app-layout-footer-color-background: var(--gymx-app-layout-footer-color-background, transparent);
+  --_gymx-app-layout-footer-color-background: var(
+    --gymx-app-layout-footer-color-background,
+    transparent
+  );
 
   display: grid;
 

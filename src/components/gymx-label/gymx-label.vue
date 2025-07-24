@@ -4,11 +4,12 @@ import type { GymxLabelProps } from '@/components';
 
 const props = withDefaults(defineProps<GymxLabelProps>(), {
   for: () => crypto.randomUUID(),
-  tag: 'label'
+  tag: 'label',
 });
 </script>
 <template>
-  <component :is="props.tag"
+  <component
+    :is="props.tag"
     class="label"
     :class="[
       getModifierClasses('label', props.state),

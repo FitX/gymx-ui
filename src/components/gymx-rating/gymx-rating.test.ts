@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxRating } from './index';
@@ -32,7 +31,9 @@ describe('GymxRating', () => {
       },
     });
 
-    expect(wrapper.find('.rating').attributes('style')).toContain('--gymx-rating-direction: column');
+    expect(wrapper.find('.rating').attributes('style')).toContain(
+      '--gymx-rating-direction: column',
+    );
   });
 
   it('saves the vote correctly when a button is clicked', async () => {

@@ -90,7 +90,6 @@ export const WithErrorAndHint: Story = {
   },
 };
 
-
 export const PasswordInput: Story = {
   args: {
     label: 'Password jojo',
@@ -124,8 +123,8 @@ export const PasswordInputWithOptions: Story = {
           </button>
         </template>
       </gymx-text-field>
-    </form>`
-  })
+    </form>`,
+  }),
 };
 
 export const PasswordInputWithoutToggle: Story = {

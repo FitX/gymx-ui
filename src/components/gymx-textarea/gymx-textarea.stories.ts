@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxTextarea } from './gymx-textarea.vue';
 import { computed, ref, toValue } from 'vue';
@@ -11,7 +10,8 @@ const meta = {
   tags: ['autodocs'],
 } satisfies Meta<typeof GymxTextarea>;
 
-const longContent = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+const longContent =
+  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -111,17 +111,18 @@ export const ExampleCharacterCount: Story = {
     setup() {
       const modelValue = ref(longContent);
       const count = computed(() => toValue(modelValue)?.length);
-      const errorMessage = computed(() => toValue(count) > args.inputAttributes?.maxLength ? 'to long' : undefined)
+      const errorMessage = computed(() =>
+        toValue(count) > args.inputAttributes?.maxLength ? 'to long' : undefined,
+      );
       return {
         modelValue,
         errorMessage,
         count,
         args,
-        hint: computed(() => `${toValue(count)}/${toValue(args.inputAttributes?.maxLength)}`)
-      }
+        hint: computed(() => `${toValue(count)}/${toValue(args.inputAttributes?.maxLength)}`),
+      };
     },
     template: `
-      <gymx-textarea v-bind="args" v-model="modelValue" :error-message="errorMessage" :hint="hint" />`
-  })
+      <gymx-textarea v-bind="args" v-model="modelValue" :error-message="errorMessage" :hint="hint" />`,
+  }),
 };
-

@@ -1,31 +1,12 @@
-
 <script lang="ts" setup>
-import {
-  IconVote1,
-  IconVote2,
-  IconVote3,
-  IconVote4,
-  IconVote5
-} from '../icons';
+import { IconVote1, IconVote2, IconVote3, IconVote4, IconVote5 } from '../icons';
 import AnimationSatellite from './animation-satellite.vue';
 import type { GymxRatingProps } from '@/components/gymx-rating/types.ts';
 import { computed } from 'vue';
 
-const titles = [
-  'nicht so gut',
-  'naja',
-  'ok',
-  'gut',
-  'sehr gut',
-] as const
+const titles = ['nicht so gut', 'naja', 'ok', 'gut', 'sehr gut'] as const;
 
-const icons = [
-  IconVote1,
-  IconVote2,
-  IconVote3,
-  IconVote4,
-  IconVote5,
-];
+const icons = [IconVote1, IconVote2, IconVote3, IconVote4, IconVote5];
 
 const props = withDefaults(defineProps<GymxRatingProps>(), {
   multipleVotes: false,
@@ -35,7 +16,11 @@ const props = withDefaults(defineProps<GymxRatingProps>(), {
 
 const vote = defineModel<number>();
 const componentsByVoteCount = computed(() => {
-  const votes = Array.from(Array(5).keys()).map((index) => ({ vote: (index + 1), title: titles[index], component: icons[index]}));
+  const votes = Array.from(Array(5).keys()).map((index) => ({
+    vote: index + 1,
+    title: titles[index],
+    component: icons[index],
+  }));
   if (props.numberOfVotes < 5) {
     return votes.filter((_, index) => index % 2 === 0);
   }
@@ -43,9 +28,9 @@ const componentsByVoteCount = computed(() => {
 });
 
 const saveVote = (_vote: number) => {
-  if (!props.multipleVotes && !!vote.value) return
+  if (!props.multipleVotes && !!vote.value) return;
   vote.value = _vote;
-}
+};
 </script>
 <template>
   <div
@@ -54,15 +39,15 @@ const saveVote = (_vote: number) => {
     :aria-label="`${numberOfVotes} möglichkeiten zur Bewertungs`"
     :style="{
       '--gymx-rating-votes': numberOfVotes,
-      '--gymx-rating-direction' : direction,
+      '--gymx-rating-direction': direction,
     }">
     <button
       v-for="icon in componentsByVoteCount"
       :key="icon.vote"
       :class="[
-        { 'animation' : vote === icon.vote },
-        { 'vote--inactive' : vote && vote !== icon.vote },
-        `vote--${icon.vote}`
+        { animation: vote === icon.vote },
+        { 'vote--inactive': vote && vote !== icon.vote },
+        `vote--${icon.vote}`,
       ]"
       :aria-disabled="!props.multipleVotes && !!vote"
       :aria-pressed="vote === icon.vote"
@@ -72,8 +57,7 @@ const saveVote = (_vote: number) => {
       @click="saveVote(icon.vote)">
       <component
         :is="icon.component"
-        class="rating__icon"
-      ></component>
+        class="rating__icon"></component>
       <animation-satellite
         data-test="animation-wrapper"
         v-if="vote === icon.vote"
@@ -91,7 +75,10 @@ const saveVote = (_vote: number) => {
   --icon-fill: var(--gymx-rating-icon-fill, var(--gymx-color-gray-12));
   --icon-size: var(--gymx-rating-icon-size, var(--gymx-size-3));
   --_gymx-rating-icon-fill-active: var(--gymx-rating-icon-fill-active, var(--gymx-color-primary));
-  --_gymx-rating-icon-fill-disabled: var(--gymx-rating-icon-fill-disabled, var(--gymx-color-gray-8));
+  --_gymx-rating-icon-fill-disabled: var(
+    --gymx-rating-icon-fill-disabled,
+    var(--gymx-color-gray-8)
+  );
 
   display: inline-flex;
   flex-wrap: wrap;
@@ -115,12 +102,12 @@ const saveVote = (_vote: number) => {
   place-items: center;
   outline: none;
   aspect-ratio: 1;
-  &:is(:focus-visible),  &:is(:hover):not([aria-disabled=true], .animation) {
+  &:is(:focus-visible),
+  &:is(:hover):not([aria-disabled='true'], .animation) {
     --icon-fill: var(--_gymx-rating-icon-fill-disabled);
   }
   &.animation {
-    animation:
-      icon-animation cubic-bezier(0.165, 0.840, 0.440, 1.000) 800ms;
+    animation: icon-animation cubic-bezier(0.165, 0.84, 0.44, 1) 800ms;
   }
   &.animation {
     --icon-fill: var(--_gymx-rating-icon-fill-active);

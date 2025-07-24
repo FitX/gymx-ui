@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-  import type { GymxBannerProps } from './types';
-  import { getModifierClasses } from '@/utils/css-modifier';
+import type { GymxBannerProps } from './types';
+import { getModifierClasses } from '@/utils/css-modifier';
 
-  const props = defineProps<GymxBannerProps>();
+const props = defineProps<GymxBannerProps>();
 </script>
 
 <template>
   <div
     class="banner"
-    :class="getModifierClasses('banner', props.type)"
-    >
+    :class="getModifierClasses('banner', props.type)">
     <div class="banner__content">
       <span
         v-if="$slots?.icon"
@@ -17,23 +16,22 @@
         <!--
           @slot Icon Slot
         -->
-        <slot name="icon">
-        </slot>
+        <slot name="icon"> </slot>
       </span>
       <span>
         <!--
         @slot Default Content Slot
       -->
-      <slot>
-        {{ props.content }}
-      </slot>
+        <slot>
+          {{ props.content }}
+        </slot>
       </span>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/styles/component-utils/components.scss";
+@use '@/assets/styles/component-utils/components.scss';
 
 .banner {
   $self: &;
@@ -90,22 +88,34 @@
   }
 
   &--warning {
-    --_gymx-banner-color-background: var(--gymx-banner-color-background-warning, var(--gymx-color-warning-5));
+    --_gymx-banner-color-background: var(
+      --gymx-banner-color-background-warning,
+      var(--gymx-color-warning-5)
+    );
     --_gymx-banner-color: var(--gymx-banner-color-warning, currentColor);
   }
 
   &--success {
-    --_gymx-banner-color-background: var(--gymx-banner-color-background-success, var(--gymx-color-success-5));
+    --_gymx-banner-color-background: var(
+      --gymx-banner-color-background-success,
+      var(--gymx-color-success-5)
+    );
     --_gymx-banner-color: var(--gymx-banner-color-success, currentColor);
   }
 
   &--info {
-    --_gymx-banner-color-background: var(--gymx-banner-color-background-info, var(--gymx-color-info-5));
+    --_gymx-banner-color-background: var(
+      --gymx-banner-color-background-info,
+      var(--gymx-color-info-5)
+    );
     --_gymx-banner-color: var(--gymx-banner-color-info, currentColor);
   }
 
   &--error {
-    --_gymx-banner-color-background: var(--gymx-banner-color-background-error, var(--gymx-color-error-5));
+    --_gymx-banner-color-background: var(
+      --gymx-banner-color-background-error,
+      var(--gymx-color-error-5)
+    );
     --_gymx-banner-color: var(--gymx-banner-color-error, currentColor);
 
     // alternative use for more contrast

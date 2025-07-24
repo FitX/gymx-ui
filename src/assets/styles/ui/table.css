@@ -1,6 +1,9 @@
 :where(.table) {
   --_gymx-table-cell-spacing-inline: var(--gymx-table-cell-spacing-inline, 1rem);
-  --_gymx-table-cell-spacing-block: var(--gymx-table-cell-spacing-block, calc(var(--gymx-table-cell-spacing-inline, 1rem) / 2));
+  --_gymx-table-cell-spacing-block: var(
+    --gymx-table-cell-spacing-block,
+    calc(var(--gymx-table-cell-spacing-inline, 1rem) / 2)
+  );
 
   --sort-icon-asc: var(--sort-icon-inactive, var(--gymx-color-gray-5));
   --sort-icon-desc: var(--sort-icon-inactive, var(--gymx-color-gray-5));

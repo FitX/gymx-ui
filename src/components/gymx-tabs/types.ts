@@ -1,7 +1,7 @@
 export interface GymxTab {
-  id?: number | string,
-  content?: string,
-  title: string,
+  id?: number | string;
+  content?: string;
+  title: string;
 }
 
 export interface GymxTabsProps {

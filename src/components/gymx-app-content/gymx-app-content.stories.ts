@@ -40,8 +40,9 @@ export const Centered: Story = {
 
 export const ContentExample: Story = {
   args: {
-    default: () => h('div', {
-      innerHTML: DemoHTMLContent,
-    })
+    default: () =>
+      h('div', {
+        innerHTML: DemoHTMLContent,
+      }),
   },
 };

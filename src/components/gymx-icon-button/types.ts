@@ -10,5 +10,5 @@ export interface GymxIconButtonProps {
 
 export interface GymxIconButtonSlots {
   default: () => any;
-  'loading': () => any;
+  loading: () => any;
 }

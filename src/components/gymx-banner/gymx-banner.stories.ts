@@ -69,4 +69,3 @@ export const End: Story = {
     style: '--gymx-banner-icon-fill: var(--gymx-color-error-12)',
   },
 };
-

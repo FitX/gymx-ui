@@ -11,7 +11,8 @@
   --gymx-toggle-switch-track-color-background-disabled-inactive: var(--gymx-color-gray-1);
   --gymx-toggle-switch-track-color-background-disabled-active: var(--gymx-color-gray-2);
 
-  --gymx-toggle-switch-track-animation: background-color var(--switch-toggle-animation-duration) ease 10ms;
+  --gymx-toggle-switch-track-animation: background-color var(--switch-toggle-animation-duration)
+    ease 10ms;
   --icon-fill: var(--gymx-color-success-10);
 
   --switch-icon-opacity: 1;

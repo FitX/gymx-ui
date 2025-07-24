@@ -4,7 +4,10 @@
    */
   // shared globals
   --shared-input-color: light-dark(var(--color-brand-anthracite-0), var(--color-brand-white-0));
-  --shared-input-color-border: light-dark(var(--color-brand-gray-stone), var(--color-brand-gray-graphite));
+  --shared-input-color-border: light-dark(
+    var(--color-brand-gray-stone),
+    var(--color-brand-gray-graphite)
+  );
   --shared-input-color-border-hover: light-dark(
     var(--color-brand-gray-graphite),
     var(--color-brand-gray-stone)
@@ -18,7 +21,6 @@
     var(--color-brand-anthracite-3)
   );
   --shared-input-radius: 8px;
-
 
   // inputs
   --input-color: var(--shared-input-color);

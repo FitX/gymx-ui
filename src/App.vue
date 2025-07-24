@@ -2,7 +2,7 @@
 import { type SortOption, useSort } from '@/composables/use-sort';
 import { computed, ref } from 'vue';
 
-type DemoData = { id: number, name: string}
+type DemoData = { id: number; name: string };
 const data = ref<DemoData[]>([
   { id: 3, name: 'C' },
   { id: 1, name: 'A' },
@@ -15,7 +15,9 @@ const sortOptions = ref<SortOption<DemoData>[]>([
 
 const customSortFunction = (data: DemoData[]) => data.reverse();
 
-const customSort = computed(() => sortOptions.value?.[0].key === 'id' ? undefined : customSortFunction );
+const customSort = computed(() =>
+  sortOptions.value?.[0].key === 'id' ? undefined : customSortFunction,
+);
 
 const { sorted } = useSort({ initialData: data, sortOptions, customSort });
 

@@ -6,7 +6,7 @@ export interface Option {
   disabled?: boolean;
 }
 
-export interface GymxAutoSuggestProps <T extends Option>{
+export interface GymxAutoSuggestProps<T extends Option> {
   disabled?: boolean;
   errorMessage?: string;
   id?: string;
@@ -22,7 +22,7 @@ export interface GymxAutoSuggestProps <T extends Option>{
   /*
   Results List as Overlay
    */
-  isOverlay?: boolean
+  isOverlay?: boolean;
 }
 
 export interface GymxAutoSuggestEmits {}

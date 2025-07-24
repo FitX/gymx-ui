@@ -10,7 +10,7 @@ export interface GymxTextareaProps extends GymxInputProps {
 }
 
 export interface GymxTextareaSlots extends GymxInputSlots {
-  'input': () => any;
+  input: () => any;
   'input-hint': () => any;
   'input-error-message': () => any;
 }

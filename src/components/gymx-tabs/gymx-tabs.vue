@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import {
   ref,
@@ -6,7 +5,9 @@ import {
   computed,
   useAttrs,
   defineEmits,
-  watch, toValue, useTemplateRef,
+  watch,
+  toValue,
+  useTemplateRef,
 } from 'vue';
 import type { GymxTabsProps } from './types.ts';
 import { getResultElements } from './utils';
@@ -42,7 +43,7 @@ const selectTabIndex = (index: number) => {
     newIndex = 0;
   }
   if (fallbackToEnd) {
-    newIndex = (toValue(tabs).length - 1);
+    newIndex = toValue(tabs).length - 1;
   }
   selectedTabIndex.value = newIndex;
   // const resultElements = [...toValue(tabsContainerEl).childNodes].filter((node) => node?.role === 'tab');
@@ -54,19 +55,25 @@ const selectTabIndex = (index: number) => {
   emit('selected', newIndex);
 };
 
-watch(() => props.selectedTab, (val, oldVal) => {
-  if (val && val !== oldVal) {
-    selectedTabIndex.value = val;
-  }
-}, {
-  immediate: true,
-});
+watch(
+  () => props.selectedTab,
+  (val, oldVal) => {
+    if (val && val !== oldVal) {
+      selectedTabIndex.value = val;
+    }
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <template>
   <div
     class="tabs"
-    :style="[ `--gymx-tabs-item-count: ${tabs.length}; --_gymx-tabs-current-index: ${selectedTabIndex}` ]">
+    :style="[
+      `--gymx-tabs-item-count: ${tabs.length}; --_gymx-tabs-current-index: ${selectedTabIndex}`,
+    ]">
     <div
       class="tabs__nav"
       ref="tabsEl"
@@ -80,11 +87,11 @@ watch(() => props.selectedTab, (val, oldVal) => {
         type="button"
         role="tab"
         class="tabs__trigger"
-        :class="{ 'tabs__trigger--is-active' : selectedTabIndex === index}"
+        :class="{ 'tabs__trigger--is-active': selectedTabIndex === index }"
         @keydown.home.prevent.stop="selectTabIndex(0)"
-        @keydown.end.prevent.stop="selectTabIndex((tabs.length - 1))"
-        @keydown.right.prevent.stop="selectTabIndex((index + 1))"
-        @keydown.left.prevent.stop="selectTabIndex((index - 1))"
+        @keydown.end.prevent.stop="selectTabIndex(tabs.length - 1)"
+        @keydown.right.prevent.stop="selectTabIndex(index + 1)"
+        @keydown.left.prevent.stop="selectTabIndex(index - 1)"
         @click="selectTabIndex(index)"
         :aria-selected="selectedTabIndex === index"
         :tabindex="selectedTabIndex === index ? undefined : -1"
@@ -92,7 +99,9 @@ watch(() => props.selectedTab, (val, oldVal) => {
         <!--
          @slot tab Slot
        -->
-        <slot name="tab" v-bind="{ tab, index }">
+        <slot
+          name="tab"
+          v-bind="{ tab, index }">
           <span>{{ tab.title }}</span>
         </slot>
       </button>
@@ -105,37 +114,49 @@ watch(() => props.selectedTab, (val, oldVal) => {
       :id="`${componentId}-content-${index}`"
       role="tabpanel"
       class="tabs__panel"
-      :class="{ 'tabs__panel--is-hidden' : selectedTabIndex !== index}"
+      :class="{ 'tabs__panel--is-hidden': selectedTabIndex !== index }"
       tabindex="0"
-      :aria-labelledby="tab.id.toString()"
-      >
+      :aria-labelledby="tab.id.toString()">
       <!--
        @slot tabpanel Slot
      -->
-      <slot name="tabpanel" v-bind="{ tab, index }">
+      <slot
+        name="tabpanel"
+        v-bind="{ tab, index }">
         {{ tab.content }}
       </slot>
     </div>
   </div>
 </template>
 
-
 <style lang="scss" scoped>
 .tabs {
   --_gymx-tabs-nav-color: var(--gymx-tabs-nav-color, var(--gymx-color-gray-12));
-  --_gymx-tabs-nav-color-background: var(--gymx-tabs-nav-color-background, var(--gymx-color-gray-2));
+  --_gymx-tabs-nav-color-background: var(
+    --gymx-tabs-nav-color-background,
+    var(--gymx-color-gray-2)
+  );
 
   --_gymx-tabs-nav-color-active: var(--gymx-tabs-nav-color-active, var(--gymx-color-white-12));
-  --_gymx-tabs-trigger-active-color-background: var(--gymx-tabs-trigger-active-color-background, var(--button-color-background));
+  --_gymx-tabs-trigger-active-color-background: var(
+    --gymx-tabs-trigger-active-color-background,
+    var(--button-color-background)
+  );
 
   --_gymx-tabs-content-color: var(--gymx-tabs-content-color, inherit);
 
   --_gymx-tabs-border-radius: var(--gymx-tabs-border-radius, var(--gymx-radius-2));
   --_gymx-tabs-nav-outer-spacing: var(--gymx-tabs-nav-outer-spacing, var(--gymx-size-000));
   --_gymx-tabs-item-count: var(--gymx-tabs-item-count, 2);
-  --_gymx-tabs-panel-outer-spacing: var(--gymx-tabs-panel-outer-spacing, var(--_gymx-tabs-nav-outer-spacing));
+  --_gymx-tabs-panel-outer-spacing: var(
+    --gymx-tabs-panel-outer-spacing,
+    var(--_gymx-tabs-nav-outer-spacing)
+  );
   --_gymx-tabs-nav-transition-duration: var(--gymx-tabs-nav-transition-duration, 300ms);
-  --_gymx-tabs-nav-transition: var(--gymx-tabs-nav-transition, transform var(--_gymx-tabs-nav-transition-duration) ease-in-out);
+  --_gymx-tabs-nav-transition: var(
+    --gymx-tabs-nav-transition,
+    transform var(--_gymx-tabs-nav-transition-duration) ease-in-out
+  );
 
   &__nav {
     position: relative; // for slider
@@ -179,7 +200,7 @@ watch(() => props.selectedTab, (val, oldVal) => {
     }
 
     &--is-active {
-      --_gymx-tabs-nav-color:  var(--_gymx-tabs-nav-color-active);
+      --_gymx-tabs-nav-color: var(--_gymx-tabs-nav-color-active);
       transition: color 100ms ease calc(var(--_gymx-tabs-nav-transition-duration) - 100ms);
     }
   }
@@ -196,7 +217,9 @@ watch(() => props.selectedTab, (val, oldVal) => {
   &__slider {
     background: var(--_gymx-tabs-trigger-active-color-background);
     border-radius: calc(var(--_gymx-tabs-border-radius) - var(--_gymx-tabs-nav-outer-spacing));
-    inline-size: calc((100% / var(--_gymx-tabs-item-count)) - (var(--_gymx-tabs-nav-outer-spacing) / 2));
+    inline-size: calc(
+      (100% / var(--_gymx-tabs-item-count)) - (var(--_gymx-tabs-nav-outer-spacing) / 2)
+    );
     // safari render bug by using translate
     // thats why use transform: prevents safari from not respecting the z-index of the background.
     transform: translateX(calc(100% * var(--_gymx-tabs-current-index)));

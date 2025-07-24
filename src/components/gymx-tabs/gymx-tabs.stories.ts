@@ -1,4 +1,3 @@
-
 import { type Meta, type StoryObj } from '@storybook/vue3';
 import { default as GymxTabs } from './gymx-tabs.vue';
 import { h } from 'vue';
@@ -36,6 +35,6 @@ export const Default: Story = {
     ],
     selectedTab: 1,
     label: 'Example Tabs',
-    'tabpanel': ({ tab }) => h('p',  `Content from ${ tab.title }`),
+    tabpanel: ({ tab }) => h('p', `Content from ${tab.title}`),
   },
 };

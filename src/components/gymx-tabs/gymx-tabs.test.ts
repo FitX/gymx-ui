@@ -103,7 +103,7 @@ describe('TabList.vue', () => {
     expect(tabList.exists()).toBe(true);
 
     const tabs = wrapper.findAll('[role="tab"]');
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
       expect(tab.attributes('aria-selected')).toBeDefined();
       expect(tab.attributes('aria-controls')).toBeDefined();
     });
@@ -112,12 +112,11 @@ describe('TabList.vue', () => {
   it('should have proper ARIA roles and attributes for tab panels', () => {
     const wrapper = mount(GymxTabs, { props: tabsConfig });
     const tabPanels = wrapper.findAll('[role="tabpanel"]');
-    console.log(tabPanels);
-    tabPanels.forEach(panel => {
+
+    tabPanels.forEach((panel) => {
       expect(panel.attributes('aria-labelledby')).toBeDefined();
     });
   });
-
 
   it('should generate IDs with attrs.id', async () => {
     const wrapper = mount(GymxTabs, {

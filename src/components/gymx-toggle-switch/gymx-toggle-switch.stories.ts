@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxToggleSwitch } from './gymx-toggle-switch.vue';
 import { IconCheckmark } from '@/components';
@@ -23,9 +22,7 @@ type Story = StoryObj<typeof meta>;
  * to learn how to use render functions.
  */
 export const Default: Story = {
-  args: {
-
-  },
+  args: {},
 };
 
 export const Activated: Story = {
@@ -82,5 +79,5 @@ export const WithIcon: Story = {
         </gymx-toggle-switch>
       </div>
     `,
-  })
+  }),
 };

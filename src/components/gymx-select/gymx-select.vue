@@ -75,7 +75,10 @@ const [modelValue] = defineModel<SelectItem | SelectItem[]>();
     --gymx-select-color-background-disabled,
     var(--gymx-color-black-1)
   );
-  --_gymx-select-color-border-disabled: var(--gymx-select-color-border-disabled, var(--gymx-color-black-2));
+  --_gymx-select-color-border-disabled: var(
+    --gymx-select-color-border-disabled,
+    var(--gymx-color-black-2)
+  );
 
   /* Other */
   --_gymx-select-radius: var(--gymx-select-radius, 0);

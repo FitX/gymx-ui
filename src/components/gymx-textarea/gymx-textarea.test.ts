@@ -1,4 +1,3 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import { GymxTextarea } from './index';
@@ -6,7 +5,7 @@ import { GymxLabel } from '@/components';
 
 describe('GymxTextarea', () => {
   it('is a Vue instance containing textare', () => {
-    const wrapper = mount(GymxTextarea, { props: { label: 'default' }});
+    const wrapper = mount(GymxTextarea, { props: { label: 'default' } });
     expect(wrapper.exists()).toBeTruthy();
     expect(wrapper.find('textarea'));
   });
@@ -89,7 +88,7 @@ describe('GymxTextarea', () => {
     const wrapper = mount(GymxTextarea, {
       props: {
         label: 'default',
-        id: 'test-1'
+        id: 'test-1',
       },
     });
     const textarea = wrapper.find('textarea');

@@ -44,22 +44,34 @@ defineSlots<GymxLinkSlots>();
   --_gymx-link-color-border: var(--gymx-link-color-border, var(--gymx-link-color-background));
 
   --_gymx-link-color-hover: var(--gymx-link-color-hover, var(--gymx-link-color));
-  --_gymx-link-color-background-hover: var(--gymx-link-color-background-hover, var(--gymx-link-color-background));
-  --_gymx-link-color-border-hover: var(--gymx-link-color-border-hover, var(--gymx-link-border-background));
+  --_gymx-link-color-background-hover: var(
+    --gymx-link-color-background-hover,
+    var(--gymx-link-color-background)
+  );
+  --_gymx-link-color-border-hover: var(
+    --gymx-link-color-border-hover,
+    var(--gymx-link-border-background)
+  );
 
   --_gymx-link-color-focused: var(--gymx-link-color-focused, var(--gymx-link-color));
   --_gymx-link-color-background-focused: var(
     --gymx-link-color-background-focused,
     var(--gymx-link-color-background)
   );
-  --_gymx-link-color-border-focused: var(--gymx-link-color-border-focused, var(--gymx-link-border-background));
+  --_gymx-link-color-border-focused: var(
+    --gymx-link-color-border-focused,
+    var(--gymx-link-border-background)
+  );
 
   --_gymx-link-color-disabled: var(--gymx-link-color-disabled, var(--gymx-link-color));
   --_gymx-link-color-background-disabled: var(
     --gymx-link-color-background-disabled,
     var(--gymx-link-color-background)
   );
-  --_gymx-link-color-border-disabled: var(--gymx-link-color-border-disabled, var(--gymx-link-border-background));
+  --_gymx-link-color-border-disabled: var(
+    --gymx-link-color-border-disabled,
+    var(--gymx-link-border-background)
+  );
 
   --_gymx-link-font-weight: var(--gymx-link-font-weight, var(--gymx-font-weight-regular));
   --_gymx-link-font-family: var(--gymx-link-font-family, var(--gymx-font-family-default), inherit);
@@ -102,7 +114,9 @@ defineSlots<GymxLinkSlots>();
   text-decoration: none;
 
   display: inline-grid;
-  grid: 'start content end' 1fr / var(--_gymx-link-icon-size-start) 1fr var(--_gymx-link-icon-size-end);
+  grid: 'start content end' 1fr / var(--_gymx-link-icon-size-start) 1fr var(
+      --_gymx-link-icon-size-end
+    );
 
   &__content {
     text-decoration: var(--_gymx-link-text-decoration);

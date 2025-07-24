@@ -119,7 +119,7 @@ describe('GymxInput', () => {
     expect(input.attributes('type')).toBe('text');
 
     vi.advanceTimersByTime(8000);
-    await nextTick()
+    await nextTick();
     expect(toggleButton.attributes('aria-pressed')).toBe('false');
     expect(svg1.text()).equal(wrapper.find('button[aria-pressed] svg').text());
     expect(input.attributes('type')).toBe('password');

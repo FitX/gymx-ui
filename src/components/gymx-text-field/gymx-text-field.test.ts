@@ -79,7 +79,7 @@ describe('GymxTextField', () => {
 
   it('computes correct listener', () => {
     const foo = {
-      click: () => console.log('click'),
+      click: () => 'clicked',
     };
     const mock = vi.spyOn(foo, 'click');
     const wrapper = mount(GymxTextField, {
@@ -107,7 +107,7 @@ describe('GymxTextField', () => {
 
     // await wrapper.setValue(false, 'showPassword');
     await toggleButton.trigger('click');
-    await nextTick()
+    await nextTick();
 
     expect(toggleButton.attributes('aria-pressed')).toBe('false');
   });

@@ -51,21 +51,32 @@ onMounted(() => {
   </div>
 </template>
 <style lang="scss" scoped>
-@use "@/assets/styles/component-utils/components.scss";
+@use '@/assets/styles/component-utils/components.scss';
 
 .toast {
   $self: &;
   // @TODO @include components.define-component-variable('gymx-toggle-switch', 'color-background', transparent);
-  @include components.define-component-variable('gymx-toast', 'color-background', var(--gymx-color-gray-2));
+  @include components.define-component-variable(
+    'gymx-toast',
+    'color-background',
+    var(--gymx-color-gray-2)
+  );
   @include components.define-component-variable('gymx-toast', 'color', var(--gymx-color-gray-12));
-  @include components.define-component-variable('gymx-toast', 'color-border', var(--_gymx-toast-color-background));
+  @include components.define-component-variable(
+    'gymx-toast',
+    'color-border',
+    var(--_gymx-toast-color-background)
+  );
 
   --_gymx-toast-padding-inline: var(--gymx-toast-padding-inline, var(--gymx-size-0));
   --_gymx-toast-padding-block: var(--gymx-toast-padding-block, var(--gymx-size-00));
   --_gymx-toast-radius: var(--gymx-toast-radius, var(--gymx-radius-0));
   --_gymx-toast-icon-fill: var(--gymx-toast-icon-fill, currentColor);
   --_gymx-toast-icon-gap: var(--gymx-toast-icon-gap, var(--gymx-size-0));
-  --_gymx-toast-close-button-safe-area: var(--gymx-toast-close-button-safe-area, var(--gymx-size-0));
+  --_gymx-toast-close-button-safe-area: var(
+    --gymx-toast-close-button-safe-area,
+    var(--gymx-size-0)
+  );
 
   // State defaults
   --_gymx-toast-color-success: var(--gymx-toast-color-success, var(--gymx-color-black-12));
@@ -81,7 +92,10 @@ onMounted(() => {
   );
 
   --_gymx-toast-color-error: var(--gymx-toast-color-error, var(--gymx-color-white-12));
-  --_gymx-toast-color-background-error: var(--gymx-toast-color-background-error, var(--gymx-color-error-9));
+  --_gymx-toast-color-background-error: var(
+    --gymx-toast-color-background-error,
+    var(--gymx-color-error-9)
+  );
 
   background: var(--_gymx-toast-color-background);
   color: var(--_gymx-toast-color);
@@ -96,18 +110,46 @@ onMounted(() => {
   justify-content: space-between;
 
   &--success {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-success), 'modifier');
-    @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-success));
+    @include components.override-state(
+      'gymx-toast',
+      'color',
+      var(--_gymx-toast-color-success),
+      'modifier'
+    );
+    @include components.override-state(
+      'gymx-toast',
+      'color-background',
+      var(--_gymx-toast-color-background-success)
+    );
   }
 
   &--warning {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-warning), 'modifier');
-    @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-warning));
+    @include components.override-state(
+      'gymx-toast',
+      'color',
+      var(--_gymx-toast-color-warning),
+      'modifier'
+    );
+    @include components.override-state(
+      'gymx-toast',
+      'color-background',
+      var(--_gymx-toast-color-background-warning)
+    );
   }
 
   &--error {
-    @include components.override-state('gymx-toast', 'color', var(--_gymx-toast-color-error), 'modifier');
-    @include components.override-state('gymx-toast', 'color-background', var(--_gymx-toast-color-background-error), 'modifier');
+    @include components.override-state(
+      'gymx-toast',
+      'color',
+      var(--_gymx-toast-color-error),
+      'modifier'
+    );
+    @include components.override-state(
+      'gymx-toast',
+      'color-background',
+      var(--_gymx-toast-color-background-error),
+      'modifier'
+    );
   }
 
   &__icon {
@@ -141,7 +183,8 @@ onMounted(() => {
     &:after {
       content: '';
       position: absolute;
-      inset: calc(var(--_gymx-toast-padding-block) * -1) calc(var(--_gymx-toast-padding-inline) * -1);
+      inset: calc(var(--_gymx-toast-padding-block) * -1)
+        calc(var(--_gymx-toast-padding-inline) * -1);
       padding: var(--_gymx-toast-close-button-safe-area);
     }
   }

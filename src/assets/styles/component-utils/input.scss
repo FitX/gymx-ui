@@ -1,7 +1,7 @@
 /**
 This Files contains input specific styles
  */
-@mixin input-styles ($identifier: 'input') {
+@mixin input-styles($identifier: 'input') {
   .#{$identifier} {
     --_input-font-family: var(--input-font-family, var(--gymx-font-family-default));
     --_input-font-size: var(--input-font-size, var(--gymx-font-size-2));
@@ -18,16 +18,16 @@ This Files contains input specific styles
 
     --_input-color-disabled: var(--input-color-disabled, var(--gymx-color-text));
     --_input-color-background-disabled: var(
-        --input-color-background-disabled,
-        var(--gymx-color-black-1)
+      --input-color-background-disabled,
+      var(--gymx-color-black-1)
     );
     --_input-color-border-disabled: var(--input-color-border-disabled, var(--gymx-color-black-2));
 
     /* Other */
     --_input-radius: var(--input-radius, 0);
     --_input-border: var(
-        --input-border,
-        var(--gymx-border-size-1, 1px) solid var(--_input-color-border)
+      --input-border,
+      var(--gymx-border-size-1, 1px) solid var(--_input-color-border)
     );
     --_input-outline: var(--input-outline, var(--_input-border)); // maybe not
 

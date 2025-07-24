@@ -1035,18 +1035,9 @@ Möglichkeit step 11 + 12 als Contrast Text Farbe zu verwenden
   --gymx-color-info-7: light-dark(var(--gymx-color-info-light-7), var(--gymx-color-info-dark-7));
   --gymx-color-info-8: light-dark(var(--gymx-color-info-light-8), var(--gymx-color-info-dark-8));
   --gymx-color-info-9: light-dark(var(--gymx-color-info-light-9), var(--gymx-color-info-dark-9));
-  --gymx-color-info-10: light-dark(
-    var(--gymx-color-info-light-10),
-    var(--gymx-color-info-dark-10)
-  );
-  --gymx-color-info-11: light-dark(
-    var(--gymx-color-info-light-11),
-    var(--gymx-color-info-dark-11)
-  );
-  --gymx-color-info-12: light-dark(
-    var(--gymx-color-info-light-12),
-    var(--gymx-color-info-dark-12)
-  );
+  --gymx-color-info-10: light-dark(var(--gymx-color-info-light-10), var(--gymx-color-info-dark-10));
+  --gymx-color-info-11: light-dark(var(--gymx-color-info-light-11), var(--gymx-color-info-dark-11));
+  --gymx-color-info-12: light-dark(var(--gymx-color-info-light-12), var(--gymx-color-info-dark-12));
 
   --gymx-color-app-background: light-dark(var(--gymx-color-white-12), var(--gymx-color-black-12));
 }

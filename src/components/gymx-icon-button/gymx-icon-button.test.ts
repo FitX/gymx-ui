@@ -4,7 +4,7 @@ import { GymxIconButton } from './index';
 
 describe('GymxIconButton', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxIconButton);
+    const wrapper = mount(GymxIconButton, { props: { text: '' }});
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -24,7 +24,7 @@ describe('GymxIconButton', () => {
     const wrapper = mount(GymxIconButton, {
       props: {
         tag: 'a',
-        text: 'Unit Test'
+        text: 'Unit Test',
       },
       slots: {
         default: '🚀',
@@ -86,10 +86,10 @@ describe('GymxIconButton', () => {
     const wrapper = mount(GymxIconButton, {
       props: {
         isLoading: true,
-        text: 'Unit Test'
+        text: 'Unit Test',
       },
       slots: {
-        'loading': '<span class="custom-loading-end">Loading...</span>',
+        loading: '<span class="custom-loading-end">Loading...</span>',
       },
     });
 

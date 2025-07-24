@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxRating } from './gymx-rating.vue';
 
@@ -35,4 +34,3 @@ export const Vertical: Story = {
     direction: 'column',
   },
 };
-
