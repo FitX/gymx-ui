@@ -44,6 +44,11 @@ describe('defaultSearch', () => {
     const result = defaultSearch(data, []);
     expect(result).toEqual(data);
   });
+
+  it('should return all data when no filters are empty', () => {
+    const result = defaultSearch(data);
+    expect(result).toEqual(data);
+  });
 });
 
 describe('useSearch', () => {
@@ -210,7 +215,6 @@ describe('useSearch', () => {
 
     const { filtered: filteredWithoutReactivityUndefined } = useSearch({
       initialData: withoutReactiveUndefined,
-      searchOptions: []
     });
 
     expect(filteredWithoutReactivityUndefined.value).toBe(withoutReactiveUndefined);
@@ -219,7 +223,43 @@ describe('useSearch', () => {
 
     const { filtered: filteredWithoutReactivityNull } = useSearch({
       initialData: withoutReactiveNull,
-      searchOptions: []
+    });
+
+    expect(filteredWithoutReactivityNull.value).toBe(withoutReactiveNull);
+  });
+
+  it('should return original if initialData is undefined/null but with Search Options', () => {
+    const initialDataRef = ref<Item[] | undefined | null>();
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: filterOptions,
+    });
+    expect(filtered.value).toEqual(undefined);
+
+    initialDataRef.value = null;
+    expect(filtered.value).toEqual(null);
+
+    initialDataRef.value = data;
+    expect(filtered.value).toEqual([
+      { name: 'Frank', job: 'developer' },
+      { name: 'Micha', job: 'developer' },
+    ]);
+
+    // without reativity
+    const withoutReactiveUndefined = undefined;
+
+    const { filtered: filteredWithoutReactivityUndefined } = useSearch({
+      initialData: withoutReactiveUndefined,
+      searchOptions: filterOptions,
+    });
+
+    expect(filteredWithoutReactivityUndefined.value).toBe(withoutReactiveUndefined);
+
+    const withoutReactiveNull = null;
+
+    const { filtered: filteredWithoutReactivityNull } = useSearch({
+      initialData: withoutReactiveNull,
+      searchOptions: filterOptions,
     });
 
     expect(filteredWithoutReactivityNull.value).toBe(withoutReactiveNull);
@@ -237,17 +277,6 @@ describe('useSearch', () => {
     const { filtered } = useSearch({ initialData, searchOptions: [] });
 
     expect(filtered.value).toEqual(initialData);
-  });
-
-  it('should return an empty array if searchOptions is undefined', () => {
-    const initialDataRef = ref<DemoItem[]>([{ name: 'Item 1' }, { name: 'Item 2' }]);
-    // @ts-expect-error undefined
-    const { filtered } = useSearch({
-      initialData: initialDataRef,
-      searchOptions: undefined,
-    });
-
-    expect(filtered.value).toEqual([{ name: 'Item 1' }, { name: 'Item 2' }]);
   });
 
   it('should return searchOptions if provided as a ref', () => {

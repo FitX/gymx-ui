@@ -6,17 +6,19 @@ export interface FilterOption<T> {
   predicate: (a: any, b: any) => boolean;
 }
 
-export const defaultSearch = <T>(data: T[], filterOptions: FilterOption<T>[]): T[] =>
-  data?.filter((item) =>
-    filterOptions?.every(({ key, value, predicate }) => predicate(item[key], value)),
+export const defaultSearch = <T>(data: T[], filterOptions?: FilterOption<T>[]): T[] => {
+  const _filterOptions = toValue(filterOptions || []);
+  return data?.filter((item) =>
+    _filterOptions?.every(({ key, value, predicate }) => predicate(item[key], value)),
   );
+}
 
 export interface UseSearchOptionsShared<T> {
   initialData?: MaybeRefOrGetter<T[] | null | undefined>;
 }
 
 export interface UseSearchOptionsWithSearchOptions<T> extends UseSearchOptionsShared<T> {
-  searchOptions: MaybeRefOrGetter<FilterOption<T>[]>;
+  searchOptions?: MaybeRefOrGetter<FilterOption<T>[]>;
   customSearch?: never;
 }
 
@@ -45,8 +47,7 @@ export const useSearch = <T>({
       return resolvedCustomSearch(resolvedInitialData);
     }
 
-    const resolvedSearchOptions = toValue(searchOptions) || [];
-    return defaultSearch(resolvedInitialData, resolvedSearchOptions);
+    return defaultSearch(resolvedInitialData, toValue(searchOptions));
   });
 
   return {
