@@ -126,6 +126,7 @@ Creates a computed property that returns the filtered data.
 ##### Returns:
 
 - **filtered**: A `computed` property containing the filtered data array based on the provided filter options or custom search function.
+  if `toValue(initialData)` is `null` or `undefined`, it returns initialData itself.
 
 ### Helper Functions
 

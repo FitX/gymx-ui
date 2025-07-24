@@ -7,6 +7,8 @@ interface Item {
   job: string;
 }
 
+type DemoItem = { name: string };
+
 const data: Item[] = [
   { name: 'Jessica', job: 'product owner' },
   { name: 'Frank', job: 'developer' },
@@ -21,7 +23,6 @@ const dataSorted: Item[] = [
   { name: 'Owner', job: '' },
 ];
 
-// Beispiel Filteroptionen
 const filterOptions: FilterOption<Item>[] = [
   {
     key: 'job',
@@ -104,8 +105,6 @@ describe('useSearch', () => {
       { name: 'Jessica', job: 'product owner' },
       { name: 'Owner', job: '' },
     ]);
-
-
   });
 
   it('filtered should return updated data, searchOptions as ref', () => {
@@ -192,31 +191,56 @@ describe('useSearch', () => {
     ]);
   });
 
-  it('should return an empty array if initialData is undefined', () => {
-    // @ts-expect-error undefined
-    const { filtered } = useSearch({ initialData: undefined });
+  it('should return original if initialData is undefined/null', () => {
+    const initialDataRef = ref<Item[] | undefined | null>();
+    const { filtered } = useSearch({
+      initialData: initialDataRef,
+      searchOptions: []
+    });
+    expect(filtered.value).toEqual(undefined);
 
-    expect(filtered.value).toEqual([]);
+    initialDataRef.value = null;
+    expect(filtered.value).toEqual(null);
+
+    initialDataRef.value = data;
+    expect(filtered.value).toEqual(data);
+
+    // without reativity
+    const withoutReactiveUndefined = undefined;
+
+    const { filtered: filteredWithoutReactivityUndefined } = useSearch({
+      initialData: withoutReactiveUndefined,
+      searchOptions: []
+    });
+
+    expect(filteredWithoutReactivityUndefined.value).toBe(withoutReactiveUndefined);
+
+    const withoutReactiveNull = null;
+
+    const { filtered: filteredWithoutReactivityNull } = useSearch({
+      initialData: withoutReactiveNull,
+      searchOptions: []
+    });
+
+    expect(filteredWithoutReactivityNull.value).toBe(withoutReactiveNull);
   });
 
   it('should return initialData if provided as a ref', () => {
     const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
-    // @ts-expect-error undefined
-    const { filtered } = useSearch({ initialData: initialDataRef });
+    const { filtered } = useSearch({ initialData: initialDataRef, searchOptions: [] });
 
     expect(filtered.value).toEqual([{ name: 'Item 1' }, { name: 'Item 2' }]);
   });
 
   it('should return initialData if provided as a raw array', () => {
     const initialData = [{ name: 'Item 1' }, { name: 'Item 2' }];
-    // @ts-expect-error undefined
-    const { filtered } = useSearch({ initialData });
+    const { filtered } = useSearch({ initialData, searchOptions: [] });
 
     expect(filtered.value).toEqual(initialData);
   });
 
   it('should return an empty array if searchOptions is undefined', () => {
-    const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
+    const initialDataRef = ref<DemoItem[]>([{ name: 'Item 1' }, { name: 'Item 2' }]);
     // @ts-expect-error undefined
     const { filtered } = useSearch({
       initialData: initialDataRef,
@@ -227,8 +251,8 @@ describe('useSearch', () => {
   });
 
   it('should return searchOptions if provided as a ref', () => {
-    const initialDataRef = ref([{ name: 'Item 1' }]);
-    const searchOptionsRef = ref([
+    const initialDataRef = ref<DemoItem[]>([{ name: 'Item 1' }]);
+    const searchOptionsRef = ref<FilterOption<DemoItem>[]>([
       {
         key: 'name',
         value: 'Item 1',
@@ -237,7 +261,6 @@ describe('useSearch', () => {
     ]);
     const { filtered } = useSearch({
       initialData: initialDataRef,
-      // @ts-expect-error undefined
       searchOptions: searchOptionsRef,
     });
 
@@ -245,8 +268,8 @@ describe('useSearch', () => {
   });
 
   it('should return searchOptions if provided as a raw array', () => {
-    const initialDataRef = ref([{ name: 'Item 1' }, { name: 'Item 2' }]);
-    const searchOptions = [
+    const initialDataRef = ref<DemoItem[]>([{ name: 'Item 1' }, { name: 'Item 2' }]);
+    const searchOptions: FilterOption<DemoItem>[] = [
       {
         key: 'name',
         value: 'Item 1',
@@ -255,7 +278,6 @@ describe('useSearch', () => {
     ];
     const { filtered } = useSearch({
       initialData: initialDataRef,
-      // @ts-expect-error undefined
       searchOptions,
     });
 

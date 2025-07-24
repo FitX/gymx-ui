@@ -12,7 +12,7 @@ export const defaultSearch = <T>(data: T[], filterOptions: FilterOption<T>[]): T
   );
 
 export interface UseSearchOptionsShared<T> {
-  initialData: MaybeRefOrGetter<T[]>;
+  initialData?: MaybeRefOrGetter<T[] | null | undefined>;
 }
 
 export interface UseSearchOptionsWithSearchOptions<T> extends UseSearchOptionsShared<T> {
@@ -35,10 +35,11 @@ export const useSearch = <T>({
    searchOptions,
    customSearch,
  }: UseSearchOptions<T>) => {
-  const reactiveInitialData = computed(() => toValue(initialData) || []);
   const filtered = computed(() => {
     const resolvedCustomSearch = toValue(customSearch);
-    const resolvedInitialData = toValue(reactiveInitialData);
+    const resolvedInitialData = toValue(initialData);
+
+    if (!resolvedInitialData) return resolvedInitialData;
 
     if (typeof resolvedCustomSearch === 'function') {
       return resolvedCustomSearch(resolvedInitialData);
