@@ -63,6 +63,8 @@ import { IconClose } from '@fitx/gymx-ui';
 
 ## Development
 
+- Node.js: see [.nvmrc](./.nvmrc)
+
 ### Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
@@ -165,6 +167,18 @@ npm run test:e2e -- tests/example.spec.ts
 # Runs the tests in debug mode
 npm run test:e2e -- --debug
 ```
+
+---
+
+## 📚 Documentation & Links
+
+- 🗂️ [Jira Board](https://schmidtgruppe.atlassian.net/browse/GYMX-636)
+
+---
+
+## 👥 Team & Contacts
+[GymX](https://schmidtgruppe.atlassian.net/wiki/x/awCKBgI)
+
 
 ## Contributing
 
