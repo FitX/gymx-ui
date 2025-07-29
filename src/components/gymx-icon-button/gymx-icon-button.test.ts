@@ -4,7 +4,7 @@ import { GymxIconButton } from './index';
 
 describe('GymxIconButton', () => {
   it('is a Vue instance', () => {
-    const wrapper = mount(GymxIconButton, { props: { text: '' }});
+    const wrapper = mount(GymxIconButton, { props: { text: '' } });
     expect(wrapper.exists()).toBeTruthy();
   });
 

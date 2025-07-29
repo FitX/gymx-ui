@@ -81,7 +81,11 @@ export const Multiple: Story = {
       const fruits = ref<string[]>([]);
       const colors = ref<string[]>([]);
 
-      const fruitsMap = new Map([['apple', '\u{1F34F}'], ['banana', '\u{1F34C}'], ['peach', '\u{1F351}']]);
+      const fruitsMap = new Map([
+        ['apple', '\u{1F34F}'],
+        ['banana', '\u{1F34C}'],
+        ['peach', '\u{1F351}'],
+      ]);
 
       const getIcon = (fruit: string) => fruitsMap.get(fruit);
 

@@ -69,10 +69,9 @@ const props = defineProps<GymxAppHeaderProps>();
 .app-header2 {
   --_gymx-app-header-gap: 1rem;
   display: grid;
-  grid-template-columns: var(--_gymx-app-header-logo-size, auto) var(
-      --_gymx-app-header-title-size,
-      auto
-    ) var(--_gymx-app-header-actions-size, 1fr);
+  grid-template-columns:
+    var(--_gymx-app-header-logo-size, auto) var(--_gymx-app-header-title-size, auto)
+    var(--_gymx-app-header-actions-size, 1fr);
   grid-template-rows: 1fr;
   grid-template-areas: 'logo title actions';
   gap: var(--_gymx-app-header-gap);
