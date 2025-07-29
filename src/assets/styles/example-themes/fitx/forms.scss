@@ -30,11 +30,14 @@
   --input-color-background-disabled: var(--shared-input-color-background-disabled);
   --input-radius: var(--shared-input-radius);
 
-  // inputs
+  // selects
   --gymx-select-color: var(--shared-input-color);
   --gymx-select-color-border: var(--shared-input-color-border);
   --gymx-select-color-border-hover: var(--shared-input-color-border-hover);
   --gymx-select-color-border-disabled: var(--shared-input-color-border-disabled);
   --gymx-select-color-background-disabled: var(--shared-input-color-background-disabled);
   --gymx-select-radius: var(--shared-input-radius);
+
+  // checkboxes
+  --gymx-checkbox-input-accent-color: var(--gymx-color-text);
 }

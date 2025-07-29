@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { GymxInput, GymxLabel, GymxButton, GymxErrorMessage, GymxSelect, GymxToggleSwitch } from '../../src/components';
 import { ref } from 'vue';
+import { GymxCheckbox } from '@/components/gymx-checkbox';
 
 type DemoSelectOption = {
   text: string;
@@ -14,6 +15,7 @@ const dateOfBirth = ref<string>();
 const selectOptions: DemoSelectOption[] = [1, 2, 3].map((count) => ({ text: count.toString() , count, }));
 const selectedOption = ref();
 const activated = ref(false);
+const privacyAccepted = ref(false);
 
 const errors = ref({
   firstName: false,
@@ -41,6 +43,9 @@ const submit = () => {
       <gymx-select :options="selectOptions" v-model="selectedOption" id="count"/>
     </div>
     <div class="item">
+      <gymx-toggle-switch v-model="activated" label="Need Feedback?" />
+    </div>
+    <div class="item">
       <gymx-label for="firstname">Firstname <span aria-hidden="true">*</span></gymx-label>
       <gymx-input id="firstname" v-model="firstName" :input-attributes="{ 'aria-required': true, 'aria-describedby': 'firstname-error' }" />
       <span :aria-live="errors.firstName ? 'assertive' : 'off'" id="firstname-error" role="alert">
@@ -55,8 +60,9 @@ const submit = () => {
       <gymx-label for="dateOfBirth">Date of Birth</gymx-label>
       <gymx-input id="dateOfBirth" type="date" v-model="dateOfBirth" />
     </div>
-    <div class="item">
-      <gymx-toggle-switch v-model="activated" label="Need Feedback?" />
+    <div class="item item--checkbox">
+      <gymx-label for="privacy-terms">Accept Privacy Terms</gymx-label>
+      <gymx-checkbox id="privacy-terms" v-model="privacyAccepted" />
     </div>
     <div class="item">
       <gymx-button class="button" :is-loading="formSubmitInProgress">Save</gymx-button>
@@ -75,6 +81,14 @@ form {
   flex-direction: column;
   gap: 0.5rem;
   margin-block: 1rem;
+
+  &--checkbox {
+    flex-direction: row;
+
+    & .checkbox {
+      order: -1;
+    }
+  }
 }
 
 .button {
