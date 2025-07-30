@@ -83,7 +83,6 @@ const handleChange = (event: Event) => {
       :checked="isChecked"
       :value="effectiveValue"
       @change="handleChange" />
-    <slot></slot>
   </span>
 </template>
 
@@ -99,7 +98,7 @@ const handleChange = (event: Event) => {
     var(--gymx-color-accent)
   );
 
-  &:has(:focus) {
+  &:has(:focus), &:hover {
     --gymx-checkbox-input-outline-color: currentColor;
   }
 

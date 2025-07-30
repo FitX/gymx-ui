@@ -18,13 +18,9 @@ describe('GymxCheckbox', () => {
             modelValue.value = val;
           },
         },
-        slots: {
-          default: 'Accept Terms',
-        },
       });
 
       expect(wrapper.find('input[type="checkbox"]').exists()).toBe(true);
-      expect(wrapper.text()).toContain('Accept Terms');
       expect(wrapper.find('input').element.checked).toBe(false);
     });
 
@@ -276,23 +272,6 @@ describe('GymxCheckbox', () => {
       });
 
       expect(wrapper.find('.checkbox').classes()).toContain('checkbox--disabled');
-    });
-
-    it('renders slot content', () => {
-      const modelValue = ref(false);
-      const wrapper = mount(GymxCheckbox<boolean>, {
-        props: {
-          modelValue: modelValue.value,
-          'onUpdate:modelValue': (val: boolean) => {
-            modelValue.value = val;
-          },
-        },
-        slots: {
-          default: '<strong>Custom Label</strong>',
-        },
-      });
-
-      expect(wrapper.html()).toContain('<strong>Custom Label</strong>');
     });
 
     it('uses effectiveValue correctly for boolean without explicit value', () => {
