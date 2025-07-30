@@ -61,7 +61,7 @@ const submit = () => {
       <gymx-input id="dateOfBirth" type="date" v-model="dateOfBirth" />
     </div>
     <div class="item item--checkbox">
-      <gymx-label for="privacy-terms">Accept Privacy Terms</gymx-label>
+      <gymx-label for="privacy-terms">Accept Privacy Terms Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci deleniti expedita impedit ipsum quia. A accusantium doloremque id illo laboriosam officia quidem quisquam vel? Alias aliquam earum expedita incidunt voluptatem.</gymx-label>
       <gymx-checkbox id="privacy-terms" v-model="privacyAccepted" />
     </div>
     <div class="item">
@@ -81,6 +81,10 @@ form {
   flex-direction: column;
   gap: 0.5rem;
   margin-block: 1rem;
+
+  .label:hover + .checkbox {
+    --gymx-checkbox-input-outline-color: currentColor;
+  }
 
   &--checkbox {
     flex-direction: row;

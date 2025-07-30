@@ -5,7 +5,7 @@ import { GymxLabel } from '@/components';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/checkbox',
+  title: 'components/Form/Checkbox',
   component: GymxCheckbox,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -45,7 +45,7 @@ export const Single: Story = {
     },
     template: `<form style="display: flex; gap: 1rem;" @submit.prevent>
       <fieldset>
-        <legend>Single Typpes</legend>
+        <legend>Single Types</legend>
         <div class="item">
           <gymx-label for="single-bool">Single boolean</gymx-label>
           <gymx-checkbox v-bind="args" v-model="singleBool" id="single-bool" />
@@ -69,7 +69,7 @@ export const Single: Story = {
   parameters: {
     docs: {
       description: {
-        story: `Usage of multiple checkboxes`,
+        story: `Usage of multiple checkboxes. Single boolean can be used without value (v-model only).`,
       },
     },
   },
