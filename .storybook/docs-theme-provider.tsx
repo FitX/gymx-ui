@@ -17,7 +17,8 @@ export const handleThemeSwitch = (themeName?: string) => {
   document.documentElement.setAttribute('data-theme', theme);
   if (theme) {
     const isProd = import.meta.env.MODE === 'production';
-    const componentsVersion = PackageJson.version;
+    // Prevent Storybook caching. Package Version only doesnt work on dev storybook server
+    const componentsVersion = isProd ? PackageJson.version : new Date().getTime();
     /**
      * Handle different paths between prod and preview
      * We cant map src/assets/styles to staticDirs because we loose HMR
