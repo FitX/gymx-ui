@@ -133,6 +133,7 @@ defineSlots<GymxButtonSlots>();
   font-size: var(--_button-font-size);
   font-weight: var(--_button-font-weight);
   font-family: var(--_button-font-family);
+  text-decoration: none;
   padding-inline: var(--_button-padding-inline);
   padding-block: var(--_button-padding-block);
 
