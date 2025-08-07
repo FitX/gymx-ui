@@ -12,6 +12,13 @@ describe('GymxBadge', () => {
     const wrapper = mount(GymxBadge, {
       props: { text: 'Demo' },
     });
-    expect(wrapper.html()).contains('Demo');
+    expect(wrapper.find('span').text()).contains('Demo');
+  });
+
+  it('it has button element', () => {
+    const wrapper = mount(GymxBadge, {
+      props: { text: 'Demo', tag: 'button' },
+    });
+    expect(wrapper.find('button').text()).contains('Demo');
   });
 });
