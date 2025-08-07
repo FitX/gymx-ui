@@ -1,10 +1,10 @@
 import type { UIState } from '@/types';
 
-export interface GymxLinkProps {
-  tag?: 'button' | 'span' | 'a'; // default a
+export interface GymxLinkProps<T extends keyof HTMLElementTagNameMap> {
   /**
    * Exclude<UIState, 'disabled'>
    */
+  tag?: T,
   state?: Exclude<UIState, 'disabled'>;
 }
 

@@ -1,17 +1,19 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends keyof HTMLElementTagNameMap = 'a'">
 import type { GymxLinkProps, GymxLinkSlots } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
+import { computed } from 'vue';
 
-const props = withDefaults(defineProps<GymxLinkProps>(), {
-  tag: 'a',
-  // state: undefined as UIState | undefined,
-});
+type Props = GymxLinkProps<T>;
+
+const props = defineProps<Props>();
+
+const tag = computed(() => props.tag ?? 'a')
 
 defineSlots<GymxLinkSlots>();
 </script>
 <template>
   <component
-    :is="props.tag"
+    :is="tag"
     class="link"
     :class="[getModifierClasses('link', props.state)]">
     <span class="link__start">
@@ -96,6 +98,7 @@ defineSlots<GymxLinkSlots>();
    */
   all: unset;
   align-items: baseline;
+  cursor: revert;
 
   font-size: var(--_gymx-link-font-size);
   line-height: var(--_gymx-link-line-height);

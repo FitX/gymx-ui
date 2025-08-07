@@ -18,7 +18,8 @@ const meta = {
     },
   },
   args: {
-    href: '#',
+    href: '',
+    onClick: (e: MouseEvent) => e.preventDefault(),
   },
 } satisfies Meta<typeof GymxLink>;
 
