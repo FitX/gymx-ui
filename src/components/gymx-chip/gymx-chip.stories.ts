@@ -25,6 +25,43 @@ export const Default: Story = {
   },
 };
 
+export const Single: Story = {
+  render: () => ({
+    setup(args) {
+      const color = ref<string>();
+
+      return {
+        args,
+        color,
+      };
+    },
+    components: {
+      GymxChip,
+    },
+    template: `
+      <div class="demo">
+        <gymx-chip v-model="color" value="red" />
+        <gymx-chip v-model="color" value="green" />
+        <gymx-chip v-model="color" value="blue" />
+        <pre>{{ color }}</pre>
+      </div>
+    <component is="style">
+      .demo {
+        display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      }
+    </component>`,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `Usage of multiple checkboxes`,
+      },
+    },
+  },
+};
+
 export const Multiple: Story = {
   render: () => ({
     setup(args) {
