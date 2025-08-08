@@ -1,7 +1,7 @@
 import type { UIState } from '@/types';
 
-export interface GymxChipProps<T extends string | number | Array<string | number>> {
-  value?: T extends Array<infer U> ? U : T;
+export interface GymxChipProps<T extends string | number | boolean | object> {
+  value?: T;
   count?: number;
   state?: UIState;
 }

@@ -1,25 +1,32 @@
-<script lang="ts" setup generic="T extends string | number">
+<script lang="ts" setup generic="T extends string | number | boolean | object">
 import type { GymxChipProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
-import { computed, ref, useAttrs } from 'vue';
+import { computed, ref, toValue, useAttrs } from 'vue';
 
 type ChipComponentProps = GymxChipProps<T>;
 
 const props = defineProps<ChipComponentProps>();
 
-const model = defineModel<T | T[]>({ required: true, default: ref([]) });
+const model = defineModel<T | T[]>({ required: true });
 const attrs = useAttrs();
 
-/**
- * @TODO refactor as pressed/selected or shared with checkbox as composable
- */
+const effectiveValue = computed<T>(() => {
+  if (props.value !== undefined) {
+    return props.value;
+  }
+  if (!Array.isArray(model.value)) {
+    return true as T;
+  }
+  return undefined as T;
+});
+
 const isChecked = computed(() => {
   if (Array.isArray(model.value)) {
-    return (model.value as Array<string | number>).includes(
-      props.value as string | number,
+    return model.value.some(item =>
+      JSON.stringify(item) === JSON.stringify(effectiveValue.value)
     );
   }
-  return model.value === props.value;
+  return JSON.stringify(model.value) === JSON.stringify(effectiveValue.value);
 });
 
 const disabled = computed(
@@ -27,18 +34,31 @@ const disabled = computed(
 );
 
 const handleChange = () => {
+  if (disabled.value) return;
+
   if (Array.isArray(model.value)) {
-    const currentValues = model.value;
-    if (currentValues.includes(props.value)) {
-      model.value = currentValues.filter((v) => v !== props.value);
+    const currentArray = [...model.value];
+    const valueToToggle = effectiveValue.value;
+
+    if (isChecked.value) {
+      // remove
+      const index = currentArray.findIndex(item =>
+        JSON.stringify(item) === JSON.stringify(valueToToggle)
+      );
+      if (index > -1) {
+        currentArray.splice(index, 1);
+      }
     } else {
-      model.value = [...currentValues, props.value];
+      // add
+      currentArray.push(valueToToggle);
     }
+    model.value = currentArray as T[];
   } else {
-    if (model.value === props.value) {
-      model.value = undefined;
+    // single
+    if (isChecked.value) {
+      model.value = (typeof effectiveValue.value === 'boolean' ? false : null) as T;
     } else {
-      model.value = props.value;
+      model.value = effectiveValue.value;
     }
   }
 };
@@ -63,6 +83,7 @@ const handleChange = () => {
     </slot>
   </button>
 </template>
+
 <style lang="scss" scoped>
 .chip {
   &[aria-pressed='true'] {
