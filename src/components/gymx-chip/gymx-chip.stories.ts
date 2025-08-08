@@ -2,6 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxChip } from './gymx-chip.vue';
 import { ref } from 'vue';
+import type { ChipValue } from '@/components/gymx-chip/types.ts';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -29,10 +30,12 @@ export const Single: Story = {
   render: () => ({
     setup(args) {
       const color = ref<string>();
+      const number = ref<number>();
 
       return {
         args,
         color,
+        number,
       };
     },
     components: {
@@ -40,10 +43,19 @@ export const Single: Story = {
     },
     template: `
       <div class="demo">
+        <h3 class="demo__headline">Primitive string</h3>
         <gymx-chip v-model="color" value="red" />
         <gymx-chip v-model="color" value="green" />
         <gymx-chip v-model="color" value="blue" />
         <pre>{{ color }}</pre>
+      </div>
+
+      <div class="demo">
+        <h3 class="demo__headline">Primitive number</h3>
+        <gymx-chip v-model="number" :value="2" />
+        <gymx-chip v-model="number" :value="42" />
+        <gymx-chip v-model="number" :value="84" />
+        <pre>{{ number }}</pre>
       </div>
     <component is="style">
       .demo {
@@ -51,6 +63,51 @@ export const Single: Story = {
       gap: 0.8rem;
       flex-wrap: wrap;
       }
+      .demo__headline {
+      flex: 1 0 100%;
+      }
+      pre { display: contents; }
+    </component>`,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `Usage of multiple checkboxes`,
+      },
+    },
+  },
+};
+
+export const SingleObjectWithSlot: Story = {
+  render: () => ({
+    setup(args) {
+      const selectedType = ref<ChipValue>();
+
+      return {
+        args,
+        selectedType,
+      };
+    },
+    components: {
+      GymxChip,
+    },
+    template: `
+      <div class="demo">
+        <gymx-chip v-model="selectedType" :value="{ value: 'red', type: 'string' }">
+          <template #default="{ value: slotValue }">{{ slotValue.value }}</template>
+        </gymx-chip>
+        <gymx-chip v-model="selectedType" :value="{ value: 5, type: 'number' }">
+          <template #default="{ value: slotValue }">{{ slotValue.value }}</template>
+        </gymx-chip>
+        <pre class="demo__code">{{ selectedType }}</pre>
+      </div>
+    <component is="style">
+      .demo {
+        display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      }
+      .demo__code { flex: 1 0 100%; }
     </component>`,
   }),
   parameters: {
@@ -88,6 +145,60 @@ export const Multiple: Story = {
       gap: 0.8rem;
       flex-wrap: wrap;
       }
+      pre { display: contents; }
+    </component>`,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `Usage of multiple checkboxes`,
+      },
+    },
+  },
+};
+
+export const WithSlot: Story = {
+  render: () => ({
+    setup(args) {
+      const filter = ref([{
+        label: 'Filter 1',
+        value: 1,
+        count: undefined,
+      }, {
+        label: 'Filter 2',
+        value: 2,
+        count: 99,
+      }, {
+        label: 'Filter 3',
+        value: 3,
+        count: 1,
+      }])
+      const selectedFilter = ref<ChipValue[]>([]);
+
+      return {
+        args,
+        selectedFilter,
+        filter,
+      };
+    },
+    components: {
+      GymxChip,
+    },
+    template: `
+      <div class="demo">
+        <gymx-chip v-for="filter in filter" :key="filter.value" v-model="selectedFilter" :value="filter" >
+          <template #default="{ value: slotValue }">{{ slotValue.label }}</template>
+          <template #count>{{ filter.count }}</template>
+        </gymx-chip>
+        <pre class="demo__code">{{ selectedFilter }}</pre>
+      </div>
+    <component is="style">
+      .demo {
+        display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      }
+      .demo__code { flex: 1 0 100%; }
     </component>`,
   }),
   parameters: {
