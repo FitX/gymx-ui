@@ -129,6 +129,8 @@ const handleChange = () => {
   &__content {
     display: grid;
     grid-template-columns: auto auto;
+    place-items: center;
+    place-content: center;
     grid-gap: var(--chip-content-gap, var(--gymx-size-00));
     &:has(#{$self}__count:empty) {
       grid-template-columns: auto;

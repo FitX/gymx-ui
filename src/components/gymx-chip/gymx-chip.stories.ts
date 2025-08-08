@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxChip } from './gymx-chip.vue';
 import { ref } from 'vue';
 import type { ChipValue } from '@/components/gymx-chip/types.ts';
+import { default as GymxBadge } from '@/components/gymx-badge/gymx-badge.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -99,6 +100,8 @@ export const SingleObjectWithSlot: Story = {
         <gymx-chip v-model="selectedType" :value="{ value: 5, type: 'number' }">
           <template #default="{ value: slotValue }">{{ slotValue.value }}</template>
         </gymx-chip>
+      </div>
+      <div class="demo">
         <pre class="demo__code">{{ selectedType }}</pre>
       </div>
     <component is="style">
@@ -137,6 +140,8 @@ export const Multiple: Story = {
         <gymx-chip v-model="colors" value="red" />
         <gymx-chip v-model="colors" value="green" />
         <gymx-chip v-model="colors" value="blue" />
+      </div>
+      <div class="demo">
         <pre>{{ colors }}</pre>
       </div>
     <component is="style">
@@ -183,12 +188,13 @@ export const WithSlot: Story = {
     },
     components: {
       GymxChip,
+      GymxBadge,
     },
     template: `
       <div class="demo">
         <gymx-chip v-for="filter in filter" :key="filter.value" v-model="selectedFilter" :value="filter" >
           <template #default="{ value: slotValue }">{{ slotValue.label }}</template>
-          <template #count>{{ filter.count }}</template>
+          <template #count><gymx-badge v-if="filter.count" class="badge-rounded">{{ filter.count }}</gymx-badge></template>
         </gymx-chip>
       </div>
       <div class="demo">
@@ -201,6 +207,15 @@ export const WithSlot: Story = {
       flex-wrap: wrap;
       }
       .demo__code { flex: 1 1 100%; }
+      .badge-rounded {
+      --badge-radius: 50%;
+      --badge-color-background: var(--gymx-color-gray-4);
+      --badge-font-size: 0.75em;
+      --badge-padding-inline: 0.2em;
+      --badge-padding-block: 0.2em;
+      inline-size: 3ch;
+      aspect-ratio: 1;
+      }
     </component>`,
   }),
   parameters: {
