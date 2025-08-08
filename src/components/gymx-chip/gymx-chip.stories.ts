@@ -190,6 +190,8 @@ export const WithSlot: Story = {
           <template #default="{ value: slotValue }">{{ slotValue.label }}</template>
           <template #count>{{ filter.count }}</template>
         </gymx-chip>
+      </div>
+      <div class="demo">
         <pre class="demo__code">{{ selectedFilter }}</pre>
       </div>
     <component is="style">
@@ -198,7 +200,7 @@ export const WithSlot: Story = {
       gap: 0.8rem;
       flex-wrap: wrap;
       }
-      .demo__code { flex: 1 0 100%; }
+      .demo__code { flex: 1 1 100%; }
     </component>`,
   }),
   parameters: {
