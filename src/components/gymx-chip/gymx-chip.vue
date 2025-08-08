@@ -1,39 +1,29 @@
-<script lang="ts" setup generic="T extends string | number | ChipValue">
+<script lang="ts" setup generic="T extends string | number | ChipValue | (string | number | ChipValue)[]">
 import type { ChipValue, GymxChipProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
-import { computed, ref, toValue, useAttrs } from 'vue';
+import { computed, useAttrs } from 'vue';
 
 type ChipComponentProps = GymxChipProps<T>;
 
 const props = defineProps<ChipComponentProps>();
 
-const model = defineModel<T | T[]>({ required: true });
+const model = defineModel<T | undefined>({ required: true });
 const attrs = useAttrs();
-
-
-
-const effectiveValue = computed<T>(() => {
-  /* if (props.value !== undefined) {
-    return props.value;
-  }
-  return undefined as T; */
-  return props.value;
-});
 
 const isChecked = computed(() => {
   if (Array.isArray(model.value)) {
     return model.value.some(item => {
-      if (typeof item === 'object' && typeof effectiveValue.value === 'object') {
-        return item.value === effectiveValue.value.value;
+      if (typeof item === 'object' && typeof props.value === 'object') {
+        return item.value === props.value.value;
       }
-      return item === effectiveValue.value;
+      return item === props.value;
     });
   }
 
-  if (typeof model.value === 'object' && typeof effectiveValue.value === 'object') {
-    return model.value.value === effectiveValue.value.value;
+  if (typeof model.value === 'object' && typeof props.value === 'object') {
+    return model.value.value === props.value.value;
   }
-  return model.value === effectiveValue.value;
+  return model.value === props.value;
 });
 
 const disabled = computed(
@@ -41,17 +31,16 @@ const disabled = computed(
 );
 
 const handleChange = () => {
-  if (disabled.value) return;
-
   if (Array.isArray(model.value)) {
     const currentArray = [...model.value];
-    const valueToToggle = effectiveValue.value;
+    const valueToToggle = props.value;
 
     if (isChecked.value) {
       // remove
       const index = currentArray.findIndex(item => {
         if (typeof item === 'object' && typeof valueToToggle === 'object') {
-          return item.value === valueToToggle.value;
+          // @ts-expect-error ts compiler not up to date
+          return item !== null && Object.hasOwn(item, 'value') && item.value === valueToToggle.value;
         }
         return item === valueToToggle;
       });
@@ -62,13 +51,13 @@ const handleChange = () => {
       // add
       currentArray.push(valueToToggle);
     }
-    model.value = currentArray as T[];
+    model.value = currentArray as T;
   } else {
     // single
     if (isChecked.value) {
-      model.value = null as T;
+      model.value = undefined;
     } else {
-      model.value = effectiveValue.value;
+      model.value = props.value as T;
     }
   }
 };

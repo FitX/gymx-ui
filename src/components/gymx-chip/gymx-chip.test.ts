@@ -4,6 +4,11 @@ import { describe, it, expect, vi } from 'vitest';
 import { GymxChip } from './index';
 import { ref } from 'vue';
 
+type ChipValueTest = {
+  value: string,
+  lorem: string,
+}
+
 describe('GymxChip', () => {
   it('is a Vue instance', () => {
     const wrapper = mount(GymxChip);
@@ -11,10 +16,10 @@ describe('GymxChip', () => {
   });
 
   describe('Single Value Mode', () => {
-    it('uses custom value for single checkbox', async () => {
-      const modelValue = ref<string>('');
-      const updateSpy = vi.fn((val: string) => {
-        modelValue.value = val;
+    it('uses custom value for single chip', async () => {
+      const modelValue = ref<string>('custom-value');
+      const updateSpy = vi.fn((val?: string) => {
+        modelValue.value = val || '';
       });
 
       const wrapper = mount(GymxChip<string>, {
@@ -28,18 +33,36 @@ describe('GymxChip', () => {
       const button = wrapper.find('button');
       await button.trigger('click');
 
-      expect(updateSpy).toHaveBeenCalledWith('custom-value');
+      expect(updateSpy).toHaveBeenCalledWith(undefined);
+    });
+
+    it('uses custom value for single chip (ChipValue Mode)', async () => {
+      const modelValue = ref<ChipValueTest>();
+      const wrapper = mount(GymxChip<ChipValueTest>, {
+        props: {
+          modelValue: modelValue.value as ChipValueTest,
+          value: {
+            value: 'option1',
+            lorem: 'foo',
+          },
+        },
+      });
+
+      expect(wrapper.find('button').element.ariaPressed).toBe('false');
+      const button = wrapper.find('button');
+      await button.trigger('click');
+      expect(wrapper.find('button').element.ariaPressed).toBe('true');
     });
   });
 
   describe('Array/Multiple Value Mode', () => {
-    it('shows as unchecked when array is empty', () => {
+    it('shows as unpressed when array is empty', () => {
       const modelValue = ref<string[]>([]);
       const wrapper = mount(GymxChip<string[]>, {
         props: {
           modelValue: modelValue.value,
           'onUpdate:modelValue': (val) => {
-            modelValue.value = val;
+            modelValue.value = val || [];
           },
         },
       });
@@ -47,14 +70,14 @@ describe('GymxChip', () => {
       expect(wrapper.find('button').element.ariaPressed).toBe('false');
     });
 
-    it('shows as unchecked when value not in array', () => {
+    it('shows as unpressed when value not in array', () => {
       const modelValue = ref(['option1', 'option3']);
       const wrapper = mount(GymxChip<string[]>, {
         props: {
           modelValue: modelValue.value,
           value: 'option2',
-          'onUpdate:modelValue': (val: string[]) => {
-            modelValue.value = val;
+          'onUpdate:modelValue': (val?: string[]) => {
+            modelValue.value = val || [];
           },
         },
       });
@@ -62,14 +85,14 @@ describe('GymxChip', () => {
       expect(wrapper.find('button').element.ariaPressed).toBe('false');
     });
 
-    it('shows as checked when value is in array', () => {
+    it('shows as pressed when value is in array', () => {
       const modelValue = ref(['option1', 'option2']);
       const wrapper = mount(GymxChip<string[]>, {
         props: {
           modelValue: modelValue.value,
           value: 'option2',
-          'onUpdate:modelValue': (val: string[]) => {
-            modelValue.value = val;
+          'onUpdate:modelValue': (val?: string[]) => {
+            modelValue.value = val || [];
           },
         },
       });
@@ -77,10 +100,31 @@ describe('GymxChip', () => {
       expect(wrapper.find('button').element.ariaPressed).toBe('true');
     });
 
-    it('adds value to array when checked', async () => {
+    it('shows as pressed when value is in array (ChipValue Mode)', () => {
+      const modelValue = ref<ChipValueTest[]>([{
+        value: 'option1',
+        lorem: 'foo',
+      }, {
+        value: 'option2',
+        lorem: 'bar',
+      }]);
+      const wrapper = mount(GymxChip<ChipValueTest[]>, {
+        props: {
+          modelValue: modelValue.value,
+          value: {
+            value: 'option2',
+            lorem: 'bar',
+          },
+        },
+      });
+
+      expect(wrapper.find('button').element.ariaPressed).toBe('true');
+    });
+
+    it('adds value to array when pressed', async () => {
       const modelValue = ref(['option1']);
-      const updateSpy = vi.fn((val: string[]) => {
-        modelValue.value = val;
+      const updateSpy = vi.fn((val?: string[]) => {
+        modelValue.value = val || [];
       });
 
       const wrapper = mount(GymxChip<string[]>, {
@@ -97,10 +141,10 @@ describe('GymxChip', () => {
       expect(updateSpy).toHaveBeenCalledWith(['option1', 'option2']);
     });
 
-    it('removes value from array when unchecked', async () => {
+    it('removes value from array when unpressed', async () => {
       const modelValue = ref(['option1', 'option2', 'option3']);
-      const updateSpy = vi.fn((val: string[]) => {
-        modelValue.value = val;
+      const updateSpy = vi.fn((val?: string[]) => {
+        modelValue.value = val || [];
       });
 
       const wrapper = mount(GymxChip<string[]>, {
@@ -117,10 +161,34 @@ describe('GymxChip', () => {
       expect(updateSpy).toHaveBeenCalledWith(['option1', 'option3']);
     });
 
+    it('removes value from array when unpressed (ChipValue Mode)', async () => {
+      const modelValue = ref<ChipValueTest[]>([{
+        value: 'option1',
+        lorem: 'foo',
+      }, {
+        value: 'option2',
+        lorem: 'bar',
+      }]);
+      const wrapper = mount(GymxChip<ChipValueTest[]>, {
+        props: {
+          modelValue: modelValue.value,
+          value: {
+            value: 'option2',
+            lorem: 'bar',
+          },
+        },
+      });
+
+      expect(wrapper.find('button').element.ariaPressed).toBe('true');
+      const button = wrapper.find('button');
+      await button.trigger('click');
+      expect(wrapper.find('button').element.ariaPressed).toBe('false');
+    });
+
     it('handles numeric values in arrays', async () => {
       const modelValue = ref([1, 3]);
-      const updateSpy = vi.fn((val: number[]) => {
-        modelValue.value = val;
+      const updateSpy = vi.fn((val?: number[]) => {
+        modelValue.value = val || [];
       });
 
       const wrapper = mount(GymxChip<number[]>, {
@@ -139,8 +207,8 @@ describe('GymxChip', () => {
 
     it('does not add duplicate values to array', async () => {
       const modelValue = ref(['option1', 'option2']);
-      const updateSpy = vi.fn((val: string[]) => {
-        modelValue.value = val;
+      const updateSpy = vi.fn((val?: string[]) => {
+        modelValue.value = val || [];
       });
 
       const wrapper = mount(GymxChip<string[]>, {
@@ -165,8 +233,8 @@ describe('GymxChip', () => {
         props: {
           modelValue: modelValue.value,
           state: 'disabled',
-          'onUpdate:modelValue': (val: string) => {
-            modelValue.value = val;
+          'onUpdate:modelValue': (val?: string) => {
+            modelValue.value = val || '';
           },
         },
       });
@@ -207,8 +275,8 @@ describe('GymxChip', () => {
   describe('Edge Cases', () => {
     it('handles empty array correctly', async () => {
       const modelValue = ref<string[]>([]);
-      const updateSpy = vi.fn((val: string[]) => {
-        modelValue.value = val;
+      const updateSpy = vi.fn((val?: string[]) => {
+        modelValue.value = val || [];
       });
 
       const wrapper = mount(GymxChip<string[]>, {
@@ -227,6 +295,30 @@ describe('GymxChip', () => {
       expect(updateSpy).toHaveBeenCalledWith(['first-item']);
     });
 
+    it('handles disabled prop correctly', async () => {
+      const modelValue = ref<string>('');
+      const updateSpy = vi.fn((val?: string) => {
+        modelValue.value = val || '';
+      });
+
+      const wrapper = mount(GymxChip<string>, {
+        props: {
+          modelValue: modelValue.value,
+          value: 'first-item',
+          state: 'disabled',
+          'onUpdate:modelValue': updateSpy,
+        },
+      });
+
+      const button = wrapper.find('button');
+      await button.trigger('click');
+
+      expect(updateSpy).toHaveBeenCalledTimes(0);
+      await wrapper.setProps({ state: undefined });
+      await button.trigger('click');
+      expect(updateSpy).toHaveBeenCalledTimes(1);
+    });
+
     it('handles mixed string/number values in arrays', () => {
       const modelValue = ref<(string | number)[]>(['text', 42, 'more-text']);
       const wrapper = mount(GymxChip<(string|number)[]>, {
@@ -234,7 +326,7 @@ describe('GymxChip', () => {
           modelValue: modelValue.value,
           value: 42,
           'onUpdate:modelValue': (val) => {
-            modelValue.value = val;
+            modelValue.value = val || [];
           },
         },
       });
@@ -248,6 +340,7 @@ describe('GymxChip', () => {
         mount(GymxChip<string>, {
           props: {
             modelValue: modelValue.value,
+            // @ts-expect-error dont be undefined!
             value: undefined,
             'onUpdate:modelValue': (val) => {
               modelValue.value = val;
