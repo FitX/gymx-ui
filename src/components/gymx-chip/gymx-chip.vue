@@ -91,25 +91,41 @@ const handleChange = () => {
 .chip {
   $self: &;
 
+  /**
+  Chip
+   */
+  --_chip-font-size: var(--chip-font-size, var(--gymx-font-size-1));
+  --_chip-font-weight: var(--chip-font-weight, var(--gymx-font-weight-default));
+  --_chip-font-family: var(--chip-font-family, inherit);
+
+  --_chip-padding-inline: var(--chip-padding-inline, var(--gymx-size-0));
+  --_chip-padding-block: var(--chip-padding-block, var(--gymx-size-000));
+  --_chip-gap: var(--chip-gap, var(--gymx-size-00));
+
+  --_chip-border: var(--chip-border, none);
+  --_chip-outline: var(--chip-outline);
+  --_chip-radius: var(--chip-radius, var(--gymx-radius-4));
+  --_chip-transition: var(--chip-transition, background-color 200ms ease, color 200ms ease);
+
   --_chip-color: var(--chip-color, var(--gymx-color-gray-12));
   --_chip-color-background: var(--chip-color-background, var(--gymx-color-gray-2));
 
-  --_chip-color-hover: var(--chip-color-hover, var(--gymx-color-gray-2));
+  --_chip-color-hover: var(--chip-color-hover, var(--gymx-color-white-12));
   --_chip-color-background-hover: var(
       --chip-color-background-hover,
-      var(--gymx-color-gray-10)
+      var(--button-color-background-hover)
   );
 
   --_chip-color-focused: var(--chip-color-focused, var(--_chip-color-hover));
   --_chip-color-background-focused: var(
       --chip-color-background-focused,
-      var(--_chip-color-background-hover)
+      var(--button-color-background-focused)
   );
 
   --_chip-color-pressed: var(--chip-color-pressed, var(--_chip-color-hover));
   --_chip-color-background-pressed: var(
       --chip-color-background-pressed,
-      var(--gymx-color-gray-12)
+      var(--button-color-background)
   );
 
   --_chip-color-disabled: var(--chip-color-disabled, var(--_chip-color));
@@ -118,13 +134,25 @@ const handleChange = () => {
       var(--_chip-color-background)
   );
 
-  --_chip-count-color: var(--chip-count-color, var(--gymx-color-gray-9));
-  --_chip-count-color-background: var(--chip-count-color-background, transparent);
+  /**
+  Chip Count
+   */
+  --_chip-count-font-size: var(--chip-count-font-size, 0.625em);
+  --_chip-count-padding: var(--chip-count-padding, 0.2em);
+  --_chip-count-block-size: var(--chip-count-block-size, 1.125rem);
 
-  --_chip-count-color-hover: var(--chip-count-color-hover, var(--gymx-color-gray-4));
+  --_chip-count-color: var(--chip-count-color, currentColor);
+  // --_chip-count-color-background: var(--chip-count-color-background, rgba(red, 0.5));
+  // --_chip-count-color-background: var(--chip-count-color-background, rgba(black, 0.5));
+  --_chip-count-color-background: var(--chip-count-color-background, color-mix(
+      in display-p3,
+      var(--_chip-color-background) 85%,
+      var(--_chip-color) 15%));
+
+  --_chip-count-color-hover: var(--chip-count-color-hover, currentColor);
   --_chip-count-color-background-hover: var(
       --chip-count-color-background-hover,
-      transparent
+      black
   );
 
   --_chip-count-color-focused: var(--chip-count-color-focused, var(--_chip-count-color));
@@ -145,18 +173,7 @@ const handleChange = () => {
       var(--_chip-count-color-background)
   );
 
-  --_chip-font-size: var(--chip-font-size, var(--gymx-font-size-1));
-  --_chip-font-weight: var(--chip-font-weight, var(--gymx-font-weight-default));
-  --_chip-font-family: var(--chip-font-family, inherit);
 
-  --_chip-padding-inline: var(--chip-padding-inline, var(--gymx-size-0));
-  --_chip-padding-block: var(--chip-padding-block, var(--gymx-size-000));
-  --_chip-gap: var(--chip-gap, var(--gymx-size-00));
-
-  --_chip-border: var(--chip-border, none);
-  --_chip-outline: var(--chip-outline);
-  --_chip-radius: var(--chip-radius, var(--gymx-radius-4));
-  --_chip-transition: var(--chip-transition, background-color 200ms ease, color 200ms ease);
 
   font-size: var(--_chip-font-size);
   font-weight: var(--_chip-font-weight);
@@ -199,8 +216,16 @@ const handleChange = () => {
   &__count {
     display: grid;
     place-content: center;
+    place-items: center;
     color: var(--_chip-count-color);
     background: var(--_chip-count-color-background);
+    border-radius: 50%;
+    font-size: var(--_chip-count-font-size, 0.625em);
+    padding: var(--_chip-count-padding, 0.2em);
+
+    block-size: var(--_chip-count-block-size, 1.125rem);
+    aspect-ratio: 1;
+    overflow: hidden;
 
     &:empty {
       display: none;
@@ -214,18 +239,18 @@ const handleChange = () => {
     --_chip-count-color-background: var(--_chip-count-color-background-focused);
   }
 
-  &:where([aria-pressed="true"], &--pressed, &--active) {
-    --_chip-color: var(--_chip-color-pressed);
-    --_chip-color-background: var(--_chip-color-background-pressed);
-    --_chip-count-color: var(--_chip-count-color-pressed);
-    --_chip-count-color-background: var(--_chip-count-color-background-pressed);
-  }
-
   &:where(:hover, &--hover) {
     --_chip-color: var(--_chip-color-hover);
     --_chip-color-background: var(--_chip-color-background-hover);
     --_chip-count-color: var(--_chip-count-color-hover);
     --_chip-count-color-background: var(--_chip-count-color-background-hover);
+  }
+
+  &:where([aria-pressed="true"], &--pressed) {
+    --_chip-color: var(--_chip-color-pressed);
+    --_chip-color-background: var(--_chip-color-background-pressed);
+    --_chip-count-color: var(--_chip-count-color-pressed);
+    --_chip-count-color-background: var(--_chip-count-color-background-pressed);
   }
 
   &:where(:disabled, &--disabled) {
