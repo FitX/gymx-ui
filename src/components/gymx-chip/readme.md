@@ -1,4 +1,4 @@
-A flexible **Chip/Toggle component**. It supports *single- and multi-select* modes, works with `string`, `number`, or complex values (`ChipValue`).
+A flexible **Chip/Toggle component**. It supports _single- and multi-select_ modes, works with `string`, `number`, or complex values (`ChipValue`).
 
 ## 🔧 Props
 
@@ -7,8 +7,8 @@ A flexible **Chip/Toggle component**. It supports *single- and multi-select* mod
 - **Type:** `string | number | ChipValue | (string | number | ChipValue)[]`
 - **Description:** The logical value of the chip.
 
-  - In *single-select* mode: a single value.
-  - In *multi-select* mode: an item within an array.
+  - In _single-select_ mode: a single value.
+  - In _multi-select_ mode: an item within an array.
 
 ```
 <gymx-chip value="apple" v-model="selected" />
@@ -31,8 +31,8 @@ A flexible **Chip/Toggle component**. It supports *single- and multi-select* mod
 
 The model holds the current selection:
 
-- *Single mode:* a single value or `undefined`.
-- *Multi mode:* an array of values.
+- _Single mode:_ a single value or `undefined`.
+- _Multi mode:_ an array of values.
 
 ```
 <script setup lang="ts">
@@ -61,6 +61,7 @@ const multi = ref<(string | number | ChipValue)[]>([]);
 
   - `pressed: boolean` → whether the chip is selected
   - `value: T` → the chip’s value
+
 - **Description:** Chip content. Default: `{{ props.value }}`
 
 ```
@@ -77,6 +78,7 @@ const multi = ref<(string | number | ChipValue)[]>([]);
 
   - `pressed: boolean`
   - `count?: number`
+
 - **Description:** Customizable area for displaying the counter. Default: `{{ props.count }}`
 
 ```

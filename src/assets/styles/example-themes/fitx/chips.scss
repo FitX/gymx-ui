@@ -3,11 +3,17 @@
   Chips
    */
   --chip-color-background-hover: var(--color-brand-anthracite-5);
-  --chip-color-background-pressed: light-dark(var(--color-brand-anthracite-1), var(--color-brand-white-0));
+  --chip-color-background-pressed: light-dark(
+    var(--color-brand-anthracite-1),
+    var(--color-brand-white-0)
+  );
   --chip-color-pressed: light-dark(var(--color-brand-white-0), var(--color-brand-anthracite-1));
 
   --chip-count-color-background: transparent;
   --chip-count-color-background-hover: transparent;
   --chip-count-color-background-pressed: transparent;
-  --chip-count-color-pressed: light-dark(var(--color-brand-white-0), var(--color-brand-anthracite-6));
+  --chip-count-color-pressed: light-dark(
+    var(--color-brand-white-0),
+    var(--color-brand-anthracite-6)
+  );
 }

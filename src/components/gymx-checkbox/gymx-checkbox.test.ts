@@ -289,8 +289,8 @@ describe('GymxCheckbox', () => {
     });
 
     it('uses explicit value when provided', () => {
-      const modelValue = ref<string|boolean>(false);
-      const wrapper = mount(GymxCheckbox<boolean|string>, {
+      const modelValue = ref<string | boolean>(false);
+      const wrapper = mount(GymxCheckbox<boolean | string>, {
         props: {
           modelValue: modelValue.value,
           value: 'explicit-value',
@@ -330,7 +330,7 @@ describe('GymxCheckbox', () => {
 
     it('handles mixed string/number values in arrays', () => {
       const modelValue = ref<(string | number)[]>(['text', 42, 'more-text']);
-      const wrapper = mount(GymxCheckbox<(string|number)[]>, {
+      const wrapper = mount(GymxCheckbox<(string | number)[]>, {
         props: {
           modelValue: modelValue.value,
           value: 42,

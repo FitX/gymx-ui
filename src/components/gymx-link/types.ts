@@ -4,7 +4,7 @@ export interface GymxLinkProps<T extends keyof HTMLElementTagNameMap> {
   /**
    * Exclude<UIState, 'disabled'>
    */
-  tag?: T,
+  tag?: T;
   state?: Exclude<UIState, 'disabled'>;
 }
 

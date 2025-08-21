@@ -1,13 +1,12 @@
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { GymxChip } from './index';
 import { ref } from 'vue';
 
 type ChipValueTest = {
-  value: string,
-  lorem: string,
-}
+  value: string;
+  lorem: string;
+};
 
 describe('GymxChip', () => {
   it('is a Vue instance', () => {
@@ -101,13 +100,16 @@ describe('GymxChip', () => {
     });
 
     it('shows as pressed when value is in array (ChipValue Mode)', () => {
-      const modelValue = ref<ChipValueTest[]>([{
-        value: 'option1',
-        lorem: 'foo',
-      }, {
-        value: 'option2',
-        lorem: 'bar',
-      }]);
+      const modelValue = ref<ChipValueTest[]>([
+        {
+          value: 'option1',
+          lorem: 'foo',
+        },
+        {
+          value: 'option2',
+          lorem: 'bar',
+        },
+      ]);
       const wrapper = mount(GymxChip<ChipValueTest[]>, {
         props: {
           modelValue: modelValue.value,
@@ -162,13 +164,16 @@ describe('GymxChip', () => {
     });
 
     it('removes value from array when unpressed (ChipValue Mode)', async () => {
-      const modelValue = ref<ChipValueTest[]>([{
-        value: 'option1',
-        lorem: 'foo',
-      }, {
-        value: 'option2',
-        lorem: 'bar',
-      }]);
+      const modelValue = ref<ChipValueTest[]>([
+        {
+          value: 'option1',
+          lorem: 'foo',
+        },
+        {
+          value: 'option2',
+          lorem: 'bar',
+        },
+      ]);
       const wrapper = mount(GymxChip<ChipValueTest[]>, {
         props: {
           modelValue: modelValue.value,
@@ -321,7 +326,7 @@ describe('GymxChip', () => {
 
     it('handles mixed string/number values in arrays', () => {
       const modelValue = ref<(string | number)[]>(['text', 42, 'more-text']);
-      const wrapper = mount(GymxChip<(string|number)[]>, {
+      const wrapper = mount(GymxChip<(string | number)[]>, {
         props: {
           modelValue: modelValue.value,
           value: 42,

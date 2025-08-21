@@ -7,7 +7,9 @@ const props = defineProps<Props>();
 const tag = computed(() => props.tag ?? 'span');
 </script>
 <template>
-  <component :is="tag" class="badge">
+  <component
+    :is="tag"
+    class="badge">
     <slot>
       {{ props.text }}
     </slot>

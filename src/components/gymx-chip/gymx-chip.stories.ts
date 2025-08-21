@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxChip } from './gymx-chip.vue';
 import { ref } from 'vue';
@@ -32,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     value: 'option 1',
-    modelValue: 'option 1'
+    modelValue: 'option 1',
   },
 };
 
@@ -181,23 +180,28 @@ export const Multiple: Story = {
 export const WithSlot: Story = {
   render: () => ({
     setup(args) {
-      const filter = ref([{
-        label: 'Filter 1',
-        value: 1,
-        count: undefined,
-      }, {
-        label: 'Filter 2',
-        value: 2,
-        count: 99,
-      }, {
-        label: 'Filter 3',
-        value: 3,
-        count: 20,
-      }, {
-        label: 'Filter Deletable',
-        value: 4,
-        iconClose: true,
-      }])
+      const filter = ref([
+        {
+          label: 'Filter 1',
+          value: 1,
+          count: undefined,
+        },
+        {
+          label: 'Filter 2',
+          value: 2,
+          count: 99,
+        },
+        {
+          label: 'Filter 3',
+          value: 3,
+          count: 20,
+        },
+        {
+          label: 'Filter Deletable',
+          value: 4,
+          iconClose: true,
+        },
+      ]);
       const selectedFilter = ref<ChipValue[]>([]);
 
       return {

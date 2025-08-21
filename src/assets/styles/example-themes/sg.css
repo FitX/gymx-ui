@@ -73,5 +73,5 @@
 
 /* Chips */
 [data-theme='sg'] {
-  --chip-color-background-pressed: var(--sg-color-primary)
+  --chip-color-background-pressed: var(--sg-color-primary);
 }

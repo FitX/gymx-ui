@@ -98,7 +98,8 @@ const handleChange = (event: Event) => {
     var(--gymx-color-accent)
   );
 
-  &:has(:focus), &:hover {
+  &:has(:focus),
+  &:hover {
     --gymx-checkbox-input-outline-color: currentColor;
   }
 

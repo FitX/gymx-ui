@@ -1,4 +1,7 @@
-<script lang="ts" setup generic="T extends string | number | ChipValue | (string | number | ChipValue)[]">
+<script
+  lang="ts"
+  setup
+  generic="T extends string | number | ChipValue | (string | number | ChipValue)[]">
 import type { ChipValue, GymxChipProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier';
 import { computed, useAttrs } from 'vue';
@@ -12,7 +15,7 @@ const attrs = useAttrs();
 
 const isChecked = computed(() => {
   if (Array.isArray(model.value)) {
-    return model.value.some(item => {
+    return model.value.some((item) => {
       if (typeof item === 'object' && typeof props.value === 'object') {
         return item.value === props.value.value;
       }
@@ -26,9 +29,7 @@ const isChecked = computed(() => {
   return model.value === props.value;
 });
 
-const disabled = computed(
-  () => props.state === 'disabled' || Boolean(attrs?.disabled),
-);
+const disabled = computed(() => props.state === 'disabled' || Boolean(attrs?.disabled));
 
 const handleChange = () => {
   if (Array.isArray(model.value)) {
@@ -37,10 +38,12 @@ const handleChange = () => {
 
     if (isChecked.value) {
       // remove
-      const index = currentArray.findIndex(item => {
+      const index = currentArray.findIndex((item) => {
         if (typeof item === 'object' && typeof valueToToggle === 'object') {
           // @ts-expect-error ts compiler not up to date
-          return item !== null && Object.hasOwn(item, 'value') && item.value === valueToToggle.value;
+          return (
+            item !== null && Object.hasOwn(item, 'value') && item.value === valueToToggle.value
+          );
         }
         return item === valueToToggle;
       });
@@ -72,16 +75,21 @@ const handleChange = () => {
     ]"
     :disabled="disabled"
     :aria-pressed="isChecked"
-    @click="handleChange"
-  >
+    @click="handleChange">
     <span class="chip__content">
-      <slot name="default" :pressed="isChecked" :value="props.value">
+      <slot
+        name="default"
+        :pressed="isChecked"
+        :value="props.value">
         {{ props.value }}
       </slot>
       <span class="chip__count">
-        <slot name="count" :pressed="isChecked" :count="props.count">
-        {{ props.count }}
-      </slot>
+        <slot
+          name="count"
+          :pressed="isChecked"
+          :count="props.count">
+          {{ props.count }}
+        </slot>
       </span>
     </span>
   </button>
@@ -112,26 +120,26 @@ const handleChange = () => {
 
   --_chip-color-hover: var(--chip-color-hover, var(--gymx-color-white-12));
   --_chip-color-background-hover: var(
-      --chip-color-background-hover,
-      var(--button-color-background-hover)
+    --chip-color-background-hover,
+    var(--button-color-background-hover)
   );
 
   --_chip-color-focused: var(--chip-color-focused, var(--_chip-color-hover));
   --_chip-color-background-focused: var(
-      --chip-color-background-focused,
-      var(--button-color-background-focused)
+    --chip-color-background-focused,
+    var(--button-color-background-focused)
   );
 
   --_chip-color-pressed: var(--chip-color-pressed, var(--_chip-color-hover));
   --_chip-color-background-pressed: var(
-      --chip-color-background-pressed,
-      var(--button-color-background)
+    --chip-color-background-pressed,
+    var(--button-color-background)
   );
 
   --_chip-color-disabled: var(--chip-color-disabled, var(--_chip-color));
   --_chip-color-background-disabled: var(
-      --chip-color-background-disabled,
-      var(--_chip-color-background)
+    --chip-color-background-disabled,
+    var(--_chip-color-background)
   );
 
   /**
@@ -144,36 +152,31 @@ const handleChange = () => {
   --_chip-count-color: var(--chip-count-color, currentColor);
   // --_chip-count-color-background: var(--chip-count-color-background, rgba(red, 0.5));
   // --_chip-count-color-background: var(--chip-count-color-background, rgba(black, 0.5));
-  --_chip-count-color-background: var(--chip-count-color-background, color-mix(
-      in display-p3,
-      var(--_chip-color-background) 85%,
-      var(--_chip-color) 15%));
+  --_chip-count-color-background: var(
+    --chip-count-color-background,
+    color-mix(in display-p3, var(--_chip-color-background) 85%, var(--_chip-color) 15%)
+  );
 
   --_chip-count-color-hover: var(--chip-count-color-hover, currentColor);
-  --_chip-count-color-background-hover: var(
-      --chip-count-color-background-hover,
-      black
-  );
+  --_chip-count-color-background-hover: var(--chip-count-color-background-hover, black);
 
   --_chip-count-color-focused: var(--chip-count-color-focused, var(--_chip-count-color));
   --_chip-count-color-background-focused: var(
-      --chip-count-color-background-focused,
-      var(--_chip-count-color-background)
+    --chip-count-color-background-focused,
+    var(--_chip-count-color-background)
   );
 
   --_chip-count-color-pressed: var(--chip-count-color-pressed, var(--_chip-count-color-hover));
   --_chip-count-color-background-pressed: var(
-      --chip-count-color-background-pressed,
-      var(--_chip-count-color-background-hover)
+    --chip-count-color-background-pressed,
+    var(--_chip-count-color-background-hover)
   );
 
   --_chip-count-color-disabled: var(--chip-count-color-disabled, var(--_chip-count-color));
   --_chip-count-color-background-disabled: var(
-      --chip-count-color-background-disabled,
-      var(--_chip-count-color-background)
+    --chip-count-color-background-disabled,
+    var(--_chip-count-color-background)
   );
-
-
 
   font-size: var(--_chip-font-size);
   font-weight: var(--_chip-font-weight);
@@ -246,7 +249,7 @@ const handleChange = () => {
     --_chip-count-color-background: var(--_chip-count-color-background-hover);
   }
 
-  &:where([aria-pressed="true"], &--pressed) {
+  &:where([aria-pressed='true'], &--pressed) {
     --_chip-color: var(--_chip-color-pressed);
     --_chip-color-background: var(--_chip-color-background-pressed);
     --_chip-count-color: var(--_chip-count-color-pressed);

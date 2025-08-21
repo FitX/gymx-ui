@@ -7,7 +7,7 @@ type Props = GymxLinkProps<T>;
 
 const props = defineProps<Props>();
 
-const tag = computed(() => props.tag ?? 'a')
+const tag = computed(() => props.tag ?? 'a');
 
 defineSlots<GymxLinkSlots>();
 </script>
