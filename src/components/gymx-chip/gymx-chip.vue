@@ -40,8 +40,8 @@ const handleChange = () => {
       // remove
       const index = currentArray.findIndex((item) => {
         if (typeof item === 'object' && typeof valueToToggle === 'object') {
-          // @ts-expect-error ts compiler not up to date
           return (
+            // @ts-expect-error ts compiler not up to date
             item !== null && Object.hasOwn(item, 'value') && item.value === valueToToggle.value
           );
         }
