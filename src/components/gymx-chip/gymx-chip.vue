@@ -87,36 +87,94 @@ const handleChange = () => {
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .chip {
   $self: &;
-  --_chip-font-size: var(--chip-font-size, var(--gymx-font-size-1));
+
+  --_chip-color: var(--chip-color, var(--gymx-color-gray-12));
   --_chip-color-background: var(--chip-color-background, var(--gymx-color-gray-2));
-  --_chip-color-text: var(--chip-color-text, var(--gymx-color-gray-12));
-  --_chip-color-background-hover: var(--chip-color-background-hover, var(--gymx-color-gray-12));
-  --_chip-color-text-hover: var(--chip-color-text-hover, var(--gymx-color-gray-2));
 
+  --_chip-color-hover: var(--chip-color-hover, var(--gymx-color-gray-2));
+  --_chip-color-background-hover: var(
+      --chip-color-background-hover,
+      var(--gymx-color-gray-10)
+  );
+
+  --_chip-color-focused: var(--chip-color-focused, var(--_chip-color-hover));
+  --_chip-color-background-focused: var(
+      --chip-color-background-focused,
+      var(--_chip-color-background-hover)
+  );
+
+  --_chip-color-pressed: var(--chip-color-pressed, var(--_chip-color-hover));
+  --_chip-color-background-pressed: var(
+      --chip-color-background-pressed,
+      var(--gymx-color-gray-12)
+  );
+
+  --_chip-color-disabled: var(--chip-color-disabled, var(--_chip-color));
+  --_chip-color-background-disabled: var(
+      --chip-color-background-disabled,
+      var(--_chip-color-background)
+  );
+
+  --_chip-count-color: var(--chip-count-color, var(--gymx-color-gray-9));
   --_chip-count-color-background: var(--chip-count-color-background, transparent);
-  --_chip-count-color-text: var(--chip-count-color-text, var(--gymx-color-gray-9));
 
-  --_chip-count-color-background-hover: var(--chip-count-color-background-hover, transparent);
-  --_chip-count-color-text-hover: var(--chip-count-color-text-hover, var(--gymx-color-gray-4));
+  --_chip-count-color-hover: var(--chip-count-color-hover, var(--gymx-color-gray-4));
+  --_chip-count-color-background-hover: var(
+      --chip-count-color-background-hover,
+      transparent
+  );
 
-  --_chip-radius: var(--chip-radius, var(--gymx-radius-4));
+  --_chip-count-color-focused: var(--chip-count-color-focused, var(--_chip-count-color));
+  --_chip-count-color-background-focused: var(
+      --chip-count-color-background-focused,
+      var(--_chip-count-color-background)
+  );
+
+  --_chip-count-color-pressed: var(--chip-count-color-pressed, var(--_chip-count-color-hover));
+  --_chip-count-color-background-pressed: var(
+      --chip-count-color-background-pressed,
+      var(--_chip-count-color-background-hover)
+  );
+
+  --_chip-count-color-disabled: var(--chip-count-color-disabled, var(--_chip-count-color));
+  --_chip-count-color-background-disabled: var(
+      --chip-count-color-background-disabled,
+      var(--_chip-count-color-background)
+  );
+
+  --_chip-font-size: var(--chip-font-size, var(--gymx-font-size-1));
+  --_chip-font-weight: var(--chip-font-weight, var(--gymx-font-weight-default));
+  --_chip-font-family: var(--chip-font-family, inherit);
+
   --_chip-padding-inline: var(--chip-padding-inline, var(--gymx-size-0));
   --_chip-padding-block: var(--chip-padding-block, var(--gymx-size-000));
+  --_chip-gap: var(--chip-gap, var(--gymx-size-00));
 
-  place-items: center;
-  place-content: center;
+  --_chip-border: var(--chip-border, none);
+  --_chip-outline: var(--chip-outline);
+  --_chip-radius: var(--chip-radius, var(--gymx-radius-4));
+  --_chip-transition: var(--chip-transition, background-color 200ms ease, color 200ms ease);
+
   font-size: var(--_chip-font-size);
-  // font-weight: 400;
-  color: var(--_chip-color-text);
+  font-weight: var(--_chip-font-weight);
+  font-family: var(--_chip-font-family);
+  color: var(--_chip-color);
   padding-inline: var(--_chip-padding-inline);
   padding-block: var(--_chip-padding-block);
-  background: var(--_chip-color-background);
-  border: none;
+
+  border: var(--_chip-border);
+  outline: var(--_chip-outline, revert);
+  outline-offset: 2px;
   border-radius: var(--_chip-radius);
+  background: var(--_chip-color-background);
+  transition: var(--_chip-transition);
+
   display: inline-grid;
+  place-items: center;
+  place-content: center;
   align-items: center;
   align-content: center;
   justify-content: center;
@@ -131,25 +189,52 @@ const handleChange = () => {
     grid-template-columns: auto auto;
     place-items: center;
     place-content: center;
-    grid-gap: var(--chip-content-gap, var(--gymx-size-00));
+    gap: var(--_chip-gap);
+
     &:has(#{$self}__count:empty) {
       grid-template-columns: auto;
     }
   }
 
   &__count {
-    color: var(--_chip-count-color-text);
+    display: grid;
+    place-content: center;
+    color: var(--_chip-count-color);
     background: var(--_chip-count-color-background);
-    &:empty { display: none };
+
+    &:empty {
+      display: none;
+    }
   }
 
-  &:hover,
-  &--hover,
-  &:is([aria-pressed=true]) {
-    --chip-color-background: var(--_chip-color-background-hover);
-    --chip-color-text: var(--_chip-color-text-hover);
-    --chip-count-color-background: var(--_chip-count-color-background-hover);
-    --chip-count-color-text: var(--_chip-count-color-text-hover);
+  &:where(:focus-visible, &--focused) {
+    --_chip-color: var(--_chip-color-focused);
+    --_chip-color-background: var(--_chip-color-background-focused);
+    --_chip-count-color: var(--_chip-count-color-focused);
+    --_chip-count-color-background: var(--_chip-count-color-background-focused);
+  }
+
+  &:where([aria-pressed="true"], &--pressed, &--active) {
+    --_chip-color: var(--_chip-color-pressed);
+    --_chip-color-background: var(--_chip-color-background-pressed);
+    --_chip-count-color: var(--_chip-count-color-pressed);
+    --_chip-count-color-background: var(--_chip-count-color-background-pressed);
+  }
+
+  &:where(:hover, &--hover) {
+    --_chip-color: var(--_chip-color-hover);
+    --_chip-color-background: var(--_chip-color-background-hover);
+    --_chip-count-color: var(--_chip-count-color-hover);
+    --_chip-count-color-background: var(--_chip-count-color-background-hover);
+  }
+
+  &:where(:disabled, &--disabled) {
+    --_chip-color: var(--_chip-color-disabled);
+    --_chip-color-background: var(--_chip-color-background-disabled);
+    --_chip-count-color: var(--_chip-count-color-disabled);
+    --_chip-count-color-background: var(--_chip-count-color-background-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 }
 </style>

@@ -4,6 +4,7 @@ import { default as GymxChip } from './gymx-chip.vue';
 import { ref } from 'vue';
 import type { ChipValue } from '@/components/gymx-chip/types.ts';
 import { default as GymxBadge } from '@/components/gymx-badge/gymx-badge.vue';
+import { IconClose } from '@/components/icons/index.ts';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -176,7 +177,11 @@ export const WithSlot: Story = {
       }, {
         label: 'Filter 3',
         value: 3,
-        count: 1,
+        count: 200,
+      }, {
+        label: 'Filter Deletable',
+        value: 4,
+        iconClose: true,
       }])
       const selectedFilter = ref<ChipValue[]>([]);
 
@@ -189,12 +194,19 @@ export const WithSlot: Story = {
     components: {
       GymxChip,
       GymxBadge,
+      IconClose,
     },
     template: `
       <div class="demo">
-        <gymx-chip v-for="filter in filter" :key="filter.value" v-model="selectedFilter" :value="filter" >
+        <gymx-chip v-for="filter in filter" :key="filter.value" v-model="selectedFilter" :value="filter">
           <template #default="{ value: slotValue }">{{ slotValue.label }}</template>
-          <template #count><gymx-badge v-if="filter.count" class="badge-rounded">{{ filter.count }}</gymx-badge></template>
+          <template #count>
+            <gymx-badge v-if="filter.count" class="badge-rounded">{{ filter.count }}</gymx-badge>
+            <gymx-badge v-if="filter.iconClose" class="badge-rounded"><icon-close /></gymx-badge>
+          </template>
+        </gymx-chip>
+        <gymx-chip v-model="selectedFilter" value="Extra @delete" >
+          <template #count>20</template>
         </gymx-chip>
       </div>
       <div class="demo">
@@ -202,19 +214,24 @@ export const WithSlot: Story = {
       </div>
     <component is="style">
       .demo {
-        display: flex;
+      display: flex;
       gap: 0.8rem;
       flex-wrap: wrap;
       }
-      .demo__code { flex: 1 1 100%; }
+      .demo__code {
+      flex: 1 1 100%;
+      }
       .badge-rounded {
       --badge-radius: 50%;
       --badge-color-background: var(--gymx-color-gray-4);
-      --badge-font-size: 0.75em;
+      --badge-font-size: 0.5em;
       --badge-padding-inline: 0.2em;
       --badge-padding-block: 0.2em;
-      inline-size: 3ch;
+
+      --icon-width: 0.75rem;
+      block-size: 1.125rem;
       aspect-ratio: 1;
+      overflow: hidden;
       }
     </component>`,
   }),
