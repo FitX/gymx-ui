@@ -70,3 +70,8 @@
   --gymx-tabs-nav-transition: none;
   --gymx-tabs-nav-transition-duration: 0;
 }
+
+/* Chips */
+[data-theme='sg'] {
+  --chip-color-background-pressed: var(--sg-color-primary)
+}
