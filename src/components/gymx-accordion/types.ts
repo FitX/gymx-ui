@@ -3,6 +3,6 @@ export interface GymxAccordionProps {
   title?: string;
   content?: string;
   open?: boolean;
-  name?: string;
+  //name?: string;
   customIcon?: boolean;
 }

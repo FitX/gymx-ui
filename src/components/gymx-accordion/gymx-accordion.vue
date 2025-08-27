@@ -2,31 +2,26 @@
 <script lang="ts" setup>
 import type { GymxAccordionProps } from './types';
 import { getModifierClasses } from '@/utils/css-modifier.ts';
-import { useTemplateRef, watch } from 'vue';
 
 const props = defineProps<GymxAccordionProps>();
 const open = defineModel<boolean>({ default: false });
-const element = useTemplateRef<HTMLDetailsElement>('element');
 
-const handleToggle = (e) => {
-  open.value = !!element.value?.open;
+const handleToggle = (e: Event) => {
+  open.value = (e.target as HTMLDetailsElement).open;
 };
 </script>
 <template>
   <details
-    ref="element"
     class="accordion"
     :class="[
       getModifierClasses('accordion', props.customIcon ? 'has-custom-icon' : undefined),
     ]"
     :open="open"
-    @toggle="handleToggle"
-    :name="props.name">
+    @toggle="handleToggle">
     <summary class="accordion__title">
-      <slot name="icon-start" v-bind="{ props }"></slot>
+      <slot name="icon-start" v-bind="{ open }"></slot>
       <slot name="title">{{ props.title }}</slot>
       <slot name="icon-end" :open="open"></slot>
-      {{ open }}
     </summary>
     <div class="accordion__content">
       <slot name="default">
