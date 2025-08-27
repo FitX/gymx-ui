@@ -1,13 +1,22 @@
 
 <script lang="ts" setup>
 import type { GymxAccordionProps } from './types';
+import { getModifierClasses } from '@/utils/css-modifier.ts';
 
 const props = defineProps<GymxAccordionProps>();
 </script>
 <template>
-  <details class="accordion" :open="props.open">
+  <details
+    class="accordion"
+    :class="[
+      getModifierClasses('accordion', props.customIcon ? 'has-custom-icon' : undefined),
+    ]"
+    :open="props.open"
+    :name="props.name">
     <summary class="accordion__title">
+      <slot name="icon-start" v-bind="{ open: props.open }"></slot>
       <slot name="title">{{ props.title }}</slot>
+      <slot name="icon-end" v-bind="{ open: props.open }"></slot>
     </summary>
     <div class="accordion__content">
       <slot name="default">
@@ -18,6 +27,7 @@ const props = defineProps<GymxAccordionProps>();
 </template>
 <style lang="scss">
 .accordion {
+  $self: &;
   // --_gymx-accordion-transition: var(--gymx-accordion-transition, all 0.5s ease-in-out);
   --_gymx-accordion-content-transition: var(--gymx-accordion-content-transition, block-size 0.5s, content-visibility 0.5s);
   --_gymx-accordion-content-color-background: var(--gymx-accordion-content-color-background, transparent);
@@ -30,6 +40,9 @@ const props = defineProps<GymxAccordionProps>();
   --_gymx-accordion-title-color-text: var(--gymx-accordion-title-color-text, inherit);
   --_gymx-accordion-title-padding-inline: var(--gymx-accordion-title-padding-inline, var(--gymx-size-00));
   --_gymx-accordion-title-padding-block: var(--gymx-accordion-title-padding-block, var(--gymx-size-000));
+
+  --_gymx-accordion-title-icon: var(--gymx-accordion-title-icon, none);
+  --_gymx-accordion-title-icon-open: var(--gymx-accordion-title-icon-open, none);
 
   // transition: var(--_gymx-accordion-transition);
   // overflow: hidden;
@@ -60,6 +73,23 @@ const props = defineProps<GymxAccordionProps>();
 
   &:open::details-content {
     block-size: auto;
+  }
+
+  &--has-custom-icon {
+    --icon: '+';
+
+    ::marker {
+      content: none;
+    }
+    &:open {
+      --icon: '-';
+    }
+
+    #{$self}__title {
+      &::before {
+        content: var(--icon);
+      }
+    }
   }
 }
 
