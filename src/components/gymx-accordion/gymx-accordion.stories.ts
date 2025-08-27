@@ -36,7 +36,7 @@ export const WithSlots: Story = {
       };
     },
     template: `
-      <div class="wrapper" style="min-block-size: 200px;">
+      <div class="wrapper" style="min-block-size: 130px;">
         <gymx-accordion>
           <template #title>Accordion 1</template>
           <template #default>Accordion 1 Content</template>
@@ -63,7 +63,7 @@ export const AutoClose: Story = {
       };
     },
     template: `
-      <div class="wrapper" style="min-block-size: 300px;">
+      <div class="wrapper" style="min-block-size: 240px;">
         <gymx-accordion name="auto-close">
           <template #title>Accordion 1</template>
           <template #default>Accordion 1 Content</template>
@@ -87,7 +87,7 @@ export const AutoClose: Story = {
   parameters: {
     docs: {
       description: {
-        story: `Multiple <gymx-accordion> elements with the same name attribute form a logical group.
+        story: `Multiple &lt;gymx-accordion&gt; elements with the same name attribute form a logical group.
 Within this group, only one element can be open at a time - opening a new one automatically closes the previously open element.`,
       },
     },
@@ -105,7 +105,7 @@ export const CustomIcon: Story = {
       };
     },
     template: `
-      <div class="wrapper" style="min-block-size: 200px;">
+      <div class="wrapper" style="min-block-size: 130px;">
         <gymx-accordion custom-icon class="custom-icon">
           <template #icon-start="{ open }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529" class="icon" :class="{ 'icon--open' : open }">
@@ -117,7 +117,6 @@ export const CustomIcon: Story = {
         </gymx-accordion>
         <gymx-accordion custom-icon class="custom-icon">
           <template #icon-start="slotProps">
-            {{ slotProps }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529" class="icon" :class="{ 'icon--open' : slotProps.open }">
               <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
@@ -127,13 +126,11 @@ export const CustomIcon: Story = {
         </gymx-accordion>
       </div>
       <component is="style" scoped>
-        .custom-iconFoo {
-          --gymx-accordion-title-icon: data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22%23212529%22%3E%0A%20%20%3Cpath%20d%3D%22M1.646%204.646a.5.5%200%200%201%20.708%200L8%2010.293l5.646-5.647a.5.5%200%200%201%20.708.708l-6%206a.5.5%200%200%201-.708%200l-6-6a.5.5%200%200%201%200-.708z%22%2F%3E%0A%3C%2Fsvg%3E;
-        }
         .icon {
         inline-size: 1rem;
         aspect-ratio: 1;
-        margin-inline-end: 1rem;
+        margin-inline-start: 1rem;
+        order: 2;
         transition: rotate 0.5s ease;
         }
         .icon--open {
@@ -142,4 +139,46 @@ export const CustomIcon: Story = {
       </component>
     `,
   }),
+};
+
+export const NativeIcons: Story = {
+  args: {
+  },
+  render: (args) => ({
+    components: { GymxAccordion },
+    setup() {
+      return {
+        args,
+      };
+    },
+    template: `
+      <div class="wrapper" style="min-block-size: 240px;">
+        <gymx-accordion name="auto-close" native-icons>
+          <template #title>Accordion 1</template>
+          <template #default>Accordion 1 Content</template>
+        </gymx-accordion>
+        <gymx-accordion name="auto-close" native-icons open>
+          <template #title>Accordion 1</template>
+          <template #default>
+            <p>Accordion 2 Content</p>
+            <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam &hellip;</p>
+          </template>
+        </gymx-accordion>
+        <gymx-accordion name="auto-close" native-icons>
+          <template #title>Accordion 3</template>
+          <template #default>Accordion 3 Content</template>
+        </gymx-accordion>
+      </div>
+      <component is="style" scoped>
+      </component>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `&lt;gymx-accordion&gt; use the &lt;details&gt; HTML Tag.
+        For display native ::marker add *native-icons* prop.`,
+      },
+    },
+  },
 };
