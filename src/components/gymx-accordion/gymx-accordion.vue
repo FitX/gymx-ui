@@ -32,7 +32,6 @@ const handleToggle = (e: Event) => {
 </template>
 <style lang="scss">
 .accordion {
-  $self: &;
   // --_gymx-accordion-transition: var(--gymx-accordion-transition, all 0.5s ease-in-out);
   --_gymx-accordion-content-transition: var(--gymx-accordion-content-transition, block-size 0.5s, content-visibility 0.5s);
   --_gymx-accordion-content-color-background: var(--gymx-accordion-content-color-background, transparent);
@@ -67,6 +66,7 @@ const handleToggle = (e: Event) => {
     padding-inline: var(--_gymx-accordion-title-padding-inline);
     padding-block: var(--_gymx-accordion-title-padding-block);
     font-weight: 700;
+    display: flex;
   }
 
   &::details-content {
@@ -78,23 +78,6 @@ const handleToggle = (e: Event) => {
 
   &:open::details-content {
     block-size: auto;
-  }
-
-  &--has-custom-icon {
-    --icon: '+';
-
-    ::marker {
-      content: none;
-    }
-    &:open {
-      --icon: '-';
-    }
-
-    #{$self}__title {
-      &::before {
-        content: var(--icon);
-      }
-    }
   }
 }
 
