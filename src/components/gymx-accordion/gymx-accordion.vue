@@ -70,10 +70,6 @@ const handleToggle = (e: Event) => {
     padding-block: var(--_gymx-accordion-content-padding-block);
   }
 
-  &--has-native-icons {
-    border: 2px solid red;
-  }
-
   &__title {
     transition: var(--_gymx-accordion-title-transition);
     color: var(--_gymx-accordion-content-color-text);
@@ -83,7 +79,7 @@ const handleToggle = (e: Event) => {
     font-weight: 700;
 
     #{$self}:not(#{$self}--has-native-icons) & {
-      display: flex;
+      display: flex; // flex also removes ::marker, if revert display: use ::marker { content: none }
       align-items: center;
     }
   }
