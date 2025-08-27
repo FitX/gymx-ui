@@ -17,61 +17,61 @@ const props = defineProps<GymxAccordionProps>();
   </details>
 </template>
 <style lang="scss">
-.accordion::details-content {
-  // transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete;
-  // height: 0;
-}
-
-.accordion[open]::details-content {
-  // height: auto;
-}
-
 .accordion {
   // --_gymx-accordion-transition: var(--gymx-accordion-transition, all 0.5s ease-in-out);
   --_gymx-accordion-content-transition: var(--gymx-accordion-content-transition, block-size 0.5s, content-visibility 0.5s);
+  --_gymx-accordion-content-color-background: var(--gymx-accordion-content-color-background, transparent);
+  --_gymx-accordion-content-color-text: var(--gymx-accordion-content-color-text, inherit);
+  --_gymx-accordion-content-padding-inline: var(--gymx-accordion-content-padding-inline, 0);
+  --_gymx-accordion-content-padding-block: var(--gymx-accordion-content-padding-block, 0);
 
+  --_gymx-accordion-title-transition: var(--gymx-accordion-title-transition, none);
+  --_gymx-accordion-title-color-background: var(--gymx-accordion-title-color-background, transparent);
+  --_gymx-accordion-title-color-text: var(--gymx-accordion-title-color-text, inherit);
   --_gymx-accordion-title-padding-inline: var(--gymx-accordion-title-padding-inline, var(--gymx-size-00));
   --_gymx-accordion-title-padding-block: var(--gymx-accordion-title-padding-block, var(--gymx-size-000));
-  --_gymx-accordion-title-transition: var(--gymx-accordion-title-transition, all 0.5s ease-in-out);
 
   // transition: var(--_gymx-accordion-transition);
+  // overflow: hidden;
+
+  &__content {
+    display: flow-root;
+    color: var(--_gymx-accordion-content-color-text);
+    background: var(--_gymx-accordion-content-color-background);
+    padding-inline: var(--_gymx-accordion-content-padding-inline);
+    padding-block: var(--_gymx-accordion-content-padding-block);
+  }
 
   &__title {
     transition: var(--_gymx-accordion-title-transition);
-    padding: var(--_gymx-accordion-title-padding-block) var(--_gymx-accordion-title-padding-inline);
+    color: var(--_gymx-accordion-content-color-text);
+    background: var(--_gymx-accordion-title-color-background);
+    padding-inline: var(--_gymx-accordion-title-padding-inline);
+    padding-block: var(--_gymx-accordion-title-padding-block);
     font-weight: 700;
+  }
 
-    [open] & {
-      // padding: 1em;
-    }
+  &::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: var(--_gymx-accordion-content-transition);
+    transition-behavior: allow-discrete;
+  }
+
+  &:open::details-content {
+    block-size: auto;
   }
 }
 
 .accordion::details-content {
-  // transition: all 0.5s ease, content-visibility 0.5s allow-discrete;
-  block-size: 0;
-  overflow: clip;
-  transition: var(--_gymx-accordion-content-transition);
-  transition-behavior: allow-discrete;
+  // content-visibility: auto;
+  // block-size: auto;
 }
 .accordion:open::details-content {
-  block-size: auto;
+  // block-size: auto;
 }
 
-@supports (interpolate-size: allow-keywords) {
-  :root {
-    interpolate-size: allow-keywords;
-  }
-
-  ::details-content {
-    padding-inline: 2em;
-    background: red;
-  }
-
-  /*.accordion:where([open])::details-content,
-  {
-    height: auto;
-    padding: 0.5em 1em;
-  } */
+:root {
+  interpolate-size: allow-keywords;
 }
 </style>
