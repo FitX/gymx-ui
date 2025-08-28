@@ -72,7 +72,7 @@ const handleToggle = (e: Event) => {
 
   &__title {
     transition: var(--_gymx-accordion-title-transition);
-    color: var(--_gymx-accordion-content-color-text);
+    color: var(--_gymx-accordion-title-color-text);
     background: var(--_gymx-accordion-title-color-background);
     padding-inline: var(--_gymx-accordion-title-padding-inline);
     padding-block: var(--_gymx-accordion-title-padding-block);

@@ -1,20 +1,9 @@
 /**
  Theme <3 Gymx Ui
  */
-:where(html) {
-  color-scheme: dark light;
-  font-family: var(--gymx-font-family-default), sans-serif;
-  font-size: var(--gymx-font-size-default);
-  font-weight: var(--gymx-font-weight-default);
-}
+
 :where(html) {
   color-scheme: light;
-  /*
-  Colors
-  */
-  --gymx-color-primary: var(--gymx-color-accent); /* #00328a; */
-  --gymx-color-text: #222;
-  --accent-color: var(--gymx-color-accent); /* #00328a; */
 
   /**
   Buttons

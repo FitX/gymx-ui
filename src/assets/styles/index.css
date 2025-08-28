@@ -20,4 +20,12 @@
 
 :where(html) {
   /* --input-color-border-hover: green; */
+  color-scheme: dark light;
+  font-family: var(--gymx-font-family-default), sans-serif;
+  font-size: var(--gymx-font-size-default);
+  font-weight: var(--gymx-font-weight-default);
+
+  --gymx-color-primary: var(--gymx-color-accent); /* #00328a; */
+  --gymx-color-text: #222;
+  --accent-color: var(--gymx-color-accent); /* #00328a; */
 }

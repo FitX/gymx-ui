@@ -1,11 +1,10 @@
 
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAccordion } from './gymx-accordion.vue';
-import { ref } from 'vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/WIP/accordion',
+  title: 'components/Accordion',
   component: GymxAccordion,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -108,7 +107,7 @@ export const CustomIcon: Story = {
       <div class="wrapper" style="min-block-size: 130px;">
         <gymx-accordion custom-icon class="custom-icon">
           <template #icon-start="{ open }">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529" class="icon" :class="{ 'icon--open' : open }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="icon" :class="{ 'icon--open' : open }">
               <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
           </template>
@@ -117,7 +116,7 @@ export const CustomIcon: Story = {
         </gymx-accordion>
         <gymx-accordion custom-icon class="custom-icon">
           <template #icon-start="slotProps">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529" class="icon" :class="{ 'icon--open' : slotProps.open }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="icon" :class="{ 'icon--open' : slotProps.open }">
               <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
           </template>

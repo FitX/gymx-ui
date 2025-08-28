@@ -1,3 +1,4 @@
+export * from './gymx-accordion';
 export * from './gymx-app-layout';
 export * from './gymx-app-header';
 export * from './gymx-app-content';
