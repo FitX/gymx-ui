@@ -4,7 +4,7 @@ import { default as GymxAccordion } from './gymx-accordion.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-  title: 'components/Accordion',
+  title: 'Components/Accordion',
   component: GymxAccordion,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
