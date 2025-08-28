@@ -10,7 +10,8 @@ const staticDirs = [
 ];
 
 if (isProd) {
-  staticDirs.push({ from: '../src/assets/styles/example-themes', to: '/example-themes'})
+  staticDirs.push({ from: '../src/assets/styles/example-themes', to: '/example-themes'});
+  staticDirs.push({ from: '../src/assets/styles', to: '/'});
 }
 
 const config: StorybookConfig = {

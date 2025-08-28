@@ -13,8 +13,10 @@
 @import 'ui/table.css';
 /**
  * Theme specific
+ * @DEPRECATED since version: 0.54.0.
+ * alternative usage: import '@fitx/gymx-ui/theme.css';
  */
-@import 'theme.css';
+/* @import 'theme.css'; */
 
 :where(html) {
   /* --input-color-border-hover: green; */
