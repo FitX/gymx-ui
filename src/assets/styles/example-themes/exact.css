@@ -389,3 +389,44 @@
     margin: var(--gymx-size-000) 0;
   }
 }
+
+/* Radio */
+[data-theme='exact'] {
+  --gymx-radio-input-accent-color: var(--gymx-color-accent);
+
+  :where(.radio) {
+    position: relative;
+    background: var(--gymx-radio-input-accent-color);
+    border-radius: 2rem;
+    outline: 1px solid var(--gymx-color-app-background);
+    outline-offset: -2px;
+
+    &::before {
+      content: '';
+      inset: 0;
+
+      background: var(--gymx-color-text);
+      position: absolute;
+      transform-origin: center;
+      scale: 0;
+      rotate: -100deg;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      transition: 100ms ease-in-out scale, 200ms ease-in-out rotate;
+    }
+
+    &:has(:checked)::before {
+      scale: 1.2;
+      rotate: 0deg;
+    }
+
+    &:has([disabled]) {
+      --gymx-radio-input-accent-color: var(--exact-color-gray-3);
+      &::before {
+        scale: 0.6;
+      }
+    }
+  }
+  :where(.radio__input) {
+    opacity: 0;
+  }
+}
