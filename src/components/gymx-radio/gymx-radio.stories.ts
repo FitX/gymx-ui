@@ -98,9 +98,11 @@ export const Example: Story = {
         margin-block-end: 1rem;
         .radio {
           order: -1;
+          flex-shrink: 0;
         }
         .label {
           padding-inline-start: 0.6rem;
+          inline-size: max-content;
         }
       }
     </component>`,

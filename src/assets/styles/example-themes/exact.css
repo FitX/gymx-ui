@@ -395,11 +395,20 @@
   --gymx-radio-input-accent-color: var(--gymx-color-accent);
 
   :where(.radio) {
+    --gymx-radio-input-size: 1rem;
     position: relative;
     background: var(--gymx-radio-input-accent-color);
-    border-radius: 2rem;
+    border-radius: calc(infinity * 1px);
     outline: 1px solid var(--gymx-color-app-background);
     outline-offset: -2px;
+    line-height: 0;
+    display: inline-block;
+
+    input {
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 0;
+    }
 
     &::before {
       content: '';
