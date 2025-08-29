@@ -21,4 +21,5 @@ export * from './gymx-toggle-switch';
 export * from './gymx-select';
 export * from './gymx-select-field';
 export * from './gymx-dialog';
+export * from './gymx-radio';
 export * from './icons';
