@@ -68,7 +68,7 @@ export const AutoClose: Story = {
           <template #default>Accordion 1 Content</template>
         </gymx-accordion>
         <gymx-accordion name="auto-close" open>
-          <template #title>Accordion 1</template>
+          <template #title>Accordion 2</template>
           <template #default>
             <p>Accordion 2 Content</p>
             <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam &hellip;</p>
