@@ -60,6 +60,11 @@ const handleChange = (event: Event) => {
       var(--gymx-color-accent)
   );
 
+  inline-size: var(--_gymx-radio-input-size);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+
   &:has(:focus),
   &:hover {
     --gymx-radio-input-outline-color: currentColor;
@@ -75,9 +80,10 @@ const handleChange = (event: Event) => {
 
   &__input {
     accent-color: var(--_gymx-radio-input-accent-color);
-    inline-size: var(--_gymx-radio-input-size);
-    aspect-ratio: 1;
     outline-color: var(--_gymx-radio-input-outline-color);
+    place-self: stretch;
+    margin: 0;
+    padding: 0;
   }
 }
 </style>

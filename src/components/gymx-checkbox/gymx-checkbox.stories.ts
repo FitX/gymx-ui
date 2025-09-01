@@ -169,12 +169,17 @@ export const Multiple: Story = {
         margin-trim: block-end;
       }
       .item {
-        display: flex;
-        gap: 0.6rem;
+      display: inline-flex;
+      margin-block-end: 1rem;
+      align-items: center;
         margin-block-end: 1rem;
         .checkbox {
           order: -1;
         }
+      .label {
+      padding-inline-start: 0.6rem;
+      inline-size: max-content;
+      }
       }
     </component>`,
   }),

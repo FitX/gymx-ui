@@ -94,8 +94,9 @@ export const Example: Story = {
         margin-trim: block-end;
       }
       .item {
-        display: flex;
+        display: inline-flex;
         margin-block-end: 1rem;
+      align-items: center;
         .radio {
           order: -1;
           flex-shrink: 0;
