@@ -5,6 +5,7 @@ export * from './gymx-app-content';
 export * from './gymx-app-footer';
 export * from './gymx-auto-suggest';
 export * from './gymx-banner';
+export * from './gymx-checkbox';
 export * from './gymx-error-message';
 export * from './gymx-icon-button';
 export * from './gymx-label';
