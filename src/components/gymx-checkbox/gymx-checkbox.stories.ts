@@ -171,6 +171,7 @@ export const Multiple: Story = {
       .item {
       display: inline-flex;
       margin-block-end: 1rem;
+      margin-inline-end: 1rem;
       align-items: center;
         margin-block-end: 1rem;
         .checkbox {

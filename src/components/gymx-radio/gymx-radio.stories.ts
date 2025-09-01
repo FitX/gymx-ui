@@ -96,6 +96,7 @@ export const Example: Story = {
       .item {
         display: inline-flex;
         margin-block-end: 1rem;
+        margin-inline-end: 1rem;
       align-items: center;
         .radio {
           order: -1;
