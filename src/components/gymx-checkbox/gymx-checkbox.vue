@@ -98,6 +98,11 @@ const handleChange = (event: Event) => {
     var(--gymx-color-accent)
   );
 
+  inline-size: var(--_gymx-checkbox-input-size);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+
   &:has(:focus),
   &:hover {
     --gymx-checkbox-input-outline-color: currentColor;
@@ -113,9 +118,10 @@ const handleChange = (event: Event) => {
 
   &__input {
     accent-color: var(--_gymx-checkbox-input-accent-color);
-    inline-size: var(--_gymx-checkbox-input-size);
-    aspect-ratio: 1;
     outline-color: var(--_gymx-checkbox-input-outline-color);
+    place-self: stretch;
+    margin: 0;
+    padding: 0;
   }
 }
 </style>
