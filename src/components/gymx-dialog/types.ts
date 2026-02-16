@@ -11,6 +11,7 @@ export interface GymxDialogProps {
 
 export interface GymxDialogSlots {
   header?: () => any;
+  title?: () => any;
   default?: () => any;
   footer?: () => any;
 }

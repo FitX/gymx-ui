@@ -59,7 +59,9 @@ onMounted(() => {
     <div class="dialog__content">
       <header class="dialog__header">
         <slot name="header">
-          <h1 class="dialog__title">{{ props.title }}</h1>
+          <h1 class="dialog__title">
+            <slot name="title">{{ props.title }}</slot>
+          </h1>
           <button
             class="dialog__button-close"
             @click="close()"
