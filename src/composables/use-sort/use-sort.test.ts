@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { ref } from 'vue';
+import { ref, toValue } from 'vue';
 import { useSort, type SortOption } from './index';
 
 interface Item {
@@ -123,6 +123,63 @@ describe('useSort', () => {
     ]);
 
     expect(sorted.value).not.toEqual(data.value);
+  });
+
+  it('should use customSort function if provided and ignore default sort', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 4, name: 'Z' },
+      { id: 5, name: 'M' },
+    ]);
+
+    const includeDefaultSort = ref(false);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const customSort = (dataToSort: Item[]) => {
+      const { order, key } = toValue(sortOptions)[0];
+      if (key === 'name') {
+        return dataToSort.sort((a, b) => {
+          if (order === 'asc') return (a.name ?? '').localeCompare(b.name ?? '');
+          return (b.name ?? '').localeCompare(a.name ?? '');
+        });
+      }
+      return dataToSort;
+    };
+
+    const { sorted } = useSort({ initialData: data, sortOptions, includeDefaultSort, customSort });
+
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 1, name: 'C' },
+      { id: 5, name: 'M' },
+      { id: 4, name: 'Z' },
+    ]);
+
+
+    sortOptions.value[0].order = 'desc';
+    sortOptions.value[0].key = 'id';
+
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 4, name: 'Z' },
+      { id: 5, name: 'M' },
+    ]);
+
+    includeDefaultSort.value = true;
+
+    expect(sorted.value).toEqual([
+      { id: 5, name: 'M' },
+      { id: 4, name: 'Z' },
+      { id: 3, name: 'B' },
+      { id: 2, name: 'A' },
+      { id: 1, name: 'C' },
+    ]);
   });
 
   it('should return original data when no sortOptions or customSort are provided', () => {
