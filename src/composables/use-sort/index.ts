@@ -42,11 +42,13 @@ const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
 };
 
 export const useSort = <T>({ initialData, sortOptions = [], customSort }: UseSortOptions<T>) => {
-  const sorted = computed(() => {
+  const sorted = computed<T[] | null | undefined>(() => {
     const _data = toValue(initialData);
     if (!_data) return _data;
 
-    const resolvedCustomSort = isRef(customSort) ? customSort.value : customSort;
+    const resolvedCustomSort = (isRef(customSort) ? customSort.value : customSort) as
+      | ((data: T[]) => T[])
+      | undefined;
 
     if (typeof resolvedCustomSort === 'function') {
       return resolvedCustomSort([..._data]);
