@@ -45,16 +45,15 @@ export const useSort = <T>({ initialData, sortOptions = [], customSort }: UseSor
   const sorted = computed(() => {
     const _data = toValue(initialData);
     if (!_data) return _data;
-    if (typeof customSort === 'function') {
-      customSort(_data);
+
+    const resolvedCustomSort = isRef(customSort) ? customSort.value : customSort;
+
+    if (typeof resolvedCustomSort === 'function') {
+      return resolvedCustomSort([..._data]);
     }
-    if (isRef(customSort) && typeof customSort.value === 'function') {
-      customSort.value(_data);
-    }
+
     return defaultSort(_data, toValue(sortOptions));
   });
 
-  return {
-    sorted,
-  };
+  return { sorted };
 };

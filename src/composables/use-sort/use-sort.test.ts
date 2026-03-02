@@ -121,6 +121,8 @@ describe('useSort', () => {
       { id: 2, name: 'B' },
       { id: 1, name: 'A' },
     ]);
+
+    expect(sorted.value).not.toEqual(data.value);
   });
 
   it('should return original data when no sortOptions or customSort are provided', () => {
