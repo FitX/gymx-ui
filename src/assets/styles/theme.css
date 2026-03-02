@@ -69,7 +69,10 @@
 }
 
 :where(.accordion) {
-  --gymx-accordion-content-padding-block: calc(var(--gymx-size-0) - var(--_gymx-accordion-title-padding-block)) var(--gymx-size-0);
+  --gymx-accordion-content-padding-block: calc(
+      var(--gymx-size-0) - var(--_gymx-accordion-title-padding-block)
+    )
+    var(--gymx-size-0);
   &:not(:only-child):not(:last-child) {
     border-block-end: 1px solid var(--gymx-color-gray-3);
   }

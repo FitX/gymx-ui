@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxAccordion } from './gymx-accordion.vue';
 
@@ -25,8 +24,7 @@ export const Default: Story = {
 };
 
 export const WithSlots: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: { GymxAccordion },
     setup() {
@@ -52,8 +50,7 @@ export const WithSlots: Story = {
 };
 
 export const AutoClose: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: { GymxAccordion },
     setup() {
@@ -94,8 +91,7 @@ Within this group, only one element can be open at a time - opening a new one au
 };
 
 export const CustomIcon: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: { GymxAccordion },
     setup() {
@@ -141,8 +137,7 @@ export const CustomIcon: Story = {
 };
 
 export const NativeIcons: Story = {
-  args: {
-  },
+  args: {},
   render: (args) => ({
     components: { GymxAccordion },
     setup() {

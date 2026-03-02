@@ -4,7 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :where([data-theme='exact']) {
-
 }
 
 [data-theme='exact'] {
@@ -421,7 +420,9 @@
       scale: 0;
       rotate: -100deg;
       clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-      transition: 100ms ease-in-out scale, 200ms ease-in-out rotate;
+      transition:
+        100ms ease-in-out scale,
+        200ms ease-in-out rotate;
     }
 
     &:has(:checked)::before {

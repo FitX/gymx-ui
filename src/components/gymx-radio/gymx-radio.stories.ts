@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { default as GymxRadio } from './gymx-radio.vue';
 import { ref } from 'vue';

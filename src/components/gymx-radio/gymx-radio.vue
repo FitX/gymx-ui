@@ -51,13 +51,10 @@ const handleChange = (event: Event) => {
 <style lang="scss">
 .radio {
   --_gymx-radio-input-size: var(--gymx-radio-input-size, var(--gymx-size-1));
-  --_gymx-radio-input-accent-color: var(
-      --gymx-radio-input-accent-color,
-      var(--gymx-color-accent)
-  );
+  --_gymx-radio-input-accent-color: var(--gymx-radio-input-accent-color, var(--gymx-color-accent));
   --_gymx-radio-input-outline-color: var(
-      --gymx-radio-input-outline-color,
-      var(--gymx-color-accent)
+    --gymx-radio-input-outline-color,
+    var(--gymx-color-accent)
   );
 
   inline-size: var(--_gymx-radio-input-size);
@@ -73,8 +70,8 @@ const handleChange = (event: Event) => {
   &--disabled,
   &:has([disabled]) {
     --gymx-radio-input-accent-color: var(
-        --gymx-radio-input-accent-color-disabled,
-        var(--gymx-color-gray-10)
+      --gymx-radio-input-accent-color-disabled,
+      var(--gymx-color-gray-10)
     );
   }
 

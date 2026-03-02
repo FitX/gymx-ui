@@ -213,7 +213,8 @@ describe('GymxAccordion', () => {
           modelValue: true,
         },
         slots: {
-          'icon-start': '<template #icon-start="{ open }"><span class="custom-icon">{{ open ? "open" : "closed" }}</span></template>',
+          'icon-start':
+            '<template #icon-start="{ open }"><span class="custom-icon">{{ open ? "open" : "closed" }}</span></template>',
         },
       });
 
@@ -228,7 +229,8 @@ describe('GymxAccordion', () => {
           modelValue: false,
         },
         slots: {
-          'icon-end': '<template #icon-end="{ open }"><span class="end-icon">{{ open ? "expanded" : "collapsed" }}</span></template>',
+          'icon-end':
+            '<template #icon-end="{ open }"><span class="end-icon">{{ open ? "expanded" : "collapsed" }}</span></template>',
         },
       });
 
@@ -243,8 +245,10 @@ describe('GymxAccordion', () => {
           modelValue: true,
         },
         slots: {
-          'icon-start': '<template #icon-start="{ open }"><span class="start-icon" :data-open="open">Start</span></template>',
-          'icon-end': '<template #icon-end="{ open }"><span class="end-icon" :data-open="open">End</span></template>',
+          'icon-start':
+            '<template #icon-start="{ open }"><span class="start-icon" :data-open="open">Start</span></template>',
+          'icon-end':
+            '<template #icon-end="{ open }"><span class="end-icon" :data-open="open">End</span></template>',
         },
       });
 

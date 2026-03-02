@@ -79,7 +79,10 @@
 /* Accordion */
 [data-theme='sg'] {
   :where(.accordion) {
-    --gymx-accordion-content-padding-block: calc(var(--gymx-size-0) - var(--_gymx-accordion-title-padding-block)) var(--gymx-size-0);
+    --gymx-accordion-content-padding-block: calc(
+        var(--gymx-size-0) - var(--_gymx-accordion-title-padding-block)
+      )
+      var(--gymx-size-0);
     --gymx-accordion-title-color-background: var(--gymx-color-gray-2);
 
     --sg-accordion-border-radius: var(--gymx-radius-2);
@@ -88,7 +91,7 @@
       margin: var(--gymx-size-000);
       border-radius: var(--sg-accordion-border-radius);
     }
-/*
+    /*
     &:only-child {
       border-radius: var(--sg-accordion-border-radius);
     }
@@ -109,10 +112,10 @@
       }
     }*/
 
-    &:has(.accordion__title:hover), &[open] {
+    &:has(.accordion__title:hover),
+    &[open] {
       --gymx-accordion-title-color-background: var(--sg-color-primary);
       --gymx-accordion-title-color-text: var(--sg-color-on-primary);
     }
   }
 }
-
