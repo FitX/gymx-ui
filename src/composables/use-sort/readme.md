@@ -63,7 +63,9 @@ const customSort = (items: Item[]) => items.reverse();
 const { sorted } = useSort({ initialData, customSort });
 ```
 
-In this case, the custom sort function will be used and `sortOptions` will be ignored.
+The custom sort function is applied first. If `includeDefaultSort` is `true` (default),
+`defaultSort` is applied afterwards. The custom sort function is responsible for handling
+the keys it supports — for all other keys, `defaultSort` will take over.
 
 ## API
 
@@ -73,7 +75,11 @@ In this case, the custom sort function will be used and `sortOptions` will be ig
 - **`sortOptions`** (optional): A list of sorting options with the following properties:
   - `key`: The key in the object to sort by.
   - `order`: The sorting order, either `'asc'` (ascending) or `'desc'` (descending).
-- **`customSort`** (optional): A custom function to sort the data. If this function is provided, `sortOptions` will be ignored.
+- **`includeDefaultSort`** (optional, default: `true`): Whether to apply `defaultSort` after `customSort`.
+  Can be a `ref` or a raw value.
+- **`customSort`** (optional): A custom function for sorting logic that `defaultSort` cannot handle
+  (e.g. nested keys). Runs before `defaultSort`. If `includeDefaultSort` is `false`,
+  `defaultSort` is skipped entirely.
 
 #### Returns:
 
