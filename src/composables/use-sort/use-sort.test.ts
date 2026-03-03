@@ -125,7 +125,7 @@ describe('useSort', () => {
     expect(sorted.value).not.toEqual(data.value);
   });
 
-  it('should use customSort function if provided and ignore default sort', () => {
+  it('should use customSort function if provided and also default sort if order key exists', () => {
     const data = ref<Item[]>([
       { id: 1, name: 'C' },
       { id: 2, name: 'A' },
@@ -133,8 +133,6 @@ describe('useSort', () => {
       { id: 4, name: 'Z' },
       { id: 5, name: 'M' },
     ]);
-
-    const includeDefaultSort = ref(false);
 
     const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
 
@@ -149,7 +147,7 @@ describe('useSort', () => {
       return dataToSort;
     };
 
-    const { sorted } = useSort({ initialData: data, sortOptions, includeDefaultSort, customSort });
+    const { sorted } = useSort({ initialData: data, sortOptions, customSort });
 
     expect(sorted.value).toEqual([
       { id: 2, name: 'A' },
@@ -158,12 +156,21 @@ describe('useSort', () => {
       { id: 5, name: 'M' },
       { id: 4, name: 'Z' },
     ]);
-
 
     sortOptions.value[0].order = 'desc';
     sortOptions.value[0].key = 'id';
 
     expect(sorted.value).toEqual([
+      { id: 5, name: 'M' },
+      { id: 4, name: 'Z' },
+      { id: 3, name: 'B' },
+      { id: 2, name: 'A' },
+      { id: 1, name: 'C' },
+    ]);
+  });
+
+  it('should use customSort function if provided and ignore default sort if order key not exists', () => {
+    const data = ref<Item[]>([
       { id: 1, name: 'C' },
       { id: 2, name: 'A' },
       { id: 3, name: 'B' },
@@ -171,14 +178,81 @@ describe('useSort', () => {
       { id: 5, name: 'M' },
     ]);
 
-    includeDefaultSort.value = true;
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const customSort = (dataToSort: Item[]) => {
+      const { order, key } = toValue(sortOptions)[0];
+      if (key === 'name') {
+        return dataToSort.sort((a, b) => {
+          if (order === 'asc') return (a.name ?? '').localeCompare(b.name ?? '');
+          return (b.name ?? '').localeCompare(a.name ?? '');
+        });
+      }
+      return dataToSort;
+    };
+
+    const { sorted } = useSort({ initialData: data, sortOptions, customSort });
 
     expect(sorted.value).toEqual([
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 1, name: 'C' },
       { id: 5, name: 'M' },
       { id: 4, name: 'Z' },
-      { id: 3, name: 'B' },
-      { id: 2, name: 'A' },
+    ]);
+
+    sortOptions.value[0].order = 'desc';
+    // @ts-expect-error just a failure test
+    sortOptions.value[0].key = 'foo';
+
+    expect(sorted.value).toEqual([
       { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 4, name: 'Z' },
+      { id: 5, name: 'M' },
+    ]);
+  });
+
+type SpecialItem = {
+  id: number,
+  name: string,
+  event: { name: string; },
+}
+  it('should use customSort function if provided and ignore default sort if order key exists in both functions', () => {
+    const data = ref<SpecialItem[]>([
+      { id: 1, name: 'z ipsum', event: { name: 'a event bold' } },
+      { id: 2, name: 'b ipsum', event: { name: 'c event italic' } },
+      { id: 4, name: 'a ipsum', event: { name: 'b event underlined' } },
+      { id: 6, name: 'd ipsum', event: { name: 'b event dotted' } },
+      { id: 3, name: 'x ipsum', event: { name: 'e event strikethrough' } },
+      { id: 5, name: 'm ipsum', event: { name: 'd event strong' } },
+    ]);
+
+    // custom sort nach event.name soll defaultSort preventen
+
+    const sortOptions = ref<SortOption<SpecialItem>[]>([{ key: 'event', order: 'asc' }]);
+
+    const customSort = (dataToSort: SpecialItem[]) => {
+      const { order, key } = toValue(sortOptions)[0];
+      if (key === 'event') {
+        return dataToSort.sort((a, b) => {
+          if (order === 'asc') return (a.event.name ?? '').localeCompare(b.event.name ?? '');
+          return (b.event.name ?? '').localeCompare(a.event.name ?? '');
+        });
+      }
+      return dataToSort;
+    };
+
+    const { sorted } = useSort({ initialData: data, sortOptions, customSort });
+
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'z ipsum', event: { name: 'a event bold' } },
+      { id: 6, name: 'd ipsum', event: { name: 'b event dotted' } },
+      { id: 4, name: 'a ipsum', event: { name: 'b event underlined' } },
+      { id: 2, name: 'b ipsum', event: { name: 'c event italic' } },
+      { id: 5, name: 'm ipsum', event: { name: 'd event strong' } },
+      { id: 3, name: 'x ipsum', event: { name: 'e event strikethrough' } },
     ]);
   });
 
