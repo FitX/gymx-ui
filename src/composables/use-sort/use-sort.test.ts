@@ -214,11 +214,11 @@ describe('useSort', () => {
     ]);
   });
 
-type SpecialItem = {
-  id: number,
-  name: string,
-  event: { name: string; },
-}
+  type SpecialItem = {
+    id: number;
+    name: string;
+    event: { name: string };
+  };
   it('should use customSort function if provided and ignore default sort if order key exists in both functions', () => {
     const data = ref<SpecialItem[]>([
       { id: 1, name: 'z ipsum', event: { name: 'a event bold' } },
@@ -269,6 +269,97 @@ type SpecialItem = {
       { id: 3, name: 'C' },
       { id: 1, name: 'A' },
       { id: 2, name: 'B' },
+    ]);
+  });
+
+  it('should not apply defaultSort when includeDefaultSort is false', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions, includeDefaultSort: false });
+
+    // Reihenfolge unverändert, kein sort
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+    ]);
+  });
+
+  it('should apply defaultSort when includeDefaultSort is true (default)', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const { sorted } = useSort({ initialData: data, sortOptions });
+
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 1, name: 'C' },
+    ]);
+  });
+
+  it('should apply customSort but not defaultSort when includeDefaultSort is false', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+
+    const customSort = (dataToSort: Item[]) => dataToSort.reverse();
+
+    const { sorted } = useSort({
+      initialData: data,
+      sortOptions,
+      customSort,
+      includeDefaultSort: false,
+    });
+
+    // customSort (reverse) angewendet, defaultSort nicht
+    expect(sorted.value).toEqual([
+      { id: 3, name: 'B' },
+      { id: 2, name: 'A' },
+      { id: 1, name: 'C' },
+    ]);
+    expect(sorted.value).not.toEqual(data.value);
+  });
+
+  it('should react to includeDefaultSort ref change', () => {
+    const data = ref<Item[]>([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+    const includeDefaultSort = ref(true);
+
+    const { sorted } = useSort({ initialData: data, sortOptions, includeDefaultSort });
+
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
+      { id: 1, name: 'C' },
+    ]);
+
+    includeDefaultSort.value = false;
+
+    expect(sorted.value).toEqual([
+      { id: 1, name: 'C' },
+      { id: 2, name: 'A' },
+      { id: 3, name: 'B' },
     ]);
   });
 
