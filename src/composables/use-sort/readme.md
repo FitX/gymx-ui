@@ -55,17 +55,25 @@ const { sorted } = useSort({ initialData: data, sortOptions });
 
 ### Using a Custom Sort Function
 
-If you need specific sorting logic, you can provide a custom sort function (`customSort`).
+If you need specific sorting logic for keys that `defaultSort` cannot handle (e.g. nested keys),
+you can provide a custom sort function (`customSort`). Use `ignoreSortKeys` to prevent
+`defaultSort` from also sorting those keys.
 
 ```ts
-const customSort = (items: Item[]) => items.reverse();
+const customSort = (dataToSort: SpecialItem[]) => {
+  return dataToSort.sort((a, b) => a.event.name.localeCompare(b.event.name));
+};
 
-const { sorted } = useSort({ initialData, customSort });
+const { sorted } = useSort({
+  initialData: data,
+  sortOptions,   // [{ key: 'event', order: 'asc' }, { key: 'name', order: 'asc' }]
+  customSort,
+  ignoreSortKeys: ['event'],
+});
 ```
 
-The custom sort function is applied first. If `includeDefaultSort` is `true` (default),
-`defaultSort` is applied afterwards. The custom sort function is responsible for handling
-the keys it supports — for all other keys, `defaultSort` will take over.
+`customSort` runs before `defaultSort`. Keys listed in `ignoreSortKeys` are excluded
+from `defaultSort`, so they are only handled by `customSort`.
 
 ## API
 
@@ -75,11 +83,13 @@ the keys it supports — for all other keys, `defaultSort` will take over.
 - **`sortOptions`** (optional): A list of sorting options with the following properties:
   - `key`: The key in the object to sort by.
   - `order`: The sorting order, either `'asc'` (ascending) or `'desc'` (descending).
-- **`includeDefaultSort`** (optional, default: `true`): Whether to apply `defaultSort` after `customSort`.
+- **`customSort`** (optional): A custom sort function for keys that `defaultSort` cannot handle.
+  Runs before `defaultSort`.
+- **`includeDefaultSort`** (optional, default: `true`): Whether to apply `defaultSort` after
+  `customSort`. Can be a `ref` or a raw value.
+- **`ignoreSortKeys`** (optional): A list of keys to exclude from `defaultSort`.
+  Use this together with `customSort` to prevent `defaultSort` from overriding custom sort logic.
   Can be a `ref` or a raw value.
-- **`customSort`** (optional): A custom function for sorting logic that `defaultSort` cannot handle
-  (e.g. nested keys). Runs before `defaultSort`. If `includeDefaultSort` is `false`,
-  `defaultSort` is skipped entirely.
 
 #### Returns:
 

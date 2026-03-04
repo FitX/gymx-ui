@@ -7,6 +7,12 @@ interface Item {
   name?: string | null;
 }
 
+type SpecialItem = {
+  id: number;
+  name: string;
+  event: { name: string };
+};
+
 describe('useSort', () => {
   it('should sort data in ascending order by default', () => {
     const data = ref<Item[]>([
@@ -214,11 +220,6 @@ describe('useSort', () => {
     ]);
   });
 
-  type SpecialItem = {
-    id: number;
-    name: string;
-    event: { name: string };
-  };
   it('should use customSort function if provided and ignore default sort if order key exists in both functions', () => {
     const data = ref<SpecialItem[]>([
       { id: 1, name: 'z ipsum', event: { name: 'a event bold' } },
@@ -473,5 +474,100 @@ describe('useSort', () => {
 
     expect(sortFn).toHaveBeenCalledOnce();
     expect(sortFn).toHaveBeenCalledWith([{ id: 2 }, { id: 1 }]);
+  });
+
+  it('should not execute default sort for ignoreSortKeys', () => {
+    const data = ref<Item[]>([
+      { id: 2, name: 'a ipsum' },
+      { id: 1, name: null },
+      { id: 3, name: 'A z ipsum' },
+    ]);
+
+    const sortOptions = ref<SortOption<Item>[]>([{ key: 'name', order: 'asc' }]);
+    const ignoreSortKeys = ref<(keyof Item)[]>(['name']);
+
+    const customSort = (dataToSort: Item[]) =>
+      dataToSort.sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
+
+    const { sorted } = useSort({
+      initialData: data,
+      sortOptions,
+      customSort,
+      ignoreSortKeys,
+    });
+
+    // with local compare
+    expect(sorted.value).toEqual([
+      { id: 1, name: null },
+      { id: 2, name: 'a ipsum' },
+      { id: 3, name: 'A z ipsum' },
+    ]);
+
+    ignoreSortKeys.value = [];
+
+    // with default sort
+    expect(sorted.value).toEqual([
+      { id: 3, name: 'A z ipsum' },
+      { id: 2, name: 'a ipsum' },
+      { id: 1, name: null },
+    ]);
+  });
+
+  it('should exclude ignoreSortKeys from defaultSort', () => {
+    const data = ref<SpecialItem[]>([
+      { id: 2, name: 'a ipsum', event: { name: 'c event' } },
+      { id: 1, name: 'z ipsum', event: { name: 'a event' } },
+      { id: 3, name: 'm ipsum', event: { name: 'b event' } },
+    ]);
+
+    const sortOptions = ref<SortOption<SpecialItem>[]>([
+      { key: 'event', order: 'asc' },
+      { key: 'name', order: 'asc' },
+    ]);
+
+    const customSort = (dataToSort: SpecialItem[]) =>
+      dataToSort.sort((a, b) => a.event.name.localeCompare(b.event.name));
+
+    const { sorted } = useSort({
+      initialData: data,
+      sortOptions,
+      customSort,
+      ignoreSortKeys: ['event'],
+    });
+
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'a ipsum', event: { name: 'c event' } },
+      { id: 3, name: 'm ipsum', event: { name: 'b event' } },
+      { id: 1, name: 'z ipsum', event: { name: 'a event' } },
+    ]);
+  });
+
+  it('should react to ignoreSortKeys ref change', () => {
+    const data = ref<SpecialItem[]>([
+      { id: 2, name: 'a ipsum', event: { name: 'c event' } },
+      { id: 1, name: 'z ipsum', event: { name: 'a event' } },
+      { id: 3, name: 'm ipsum', event: { name: 'b event' } },
+    ]);
+
+    const sortOptions = ref<SortOption<SpecialItem>[]>([{ key: 'name', order: 'asc' }]);
+    const ignoreSortKeys = ref<(keyof SpecialItem)[]>(['name']);
+
+    const { sorted } = useSort({ initialData: data, sortOptions, ignoreSortKeys });
+
+    // with ignore keys
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'a ipsum', event: { name: 'c event' } },
+      { id: 1, name: 'z ipsum', event: { name: 'a event' } },
+      { id: 3, name: 'm ipsum', event: { name: 'b event' } },
+    ]);
+
+    // reset keys
+    ignoreSortKeys.value = [];
+
+    expect(sorted.value).toEqual([
+      { id: 2, name: 'a ipsum', event: { name: 'c event' } },
+      { id: 3, name: 'm ipsum', event: { name: 'b event' } },
+      { id: 1, name: 'z ipsum', event: { name: 'a event' } },
+    ]);
   });
 });

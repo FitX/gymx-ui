@@ -15,6 +15,7 @@ export type UseSortOptions<T> = {
   customSort?: MaybeFunction<T> | MaybeFunctionRef<T>;
   sortOptions?: MaybeRefOrGetter<SortOption<T>[]>;
   includeDefaultSort?: MaybeRefOrGetter<boolean>;
+  ignoreSortKeys?: MaybeRefOrGetter<(keyof T)[]>;
 };
 
 const defaultSort = <T>(data: T[], sortOptions: SortOption<T>[]): T[] => {
@@ -47,6 +48,7 @@ export const useSort = <T>({
   sortOptions = [],
   includeDefaultSort = true,
   customSort,
+  ignoreSortKeys = [],
 }: UseSortOptions<T>) => {
   const sorted = computed<T[] | null | undefined>(() => {
     const _data = toValue(initialData);
@@ -56,14 +58,16 @@ export const useSort = <T>({
       | ((data: T[]) => T[])
       | undefined;
 
-    if (typeof resolvedCustomSort === 'function') {
-      const preProcessed = resolvedCustomSort([..._data]);
-      return toValue(includeDefaultSort)
-        ? defaultSort(preProcessed, toValue(sortOptions))
-        : preProcessed;
-    }
+    const remainingSortOptions = toValue(sortOptions).filter(
+      (o) => !toValue(ignoreSortKeys).includes(o.key),
+    );
 
-    return toValue(includeDefaultSort) ? defaultSort(_data, toValue(sortOptions)) : _data;
+    const preProcessed =
+      typeof resolvedCustomSort === 'function' ? resolvedCustomSort([..._data]) : _data;
+
+    return toValue(includeDefaultSort)
+      ? defaultSort(preProcessed, remainingSortOptions)
+      : preProcessed;
   });
 
   return { sorted };
